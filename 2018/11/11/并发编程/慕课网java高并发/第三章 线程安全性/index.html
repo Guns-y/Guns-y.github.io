@@ -215,14 +215,79 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            
+            <h1 id="1线程安全性"><a href="#1线程安全性" class="headerlink" title="1线程安全性"></a>1线程安全性</h1><figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-062856.png" title="image-20190801142855084" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-062856.png" alt="image-20190801142855084" title class></a>
+                <p>image-20190801142855084</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-062907.png" title="image-20190801142905922" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-062907.png" alt="image-20190801142905922" title class></a>
+                <p>image-20190801142905922</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-064811.png" title="image-20190801144809566" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-064811.png" alt="image-20190801144809566" title class></a>
+                <p>image-20190801144809566</p>
+            </figure>
+
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">ublic <span class="class"><span class="keyword">class</span> <span class="title">CountExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal  = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">//同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line">    <span class="comment">//变量声明：计数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> AtomicInteger count = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();<span class="comment">//创建线程池</span></span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);<span class="comment">//定义信号量，给出允许并发的数目</span></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);<span class="comment">//定义计数器闭锁</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;clientTotal;i++)&#123;</span><br><span class="line">            executorService.execute(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();<span class="comment">//判断进程是否允许被执行</span></span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();<span class="comment">//释放进程</span></span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    log.error(<span class="string">"excption"</span>,e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();<span class="comment">//保证信号量减为0</span></span><br><span class="line">        executorService.shutdown();<span class="comment">//关闭线程池</span></span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>,count.get());<span class="comment">//变量取值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        count.incrementAndGet();<span class="comment">//变量操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">说到原子性，一共有两个方面需要学习一下，一个是JDK中已经提供好的Atomic包，他们均使用了CAS完成线程的原子性操作，另一个是使用锁的机制来处理线程之间的原子性。 锁包括：synchronized、Lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="AtomicInteger"><a href="#AtomicInteger" class="headerlink" title="AtomicInteger"></a>AtomicInteger</h2><p>上边的示例代码就是通过AtomicInteger类保证了线程的原子性。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">那么它是如何保证原子性的呢？ 我们接下来分析一下它的源码。 示例中，对count变量的+1操作，采用的是incrementAndGet方法，此方法的源码中调用了一个名为unsafe.getAndAddInt的方法</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count.incrementAndGet();</span><br><span class="line">        count.getAndIncrement();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在此方法中，方法参数为要操作的对象Object var1、期望底层当前的数值为var2、要修改的数值var4。 定义的var5为真正从底层取出来的值。 采用do.. while循环的方式去获取底层数值并与期望值进行比较，比较成功才将值进行修改。 而这个比较再进行修改的方法就是compareAndSwapInt就是我们所说的CAS，它是一系列的接口，比如下面罗列的几个接口。 使用native修饰，是底层的方法。 CAS取的是compareAndSwap三个单词的首字母.</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">compareAndSwapInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4, <span class="keyword">int</span> var5)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> JNI在某些情况下可能带来很大的开销和性能损失:</p>
+</blockquote>
+<ul>
+<li>调用 JNI 方法是很笨重的操作, 特别是在多次重复调用的情况下.</li>
+<li>Native 方法不会被 JVM 内联, 也不会被 JIT compiled 优化 , 因为方法已经被编译过了.</li>
+<li>Java 数组可能会被拷贝一份,以传递给 native 方法, 执行完之后再拷贝回去. 其开销与数组的长度是线性相关的.</li>
+<li>如果传递一个对象给方法,或者需要一个回调,那么 Native 方法可能会自己调用JVM。 访问Java对象的属性、方法和类型时, Native代码需要类似reflection的东西。签名由字符串指定,通从JVM中查询。这非常缓慢并且容易出错。</li>
+<li>Java 中的字符串(String) 也是对象, 有 length 属性,并且是编码过的. 读取或者创建字符串都需要一次时间复杂度为 O(n) 的复制操作.</li>
+</ul>
+<h2 id="再分析其函数的调用："><a href="#再分析其函数的调用：" class="headerlink" title="再分析其函数的调用："></a>再分析其函数的调用：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>其中var1为当前传入的对象即count，var2是当前count的值，var4即为incrementAndGet()方法的默认加数，为1，var5是调用的另一个JNI的方法得到底层当前的count值。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">getIntVolatile</span><span class="params">(Object var1, <span class="keyword">long</span> var2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。"><a href="#Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。" class="headerlink" title="Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。"></a><strong>Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。</strong></h2><p>（Volatile关键字的详述又该是一个大文章了！过阵子再写！）<br>那么现在应该就懂了，<strong>用底层得到的值不断循环比较当前的值，如果两者相等就加一并再用JNI底层方法写入主内存。</strong><br>AtomicInteger类就是使用了该方法即<strong>CAS原理</strong>来保证线程安全的。（CAS原理也是一个大块头。。）<br>同理，AtomicXXX类（XXX是属于Java的Object，例如Long、Double等）都是该方法保证的！</p>
+<h2 id="ConpareAndSet概述"><a href="#ConpareAndSet概述" class="headerlink" title="ConpareAndSet概述"></a>ConpareAndSet概述</h2><p>该方法和ConpareAndSwap有些相似，但还有不同：ConpareAndSet(a,b)更多的是用在AtomicBoolean类中（Boolean要求false与true的转换同一时间只能被一个线程调用，且false(true)只能转换为true(false)，其中的参数a,b即为只能相互转换的数，<strong>顺序为：当为a的时候更新为b</strong>）。</p>
+<h2 id="longAdder"><a href="#longAdder" class="headerlink" title="longAdder."></a>longAdder.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static LongAdder longAdder = new LongAdder();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">longAdder.increment();</span><br></pre></td></tr></table></figure>
+
+<p>那么问题来了，为什么有了AtomicLong还要新增一个LongAdder呢？<br>原因是：CAS底层实现是在一个死循环中不断地尝试修改目标值，直到修改成功。 如果竞争不激烈的时候，修改成功率很高，否则失败率很高。 在失败的时候，这些重复的原子性操作会耗费性能。</p>
+<blockquote>
+<p>知识点： 对于普通类型的long、double变量，JVM允许将64位的读操作或写操作拆成两个32位的操作。</p>
+<h2 id="LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数，-而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。-当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。-这相当于将AtomicLong的单点的更新压力分担到各个节点上。-在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。-而在高并发的时候通过分散提高了性能。"><a href="#LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数，-而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。-当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。-这相当于将AtomicLong的单点的更新压力分担到各个节点上。-在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。-而在高并发的时候通过分散提高了性能。" class="headerlink" title="LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数， 而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。 当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。 这相当于将AtomicLong的单点的更新压力分担到各个节点上。 在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。 而在高并发的时候通过分散提高了性能。"></a>LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数， 而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。 当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。 这相当于将AtomicLong的单点的更新压力分担到各个节点上。 在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。 而在高并发的时候通过分散提高了性能。</h2><p>缺点：如果在统计的时候，如果有并发更新，可能会有统计数据有误差。 实际使用中在处理高并发计数的时候优先使用LongAdder，而不是AtomicLong在线程竞争很低的时候，使用AtomicLong会简单效率更高一些。 比如序列号生成（准确性 </p>
+</blockquote>
+
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2019-08-01T04:44:40.180Z" itemprop="dateUpdated">2019-08-01 12:44:40</time>
+    Last updated: <time datetime="2019-08-01T07:00:56.198Z" itemprop="dateUpdated">2019-08-01 15:00:56</time>
 </span><br>
 
 
@@ -313,6 +378,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1线程安全性"><span class="post-toc-number">1.</span> <span class="post-toc-text">1线程安全性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicInteger"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AtomicInteger</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#再分析其函数的调用："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">再分析其函数的调用：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ConpareAndSet概述"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">ConpareAndSet概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#longAdder"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">longAdder.</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数，-而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。-当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。-这相当于将AtomicLong的单点的更新压力分担到各个节点上。-在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。-而在高并发的时候通过分散提高了性能。"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数， 而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。 当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。 这相当于将AtomicLong的单点的更新压力分担到各个节点上。 在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。 而在高并发的时候通过分散提高了性能。</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
