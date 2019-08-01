@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>第1章 并发基础 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="并发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>第1章 并发基础</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">第1章 并发基础</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-11T02:13:42.000Z" itemprop="datePublished" class="page-time">
+  2018-11-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/并发/">并发</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-并发编程/慕课网java高并发/第一章 并发基础"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">第1章 并发基础</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-11 10:13:42" datetime="2018-11-11T02:13:42.000Z"  itemprop="datePublished">2018-11-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/并发/">并发</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <blockquote>
+<p><a href="https://blog.csdn.net/jesonjoke/column/info/21011" target="_blank" rel="noopener">https://blog.csdn.net/jesonjoke/column/info/21011</a> [Jeff丶Osmond </p>
+<p><a href="https://suprisemf.github.io/" target="_blank" rel="noopener">https://suprisemf.github.io/</a>   红宝石星球 </p>
+<p>学习资料汇总</p>
+</blockquote>
+<p><a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023646.jpg" title="image-20190228135737602" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023646.jpg" alt="image-20190228135737602"></a></p>
+<hr>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023647.jpg" title="image-20190228135754241" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023647.jpg" alt="image-20190228135754241" title class></a>
+                <p>image-20190228135754241</p>
+            </figure>
+
+<h1 id="1-并发编程的基础"><a href="#1-并发编程的基础" class="headerlink" title="1  并发编程的基础"></a>1  并发编程的基础</h1><figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023650.jpg" title="image-20190228141542431" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023650.jpg" alt="image-20190228141542431" title class></a>
+                <p>image-20190228141542431</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023651.jpg" title="image-20190228141659031" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023651.jpg" alt="image-20190228141659031" title class></a>
+                <p>image-20190228141659031</p>
+            </figure>
+
+<hr>
+<h1 id="2-并发基础"><a href="#2-并发基础" class="headerlink" title="2 并发基础"></a>2 并发基础</h1><h2 id="2-1-CPU多级缓存-缓存一致性"><a href="#2-1-CPU多级缓存-缓存一致性" class="headerlink" title="2-1 CPU多级缓存-缓存一致性"></a>2-1 CPU多级缓存-缓存一致性</h2><figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030230.png" title="image-20190731110229649" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030230.png" alt="image-20190731110229649" title class></a>
+                <p>image-20190731110229649</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030245.png" title="image-20190731110244972" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030245.png" alt="image-20190731110244972" title class></a>
+                <p>image-20190731110244972</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030628.png" title="image-20190731110626955" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030628.png" alt="image-20190731110626955" title class></a>
+                <p>image-20190731110626955</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030735.png" title="image-20190731110734083" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-030735.png" alt="image-20190731110734083" title class></a>
+                <p>image-20190731110734083</p>
+            </figure>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cpu缓存是位于CPU与内存之间的临时存储器，它的容量比内存小的多，但是交换速度却比内存要快得多</span><br><span class="line"></span><br><span class="line">为什么需要CPU cache?</span><br><span class="line"></span><br><span class="line">cpu的频率太快了，快到主存跟不上，这样在处理器时钟周期内，cpu常常需要等待主存，浪费资源。cache的出现，是为了缓解cpu和主存之间速度的不匹配问题（结构：cpu-&gt;cache&gt;memory）</span><br><span class="line"></span><br><span class="line">CPU cache有什么意义？</span><br><span class="line"></span><br><span class="line">1、时间局部性：如果某个数据被访问，那么在不久的将来它很可能被再次访问；2、空间局部性：如果某个数据被访问，那么与它相邻的数据很快也可能被访问；</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-2CPU多级缓存-缓存一致性-MESI"><a href="#2-2CPU多级缓存-缓存一致性-MESI" class="headerlink" title="2-2CPU多级缓存-缓存一致性(MESI)"></a>2-2CPU多级缓存-缓存一致性(MESI)</h2><p>用于保证多个CPU cache之间缓存共享数据的一致，也可以通过给总线加LOCK锁的方式来保证缓存一致性</p>
+<p>每个缓存行有如下M、E、S、I 四种状态</p>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-044655.png" title="image-20190801124653587" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-044655.png" alt="image-20190801124653587" title class></a>
+                <p>image-20190801124653587</p>
+            </figure>
+
+
+
+<ul>
+<li><p>M(Modified)：被修改，该缓存行只被缓存在该CPU的缓存中，并且是被修改过的，目前与主存的数据不一致，即该缓存需要在未来的某个时间点（并且允许其他CPU读取该主存中相应内存之间）写回主内存，当被写回主存之后，该缓存行的状态会变成独享（Exclusive）状态</p>
+</li>
+<li><p>E(Exclusive)：独享的，该缓存行只被缓存在该CPU的缓存中，它是未被修改过的，与主存中的数据一致。该状态可以在任何时刻当有其它CPU读取该内存时变成共享状态。同样地，当CPU修改该缓存行中内容时，该状态可以变成Modified状态</p>
+</li>
+<li><p>S(Shared)：共享的，该状态意味着该缓存行可能被多个CPU缓存，并且各个缓存中的数据与主存数据一致，当有一个CPU修改该缓存行时，其他CPU中对该缓存行的缓存可以被作废，变为无效状态（Invalid）</p>
+</li>
+<li><p>I(Invalid)：该缓存时无效的</p>
+</li>
+</ul>
+<hr>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h3 id="从CPU读写角度来说："><a href="#从CPU读写角度来说：" class="headerlink" title="从CPU读写角度来说："></a>从CPU读写角度来说：</h3><p>CPU读请求：缓存处于M、E、S状态都可以被读取，I状态CPU只能从主存中读取数据</p>
+<p>CPU写请求：缓存处于M、E状态才可以被写。对于S状态的写，需要将其他CPU中缓存行置为无效才可写</p>
+<h3 id="主流解决方法："><a href="#主流解决方法：" class="headerlink" title="主流解决方法："></a>主流解决方法：</h3><p>通过总线加锁方法；<br>通过缓存一致性协议。<br>方式一，通过给总线加锁（数据、控制、地址总线），者会阻塞其他CPU对其他组件的访问，效率低下。</p>
+<h3 id="采用方式二。"><a href="#采用方式二。" class="headerlink" title="采用方式二。"></a>采用方式二。</h3><p>最出名的就是Intel 的MESI协议，MESI协议保证了每个缓存中使用的共享变量的副本是一致的。它核心的思想是：</p>
+<p>当CPU写数据时，如果发现操作的变量是共享变量，即在其他CPU中也存在该变量的副本，会发出信号通知其他CPU将该变量的缓存行置为无效状态，因此当其他CPU需要读取这个变量时，发现自己缓存中缓存该变量的缓存行是无效的，那么它就会从内存重新读取。</p>
+<p>单核Cache中每个Cache line有2个标志：dirty和valid标志，它们很好的描述了Cache和Memory(内存)之间的数据关系(数据是否有效，数据是否被修改)，而在多核处理器中，多个核会共享一些数据，MESI协议就包含了描述共享的状态。</p>
+<p>在MESI协议中，每个Cache line有4个状态，可用2个bit表示，它们分别是：</p>
+<hr>
+ <figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-044839.png" title="image-20190801124838494" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-044839.png" alt="image-20190801124838494" title class></a>
+                <p>image-20190801124838494</p>
+            </figure>
+
+<blockquote>
+<p><a href="https://my.oschina.net/u/1174461/blog/1916572" target="_blank" rel="noopener">https://my.oschina.net/u/1174461/blog/1916572</a></p>
+</blockquote>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-045121.png" title="image-20190801125119189" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-045121.png" alt="image-20190801125119189" title class></a>
+                <p>image-20190801125119189</p>
+            </figure>
+
+<h3 id="2-3CPU多级缓存-乱序执行优化"><a href="#2-3CPU多级缓存-乱序执行优化" class="headerlink" title="2-3CPU多级缓存-乱序执行优化"></a>2-3CPU多级缓存-乱序执行优化</h3><figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-032009.png" title="image-20190731112007714" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-032009.png" alt="image-20190731112007714" title class></a>
+                <p>image-20190731112007714</p>
+            </figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 处理器为提高运算速度而做出违背代码原有顺序的优化。当然了在正常情况下是不对结果造成影响的。在单核时代处理器对结果的优化保证不会远离预期目标，但是在多核环境下却并非如此。为什么这么说呢？首先，在多核条件下会有多个核执行指令，因此每个核的指令都有可能会乱序。另外处理器还引入了L1、L2缓存机制，这就导致了逻辑上后写入的数据不一定最后写入。</span><br><span class="line"></span><br><span class="line">这就导致的一个问题，如果我们不做任何处理，实际结果可能和逻辑运行结果大不相同。在一个核上记录一个标志表示数据已经准备完毕，在另一个核上来判断这个数据是否已经就绪，这时候就会存在风险。标记位先被写入，但是实际的操作缺并未完成，这个未完成既有可能是没有计算完成，也有可能是缓存没有被及时刷新到主存之中，使得其他核读到了错误的数据。</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-045533.png" title="image-20190801125531863" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-045533.png" alt="image-20190801125531863" title class></a>
+                <p>image-20190801125531863</p>
+            </figure> 
+
+<p>2-3 JAVA内存模型</p>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="../../../../Users/apple/Library/Application" title="Support/typora-user-images/image-20190731112245750.png" data-fancybox="images"><img src="../../../../Users/apple/Library/Application" alt="image-20190731112245750" title="Support/typora-user-images/image-20190731112245750.png" class></a>
+                <p>Support/typora-user-images/image-20190731112245750.png</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090111.png" title="image-20190731170109744" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090111.png" alt="image-20190731170109744" title class></a>
+                <p>image-20190731170109744</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090144.png" title="image-20190731170143432" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090144.png" alt="image-20190731170143432" title class></a>
+                <p>image-20190731170143432</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090222.png" title="image-20190731170221488" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090222.png" alt="image-20190731170221488" title class></a>
+                <p>image-20190731170221488</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090458.png" title="image-20190731170456890" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090458.png" alt="image-20190731170456890" title class></a>
+                <p>image-20190731170456890</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090513.png" title="image-20190731170511976" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090513.png" alt="image-20190731170511976" title class></a>
+                <p>image-20190731170511976</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090540.png" title="image-20190731170538763" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090540.png" alt="image-20190731170538763" title class></a>
+                <p>image-20190731170538763</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090550.png" title="image-20190731170548679" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090550.png" alt="image-20190731170548679" title class></a>
+                <p>image-20190731170548679</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090605.png" title="image-20190731170603554" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090605.png" alt="image-20190731170603554" title class></a>
+                <p>image-20190731170603554</p>
+            </figure>
+
+ <figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090638.png" title="image-20190731170636958" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090638.png" alt="image-20190731170636958" title class></a>
+                <p>image-20190731170636958</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090759.png" title="image-20190731170758101" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-090759.png" alt="image-20190731170758101" title class></a>
+                <p>image-20190731170758101</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094232.png" title="image-20190731174230919" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094232.png" alt="image-20190731174230919" title class></a>
+                <p>image-20190731174230919</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094705.png" title="image-20190731174702267" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094705.png" alt="image-20190731174702267" title class></a>
+                <p>image-20190731174702267</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094753.png" title="image-20190731174751279" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-094753.png" alt="image-20190731174751279" title class></a>
+                <p>image-20190731174751279</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095314.png" title="image-20190731175313456" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095314.png" alt="image-20190731175313456" title class></a>
+                <p>image-20190731175313456</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095744.png" title="image-20190731175741708" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095744.png" alt="image-20190731175741708" title class></a>
+                <p>image-20190731175741708</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095754.png" title="image-20190731175753043" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095754.png" alt="image-20190731175753043" title class></a>
+                <p>image-20190731175753043</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095804.png" title="image-20190731175802565" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095804.png" alt="image-20190731175802565" title class></a>
+                <p>image-20190731175802565</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第1章 并发基础 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095813.png" title="image-20190731175812278" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-31-095813.png" alt="image-20190731175812278" title class></a>
+                <p>image-20190731175812278</p>
+            </figure>
+
+<hr>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。<br>其中<strong>Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范</strong></p>
+</blockquote>
+<h4 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h4><p>JMM与硬件结构如下图：</p>
+<p>[<figure class="image-box">
+                <a rel=第1章 并发基础 href="https://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png" title="img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png)" data-fancybox="images"><img src="https://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png" alt="img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png)" title class></a>
+                <p>img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png)</p>
+            </figure></p>
+<p>JMM内部抽象结构如下图：</p>
+<p>[<figure class="image-box">
+                <a rel=第1章 并发基础 href="https://suprisemf.github.io/2018/08/02/Java内存模型/JMM抽象结构.png" title="此处JMM](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E6%8A%BD%E8%B1%A1%E7%BB%93%E6%9E%84.png)" data-fancybox="images"><img src="https://suprisemf.github.io/2018/08/02/Java内存模型/JMM抽象结构.png" alt="此处JMM](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E6%8A%BD%E8%B1%A1%E7%BB%93%E6%9E%84.png)" title class></a>
+                <p>此处JMM](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E6%8A%BD%E8%B1%A1%E7%BB%93%E6%9E%84.png)</p>
+            </figure></p>
+<p>堆区（Heap）：是运行时数据区，并由GC（Garbage Collection）负责，可以在运行时动态分配内存大小，也不必通知编译器。<strong>缺点：由于运行时动态分配内存，故存取速度稍慢</strong></p>
+<blockquote>
+<p>静态成员变量跟随类的定义一起存放在堆中。堆中的对象可以被对该对象持有引用的线程访问，且其成员变量也可以被访问；<strong>当多个线程对同一对象的同一方法进行访问时，其实每个线程都有对该对象的数据的私有拷贝，而不会出现混乱</strong>。</p>
+</blockquote>
+<hr>
+<p>栈区（Stack）：主要存放8种基本类型的变量和句柄，JMM要求调用栈的本地变量存放在本地线程栈中，但对象是存放在堆中；优点：存取速度快（相对于Heap），仅次于寄存器，其中的数据可以共享；缺点：其中的数据与其生存期是确定的，缺乏灵活性。</p>
+<blockquote>
+<p>本地变量（local variable）也可能是一个引用变量，指向一个变量的引用，此时引用变量是存放在线程栈（Thread Stack）中，但被引用变量仍然存放在堆Heap中。</p>
+</blockquote>
+<hr>
+<h3 id="同步的八种操纵"><a href="#同步的八种操纵" class="headerlink" title="同步的八种操纵"></a>同步的八种操纵</h3><ul>
+<li>lock（锁定）：作用于主内存的变量，把一个标示为一条线程独占状态；</li>
+<li>unloc（解锁）：作用于主内存的变量，把一个处于锁定状态的变量释放；</li>
+<li>read（读取）：作用于主内存的变量，把一个变量从主内存传输到编程的工作内存，供随后的load操作使用；</li>
+<li>load（载入）：作用于主内存的变量，它把read操作从主内存得到的变量值放入工作内存的变量副本中；</li>
+<li>use（使用）：作用于主内存的变量，把工作内存的一个变量值传递给执行引擎；</li>
+<li>assign（赋值）：作用于主内存的变量，它把一个从执行引擎收到的值赋值给工作内存的变量；</li>
+<li>store（存储）：作用于主内存的变量，将工作内存的一个变量的值传递给主内存中，供随后的write操作使用；</li>
+<li>write（写入）：作用于主内存的变量，将store操作从内存中的一个变量值传送到主内存的变量中。</li>
+</ul>
+<h3 id="同步的规则"><a href="#同步的规则" class="headerlink" title="同步的规则"></a>同步的规则</h3><p>同步操作与规则如下图：</p>
+<p>[<figure class="image-box">
+                <a rel=第1章 并发基础 href="https://suprisemf.github.io/2018/08/02/Java内存模型/同步操作与规则.png" title="img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%A7%84%E5%88%99.png)" data-fancybox="images"><img src="https://suprisemf.github.io/2018/08/02/Java内存模型/同步操作与规则.png" alt="img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%A7%84%E5%88%99.png)" title class></a>
+                <p>img](https://suprisemf.github.io/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%A7%84%E5%88%99.png)</p>
+            </figure></p>
+<ul>
+<li>如果把一个变量从主内存中复制到工作内存，需要按顺序执行read和load操作；如果把变量从工作内存同步回主内存中，需要按顺序执行store和write操作。<strong>需要按照先后顺序，但不要求连续执行！</strong></li>
+<li>不允许read和load、store和write操作之一单独出现。</li>
+<li>不允许一个线程丢弃它的最近assign的操作，即变量在工作内存中改变了之后必须同步到主内存中。</li>
+<li>不允许一个线程无原因地（没有发生过任何assign操作）把数据从工作内存同步到主内存中。</li>
+<li>一个新的变量只能在主内存中诞生，不允许在工作内存中直接使用一个未被初始化（load或assign）的变量。即对一个变量执行use或store操作之前，必须先执行assign或load操作。</li>
+<li>一个变量在同一时刻只允许一条线程对其进行lock操作，但lock操作可以被同一条线程重复执行多次；多次执行lock后，只有执行相同次数的unlock后，变量才会被解锁。即lock和unlock必须成对出现。</li>
+<li>如果对一个变量执行lock操作，将会清空工作内存中此变量的值；在执行引擎使用这个变量前需要重新执行load或assign操作初始化变量的值。</li>
+<li>如果一个变量事先没有被lock操作锁定，则不允许对它执行unlock操作；也不允许去unlock一个被其他线程锁定的变量。</li>
+<li>对一个变量执行unlock操作之前，必须先把此变量同步到主内存中（执行store和write操作）。</li>
+</ul>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2019-08-01T05:02:40.805Z" itemprop="dateUpdated">2019-08-01 13:02:40</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/" target="_blank" rel="external">http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并发/">并发</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/&title=《第1章 并发基础》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/&title=《第1章 并发基础》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/11/11/Spring Boot/SpringBoot-Docker-小D课堂/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot Docker 小D课堂</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/11/11/Spring Boot/SpringBoot高级雷丰阳/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot  雷丰阳整合篇</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-并发编程的基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">1  并发编程的基础</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-并发基础"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 并发基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-CPU多级缓存-缓存一致性"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2-1 CPU多级缓存-缓存一致性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#定义"><span class="post-toc-number">3.</span> <span class="post-toc-text">定义</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2CPU多级缓存-缓存一致性-MESI"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2-2CPU多级缓存-缓存一致性(MESI)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#null"><span class="post-toc-number">3.2.</span> <span class="post-toc-text"> </span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从CPU读写角度来说："><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">从CPU读写角度来说：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主流解决方法："><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">主流解决方法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#采用方式二。"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">采用方式二。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3CPU多级缓存-乱序执行优化"><span class="post-toc-number">3.2.4.</span> <span class="post-toc-text">2-3CPU多级缓存-乱序执行优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">3.2.4.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Java内存模型（JMM）"><span class="post-toc-number">3.2.4.2.</span> <span class="post-toc-text">Java内存模型（JMM）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同步的八种操纵"><span class="post-toc-number">3.2.5.</span> <span class="post-toc-text">同步的八种操纵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同步的规则"><span class="post-toc-number">3.2.6.</span> <span class="post-toc-text">同步的规则</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/&title=《第1章 并发基础》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/&title=《第1章 并发基础》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNUlEQVR42u3aS27jMBAFwNz/0h5gVgEy0rzXpAGLKa0MQaZY9KLdn6+v+Hr9vb5//n7n5zP3d65WuHrv/duTdYYXNjY29kPYr9vrij07oJVf5mrl+/uXR4yNjY19HDt5TRKW7l/fHsf91tt1sLGxsbF33WlTmjawYWNjY2PvClrtk8k6bXDFxsbG/j3sleSheFmcqCStgqTYtKGWho2Njf3x7JW/+5/2+e39bWxsbOwPY7/ecCVbnJWT2rbu5Q6xsbGxD2Lf/8VfH6NJ0oa8gJUfaBTYsLGxsY9gJ4/mmLagk7Qc2nA4DF3Y2NjYx7Fnf/rbray0ltsUqM5psLGxsR/Fbks/s/CTH9Ms1Snw2NjY2Aex84JRy8uL/vnAZXLoefqEjY2NfQZ7lk7Mtj4r5d9/q53JwcbGxj6PnYeuPM2YNQzyANYmLUVCgo2Njf1Adt4YWA8YCWb2fB0ysbGxsQ9lr5SH1tOMWXN3+LNhY2NjH8Se9RPy4tFKUWl2KHVFDRsbG/sI9ixVyAdl8tZCckx56b+un2FjY2M/nN1uN08G2nflAXU9KGJjY2OfxF5ZIk8J8tbyrLm7IW5jY2NjP5C9EqiSJ3cd9+zo/1NLw8bGxj6CPdtiMrgzG6nJ04+8eYyNjY19NjsPYOsBJh/HmQ0AFS0KbGxs7IPYbWDIx3rahKFtGLdIbGxs7N/AzktI602CtpGwt+mLjY2NfQa7Lda0jdV2i3UiEQTgf6yPjY2NfRA7b+i2AzF5cIrmiRaSoqiohI2Njf1w9t6tLHWbywbAyigPNjY29kns2RZnBaC2qTAbEirCGzY2NvZB7DwkDBctv5sXoWbjRNjY2Ninsmct3pV0JS9svaPUhY2NjX0Sezjps+n5Fr/roLGxsbGfzn6V130IqXvLC8dXNAB+fgsbGxv7IPYsGOQloTZE5eWktvyEjY2NfTa7LbW3rda8WL+rqbwhIcHGxsZ+IDsJWm0bOG8hv6/AhI2NjY2dF3HyUlQbrlYSm0spNjY29q9ktwORK0c2ay3kKQo2Njb2eexd4adtM6ykK0uNCmxsbOyD2CulmVkQyreb/zyzt2BjY2M/nP0HalyWui5QmsEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
