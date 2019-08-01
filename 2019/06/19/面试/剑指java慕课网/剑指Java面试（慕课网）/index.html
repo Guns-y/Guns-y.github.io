@@ -666,6 +666,29 @@
 <li>数据变更需要维护索引，意味着更多的索引意味着更多的维护成本</li>
 <li>更多的索引也需要跟多的存储空间</li>
 </ul>
+<h2 id="8-3-锁模块之MyISAM与InooDB关于锁方面的区别"><a href="#8-3-锁模块之MyISAM与InooDB关于锁方面的区别" class="headerlink" title="8-3  锁模块之MyISAM与InooDB关于锁方面的区别"></a>8-3  锁模块之MyISAM与InooDB关于锁方面的区别</h2><figure class="image-box">
+                <a rel=剑指Java 第一章 网络 数据库 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124409.png" title="image-20190801204407680" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124409.png" alt="image-20190801204407680" title class></a>
+                <p>image-20190801204407680</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=剑指Java 第一章 网络 数据库 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124426.png" title="image-20190801204425343" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124426.png" alt="image-20190801204425343" title class></a>
+                <p>image-20190801204425343</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=剑指Java 第一章 网络 数据库 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124518.png" title="image-20190801204516221" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124518.png" alt="image-20190801204516221" title class></a>
+                <p>image-20190801204516221</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=剑指Java 第一章 网络 数据库 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124544.png" title="image-20190801204542057" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-124544.png" alt="image-20190801204542057" title class></a>
+                <p>image-20190801204542057</p>
+            </figure>
+
+<hr>
 
         </div>
         
@@ -673,7 +696,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-08-01T08:38:02.677Z" itemprop="dateUpdated">2019-08-01 16:38:02</time>
+    最後更新時間：<time datetime="2019-08-01T12:45:49.615Z" itemprop="dateUpdated">2019-08-01 20:45:49</time>
 </span><br>
 
 
@@ -771,7 +794,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#课程目录："><span class="post-toc-number">1.</span> <span class="post-toc-text">课程目录：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-网络"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 网络</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-TCP的三次握手连接"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 TCP的三次握手连接</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-TCP的四次握手"><span class="post-toc-number">4.</span> <span class="post-toc-text">3 TCP的四次握手</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-TCP的滑动窗口"><span class="post-toc-number">5.</span> <span class="post-toc-text">4 TCP的滑动窗口</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#null"><span class="post-toc-number">6.</span> <span class="post-toc-text">
                 
                 image-20190619204437229
-            </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Http"><span class="post-toc-number">7.</span> <span class="post-toc-text">5 Http</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Socket"><span class="post-toc-number">8.</span> <span class="post-toc-text">6 Socket</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7数据库架构"><span class="post-toc-number">9.</span> <span class="post-toc-text">7数据库架构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-数据库索引"><span class="post-toc-number">10.</span> <span class="post-toc-text">8 数据库索引</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-0-MySQL慢日志监控"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">8-0 MySQL慢日志监控</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-1-索引额外问题之最左匹配原则的成因"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">8-1 索引额外问题之最左匹配原则的成因</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-2-索引额外问题之索引是建立越多越好吗"><span class="post-toc-number">10.3.</span> <span class="post-toc-text">8-2 索引额外问题之索引是建立越多越好吗</span></a></li></ol></li></ol>
+            </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Http"><span class="post-toc-number">7.</span> <span class="post-toc-text">5 Http</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Socket"><span class="post-toc-number">8.</span> <span class="post-toc-text">6 Socket</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7数据库架构"><span class="post-toc-number">9.</span> <span class="post-toc-text">7数据库架构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-数据库索引"><span class="post-toc-number">10.</span> <span class="post-toc-text">8 数据库索引</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-0-MySQL慢日志监控"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">8-0 MySQL慢日志监控</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-1-索引额外问题之最左匹配原则的成因"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">8-1 索引额外问题之最左匹配原则的成因</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-2-索引额外问题之索引是建立越多越好吗"><span class="post-toc-number">10.3.</span> <span class="post-toc-text">8-2 索引额外问题之索引是建立越多越好吗</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-3-锁模块之MyISAM与InooDB关于锁方面的区别"><span class="post-toc-number">10.4.</span> <span class="post-toc-text">8-3  锁模块之MyISAM与InooDB关于锁方面的区别</span></a></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
