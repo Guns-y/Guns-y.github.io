@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Docker-Idea | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Docker">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Docker-Idea</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Docker-Idea</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-07T07:39:20.000Z" itemprop="datePublished" class="page-time">
+  2018-11-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Docker/">Docker</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Docker/Docker-Idea"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Docker-Idea</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-07 15:39:20" datetime="2018-11-07T07:39:20.000Z"  itemprop="datePublished">2018-11-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Docker/">Docker</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>###1.Docker 在Intellij中的使用</p>
+<ul>
+<li><p>Machine的安装</p>
+</li>
+<li><p>compose的安装</p>
+</li>
+<li><p>Docker的配置</p>
+<p><strong>首先学习什么东西都要用官网的东西</strong></p>
+<p><strong>安装Docker的插件-看网上教程</strong></p>
+<p><strong>看Docker插件的官网</strong> <a href="https://www.jetbrains.com/help/idea/docker.html" target="_blank" rel="noopener">hrer</a></p>
+<blockquote>
+<p>学习英文。任何东西官网都用详细说明的</p>
+</blockquote>
+<ul>
+<li><input checked disabled type="checkbox"> 学习Docker</li>
+<li><input checked disabled type="checkbox"> 学习SpringBoot整合Docker</li>
+<li><input checked disabled type="checkbox"> 学习运维</li>
+</ul>
+<p><strong>下面开始Docker的学习</strong></p>
+<p>1.现在插件</p>
+<p>2.看网址的教程</p>
+<p>3.安装machin和compose</p>
+<blockquote>
+<p>machine和compose的安装参考</p>
+<p>1.Gitbook书</p>
+<p><a href="https://yeasy.gitbooks.io/docker_practice/content/compose/install.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/compose/install.html</a></p>
+<p>2。官方文档（为主）</p>
+<p><a href="https://docs.docker.com/machine/install-machine/" target="_blank" rel="noopener">https://docs.docker.com/machine/install-machine/</a> ⭐️</p>
+<p>（为什么每次都要重新下载dockermachine）</p>
+</blockquote>
+<blockquote>
+<p>Docker-machine env 不能执行二进制文件 首先要 重新下载Dockermachihe</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base=https://github.com/docker/machine/releases/download/v0.14.0 &amp;&amp;</span><br><span class="line">  curl -L $base/docker-machine-$(uname -s)-$(uname -m) &gt;/usr/local/bin/docker-machine &amp;&amp;</span><br><span class="line">  chmod +x /usr/local/bin/docker-machine</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.Github</p>
+<p><a href="https://github.com/docker/machine/releases" target="_blank" rel="noopener">https://github.com/docker/machine/releases</a></p>
+<p><a href="https://github.com/docker/machine" target="_blank" rel="noopener">https://github.com/docker/machine</a></p>
+</blockquote>
+<h1 id="2-有些东西放在了云收藏里面"><a href="#2-有些东西放在了云收藏里面" class="headerlink" title="2.有些东西放在了云收藏里面"></a>2.有些东西放在了云收藏里面</h1><h6 id="Docker的用户名是2018112"><a href="#Docker的用户名是2018112" class="headerlink" title="Docker的用户名是2018112"></a>Docker的用户名是2018112</h6><p>#####安装Docker插件要开VPN 还有访问Gitbub也要开VPN wiredes的</p>
+<h6 id="安装Docker要安装DookerToolBox"><a href="#安装Docker要安装DookerToolBox" class="headerlink" title="安装Docker要安装DookerToolBox"></a>安装Docker要安装DookerToolBox</h6></li>
+</ul>
+<h1 id="3-Docker"><a href="#3-Docker" class="headerlink" title="3.Docker"></a>3.Docker</h1><p>  ！！Docker真是一个恐怖的东西</p>
+<p>  ######Docker的学习资源GitBook里面的Docker的附录部分</p>
+<blockquote>
+<p><a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener">https://blog.lab99.org/post/docker-2016-07-14-faq.html</a></p>
+</blockquote>
+<h4 id="1-无独有偶通过Docker-SpirngBoot的学习了解了TCP-socker-Engine-API-URL的填写"><a href="#1-无独有偶通过Docker-SpirngBoot的学习了解了TCP-socker-Engine-API-URL的填写" class="headerlink" title="1.无独有偶通过Docker-SpirngBoot的学习了解了TCP socker Engine API URL的填写"></a>1.无独有偶通过Docker-SpirngBoot的学习了解了TCP socker Engine API URL的填写</h4><blockquote>
+<p> Docker开启远程访问这是过程中产生的问题 安装了socket 以后想办法删除</p>
+<p>PS：Docker服务中进程间通信通过/var/run/docker.sock实现，默认服务不提供监听端口，因此使用docker remote api 需要手动绑定端口。方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; `# service docker stop``# docker -d -H unix:``///var/run/docker.sock -H tcp://0.0.0.0:2375`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>  ###2.点击+号添加一个docker配置，输入Name和Engine API URL，URL是docker服务地址，需要docker开启远程连接功能。CentOS中在docker启动参数里添加如下配置即可开启远程连接。</p>
+<pre><code>-H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375</code></pre><hr>
+<p>   <em>下面是docker在idea中的安装</em></p>
+<ul>
+<li><p>clouds里面没有Docker。在Docker中配置 TCP：tcp：//127.0.0.1:2376</p>
+</li>
+<li><p>注意这个是通过终端命令得到的</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker-machine env cloudcomb</span><br><span class="line">export DOCKER_TLS_VERIFY=&quot;1&quot;</span><br><span class="line">export DOCKER_HOST=&quot;tcp://192.168.99.101:2376&quot;</span><br><span class="line">export DOCKER_CERT_PATH=&quot;/Users/apple/.docker/machine/machines/cloudcomb&quot;</span><br><span class="line">export DOCKER_MACHINE_NAME=&quot;cloudcomb&quot;</span><br><span class="line"># Run this command to configure your shell:</span><br><span class="line"># eval $(docker-machine env cloudcomb)</span><br></pre></td></tr></table></figure>
+
+<p><a rel=Docker-Idea href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022419.jpg" title="image-20181107213000670" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022419.jpg" alt="image-20181107213000670"></a></p>
+</li>
+<li><p>将前面的端口换成本地的 tcp:127.0.0.1:2376</p>
+<p><a rel=Docker-Idea href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022421.jpg" title="image-20181107213056424" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022421.jpg" alt="image-20181107213056424"></a></p>
+</li>
+</ul>
+<ul>
+<li><input disabled type="checkbox"> emm睡一觉起来VPN打开要等一会</li>
+<li><input disabled type="checkbox"> <figure class="image-box">
+                <a rel=Docker-Idea href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22422.jpg" title="image-20181108064320954" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22422.jpg" alt="image-20181108064320954" title class></a>
+                <p>image-20181108064320954</p>
+            </figure>
+
+
+
+</li>
+</ul>
+<p>在终端输入dockerversion</p>
+<p>docker-machine env—Host is not running</p>
+<h5 id="学习资源：通过Github的搜索功能🔍-发现一些学习资料"><a href="#学习资源：通过Github的搜索功能🔍-发现一些学习资料" class="headerlink" title="#学习资源：通过Github的搜索功能🔍 发现一些学习资料"></a>#学习资源：通过Github的搜索功能🔍 发现一些学习资料</h5><p><a href="https://www.jetbrains.com/help/idea/docker.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/docker.html</a></p>
+<p>alip1<code>sudo docker pull ccr.ccs.tencentyun.com/freemana2017/atcrod:latest</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">VOLUME /tmp</span><br><span class="line"></span><br><span class="line">sudo docker pull ccr.ccs.tencentyun.com/freemana2017/atcrod:latest</span><br><span class="line"></span><br><span class="line">COPY target/tran4spd-1.0-SNAPSHOT.jar resource.jar</span><br><span class="line">RUN bash -c &quot;touch /resource.jar&quot;</span><br><span class="line">EXPOSE 8080</span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;resource.jar&quot;]</span><br><span class="line"></span><br><span class="line"># docker run -d -p 18080:8099 --name docker-resource leesia/resource:1.0</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-29T03:08:28.520Z" itemprop="dateUpdated">2019-04-29 11:08:28</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/11/07/Docker/Docker-Idea/" target="_blank" rel="external">http://yoursite.com/2018/11/07/Docker/Docker-Idea/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/07/Docker/Docker-Idea/&title=《Docker-Idea》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/07/Docker/Docker-Idea/&title=《Docker-Idea》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/11/07/Docker/Docker-SpringBoot/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Docker SpringBoot</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/11/07/开发遇到的问题/Hexo/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo的使用教程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-有些东西放在了云收藏里面"><span class="post-toc-number">1.</span> <span class="post-toc-text">2.有些东西放在了云收藏里面</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Docker"><span class="post-toc-number">2.</span> <span class="post-toc-text">3.Docker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-无独有偶通过Docker-SpirngBoot的学习了解了TCP-socker-Engine-API-URL的填写"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">1.无独有偶通过Docker-SpirngBoot的学习了解了TCP socker Engine API URL的填写</span></a></li></ol></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/07/Docker/Docker-Idea/&title=《Docker-Idea》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/07/Docker/Docker-Idea/&title=《Docker-Idea》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS47CMBAFQO5/aWaLhJy8dpuRYldWEQrGlUXj/rxe8fX+uL4/T57/vh+tNlpzwYWBgfFYxvvyun4mWXm0wvUe8r1hYGCcw0g2kZBG99e/2F8BAwMDo/9MJ0xjYGBgzAXcPPgmn2BgYGAkjLkD3y8C6M9zcQwMjAcy8qr7/9//pL+BgYHxKMa7eOUls/7RsLArDAyMrRnV4131INgP3IX9YGBgbMq43lyS0FZDZGfl4cvCwMDYmpEHyryRUC30V5sKk10ODAyMxzKqaedc6KyW8ssNAAwMjAMYq8ZPq6W6PLze7AoDA+NIRj/5zANoPkZ2k7hiYGBszeh8vrb9Wc2/h0ksBgbGRoykxZiH4DyMVkN/uaWKgYGxESNPFOdCYd4cnWuUFiY4MDAwHs5IfjLZRLVVkOMLMyMYGBibMqqDFHPtyerLyv8GMDAw9mZUh8CqCW05dLZH0DAwMHZldA5zeZOyD77ZCQYGxgGMalFsVasyT2JvUm4MDIxjGHm7MR996BTaJgMuBgbGpow82OVRrvpS8meGARcDA2NrRlKTm2t5Lqj5JQdEDAyMTRn9BLUDrhbvhqEcAwNja8ZcsKuGziTRnUuSMTAwzmEkQTYv1ifDrNUjYPQKMDAwDmD0GwD5Aa68xeS/AgMDA2NqbGtV4/PV8WFgYBzJyAdS+w3OQusCAwPjAMaqdDT57uSIKgYGxsGM6rmrc7CbK8B12gwYGBgPZ/wBH6Lk8yY94X4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

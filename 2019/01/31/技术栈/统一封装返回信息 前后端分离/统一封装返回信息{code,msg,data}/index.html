@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>统一封装返回信息 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="工具类">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>统一封装返回信息</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">统一封装返回信息</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-31T10:08:41.183Z" itemprop="datePublished" class="page-time">
+  2019-01-31
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">统一封装返回信息</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-31 18:08:41" datetime="2019-01-31T10:08:41.183Z"  itemprop="datePublished">2019-01-31</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-Result"><a href="#1-Result" class="headerlink" title="1 Result"></a>1 Result</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">package com.imooc.miaosha.result;</span><br><span class="line">public class Result&lt;T&gt; &#123;</span><br><span class="line">    private int code;</span><br><span class="line">    private String msg;</span><br><span class="line">    private T data;</span><br><span class="line"></span><br><span class="line">    //⭐️</span><br><span class="line">    private Result(CodeMsg cm) &#123;</span><br><span class="line">        if (cm == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        this.code = cm.getCode();</span><br><span class="line">        this.msg = cm.getMsg();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Result(T data) &#123;</span><br><span class="line">        this.code = 0;</span><br><span class="line">        this.msg = &quot;success&quot;;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 失败的时候调用</span><br><span class="line">     */</span><br><span class="line">    public static &lt;T&gt; Result&lt;T&gt; error(CodeMsg cm) &#123;</span><br><span class="line">        return new Result&lt;T&gt;(cm);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 成功的时候调用</span><br><span class="line">     *</span><br><span class="line">     * @param code</span><br><span class="line">     */</span><br><span class="line">    public static &lt;T&gt; Result&lt;T&gt; success(T data) &#123;</span><br><span class="line">        return new Result&lt;T&gt;(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //2 生成构造方法</span><br><span class="line">    public Result(int code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Result(String msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //3。get/set方法</span><br><span class="line">    public int getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCode(int code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getMsg() &#123;</span><br><span class="line">        return msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMsg(String msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public T getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setData(T data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-CodeMsg"><a href="#2-CodeMsg" class="headerlink" title="2 CodeMsg"></a>2 CodeMsg</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CodeMsg</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    <span class="comment">//通用异常</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> CodeMsg SUCCESS = <span class="keyword">new</span> CodeMsg(<span class="number">0</span>, <span class="string">"success"</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> CodeMsg SERVER_NAME = <span class="keyword">new</span> CodeMsg(<span class="number">50001</span>, <span class="string">"服务端异常"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//登录模块 5002XX</span></span><br><span class="line">    <span class="comment">//商品模块 5003XX</span></span><br><span class="line">    <span class="comment">//订单模块 5004XX</span></span><br><span class="line">    <span class="comment">//秒杀模块 5005XX</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CodeMsg</span><span class="params">(<span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CodeMsg <span class="title">getSUCCESS</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CodeMsg <span class="title">getServerName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SERVER_NAME;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-调用要➕-ResponseBody注解"><a href="#3-调用要➕-ResponseBody注解" class="headerlink" title="3 调用要➕@ResponseBody注解"></a>3 调用<em>要➕@ResponseBody注解</em></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/resultsuccess"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">resultsuccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//⭐️⭐️⭐️⭐️⭐️</span></span><br><span class="line">    <span class="comment">/**1.返回成功的时候调用</span></span><br><span class="line"><span class="comment">     *  public static &lt;T&gt; Result&lt;T&gt; success(T data) &#123;</span></span><br><span class="line"><span class="comment">     *             return new Result&lt;T&gt;(data);</span></span><br><span class="line"><span class="comment">     *         &#125;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  private Result(T data) &#123;</span></span><br><span class="line"><span class="comment">     *         this.code = 0;</span></span><br><span class="line"><span class="comment">     *         this.msg = "success";</span></span><br><span class="line"><span class="comment">     *         this.data = data;</span></span><br><span class="line"><span class="comment">     *     &#125;</span></span><br><span class="line"><span class="comment">     *         1.Result.success(data);</span></span><br><span class="line"><span class="comment">     *         结果：</span></span><br><span class="line"><span class="comment">     *          &#123;</span></span><br><span class="line"><span class="comment">     *              "code": 0,</span></span><br><span class="line"><span class="comment">     *              "msg": "success",</span></span><br><span class="line"><span class="comment">     *              "data": "hello immooc"</span></span><br><span class="line"><span class="comment">     *          &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Result.success(<span class="string">"hello immooc"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">===================================</span><br><span class="line"></span><br><span class="line">===================================</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/resulterror"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">resultError</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2。失败的时候调用</span></span><br><span class="line"><span class="comment">     *  public static &lt;T&gt; Result&lt;T&gt; error(CodeMsg cm) &#123;</span></span><br><span class="line"><span class="comment">     *         return new Result&lt;T&gt;(cm);</span></span><br><span class="line"><span class="comment">     *     &#125;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  private Result(CodeMsg cm) &#123;</span></span><br><span class="line"><span class="comment">     *         if (cm == null) &#123;</span></span><br><span class="line"><span class="comment">     *             return;</span></span><br><span class="line"><span class="comment">     *         &#125;</span></span><br><span class="line"><span class="comment">     *         this.code = cm.getCode();</span></span><br><span class="line"><span class="comment">     *         this.msg = cm.getMsg();</span></span><br><span class="line"><span class="comment">     *     &#125;</span></span><br><span class="line"><span class="comment">     *     2 Result.error(CodeMsg.SERVER_NAME)</span></span><br><span class="line"><span class="comment">     *  public static CodeMsg SERVER_NAME = new CodeMsg(50001, "服务端异常");</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 结果     &#123;</span></span><br><span class="line"><span class="comment">     *              "code": 50001,</span></span><br><span class="line"><span class="comment">     *              "msg": "服务端异常",</span></span><br><span class="line"><span class="comment">     *              "data": null</span></span><br><span class="line"><span class="comment">     *          &#125;</span></span><br><span class="line"><span class="comment">     *   分析：</span></span><br><span class="line"><span class="comment">     *   因为CodeMsg SUCCESS 用static修饰了</span></span><br><span class="line"><span class="comment">     *   public static CodeMsg SUCCESS = new CodeMsg(0, "success");</span></span><br><span class="line"><span class="comment">     *   所以可以使用类.属性.属性的方式获得</span></span><br><span class="line"><span class="comment">     *      CodeMsg.SUCCESS.code=50001</span></span><br><span class="line"><span class="comment">     *      CodeMsg.SUCCESS.msg="服务端异常"</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> Result.error(CodeMsg.SERVER_NAME);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-19T13:00:51.269Z" itemprop="dateUpdated">2019-06-19 21:00:51</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/" target="_blank" rel="external">http://yoursite.com/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具类/">工具类</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/&title=《统一封装返回信息》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/&title=《统一封装返回信息》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/01/31/java基础/static关键字/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">static关键字</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/01/31/技术栈/MD5明文加密/两次MD5明文加密/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">两次MD5明文加密</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Result"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 Result</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-CodeMsg"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 CodeMsg</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-调用要➕-ResponseBody注解"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 调用要➕@ResponseBody注解</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/&title=《统一封装返回信息》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/31/技术栈/统一封装返回信息 前后端分离/统一封装返回信息{code,msg,data}/&title=《统一封装返回信息》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD9ElEQVR42u3aS27bQBAFQN3/0g6QVYCY1HvdQ9mL4sqgpOFMcdHuz+sVX19/r/tP//3O/Z3/r6unXH0z38PriQsHDhw4cARHzTfaPvLqkMmde9CzLwMHDhw4cJzluD/GbFsJ3/5OzhH9A4EDBw4cOD7IsTnwJlW7T+Fmu8KBAwcOHL+Bo2Vqi4xtyS9hwoEDBw4cP8WRFAfztC0JorNCZBJuP1QrxYEDBw4caTR8bYLu7/z7wfkOHDhw4MARh9gkLM3uzwJwmxDW58KBAwcOHGuOPA1rhwnawYK2gDhL7aL1ceDAgQPHmmOTFOVjapuBhv06eYMKBw4cOHBsOFqzfXMo/37b0NqMO7xmP8CBAwcOHBcrz8pzeWrUrj8L27PdRsVBHDhw4MAx+lVekksSp1nbadZGamcV6owWBw4cOHCUHPnIwubxSQicFSXvmer948CBAweOBccsucqD1n2gnZUjZ8XEqGiIAwcOHDge46gXWgw3tG2tU+H8m1/hwIEDB44HODZBcXakWYw7FeDf9N9w4MCBA0fJsUmN8iZTPtA2S8za8uKbl4QDBw4cOBYcydhBstzZMbh8b20wfvMUHDhw4MDxAMdslO3s0Fs7rND+03DJjQMHDhw4DnEkydJsxC1Pxtr2VTtmERUiceDAgQPHIY72MW0IPDt4tylfvqHBgQMHDhxrjk0ZLh9HaNtCpwYU2v3jwIEDB44nOPJjJInWZtwhf0oSmHMaHDhw4MCx4chLgflwwNmV2wA/K2t+UyvFgQMHDhwLjtl4weebUptyZPQpDhw4cOB4jKMNom1T6n6dPAncjEoUgRYHDhw4cJQcmw2dDY15gS9PJlcZLQ4cOHDgmOyqLgLmwXIfvPMreZ2nyos4cODAgeOKow1g9w/ID5+sMwufSZJ5eR8HDhw4cBziyEcQkjZSG8nbY+TNpPYF48CBAweOUxx506gt57WtqVmLa9VqaiujOHDgwIEj4JgFueSobWqXJIf5EF4dknHgwIEDxyGOU82hDVCbKG5GIorJQRw4cODAseZoE6QkJUuOlATXWatsONCAAwcOHDgWHHmTKedosfIcKseqC4s4cODAgWPNkadhs2NvRhzyFC5fOXo9OHDgwIFjwfFVXrOUKS/bzRpIs/D/ZlQOBw4cOHCMONrg1I4LzA6ZQJ9FxIEDBw4cZzk2g2j7sYMkMLfJZBtoowwPBw4cOHCUHO0x8vA2K97do7djEwUTDhw4cOD4OEceaDcNrZygDeqHAy0OHDhw4FhwPFfsmyVm+Z3i7Dhw4MCB4xBHHupmBLPhiXYgb/ZicODAgQPHWY59wa6938KdTf/aQUAcOHDgwBFffwDFIbnM3DPw/gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

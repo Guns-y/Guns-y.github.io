@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Spring注解 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="SpringBoot注解">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Spring注解</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Spring注解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-19T02:05:03.524Z" itemprop="datePublished" class="page-time">
+  2019-02-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Spring/注解开发"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Spring注解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-19 10:05:03" datetime="2019-02-19T02:05:03.524Z"  itemprop="datePublished">2019-02-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h1><p>1、@controller 控制器（注入服务）</p>
+<p>用于标注控制层，相当于struts中的action层<br>2、@service 服务（注入dao）</p>
+<p>用于标注服务层，主要用来进行业务的逻辑处理<br>3、@repository（实现dao访问）</p>
+<p>用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.<br>4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的<br><bean id class>）</bean></p>
+<p>泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。<br>案例：<br>&lt;context:component-scan base-package=”com.*”&gt;<br>上面的这个例子是引入Component组件的例子，其中base-package表示为需要扫描的所有子包。 </p>
+<h2 id="共同点：被-controller-、-service、-repository-、-component-注解的类，都会把这些类纳入进spring容器中进行管理"><a href="#共同点：被-controller-、-service、-repository-、-component-注解的类，都会把这些类纳入进spring容器中进行管理" class="headerlink" title="共同点：被@controller 、@service、@repository 、@component 注解的类，都会把这些类纳入进spring容器中进行管理"></a>共同点：被@controller 、@service、@repository 、@component 注解的类，都会把这些类纳入进spring容器中进行管理</h2><hr>
+<h1 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h1><p>GET和POST请求传的参数会自动转换赋值到@RequestParam 所注解的变量上<br>\1. @RequestParam（org.springframework.web.bind.annotation.RequestParam）用于将指定的请求参数赋值给方法中的形参。<br>例：<br>(1) get请求：</p>
+<p>url请求：<a href="http://localhost:8080/WxProgram/findAllBookByTag?tagId=1&amp;pageIndex=3" target="_blank" rel="noopener">http://localhost:8080/WxProgram/findAllBookByTag?tagId=1&amp;pageIndex=3</a></p>
+<p>userTest.jsp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;/WxProgram/json/requestParamTest&quot; method=&quot;get&quot;&gt;</span><br><span class="line">    requestParam Test&lt;br&gt;</span><br><span class="line">    用户名：&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">    用户昵称：&lt;input type=&quot;text&quot; name=&quot;usernick&quot;&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<p>UserController.java</p>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/requestParamTest&quot;, method = RequestMethod.GET)</span><br><span class="line">public String requestParamTest(@RequestParam(value=&quot;username&quot;) String userName, @RequestParam(value=&quot;usernick&quot;) String userNick)&#123;</span><br><span class="line">    System.out.println(&quot;requestParam Test&quot;);</span><br><span class="line">    System.out.println(&quot;username: &quot; + userName);</span><br><span class="line">    System.out.println(&quot;usernick: &quot; + userNick);</span><br><span class="line">    return &quot;hello&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<p>上述代码会将请求中的username参数的值赋给username变量。</p>
+<p>等价于：</p>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/requestParamTest&quot;, method = RequestMethod.GET)</span><br><span class="line">public String requestParamTest(String username, HttpServletRequest request)&#123;</span><br><span class="line">    System.out.println(&quot;requestParam Test&quot;);</span><br><span class="line">    System.out.println(&quot;username: &quot; + username);</span><br><span class="line">    String usernick = request.getParameter(&quot;usernick&quot;);</span><br><span class="line">    System.out.println(&quot;usernick: &quot; + usernick);</span><br><span class="line">    return &quot;hello&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<p>也可以不使用@RequestParam，直接接收，此时要求controller方法中的参数名称要跟form中name名称一致</p>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/requestParamTest&quot;, method = RequestMethod.GET)</span><br><span class="line">public String requestParamTest(String username, String usernick)&#123;</span><br><span class="line">    System.out.println(&quot;requestParam Test&quot;);</span><br><span class="line">    System.out.println(&quot;username: &quot; + username);</span><br><span class="line">    System.out.println(&quot;usernick: &quot; + usernick);</span><br><span class="line">    return &quot;hello&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<p>总结：</p>
+<p>接收请求参数的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@RequestParam(value=&quot;username&quot;) String userName, @RequestParam(value=&quot;usernick&quot;) String userNick //value中的参数名称要跟name中参数名称一致</span><br><span class="line">String username, String usernick// 此时要参数名称一致</span><br><span class="line">HttpServletRequest request //request.getParameter(&quot;usernick&quot;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="ResponseBody呢？"><a href="#ResponseBody呢？" class="headerlink" title="@ResponseBody呢？"></a>@ResponseBody呢？</h1><blockquote>
+<p>@ResponseBody是作用在方法上的，@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】，在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。@RequestBody 将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。</p>
+</blockquote>
+<p><strong>举个例子：</strong></p>
+<blockquote>
+<p>前台异步请求：</p>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt; function loginAction() &#123;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     // 获取用户输入的账号和密码</span><br><span class="line">&gt;     var name = $(&apos;#count&apos;).val();</span><br><span class="line">&gt;     var password = $(&apos;#password&apos;).val();</span><br><span class="line">&gt; </span><br><span class="line">&gt;     $.ajax(&#123;</span><br><span class="line">&gt;         url : &apos;account/login.do&apos;,</span><br><span class="line">&gt;         type : &apos;post&apos;,</span><br><span class="line">&gt;         // data对象中的属性名要和服务端控制器的参数名一致 login(name, password)</span><br><span class="line">&gt;         data : &#123;</span><br><span class="line">&gt;             &apos;name&apos; : name,</span><br><span class="line">&gt;             &apos;password&apos; : password</span><br><span class="line">&gt;         &#125;,</span><br><span class="line">&gt;         dataType : &apos;json&apos;,</span><br><span class="line">&gt;         success : function(result) &#123;</span><br><span class="line">&gt;             if (result.state == 0) &#123;</span><br><span class="line">&gt;                 // 登录成功，设置cookie并跳转edit.html</span><br><span class="line">&gt;                 addCookie(&apos;userId&apos;, result.data.id);</span><br><span class="line">&gt;                 addCookie(&apos;nick&apos;, result.data.nick);</span><br><span class="line">&gt;                 location.href = &apos;edit.html&apos;;</span><br><span class="line">&gt;             &#125; else &#123;</span><br><span class="line">&gt;                 // 登录失败</span><br><span class="line">&gt;                 var msg = result.message;</span><br><span class="line">&gt;                 $(&apos;#sig_in&apos;).next().html(msg);</span><br><span class="line">&gt;                 $(&apos;#sig_in&apos;).next().css(&quot;color&quot;, &quot;red&quot;);</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;         &#125;,</span><br><span class="line">&gt;         error : function(e) &#123;</span><br><span class="line">&gt;             alert(&quot;系统异常&quot;);</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;     &#125;);</span><br><span class="line">&gt;     $(&apos;#password&apos;).val(&quot;&quot;);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<p>后台 Controller类中对应的方法：</p>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;     @RequestMapping(&quot;/login.do&quot;)</span><br><span class="line">&gt;     @ResponseBody</span><br><span class="line">&gt;     public Object login(String name, String password, HttpSession session) &#123;</span><br><span class="line">&gt;         user = userService.checkLogin(name, password);</span><br><span class="line">&gt;         session.setAttribute(&quot;user&quot;, user);</span><br><span class="line">&gt;         return new JsonResult(user);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+</blockquote>
+<h1 id="RequestBody呢"><a href="#RequestBody呢" class="headerlink" title="@RequestBody呢"></a>@RequestBody呢</h1><blockquote>
+<p>​      @RequestBody是作用在形参列表上，用于将前台发送过来固定格式的数据【xml 格式或者 json等】封装为对应的 JavaBean 对象，封装时使用到的一个对象是系统默认配置的 HttpMessageConverter进行解析，然后封装到形参上。</p>
+</blockquote>
+<p>比如上面的登录后台代码可以改为：</p>
+<blockquote>
+<p>[<figure class="image-box">
+                <a rel=Spring注解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" title="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030003.jpg);" alt="复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)" title class></a>
+                <p>复制代码](http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025942.gif)</p>
+            </figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;     @RequestMapping(&quot;/login.do&quot;)</span><br><span class="line">&gt;     @ResponseBody</span><br><span class="line">&gt;     public Object login(@RequestBody User loginUuser, HttpSession session) &#123;</span><br><span class="line">&gt;         user = userService.checkLogin(loginUser);</span><br><span class="line">&gt;         session.setAttribute(&quot;user&quot;, user);</span><br><span class="line">&gt;         return new JsonResult(user);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-19T13:11:58.614Z" itemprop="dateUpdated">2019-06-19 21:11:58</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/02/19/Spring/注解开发/" target="_blank" rel="external">http://yoursite.com/2019/02/19/Spring/注解开发/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot注解/">SpringBoot注解</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/02/19/Spring/注解开发/&title=《Spring注解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/19/Spring/注解开发/&title=《Spring注解》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/02/22/Spring Boot/SpringBoot雷丰阳/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[no title]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/02/13/Spring MVC/注解@PathParam/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PathVariabl和@RequestParam用法与区别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Component"><span class="post-toc-number">1.</span> <span class="post-toc-text">@Component</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#共同点：被-controller-、-service、-repository-、-component-注解的类，都会把这些类纳入进spring容器中进行管理"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">共同点：被@controller 、@service、@repository 、@component 注解的类，都会把这些类纳入进spring容器中进行管理</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RequestParam"><span class="post-toc-number">2.</span> <span class="post-toc-text">@RequestParam</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ResponseBody呢？"><span class="post-toc-number">3.</span> <span class="post-toc-text">@ResponseBody呢？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RequestBody呢"><span class="post-toc-number">4.</span> <span class="post-toc-text">@RequestBody呢</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/02/19/Spring/注解开发/&title=《Spring注解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/19/Spring/注解开发/&title=《Spring注解》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aSW7jQBAEQP3/0/JVwJhUZjU9AJvRJ0MLxeChXNvrFZ/3xzl6/fPd98H5fDf/lcsOBgbGbRnv03P0A+ekf1+/9nH8QsXAwHgA4yiCnd/K+aVnDyUPzRgYGBjJ5c4DbpsyYmBgYFzLyEvNLyld8CAwMDAw8iL2qoIzb7f9SS2OgYFxQ0YeNP//338y38DAwLgV412edV6S5NV3hYGBsTVjpZXWDilnj6C4HwwMjE0Z7RiyfX1WBueP79VOGzAwMG7OiJrvy+F11mj7MpzAwMDYmpGE3XZhYh2WjzAxMDCezJgF1vy7bWCNVjcwMDA2ZeRt/Tws5sG6HRscfhIDA+MBjFnAzZe0ZsG0CM0YGBhbM/IVh6QNV2SjMbgoYjEwMDZlJAEub9/naV/yyPLhKAYGxt6M9gv5WkabdOYFcxStMTAwNmXMysv1snN25S/LFhgYGFsz2oQsTxZnaxl5wYyBgbErY72hlqeS7QCgXrbAwMDYlHGezM3WLM5bbHkQz7cpMDAwnsmYtfJnO1ptK/BLEYuBgbE1YzZWbANxW8rmixoYGBhPYKwPNdvbWi+VD/9vYGBgbMR4l6ftyc+Sv3qEiYGBsTXjqpjdtthyGAYGBkbeSsvTx2GzbBRw644gBgbGzRl54GtTwMsaaucYDAwMjDIRTArU9moYGBgYs4C7jszL2nq+gYGBsR2jXYlIWmn5wLIdbWJgYDyN0ZaOsyZaO/hcSSsxMDA2YvwAnQUD8UaR4bkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

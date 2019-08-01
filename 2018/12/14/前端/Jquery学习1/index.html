@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Jquery | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Jquery">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Jquery</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Jquery</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-14T08:54:38.316Z" itemprop="datePublished" class="page-time">
+  2018-12-14
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-前端/Jquery学习1"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Jquery</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-14 16:54:38" datetime="2018-12-14T08:54:38.316Z"  itemprop="datePublished">2018-12-14</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-获取Jquery对象"><a href="#1-获取Jquery对象" class="headerlink" title="1.获取Jquery对象"></a>1.获取Jquery对象</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> id=<span class="string">"username"</span> value=<span class="string">"jack"</span>/&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">//jquery获得数据 语法$&#123;"选择器"&#125;==Jquery（"选择器"）</span></span><br><span class="line">    <span class="keyword">var</span> usernmae = $(<span class="string">"#username"</span>);</span><br><span class="line">    <span class="comment">//val() 函数 用于获得value属性的值 jack</span></span><br><span class="line">    alert(usernmae.val());</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025028.jpg" title="image-20181214174914025" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025028.jpg" alt="image-20181214174914025" title class></a>
+                <p>image-20181214174914025</p>
+            </figure>
+
+<h1 id="2-Jquery与Dom对象的互相转换"><a href="#2-Jquery与Dom对象的互相转换" class="headerlink" title="2.Jquery与Dom对象的互相转换"></a>2.Jquery与Dom对象的互相转换</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"text"</span> id=<span class="string">"username"</span> value=<span class="string">"jack"</span>/&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">//Jquery对象和Dom对象的转换</span></span><br><span class="line">    <span class="comment">//1。使用Javascripe获取value的值</span></span><br><span class="line">    <span class="keyword">var</span> username = <span class="built_in">document</span>.getElementById(<span class="string">"username"</span>);</span><br><span class="line">    alert(username.value);<span class="comment">//jack用的是属性</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//2。将dom对象 转换为Jquery对象</span></span><br><span class="line">    <span class="comment">//# 语法：$(dom对象)</span></span><br><span class="line">    <span class="comment">//# 建议 ：Jquery对象变量名字 建议以$开头</span></span><br><span class="line">    <span class="keyword">var</span> $username = $(username);</span><br><span class="line">    alert($username.val());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.将jquery对象转为Dom对象</span></span><br><span class="line">    <span class="comment">//3.1 Jquery对象内部使用数组存放所有的数据 可以通过数组的下标获取（索引）</span></span><br><span class="line">    <span class="keyword">var</span> username2 = $username[<span class="number">0</span>];</span><br><span class="line">    alert(username2.value);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.2Jquery提供函数get()转换为dom对象</span></span><br><span class="line">    <span class="keyword">var</span> username3 = $username.get(<span class="number">0</span>);</span><br><span class="line">    alert(username3.value);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025036.jpg" title="image-20181214210647995" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025036.jpg" alt="image-20181214210647995" title class></a>
+                <p>image-20181214210647995</p>
+            </figure>
+
+<h1 id="3-选择器"><a href="#3-选择器" class="headerlink" title="3. 选择器"></a>3. 选择器</h1><h2 id="3-1-基本选择器【重要】"><a href="#3-1-基本选择器【重要】" class="headerlink" title="3.1 基本选择器【重要】"></a>3.1 基本选择器【重要】</h2><ul>
+<li><p>id ,id选择器 <xxx id> 通过id 值获得元素</xxx></p>
+</li>
+<li><p>element，标签选择器 <xxx> 通过标签名获得元素</xxx></p>
+</li>
+<li><p>.class 类选择器 <xxx class> 通过class值获得元素。注意：使用点开头</xxx></p>
+</li>
+<li><p>s1,s2,…  多选择器，将多个选择器的结果添加一个数组中。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">//window.onload=function()&#123;...&#125;匿名函数</span></span><br><span class="line">    <span class="comment">//jquery 页面加载--&gt;function()匿名函数</span></span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//id选择器 为id绑定一个事件 然后传递一个函数</span></span><br><span class="line">    $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#one"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#ff0"</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//类选择器</span></span><br><span class="line">    $(<span class="string">".btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">".one"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#ff0"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//元素选择器</span></span><br><span class="line">    $(<span class="string">"div"</span>).background = <span class="string">"#ff2"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;input type="button" id="btn1" value="选择id为one的元素"&gt;</span></span><br><span class="line"><span class="regexp">&lt;input type="button" class="btn2" value="选择id为one的元素"&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025039.jpg" title="image-20181214214342463" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025039.jpg" alt="image-20181214214342463"></a></p>
+<h2 id="3-2层级选择器"><a href="#3-2层级选择器" class="headerlink" title="3.2层级选择器"></a>3.2层级选择器</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025041.jpg" title="image-20181215112727120" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025041.jpg" alt="image-20181215112727120" title class></a>
+                <p>image-20181215112727120</p>
+            </figure>
+
+<h2 id="3-3基本过滤选择器——“：关键字“"><a href="#3-3基本过滤选择器——“：关键字“" class="headerlink" title="3.3基本过滤选择器——“：关键字“"></a>3.3基本过滤选择器——“：关键字“</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025043.jpg" title="image-20181216091014781" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025043.jpg" alt="image-20181216091014781" title class></a>
+                <p>image-20181216091014781</p>
+            </figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;label <span class="keyword">for</span>=<span class="string">"username"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line">&lt;input type=<span class="string">"text"</span> id=<span class="string">"username"</span> value=<span class="string">"jack"</span>/&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">// &lt;input type="text" value="请输入账号" defaultValue="请输入账号"&gt;</span></span><br><span class="line">    $(<span class="string">"input[type='text']"</span>).on(<span class="string">"blur focus"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//1.获得默认值</span></span><br><span class="line">        <span class="keyword">var</span> attr = $(<span class="keyword">this</span>).attr(<span class="string">"defaultValue"</span>);</span><br><span class="line">        <span class="comment">//2.判断是否获得焦点</span></span><br><span class="line">        <span class="keyword">if</span> ($(<span class="keyword">this</span>).is(<span class="string">":focus"</span>)) &#123;</span><br><span class="line">            <span class="comment">//2.1 获得焦点，清空value值 ，this 当前执行对象  是dom对象用$(this)转为jquery对象</span></span><br><span class="line">            <span class="keyword">if</span> ($(<span class="keyword">this</span>).val() === attr) &#123;</span><br><span class="line">                $(<span class="keyword">this</span>).val(<span class="string">""</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//2.2失去焦点  设置默认值</span></span><br><span class="line">            <span class="keyword">if</span> ($(<span class="keyword">this</span>).val() === <span class="string">""</span>) &#123;</span><br><span class="line">                $(<span class="keyword">this</span>).val(attr);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;label&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="text" value="请输入账号" defaultValue="请输入账号"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="text" value="请输入账号" defaultValue="请输入密码"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>label&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025050.jpg" title="image-20181216184406335" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025050.jpg" alt="image-20181216184406335" title class></a>
+                <p>image-20181216184406335</p>
+            </figure>
+
+<h2 id="3-4内容过滤"><a href="#3-4内容过滤" class="headerlink" title="3.4内容过滤"></a>3.4内容过滤</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025058.jpg" title="image-20181216185020697" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025058.jpg" alt="image-20181216185020697" title class></a>
+                <p>image-20181216185020697</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025103.jpg" title="image-20181216184851872" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025103.jpg" alt="image-20181216184851872" title class></a>
+                <p>image-20181216184851872</p>
+            </figure>
+
+
+
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025105.jpg" title="image-20181216185112383" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025105.jpg" alt="image-20181216185112383"></a></p>
+<h2 id="3-5可见性过滤-（重要）"><a href="#3-5可见性过滤-（重要）" class="headerlink" title="3.5可见性过滤 （重要）"></a>3.5可见性过滤 （重要）</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025106.jpg" title="image-20181216185358024" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025106.jpg" alt="image-20181216185358024" title class></a>
+                <p>image-20181216185358024</p>
+            </figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ &lt;input type="button" value="选取所有可见的div元素" id="bt1"&gt;</span></span><br><span class="line"><span class="regexp">$("#b1").click(function () &#123;</span></span><br><span class="line"><span class="regexp">    $("div:hidden").css("background-color", "#ff0");</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ &lt;input type="button" value="选取所有不可见的元素利用jquery中的show（）将他们显示出来" id="bt2"&gt;</span></span><br><span class="line"><span class="regexp">$("#bt2").click(function () &#123;</span></span><br><span class="line"><span class="regexp">    $("div:hidden").css("background-color", "#ff0");</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6实战"><a href="#3-6实战" class="headerlink" title="3.6实战"></a>3.6实战</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025109.jpg" title="image-20181216214851469" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025109.jpg" alt="image-20181216214851469" title class></a>
+                <p>image-20181216214851469</p>
+            </figure>
+
+
+
+<h2 id="3-7属性选择器（掌握）"><a href="#3-7属性选择器（掌握）" class="headerlink" title="3.7属性选择器（掌握）"></a>3.7属性选择器（掌握）</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025111.jpg" title="image-20181230213448062" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025111.jpg" alt="image-20181230213448062" title class></a>
+                <p>image-20181230213448062</p>
+            </figure>
+
+
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script src="js/</span>jquery<span class="number">-2.1</span><span class="number">.0</span>.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;!--1 ⭐️&lt;input type="</span>button<span class="string">" value="</span>选取含有属性title的div元素<span class="string">" id="</span>btn1<span class="string">"/&gt;--&gt;</span></span><br><span class="line"><span class="string">    &lt;script type="</span>text/javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        $(document).ready(function () &#123;</span></span><br><span class="line">            $("#btn1").click(function () &#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title]"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;!--2&lt;input type="button" value="选取属性title值等于"test"的div元素" id="btn2"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title='test']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;!--3 &lt;input type="button" value="选取属性title值不等于"test"的div元素（没有title属性的也会被选中）" id="btn3"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title！='test']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!--4 &lt;input type="button" value="选取属性title值 以"te"开始的div元素（没有title属性的也会被选中）" id="btn4"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title^='te']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!--5 &lt;input type="button" value="选取属性title值 以"est"结束的div元素（没有title属性的也会被选中）" id="btn5"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title$='est']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!--6 &lt;input type="button" value="选取属性title值  含有"es"的div元素（没有title属性的也会被选中）" id="btn5"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[title*='es']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!--⭐️7&lt;input type="button" value="组合属性选择器 首先选取有属性id的div元素。然后在结果中 选取title</span></span><br><span class="line"><span class="regexp">    值含有"es"的元素"）" id="btn5"/</span>&gt;--&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"#btn5"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//&lt;xx title=""&gt;  &lt;xxx title="yyy"&gt; &lt;xxx title&gt;</span></span><br><span class="line">                $(<span class="string">"div[id][title*='es']"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#fff0"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025113.jpg" title="image-20181231085241966" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025113.jpg" alt="image-20181231085241966" title class></a>
+                <p>image-20181231085241966</p>
+            </figure>
+
+
+
+<h2 id="3-8选择器-（子元素过滤）"><a href="#3-8选择器-（子元素过滤）" class="headerlink" title="3.8选择器 （子元素过滤）"></a>3.8选择器 （子元素过滤）</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025114.jpg" title="image-20181231085455447" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025114.jpg" alt="image-20181231085455447" title class></a>
+                <p>image-20181231085455447</p>
+            </figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-<span class="number">-1</span> &lt;input type=<span class="string">"button"</span> value=<span class="string">"选取每个class为one的div父元素下的第2个子元素"</span> id=<span class="string">"btn1"</span>&gt;--&gt;</span><br><span class="line"> &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">     $(<span class="string">"btn1"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="comment">//子元素 选择使用前提 表达式前面必须是元素 如：$(div:nth-child(2))</span></span><br><span class="line">         <span class="comment">//如果元素上添加 条件 必须使用空格 如$("div[class='one'] :nth-child(2)")</span></span><br><span class="line">         $(<span class="string">"div[class='one'] :nth-child(2)"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#ff0"</span>);</span><br><span class="line"></span><br><span class="line">         $(<span class="string">"div.one :nth-child(2)"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#ff0"</span>);</span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 对比：</span></span><br><span class="line"><span class="comment">      * $("div.one") 所有的div自己的样式为one</span></span><br><span class="line"><span class="comment">      * $("div .one") 所有的div中后代元素 样式为one 空格</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025116.jpg" title="image-20181231090956569" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025116.jpg" alt="image-20181231090956569" title class></a>
+                <p>image-20181231090956569</p>
+            </figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">       $(<span class="string">"btn1"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           $(<span class="string">"div.one :first-child"</span>).css(<span class="string">"background-color"</span>, <span class="string">"#ff0"</span>);</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">   &lt;!--&lt;input type="button" value="如果class为one的div父元素下的第一个子元素 " id="bt4"&gt;--&gt;</span></span><br><span class="line"><span class="regexp">   &lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">       $("</span>btn4<span class="string">").click(function () &#123;</span></span><br><span class="line">           $("div.one :first-child").css("background-color", "#ff0");</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">   &lt;!--&lt;input type="button" value="如果class为one的div父元素下的最后一个子元素 " id="bt4"&gt;--&gt;</span></span><br><span class="line"><span class="regexp">   &lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">       $("</span>btn4<span class="string">").click(function () &#123;</span></span><br><span class="line">           $("div.one :last-child").css("background-color", "#ff0");</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">   &lt;!--&lt;input type="button" value="如果class为one的div父元素下的仅仅只有一个子元素 " id="bt4"&gt;--&gt;</span></span><br><span class="line"><span class="regexp">   &lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">       $("</span>btn4<span class="string">").click(function () &#123;</span></span><br><span class="line">           $("div.one :only-child").css("background-color", "#ff0");</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025117.jpg" title="image-20181231122142393" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025117.jpg" alt="image-20181231122142393" title class></a>
+                <p>image-20181231122142393</p>
+            </figure>
+
+<hr>
+<h2 id="3-9表单过滤选择器"><a href="#3-9表单过滤选择器" class="headerlink" title="3.9表单过滤选择器"></a>3.9表单过滤选择器</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025119.jpg" title="image-20181231193817491" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025119.jpg" alt="image-20181231193817491" title class></a>
+                <p>image-20181231193817491</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025120.jpg" title="image-20181231194255420" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025120.jpg" alt="image-20181231194255420" title class></a>
+                <p>image-20181231194255420</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025121.jpg" title="image-20181231194317789" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025121.jpg" alt="image-20181231194317789" title class></a>
+                <p>image-20181231194317789</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025122.jpg" title="image-20181231195659745" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025122.jpg" alt="image-20181231195659745" title class></a>
+                <p>image-20181231195659745</p>
+            </figure>
+
+<h1 id="4-表单对象属性过滤"><a href="#4-表单对象属性过滤" class="headerlink" title="4 表单对象属性过滤"></a>4 表单对象属性过滤</h1><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025124.jpg" title="image-20181231203301742" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025124.jpg" alt="image-20181231203301742" title class></a>
+                <p>image-20181231203301742</p>
+            </figure>
+
+
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">    &lt;script src=<span class="string">"js/jquery-2.1.0.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        <span class="comment">//1. &lt;button id="btn1"&gt;对表单内 可用input enable 赋值操作.&lt;/button&gt;</span></span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"input:enabled"</span>).val(<span class="string">"enabled"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 2 &lt;button id="btn2"&gt;对表单内 不可用input 赋值操作.&lt;/button&gt;</span></span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"input:disabled"</span>).val(<span class="string">"disabled"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 3 &lt;button id="btn3"&gt;获取多选框选中的个数.&lt;/button&gt;</span></span><br><span class="line">        <span class="comment">// &lt;input type="checkbox" name="newsletter" checked="checked" value="test1"/&gt;test1</span></span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> s1 = $(<span class="string">"[name='newsletter']:checked"</span>).length;</span><br><span class="line">            <span class="comment">// var s2 = $("[name='newsletter']:checked").size();</span></span><br><span class="line">            alert(s1)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// &lt;button id="btn4"&gt;获取下拉框选中的内容.&lt;/button&gt;</span></span><br><span class="line">        $(<span class="string">":selected"</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//val()获得&lt;option &gt;如果没有value值 将获得text的值</span></span><br><span class="line">            <span class="comment">//html（）获得标签体的内容</span></span><br><span class="line">            $(<span class="string">"#selectDivId"</span>).append($(<span class="keyword">this</span>).val());</span><br><span class="line">            <span class="comment">//  $("#selectDivId").append($(this).html());</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">    ------------    ------------    ------------    ------------    ------------</span></span><br><span class="line"><span class="regexp">    &lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h3&gt; 表单对象属性过滤选择器.&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">&lt;button type="reset"&gt;重置所有表单元素&lt;/</span>button&gt;</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> id=<span class="string">"isreset"</span> checked=<span class="string">"checked"</span>/&gt;<span class="xml"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"isreset"</span>&gt;</span>点击下列按钮时先自动重置页面<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line">&lt;br/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">&lt;button id=<span class="string">"btn1"</span>&gt;对表单内 可用input 赋值操作.&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;button id="btn2"&gt;对表单内 不可用input 赋值操作.&lt;/</span>button&gt;</span><br><span class="line">&lt;button id=<span class="string">"btn3"</span>&gt;获取多选框选中的个数.&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;button id="btn4"&gt;获取下拉框选中的内容.&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line">&lt;br/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"></span><br><span class="line">可用元素：&lt;input name=<span class="string">"add"</span> value=<span class="string">"可用文本框"</span>/&gt; <span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">不可用元素：&lt;input name=<span class="string">"email"</span> disabled=<span class="string">"disabled"</span> value=<span class="string">"不可用文本框"</span>/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">可用元素： &lt;input name=<span class="string">"che"</span> value=<span class="string">"可用文本框"</span>/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">不可用元素：&lt;input name=<span class="string">"name"</span> disabled=<span class="string">"disabled"</span> value=<span class="string">"不可用文本框"</span>/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">&lt;br/&gt;</span><br><span class="line">多选框：&lt;br/&gt;</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"newsletter"</span> checked=<span class="string">"checked"</span> value=<span class="string">"test1"</span>/&gt;test1</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"newsletter"</span> value=<span class="string">"test2"</span>/&gt;test2</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"newsletter"</span> value=<span class="string">"test3"</span>/&gt;test3</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"newsletter"</span> checked=<span class="string">"checked"</span> value=<span class="string">"test4"</span>/&gt;test4</span><br><span class="line">&lt;input type=<span class="string">"checkbox"</span> name=<span class="string">"newsletter"</span> value=<span class="string">"test5"</span>/&gt;test5</span><br><span class="line">&lt;div id=<span class="string">"checkboxDivId"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;br/&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">下拉列表<span class="number">1</span>：&lt;br/&gt;</span><br><span class="line">&lt;select name=<span class="string">"test"</span> multiple=<span class="string">"multiple"</span> style=<span class="string">"height:100px"</span>&gt;</span><br><span class="line">    &lt;option&gt;浙江&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option selected="selected"&gt;湖南&lt;/</span>option&gt;</span><br><span class="line">    &lt;option&gt;北京&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option selected="selected"&gt;天津&lt;/</span>option&gt;</span><br><span class="line">    &lt;option&gt;广州&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option&gt;湖北&lt;/</span>option&gt;</span><br><span class="line">&lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;br/</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line">下拉列表<span class="number">2</span>：&lt;br/&gt;</span><br><span class="line">&lt;select name=<span class="string">"test2"</span>&gt;</span><br><span class="line">    &lt;option&gt;浙江&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option&gt;湖南&lt;/</span>option&gt;</span><br><span class="line">    &lt;option selected=<span class="string">"selected"</span>&gt;北京&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option&gt;天津&lt;/</span>option&gt;</span><br><span class="line">    &lt;option&gt;广州&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option&gt;湖北&lt;/</span>option&gt;</span><br><span class="line">&lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp">&lt;br/</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"selectDivId"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025125.jpg" title="image-20181231204327347" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025125.jpg" alt="image-20181231204327347" title class></a>
+                <p>image-20181231204327347</p>
+            </figure>
+
+<h1 id="5-选择器案例"><a href="#5-选择器案例" class="headerlink" title="5 选择器案例"></a>5 选择器案例</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//从第5个开始 不要最后一个控制显示和隐藏</span></span><br><span class="line">            <span class="comment">//1 隐藏</span></span><br><span class="line">            <span class="keyword">var</span> $allLi = $(<span class="string">"li:gt(4):not(:last)"</span>);</span><br><span class="line">            $allLi.hide();</span><br><span class="line"><span class="comment">//2 点击显示</span></span><br><span class="line">            $(<span class="string">"span"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//$allLi.show();</span></span><br><span class="line">                <span class="comment">//   $allLi.toggle();</span></span><br><span class="line">                <span class="keyword">if</span> ($allLi.is(<span class="string">":hidden"</span>)) &#123;</span><br><span class="line">                    $allLi.show();</span><br><span class="line">                    $(<span class="keyword">this</span>).html(<span class="string">"隐藏"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    $allLi.hide();</span><br><span class="line">                    $(<span class="keyword">this</span>).html(<span class="string">"显示"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025128.jpg" title="image-20181231205454330" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025128.jpg" alt="image-20181231205454330" title class></a>
+                <p>image-20181231205454330</p>
+            </figure>
+
+<h1 id="6-属性-CSS"><a href="#6-属性-CSS" class="headerlink" title="6 属性 CSS"></a>6 属性 CSS</h1><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025130.jpg" title="image-20190102075633089" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025130.jpg" alt="image-20190102075633089" title class></a>
+                <p>image-20190102075633089</p>
+            </figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//1.设置姓名文本框不可用</span></span><br><span class="line">        <span class="comment">// &lt;input type="text" name="username" class="textClass" value="jack"/&gt;</span></span><br><span class="line">        $(<span class="string">"[name='username']"</span>).attr(<span class="string">"disabled"</span>, <span class="string">"disabled"</span>);</span><br><span class="line">        <span class="comment">// 2 .设置姓名文本框可用 移除属性</span></span><br><span class="line">        $(<span class="string">"[name='username']"</span>).removeAttr(<span class="string">"disabled"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025131.jpg" title="image-20190102075719371" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025131.jpg" alt="image-20190102075719371" title class></a>
+                <p>image-20190102075719371</p>
+            </figure>
+
+
+
+<hr>
+<p>CSS 类</p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025133.jpg" title="image-20190102075940233" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025133.jpg" alt="image-20190102075940233" title class></a>
+                <p>image-20190102075940233</p>
+            </figure>
+
+<hr>
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025134.jpg" title="image-20190102080928087" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025134.jpg" alt="image-20190102080928087"></a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     <span class="comment">//text /html</span></span><br><span class="line">        alert($(<span class="string">"div"</span>).text());<span class="comment">// 未满18慎进</span></span><br><span class="line">        alert($(<span class="string">"div"</span>).html());<span class="comment">//&lt;a&gt;未满18慎进&lt;/a&gt;alert($("div").html());//&lt;a&gt;未满18慎进&lt;/a&gt;</span></span><br><span class="line"></span><br><span class="line">        $(<span class="string">"div"</span>).text(<span class="string">"&lt;a href='Demo5.html'&gt;你点我呀&lt;/a&gt;"</span>);<span class="comment">// 未满18慎进</span></span><br><span class="line">        $(<span class="string">"div"</span>).html(<span class="string">"&lt;a href='Demo5.html'&gt;你点我呀&lt;/a&gt;"</span>);<span class="comment">//&lt;a&gt;未满18慎进&lt;/a&gt;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025136.jpg" title="image-20190102081147878" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025136.jpg" alt="image-20190102081147878" title class></a>
+                <p>image-20190102081147878</p>
+            </figure>
+
+<h1 id="7-CSS"><a href="#7-CSS" class="headerlink" title="7 CSS"></a>7 CSS</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/设置CSS</span><br><span class="line">            $(<span class="string">"div"</span>).css(&#123;</span><br><span class="line">                <span class="string">"width"</span>: <span class="string">"200px"</span>,</span><br><span class="line">                <span class="string">"height"</span>: <span class="string">"222px"</span>,</span><br><span class="line">                <span class="string">"font-size"</span>: <span class="string">"60px"</span>,</span><br><span class="line">                <span class="string">"color"</span>: <span class="string">"#f00"</span>,</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025138.jpg" title="image-20190102081930562" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025138.jpg" alt="image-20190102081930562" title class></a>
+                <p>image-20190102081930562</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025140.jpg" title="image-20190102082108017" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025140.jpg" alt="image-20190102082108017" title class></a>
+                <p>image-20190102082108017</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025142.jpg" title="image-20190102082357066" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025142.jpg" alt="image-20190102082357066" title class></a>
+                <p>image-20190102082357066</p>
+            </figure>
+
+
+
+<hr>
+<h1 id="8-文档处理"><a href="#8-文档处理" class="headerlink" title="8 文档处理"></a>8 文档处理</h1><h2 id="8-1-内部插入「掌握」"><a href="#8-1-内部插入「掌握」" class="headerlink" title="8.1 内部插入「掌握」"></a>8.1 内部插入「掌握」</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025144.jpg" title="image-20190102082906153" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025144.jpg" alt="image-20190102082906153" title class></a>
+                <p>image-20190102082906153</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025146.jpg" title="image-20190102083011214" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025146.jpg" alt="image-20190102083011214" title class></a>
+                <p>image-20190102083011214</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025148.jpg" title="image-20190102083904151" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025148.jpg" alt="image-20190102083904151" title class></a>
+                <p>image-20190102083904151</p>
+            </figure>
+
+
+
+<p>实战：</p>
+<p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025150.jpg" title="image-20190102085511091" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025150.jpg" alt="image-20190102085511091"></a></p>
+<p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025152.jpg" title="image-20190102085520549" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025152.jpg" alt="image-20190102085520549"></a></p>
+<hr>
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025153.jpg" title="image-20190102085433394" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025153.jpg" alt="image-20190102085433394"></a></p>
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025155.jpg" title="image-20190102085451166" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025155.jpg" alt="image-20190102085451166"></a></p>
+<h3 id="8-2-外部插入「掌握」"><a href="#8-2-外部插入「掌握」" class="headerlink" title="8.2 外部插入「掌握」"></a>8.2 外部插入「掌握」</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025156.jpg" title="image-20190102083924244" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025156.jpg" alt="image-20190102083924244" title class></a>
+                <p>image-20190102083924244</p>
+            </figure> 
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025158.jpg" title="image-20190102084102997" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025158.jpg" alt="image-20190102084102997" title class></a>
+                <p>image-20190102084102997</p>
+            </figure>
+
+
+
+<hr>
+<p>实战：</p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-25202.jpg" title="image-20190102090027238" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-25202.jpg" alt="image-20190102090027238" title class></a>
+                <p>image-20190102090027238</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025203.jpg" title="image-20190102090037894" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025203.jpg" alt="image-20190102090037894" title class></a>
+                <p>image-20190102090037894</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-25204.jpg" title="image-20190102090127401" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-25204.jpg" alt="image-20190102090127401" title class></a>
+                <p>image-20190102090127401</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025205.jpg" title="image-20190102090154135" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025205.jpg" alt="image-20190102090154135" title class></a>
+                <p>image-20190102090154135</p>
+            </figure>
+
+<h3 id="8-3-删除-「掌握」"><a href="#8-3-删除-「掌握」" class="headerlink" title="8.3 删除 「掌握」"></a>8.3 删除 「掌握」</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025206.jpg" title="image-20190102090339509" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025206.jpg" alt="image-20190102090339509" title class></a>
+                <p>image-20190102090339509</p>
+            </figure>
+
+
+
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025208.jpg" title="image-20190102090435876" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025208.jpg" alt="image-20190102090435876"></a></p>
+<hr>
+<ul>
+<li><input disabled type="checkbox"> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="comment">//将city移除 在追加到body后面</span></span><br><span class="line">    <span class="comment">//1.绑定事件</span></span><br><span class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//2.绑定数据</span></span><br><span class="line">        $(<span class="string">"#city"</span>).data(<span class="string">"ithe"</span>, <span class="string">"厉害"</span>);</span><br><span class="line">        <span class="comment">//1。移除</span></span><br><span class="line">        <span class="keyword">var</span> $city = $(<span class="string">"#city"</span>).remove();</span><br><span class="line">        <span class="comment">//var $city = $("#city").detach();//保留绑定的事件</span></span><br><span class="line">        <span class="comment">//2 追加</span></span><br><span class="line">        $(<span class="string">"body"</span>).append($city);</span><br><span class="line">        <span class="comment">//3 获得绑定的数据</span></span><br><span class="line">        alert($(<span class="string">"#city"</span>).data(<span class="string">"ithe"</span>));</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025210.jpg" title="image-20190103094033579" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025210.jpg" alt="image-20190103094033579" title class></a>
+                <p>image-20190103094033579</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025212.jpg" title="image-20190103094112365" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025212.jpg" alt="image-20190103094112365" title class></a>
+                <p>image-20190103094112365</p>
+            </figure>
+
+
+
+
+
+<h1 id="9-文档处理-克隆-替换包裹"><a href="#9-文档处理-克隆-替换包裹" class="headerlink" title="9.文档处理 克隆 替换包裹"></a>9.文档处理 克隆 替换包裹</h1><p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025214.jpg" title="image-20190103094408549" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025214.jpg" alt="image-20190103094408549"></a></p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025225.jpg" title="image-20190103094511923" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025225.jpg" alt="image-20190103094511923" title class></a>
+                <p>image-20190103094511923</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025231.jpg" title="image-20190103094543202" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025231.jpg" alt="image-20190103094543202" title class></a>
+                <p>image-20190103094543202</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025234.jpg" title="image-20190103094603955" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025234.jpg" alt="image-20190103094603955" title class></a>
+                <p>image-20190103094603955</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025238.jpg" title="image-20190103094752632" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025238.jpg" alt="image-20190103094752632" title class></a>
+                <p>image-20190103094752632</p>
+            </figure>
+
+
+
+<hr>
+<h1 id="Day-02"><a href="#Day-02" class="headerlink" title="Day 02"></a>Day 02</h1><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025240.jpg" title="image-20190103100043820" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025240.jpg" alt="image-20190103100043820" title class></a>
+                <p>image-20190103100043820</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025242.jpg" title="image-20190103100244699" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025242.jpg" alt="image-20190103100244699" title class></a>
+                <p>image-20190103100244699</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025244.jpg" title="image-20190103100350572" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025244.jpg" alt="image-20190103100350572" title class></a>
+                <p>image-20190103100350572</p>
+            </figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            $(<span class="string">"#left1"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"#leftSelectId option:first"</span>).appendTo(<span class="string">"#rightSelectId"</span>)</span><br><span class="line">            &#125;);</span><br><span class="line">            $(<span class="string">"#left2"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//选中哪一个 就过哪一个</span></span><br><span class="line">                $(<span class="string">"#leftSelectId option:selected"</span>).appendTo(<span class="string">"#rightSelectId"</span>)</span><br><span class="line">            &#125;);</span><br><span class="line">            $(<span class="string">"#left3"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    $(<span class="string">"#leftSelectId option"</span>).appendTo(<span class="string">"#rightSelectId"</span>)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025245.jpg" title="image-20190104085050456" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025245.jpg" alt="image-20190104085050456" title class></a>
+                <p>image-20190104085050456</p>
+            </figure>
+
+<hr>
+<h1 id="10-筛选"><a href="#10-筛选" class="headerlink" title="10 筛选"></a>10 筛选</h1><h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><ul>
+<li>选择器可以完成功能 筛选提供相同的函数</li>
+<li><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025246.jpg" title="image-20190104085540047" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025246.jpg" alt="image-20190104085540047"></a></li>
+</ul>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025248.jpg" title="image-20190104090007508" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025248.jpg" alt="image-20190104090007508" title class></a>
+                <p>image-20190104090007508</p>
+            </figure>
+
+
+
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025249.jpg" title="image-20190104090127809" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025249.jpg" alt="image-20190104090127809"></a></p>
+<hr>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025250.jpg" title="image-20190112201707265" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025250.jpg" alt="image-20190112201707265" title class></a>
+                <p>image-20190112201707265</p>
+            </figure>
+
+
+
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025254.jpg" title="image-20190112202251804" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025254.jpg" alt="image-20190112202251804"></a></p>
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025256.jpg" title="image-20190112202524134" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025256.jpg" alt="image-20190112202524134" title class></a>
+                <p>image-20190112202524134</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025257.jpg" title="image-20190112203108760" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025257.jpg" alt="image-20190112203108760" title class></a>
+                <p>image-20190112203108760</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025259.jpg" title="image-20190112203323807" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025259.jpg" alt="image-20190112203323807" title class></a>
+                <p>image-20190112203323807</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025301.jpg" title="image-20190112205718671" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025301.jpg" alt="image-20190112205718671" title class></a>
+                <p>image-20190112205718671</p>
+            </figure>
+
+
+
+<hr>
+<h3 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025303.jpg" title="image-20190112205751599" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025303.jpg" alt="image-20190112205751599" title class></a>
+                <p>image-20190112205751599</p>
+            </figure>
+
+<p><em>将多条语句改成一条 *</em>得瑟代码***  </p>
+<p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025304.jpg" title="image-20190112210251196" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025304.jpg" alt="image-20190112210251196"></a> </p>
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025306.jpg" title="image-20190112210334296" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025306.jpg" alt="image-20190112210334296" title class></a>
+                <p>image-20190112210334296</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025308.jpg" title="image-20190112210413068" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025308.jpg" alt="image-20190112210413068" title class></a>
+                <p>image-20190112210413068</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025310.jpg" title="image-20190112210523448" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025310.jpg" alt="image-20190112210523448" title class></a>
+                <p>image-20190112210523448</p>
+            </figure>
+
+<hr>
+<p> 案例：QQ分组</p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025314.jpg" title="image-20190112210855207" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025314.jpg" alt="image-20190112210855207" title class></a>
+                <p>image-20190112210855207</p>
+            </figure>
+
+
+
+<hr>
+<h1 id="11-事件"><a href="#11-事件" class="headerlink" title="11 事件"></a>11 事件</h1><h2 id="常见事件"><a href="#常见事件" class="headerlink" title="常见事件"></a>常见事件</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025321.jpg" title="image-20190113102442714" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025321.jpg" alt="image-20190113102442714" title class></a>
+                <p>image-20190113102442714</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025324.jpg" title="image-20190113102610279" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025324.jpg" alt="image-20190113102610279" title class></a>
+                <p>image-20190113102610279</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025325.jpg" title="image-20190113102831166" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025325.jpg" alt="image-20190113102831166" title class></a>
+                <p>image-20190113102831166</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025327.jpg" title="image-20190113102941828" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025327.jpg" alt="image-20190113102941828" title class></a>
+                <p>image-20190113102941828</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025328.jpg" title="image-20190113103021477" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025328.jpg" alt="image-20190113103021477" title class></a>
+                <p>image-20190113103021477</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025331.jpg" title="image-20190113103155136" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025331.jpg" alt="image-20190113103155136" title class></a>
+                <p>image-20190113103155136</p>
+            </figure>
+
+<hr>
+<h2 id="页面加载"><a href="#页面加载" class="headerlink" title="页面加载"></a>页面加载</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025340.jpg" title="image-20190116094643318" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025340.jpg" alt="image-20190116094643318" title class></a>
+                <p>image-20190116094643318</p>
+            </figure>
+
+
+
+<p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025342.jpg" title="image-20190116094710564" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025342.jpg" alt="image-20190116094710564"></a></p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025344.jpg" title="image-20190116095146110" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025344.jpg" alt="image-20190116095146110" title class></a>
+                <p>image-20190116095146110</p>
+            </figure>
+
+<h2 id="事件绑定-重要"><a href="#事件绑定-重要" class="headerlink" title="事件绑定[重要]"></a>事件绑定[重要]</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025346.jpg" title="image-20190116095356313" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025346.jpg" alt="image-20190116095356313" title class></a>
+                <p>image-20190116095356313</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025348.jpg" title="image-20190116095653201" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025348.jpg" alt="image-20190116095653201" title class></a>
+                <p>image-20190116095653201</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025350.jpg" title="image-20190116095857913" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025350.jpg" alt="image-20190116095857913" title class></a>
+                <p>image-20190116095857913</p>
+            </figure>
+
+
+
+
+
+<h2 id="委派"><a href="#委派" class="headerlink" title="委派"></a>委派</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025406.jpg" title="image-20190116100003128" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025406.jpg" alt="image-20190116100003128" title class></a>
+                <p>image-20190116100003128</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190116100118945.png" title="image-20190116100118945" data-fancybox="images"><img src="../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190116100118945.png" alt="image-20190116100118945" title class></a>
+                <p>image-20190116100118945</p>
+            </figure>
+
+<h2 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h2><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025408.jpg" title="image-20190116100301259" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025408.jpg" alt="image-20190116100301259" title class></a>
+                <p>image-20190116100301259</p>
+            </figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="12-动画效果"><a href="#12-动画效果" class="headerlink" title="12 动画效果"></a>12 动画效果<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025410.jpg" title="image-20190116213104140" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025410.jpg" alt="image-20190116213104140" title class></a>
+                <p>image-20190116213104140</p>
+            </figure></h1><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025413.jpg" title="image-20190116213154462" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025413.jpg" alt="image-20190116213154462" title class></a>
+                <p>image-20190116213154462</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025425.jpg" title="image-20190116213235489" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025425.jpg" alt="image-20190116213235489" title class></a>
+                <p>image-20190116213235489</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025447.jpg" title="image-20190116213357010" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025447.jpg" alt="image-20190116213357010" title class></a>
+                <p>image-20190116213357010</p>
+            </figure>
+
+<hr>
+<h1 id="13-Ajax「重要-掌握」"><a href="#13-Ajax「重要-掌握」" class="headerlink" title="13 Ajax「重要 掌握」"></a>13 Ajax「重要 掌握」</h1><ul>
+<li>异步刷新</li>
+</ul>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025459.jpg" title="image-20190112212754438" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025459.jpg" alt="image-20190112212754438" title class></a>
+                <p>image-20190112212754438</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025501.jpg" title="image-20190112213349243" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025501.jpg" alt="image-20190112213349243" title class></a>
+                <p>image-20190112213349243</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025504.jpg" title="image-20190112213635084" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025504.jpg" alt="image-20190112213635084" title class></a>
+                <p>image-20190112213635084</p>
+            </figure>
+
+<hr>
+<h2 id="Load-函数"><a href="#Load-函数" class="headerlink" title="Load()函数"></a>Load()函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="string">"input"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> url = <span class="string">"/"</span>;</span><br><span class="line">                <span class="keyword">var</span> params = &#123;<span class="string">"username"</span>: <span class="string">"jack"</span>, <span class="string">"password"</span>: <span class="string">"1234"</span>&#125;;</span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * load()函数 必须使用jquery对象</span></span><br><span class="line"><span class="comment">                 * 格式load(url,[data],[callback])</span></span><br><span class="line"><span class="comment">                 * 参数1：url 请求路径</span></span><br><span class="line"><span class="comment">                 * 参数2：data 请求参数</span></span><br><span class="line"><span class="comment">                 * 参数3：callback 回调函数</span></span><br><span class="line"><span class="comment">                 *   *如果没有请求参数 发送的GET请求</span></span><br><span class="line"><span class="comment">                 *   *如果有请求参数 发送的POST请求 请求没有中文乱码；</span></span><br><span class="line"><span class="comment">                 *回调函数的参数</span></span><br><span class="line"><span class="comment">                 *          ：参数1 data响应数据 load()永远获得字符串 如果需要使用</span></span><br><span class="line"><span class="comment">                 *          必须手动转换成json格式；</span></span><br><span class="line"><span class="comment">                 *</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                $(<span class="keyword">this</span>).load(url, params, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    <span class="comment">//转换JSON对象</span></span><br><span class="line">                    <span class="keyword">var</span> jsonData = <span class="built_in">eval</span>(<span class="string">"("</span> + data + <span class="string">")"</span>);</span><br><span class="line">                    alert(jsonData.message);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025506.jpg" title="image-20190113091505279" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025506.jpg" alt="image-20190113091505279" title class></a>
+                <p>image-20190113091505279</p>
+            </figure>
+
+<hr>
+<h2 id="post-get"><a href="#post-get" class="headerlink" title="$.post $.$.get"></a>$.post $.$.get</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  $.get() 全局函数 发送get请求</span></span><br><span class="line"><span class="comment">         *    *格式 jquery.get(URl,[data],[callback],[type])</span></span><br><span class="line"><span class="comment">         *      *参数4 type</span></span><br><span class="line"><span class="comment">         *      *GET请求不适合发送中文数据 存放请求的中文乱码</span></span><br><span class="line"><span class="comment">         *      必须手动解码 new String(username,getBytes("ISO-8859-1",UTF-8"))</span></span><br><span class="line"><span class="comment">         响应数据 如果使用application/json；charset=UTF-8,jquery自动将数据转换JSON对象</span></span><br><span class="line"><span class="comment">         响应数据 如果使用text/html；charset=UTF-8 ，回调函数获得字符串数据 需要手动转换</span></span><br><span class="line"><span class="comment">         使用"参数4" 设置"json" Jquery将字符串 转换为json对象</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        $.<span class="keyword">get</span>(url, params, function () &#123;</span><br><span class="line">            alert(data);</span><br><span class="line">        &#125;, <span class="string">"json"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * post()全局函数 发送post请求</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         格式：jquery.post(url,data[],[callback],[type])</span></span><br><span class="line"><span class="comment">         $.post(url,params,function(data)&#123;</span></span><br><span class="line"><span class="comment">            alert(data);</span></span><br><span class="line"><span class="comment">            &#125;,"json")</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        $.post(utl, params, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">            alert(data);</span><br><span class="line">        &#125;, <span class="string">"json"</span>)</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025508.jpg" title="image-20190113093659468" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025508.jpg" alt="image-20190113093659468" title class></a>
+                <p>image-20190113093659468</p>
+            </figure>
+
+<hr>
+<p>$.ajax()$</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">           $(<span class="string">"input"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               <span class="comment">/**</span></span><br><span class="line"><span class="comment">                * 4.$.ajax() 底层功能最强大的</span></span><br><span class="line"><span class="comment">                * 格式 Jquery.ajax（[settings]）</span></span><br><span class="line"><span class="comment">                *  参数 settings:设置所有的参数</span></span><br><span class="line"><span class="comment">                *   url:发送请求的地址</span></span><br><span class="line"><span class="comment">                *   data:发送到服务器的数据 请求参数，</span></span><br><span class="line"><span class="comment">                *   type: 请求方式（"POST"或"GET"），</span></span><br><span class="line"><span class="comment">                *</span></span><br><span class="line"><span class="comment">                *   success:成功的回调函数</span></span><br><span class="line"><span class="comment">                *   error 错误函数</span></span><br><span class="line"><span class="comment">                *   dateType:响应数据类型</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">               $.ajax(&#123;</span><br><span class="line">                   <span class="string">"url"</span>: <span class="string">"/"</span>,</span><br><span class="line">                   <span class="string">"data"</span>: <span class="string">"params"</span>,</span><br><span class="line">                   <span class="string">"type"</span>: <span class="string">"POST"</span>,</span><br><span class="line">                   <span class="string">"success"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                       alert(data);</span><br><span class="line">                   &#125;,</span><br><span class="line">                   <span class="string">"error"</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       alert(<span class="string">"服务器繁忙"</span>)</span><br><span class="line">                   &#125;,</span><br><span class="line">                   <span class="string">"dateType"</span>: <span class="string">"json"</span></span><br><span class="line">               &#125;);</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025510.jpg" title="image-20190113094858475" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025510.jpg" alt="image-20190113094858475" title class></a>
+                <p>image-20190113094858475</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025511.jpg" title="image-20190113094918130" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025511.jpg" alt="image-20190113094918130" title class></a>
+                <p>image-20190113094918130</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025512.jpg" title="image-20190116100448013" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025512.jpg" alt="image-20190116100448013" title class></a>
+                <p>image-20190116100448013</p>
+            </figure>
+
+
+
+<h2 id="处理实战"><a href="#处理实战" class="headerlink" title="处理实战"></a>处理实战</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// &lt;input id="h01" type="button" value="1只能点击一次，之后失效"/&gt;</span></span><br><span class="line">            $(<span class="string">"#h01"</span>).one(<span class="string">"click.a"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                alert(<span class="string">"你只能看到我一次"</span>);<span class="comment">//继续点击失效</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">// &lt;input id="h02" type="button" value="2可以点击多次"/&gt;</span></span><br><span class="line">            $(<span class="string">"#h02"</span>).bind(<span class="string">"click.b"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                alert(<span class="string">"每次都是你"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">// &lt;input id="h03" type="button" value="3解绑2"/&gt;</span></span><br><span class="line">            $(<span class="string">"#h03"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"#h02"</span>).unbind(<span class="string">"click.b"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">// &lt;input type="button" value="4 添加一个按钮，样式为myClass，且拥有相同的事件" class="myClass"/&gt;</span></span><br><span class="line">            $(<span class="string">".myClass"</span>).live(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"body"</span>).append(<span class="string">"&lt;input type='button' class='myClass'&gt;"</span>)</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">// &lt;input id="h05" type="button" value="5 解绑4"/&gt;</span></span><br><span class="line">            $(<span class="string">"#h05"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">".myClass"</span>).die(<span class="string">"click"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">//切换</span></span><br><span class="line">            $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"#e01"</span>).toggle(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    alert(<span class="string">"报数1"</span>);</span><br><span class="line">                &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    alert(<span class="string">"报数2"</span>);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                $(<span class="string">"#e02"</span>).hover(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    $(<span class="string">"#divMsg"</span>).html(<span class="string">"over"</span>);</span><br><span class="line">                &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    $(<span class="string">"#divMsg"</span>).html(<span class="string">"out"</span>);</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025514.jpg" title="image-20190116102254251" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025514.jpg" alt="image-20190116102254251" title class></a>
+                <p>image-20190116102254251</p>
+            </figure>
+
+
+
+
+
+<h1 id="14-其他"><a href="#14-其他" class="headerlink" title="14 其他"></a>14 其他</h1><h3 id="表单序列化"><a href="#表单序列化" class="headerlink" title="表单序列化"></a>表单序列化</h3><p><a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025517.jpg" title="image-20190113095911001" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025517.jpg" alt="image-20190113095911001"></a></p>
+<figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025519.jpg" title="image-20190113095931330" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025519.jpg" alt="image-20190113095931330" title class></a>
+                <p>image-20190113095931330</p>
+            </figure>
+
+<hr>
+<h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025529.jpg" title="image-20190113100338880" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025529.jpg" alt="image-20190113100338880" title class></a>
+                <p>image-20190113100338880</p>
+            </figure>
+
+<hr>
+<h3 id="浏览器默认的动作行为"><a href="#浏览器默认的动作行为" class="headerlink" title="浏览器默认的动作行为"></a>浏览器默认的动作行为</h3><figure class="image-box">
+                <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025531.jpg" title="image-20190113100510108" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025531.jpg" alt="image-20190113100510108" title class></a>
+                <p>image-20190113100510108</p>
+            </figure>
+
+
+
+
+
+
+
+<p>Jquery文档1.8.3</p>
+<p> <a rel=Jquery href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025534.jpg" title="image-20181215113129106" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025534.jpg" alt="image-20181215113129106"></a></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-29T03:08:31.354Z" itemprop="dateUpdated">2019-04-29 11:08:31</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/12/14/前端/Jquery学习1/" target="_blank" rel="external">http://yoursite.com/2018/12/14/前端/Jquery学习1/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jquery/">Jquery</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/14/前端/Jquery学习1/&title=《Jquery》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/14/前端/Jquery学习1/&title=《Jquery》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/12/15/java基础/for循环讲解/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">for 循环</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/12/13/Mybatis/级联操作/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">test</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-获取Jquery对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.获取Jquery对象</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Jquery与Dom对象的互相转换"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.Jquery与Dom对象的互相转换</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-选择器"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 选择器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-基本选择器【重要】"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 基本选择器【重要】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2层级选择器"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2层级选择器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3基本过滤选择器——“：关键字“"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3基本过滤选择器——“：关键字“</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4内容过滤"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">3.4内容过滤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5可见性过滤-（重要）"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">3.5可见性过滤 （重要）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6实战"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">3.6实战</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7属性选择器（掌握）"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">3.7属性选择器（掌握）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-8选择器-（子元素过滤）"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">3.8选择器 （子元素过滤）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-9表单过滤选择器"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">3.9表单过滤选择器</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-表单对象属性过滤"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 表单对象属性过滤</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-选择器案例"><span class="post-toc-number">5.</span> <span class="post-toc-text">5 选择器案例</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-属性-CSS"><span class="post-toc-number">6.</span> <span class="post-toc-text">6 属性 CSS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-CSS"><span class="post-toc-number">7.</span> <span class="post-toc-text">7 CSS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-文档处理"><span class="post-toc-number">8.</span> <span class="post-toc-text">8 文档处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-1-内部插入「掌握」"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">8.1 内部插入「掌握」</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-2-外部插入「掌握」"><span class="post-toc-number">8.1.1.</span> <span class="post-toc-text">8.2 外部插入「掌握」</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-3-删除-「掌握」"><span class="post-toc-number">8.1.2.</span> <span class="post-toc-text">8.3 删除 「掌握」</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-文档处理-克隆-替换包裹"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.文档处理 克隆 替换包裹</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Day-02"><span class="post-toc-number">10.</span> <span class="post-toc-text">Day 02</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-筛选"><span class="post-toc-number">11.</span> <span class="post-toc-text">10 筛选</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤"><span class="post-toc-number">11.0.1.</span> <span class="post-toc-text">过滤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查找"><span class="post-toc-number">11.0.2.</span> <span class="post-toc-text">查找</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#串联"><span class="post-toc-number">11.0.3.</span> <span class="post-toc-text">串联</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-事件"><span class="post-toc-number">12.</span> <span class="post-toc-text">11 事件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见事件"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">常见事件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#页面加载"><span class="post-toc-number">12.2.</span> <span class="post-toc-text">页面加载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事件绑定-重要"><span class="post-toc-number">12.3.</span> <span class="post-toc-text">事件绑定[重要]</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#委派"><span class="post-toc-number">12.4.</span> <span class="post-toc-text">委派</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#切换"><span class="post-toc-number">12.5.</span> <span class="post-toc-text">切换</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#12-动画效果"><span class="post-toc-number">13.</span> <span class="post-toc-text">12 动画效果
+                
+                image-20190116213104140
+            </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#13-Ajax「重要-掌握」"><span class="post-toc-number">14.</span> <span class="post-toc-text">13 Ajax「重要 掌握」</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Load-函数"><span class="post-toc-number">14.1.</span> <span class="post-toc-text">Load()函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#post-get"><span class="post-toc-number">14.2.</span> <span class="post-toc-text">$.post $.$.get</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#处理实战"><span class="post-toc-number">14.3.</span> <span class="post-toc-text">处理实战</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#14-其他"><span class="post-toc-number">15.</span> <span class="post-toc-text">14 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#表单序列化"><span class="post-toc-number">15.0.1.</span> <span class="post-toc-text">表单序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#事件冒泡"><span class="post-toc-number">15.0.2.</span> <span class="post-toc-text">事件冒泡</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器默认的动作行为"><span class="post-toc-number">15.0.3.</span> <span class="post-toc-text">浏览器默认的动作行为</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/14/前端/Jquery学习1/&title=《Jquery》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/14/前端/Jquery学习1/&title=《Jquery》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS27DMAxF0ex/0860RWL7PlItYOpqFARxpeMBy49eL7yOj8V///Obz8/XTy1eMmTIeCzjuFzXx+JbXr8Isu/Nq5QhQ8YGjLONzz6nT9XCMdlFhgwZMjiJHJqEThkyZMhYG3DT9JGEWhkyZMjoFLGdgHt9LMJeVovLkCHjgQzeLPv/z38y35AhQ8ajGEe4eHDkw4M0yH45lQwZMkYzeIBblfylxXNwHhkyZIxmnD3MG/dpcCSlMjmDDBky9mHwNhYfUnauXxQLXRkyZIxmkFSvVtDywN0ZJMiQIWMHBm+Qrb341R+aoncvQ4aMhzN4GZmOM9NwzIvYm9xWhgwZQxm8mORJHm+odYrVX5NYGTJkDGWsOko6BugMKW/+jgwZMkYz0gBXuxCWjjlrAwwZMmRMZfACkofUtHCtpZ4yZMjYgVFrsaWXM2qt//jOiAwZMsYx+AP9UrY2Lg26hjJkyBjK4IkdH0zybJSHY3RpTIYMGaMZPAXsFKirBpykLShDhox5jAV1cLsAThttp/83ZMiQsSUjDbWdb9JXIEOGjD0ZPKWL73GUkkKyuwwZMmYzjnClVyvi5v6qEaYMGTIGMfjiY4Og7MQtv9bRZciQMYKRFqv8SgQpUGsBV4YMGXsyOoGv1u5PC+DggoUMGTJkNEJzLUEkwV2GDBkySMuMjCqDY4XXNWTIkLEDgzf6+TY8EUzZMmTI2I3RKR1rrbH+aLM48ZAhQ8bzGG9VvYmHRIc55wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

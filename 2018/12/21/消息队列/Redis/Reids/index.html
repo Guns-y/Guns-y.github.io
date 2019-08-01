@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Redis | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Redis">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Redis</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Redis</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-21T00:16:27.040Z" itemprop="datePublished" class="page-time">
+  2018-12-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-消息队列/Redis/Reids"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Redis</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-21 08:16:27" datetime="2018-12-21T00:16:27.040Z"  itemprop="datePublished">2018-12-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <blockquote>
+<p> Jredies 参照杨开整的书 注意Netty不要使用默认的 要换成书里面的</p>
+</blockquote>
+<h1 id="1-JedisPoolUtil"><a href="#1-JedisPoolUtil" class="headerlink" title="1 JedisPoolUtil"></a>1 JedisPoolUtil</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JedisPoolUtil</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> JedisPool jedisPool = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">JedisPoolUtil</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> JedisPool <span class="title">getJedisPoolInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">null</span> == jedisPool)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (JedisPoolUtil.class)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(<span class="keyword">null</span> == jedisPool)</span><br><span class="line">				&#123;</span><br><span class="line">					JedisPoolConfig poolConfig = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">					poolConfig.setMaxActive(<span class="number">1000</span>);</span><br><span class="line">					poolConfig.setMaxIdle(<span class="number">32</span>);</span><br><span class="line">					poolConfig.setMaxWait(<span class="number">100</span>*<span class="number">1000</span>);</span><br><span class="line">					poolConfig.setTestOnBorrow(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">					jedisPool = <span class="keyword">new</span> JedisPool(poolConfig,<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> jedisPool;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(JedisPool jedisPool,Jedis jedis)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">null</span> != jedis)</span><br><span class="line">		&#123;</span><br><span class="line">			jedisPool.returnResourceObject(jedis);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TestAPI"><a href="#TestAPI" class="headerlink" title="TestAPI"></a>TestAPI</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAPI</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">		</span><br><span class="line">		jedis.set(<span class="string">"k1"</span>,<span class="string">"v1"</span>);</span><br><span class="line">		jedis.set(<span class="string">"k2"</span>,<span class="string">"v2"</span>);</span><br><span class="line">		jedis.set(<span class="string">"k3"</span>,<span class="string">"v3"</span>);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		System.out.println(jedis.get(<span class="string">"k3"</span>));</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; sets = jedis.keys(<span class="string">"*"</span>);</span><br><span class="line">		System.out.println(sets.size());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//后续请参考脑图，家庭作业，敲一遍......</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TestMS"><a href="#TestMS" class="headerlink" title="TestMS"></a>TestMS</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMS</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Jedis jedis_M = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">		Jedis jedis_S = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6380</span>);</span><br><span class="line">		</span><br><span class="line">		jedis_S.slaveof(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">		</span><br><span class="line">		jedis_M.set(<span class="string">"class"</span>,<span class="string">"1122V2"</span>);</span><br><span class="line">		</span><br><span class="line">		String result = jedis_S.get(<span class="string">"class"</span>);</span><br><span class="line">		System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TestPing"><a href="#TestPing" class="headerlink" title="TestPing"></a>TestPing</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPing</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line">		System.out.println(jedis.ping());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TestPool"><a href="#TestPool" class="headerlink" title="TestPool"></a>TestPool</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		JedisPool jedisPool = JedisPoolUtil.getJedisPoolInstance();</span><br><span class="line">		JedisPool jedisPool2 = JedisPoolUtil.getJedisPoolInstance();</span><br><span class="line">		</span><br><span class="line">		System.out.println(jedisPool == jedisPool2);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			jedis.set(<span class="string">"aa"</span>,<span class="string">"bb"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			JedisPoolUtil.release(jedisPool, jedis);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TestTX"><a href="#TestTX" class="headerlink" title="TestTX"></a>TestTX</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.redis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Transaction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestTX</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">transMethod</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">	     Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>);</span><br><span class="line">	     <span class="keyword">int</span> balance;<span class="comment">// 可用余额</span></span><br><span class="line">	     <span class="keyword">int</span> debt;<span class="comment">// 欠额</span></span><br><span class="line">	     <span class="keyword">int</span> amtToSubtract = <span class="number">10</span>;<span class="comment">// 实刷额度</span></span><br><span class="line"></span><br><span class="line">	     jedis.watch(<span class="string">"balance"</span>);</span><br><span class="line">	     <span class="comment">//jedis.set("balance","5");//此句不该出现，讲课方便。模拟其他程序已经修改了该条目</span></span><br><span class="line">	     Thread.sleep(<span class="number">7000</span>);</span><br><span class="line">	     balance = Integer.parseInt(jedis.get(<span class="string">"balance"</span>));</span><br><span class="line">	     <span class="keyword">if</span> (balance &lt; amtToSubtract) &#123;</span><br><span class="line">	       jedis.unwatch();</span><br><span class="line">	       System.out.println(<span class="string">"modify"</span>);</span><br><span class="line">	       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	       System.out.println(<span class="string">"***********transaction"</span>);</span><br><span class="line">	       Transaction transaction = jedis.multi();</span><br><span class="line">	       transaction.decrBy(<span class="string">"balance"</span>, amtToSubtract);</span><br><span class="line">	       transaction.incrBy(<span class="string">"debt"</span>, amtToSubtract);</span><br><span class="line">	       transaction.exec();</span><br><span class="line">	       balance = Integer.parseInt(jedis.get(<span class="string">"balance"</span>));</span><br><span class="line">	       debt = Integer.parseInt(jedis.get(<span class="string">"debt"</span>));</span><br><span class="line"></span><br><span class="line">	       System.out.println(<span class="string">"*******"</span> + balance);</span><br><span class="line">	       System.out.println(<span class="string">"*******"</span> + debt);</span><br><span class="line">	       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	     &#125;</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="comment">/**</span></span><br><span class="line"><span class="comment">	   * 通俗点讲，watch命令就是标记一个键，如果标记了一个键， </span></span><br><span class="line"><span class="comment">	   * 在提交事务前如果该键被别人修改过，那事务就会失败，这种情况通常可以在程序中</span></span><br><span class="line"><span class="comment">	   * 重新再尝试一次。</span></span><br><span class="line"><span class="comment">	   * 首先标记了键balance，然后检查余额是否足够，不足就取消标记，并不做扣减； </span></span><br><span class="line"><span class="comment">	   * 足够的话，就启动事务进行更新操作，</span></span><br><span class="line"><span class="comment">	   * 如果在此期间键balance被其它人修改， 那在提交事务（执行exec）时就会报错， </span></span><br><span class="line"><span class="comment">	   * 程序中通常可以捕获这类错误再重新执行一次，直到成功。</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> InterruptedException </span></span><br><span class="line"><span class="comment">	   */</span></span><br><span class="line">	  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">	     TestTX test = <span class="keyword">new</span> TestTX();</span><br><span class="line">	     <span class="keyword">boolean</span> retValue = test.transMethod();</span><br><span class="line">	     System.out.println(<span class="string">"main retValue-------: "</span> + retValue);</span><br><span class="line">	  &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Redis href="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190330110803300.png" title="image-20190330110803300" data-fancybox="images"><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190330110803300.png" alt="image-20190330110803300" title class></a>
+                <p>image-20190330110803300</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Redis href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022913.jpg" title="image-20190330110943377" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022913.jpg" alt="image-20190330110943377" title class></a>
+                <p>image-20190330110943377</p>
+            </figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">CAP理论就是说在分布式存储系统中，最多只能实现上面的两点。</span><br><span class="line">而由于当前的网络硬件肯定会出现延迟丢包等问题，所以</span><br><span class="line">分区容忍性是我们必须需要实现的。</span><br><span class="line">所以我们只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点。</span><br><span class="line">=======================================================================================================================</span><br><span class="line">C:强一致性 A：高可用性 P：分布式容忍性</span><br><span class="line">CA 传统Oracle数据库</span><br><span class="line"> AP 大多数网站架构的选择</span><br><span class="line"> CP Redis、Mongodb</span><br><span class="line"> 注意：分布式架构的时候必须做出取舍。</span><br><span class="line">一致性和可用性之间取一个平衡。多余大多数web应用，其实并不需要强一致性。</span><br><span class="line">因此牺牲C换取P，这是目前分布式数据库产品的方向</span><br><span class="line">=======================================================================================================================</span><br><span class="line">一致性与可用性的决择</span><br><span class="line">对于web2.0网站来说，关系数据库的很多主要特性却往往无用武之地</span><br><span class="line">数据库事务一致性需求 </span><br><span class="line">很多web实时系统并不要求严格的数据库事务，对读一致性的要求很低， 有些场合对写一致性要求并不高。允许实现最终一致性。</span><br><span class="line">数据库的写实时性和读实时性需求</span><br><span class="line">对关系数据库来说，插入一条数据之后立刻查询，是肯定可以读出来这条数据的，但是对于很多web应用来说，并不要求这么高的实时性，比方说发一条消息之 后，过几秒乃至十几秒之后，我的订阅者才看到这条动态是完全可以接受的。</span><br><span class="line">对复杂的SQL查询，特别是多表关联查询的需求 </span><br><span class="line">任何大数据量的web系统，都非常忌讳多个大表的关联查询，以及复杂的数据分析类型的报表查询，特别是SNS类型的网站，从需求以及产品设计角 度，就避免了这种情况的产生。往往更多的只是单表的主键查询，以及单表的简单条件分页查询，SQL的功能被极大的弱化了。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> CAP理论的核心是：一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求，</span><br><span class="line">最多只能同时较好的满足两个。</span><br><span class="line">因此，根据 CAP 原理将 NoSQL 数据库分成了满足 CA 原则、满足 CP 原则和满足 AP 原则三 大类：</span><br><span class="line">CA - 单点集群，满足一致性，可用性的系统，通常在可扩展性上不太强大。</span><br><span class="line">CP - 满足一致性，分区容忍必的系统，通常性能不是特别高。</span><br><span class="line">AP - 满足可用性，分区容忍性的系统，通常可能对一致性要求低一些。</span><br><span class="line">￼</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BASE就是为了解决关系数据库强一致性引起的问题而引起的可用性降低而提出的解决方案。</span><br><span class="line">BASE其实是下面三个术语的缩写：</span><br><span class="line">    基本可用（Basically Available）</span><br><span class="line">    软状态（Soft state）</span><br><span class="line">    最终一致（Eventually consistent）</span><br><span class="line">它的思想是通过让系统放松对某一时刻数据一致性的要求来换取系统整体伸缩性和性能上改观。为什么这么说呢，缘由就在于大型系统往往由于地域分布和极高性能的要求，不可能采用分布式事务来完成这些指标，要想获得这些指标，我们必须采用另外一种方式来完成，这里BASE就是解决这个问题的办法</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">分布式系统</span><br><span class="line">分布式系统（distributed system）</span><br><span class="line"> 由多台计算机和通信的软件组件通过计算机网络连接（本地网络或广域网）组成。分布式系统是建立在网络之上的软件系统。正是因为软件的特性，所以分布式系统具有高度的内聚性和透明性。因此，网络和分布式系统之间的区别更多的在于高层软件（特别是操作系统），而不是硬件。分布式系统可以应用在在不同的平台上如：Pc、工作站、局域网和广域网上等。</span><br><span class="line">简单来讲：</span><br><span class="line">1分布式：不同的多台服务器上面部署不同的服务模块（工程），他们之间通过Rpc/Rmi之间通信和调用，对外提供服务和组内协作。</span><br><span class="line">2集群：不同的多台服务器上面部署相同的服务模块，通过分布式调度软件进行统一的调度，对外提供服务和访问。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Redis href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022915.jpg" title="image-20190330111327504" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022915.jpg" alt="image-20190330111327504" title class></a>
+                <p>image-20190330111327504</p>
+            </figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-19T13:04:23.005Z" itemprop="dateUpdated">2019-06-19 21:04:23</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/12/21/消息队列/Redis/Reids/" target="_blank" rel="external">http://yoursite.com/2018/12/21/消息队列/Redis/Reids/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/21/消息队列/Redis/Reids/&title=《Redis》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/21/消息队列/Redis/Reids/&title=《Redis》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/12/22/Spring Boot/SpringBoot小D课堂/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot小D课堂</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/12/21/Git Maven /Git/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Git</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-JedisPoolUtil"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 JedisPoolUtil</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TestAPI"><span class="post-toc-number">2.</span> <span class="post-toc-text">TestAPI</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TestMS"><span class="post-toc-number">3.</span> <span class="post-toc-text">TestMS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TestPing"><span class="post-toc-number">4.</span> <span class="post-toc-text">TestPing</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TestPool"><span class="post-toc-number">5.</span> <span class="post-toc-text">TestPool</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TestTX"><span class="post-toc-number">6.</span> <span class="post-toc-text">TestTX</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/21/消息队列/Redis/Reids/&title=《Redis》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/21/消息队列/Redis/Reids/&title=《Redis》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3aQW7DMAwEwPz/0+41RWuXS8YFLI1OQSAbGh8IUuTrVV7H23r/p7f/7NmfT314YWBgPJZxXK6zPRN8ZdXPhoGBsQ/j7BBneypB8/pw89CMgYGBkSZz9WTxbH89AcXAwMC4ZlRSt3pRWg/NGBgYGOnr6uXlJHDfUotjYGA8kFG/OPv/37f0NzAwMB7FOMJ1nfD1itJe2+DbmzEwMJZm1APcBNNLE9PzYGBgrM1Is6zJIEWaFNZbCBgYGGszekEzvW67/n5zMAYGxg6MXrC74/qszsbAwNiBkV6Epbz6G0Y7MTAwlmZUAlwKSK/G6v/H9TcGBsYSjEmYmxSlabr5xyfGwMDYgJE2HdM25OSp0gfCwMBYmpGOMkwGwiZtzhiAgYGxHKOelvUu1CaXa0FrAQMDY2lGOnKRthB672y2RTEwMJZj1IPsvNTsBdNg2AIDA2MDRr152YOlV3L1pzAwMNZmTBLEtFitf5q0hYCBgbEDoykuB8G4nu61QjEwMDZg3HFZXx/mSIc2fnkKAwNjA0YvXbuPF5evGBgYizKOcNUPNAm1cXGLgYGxNCMNdpOUMR1+/djRMTAwlmCkw6mly69C47N+HgwMDIze8OhnE8deEwIDAwMjHVTtNSbrez4ccDEwMDZg1Ee+0jK4TopnRjAwMB7OqBSx9QGyYJwr/Kc0M4KBgbEco1c6zluePeqo44GBgfE8xheoxCy6FlLyNwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

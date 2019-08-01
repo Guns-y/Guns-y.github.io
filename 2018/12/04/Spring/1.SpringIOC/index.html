@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Spring IOC 及bean容器 注入 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Spring">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Spring IOC 及bean容器 注入</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Spring IOC 及bean容器 注入</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-04T03:15:35.734Z" itemprop="datePublished" class="page-time">
+  2018-12-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Spring/1.SpringIOC"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Spring IOC 及bean容器 注入</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-04 11:15:35" datetime="2018-12-04T03:15:35.734Z"  itemprop="datePublished">2018-12-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-IOC及Bean容器"><a href="#1-IOC及Bean容器" class="headerlink" title="1.IOC及Bean容器"></a>1.IOC及Bean容器</h1><p><a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030059.jpg" title="image-20181204112123361" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030059.jpg" alt="image-20181204112123361"></a></p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030104.jpg" title="image-20181204112558352" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030104.jpg" alt="image-20181204112558352" title class></a>
+                <p>image-20181204112558352</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030105.jpg" title="image-20181204112610645" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030105.jpg" alt="image-20181204112610645" title class></a>
+                <p>image-20181204112610645</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030106.jpg" title="image-20181204112633570" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030106.jpg" alt="image-20181204112633570" title class></a>
+                <p>image-20181204112633570</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030109.jpg" title="image-20181204112642537" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030109.jpg" alt="image-20181204112642537" title class></a>
+                <p>image-20181204112642537</p>
+            </figure>
+
+<p>​        <figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030110.jpg" title="image-20181204112721200" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030110.jpg" alt="image-20181204112721200" title class></a>
+                <p>image-20181204112721200</p>
+            </figure></p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030112.jpg" title="image-20181204112749653" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030112.jpg" alt="image-20181204112749653" title class></a>
+                <p>image-20181204112749653</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030114.jpg" title="image-20181204112806521" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030114.jpg" alt="image-20181204112806521" title class></a>
+                <p>image-20181204112806521</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030116.jpg" title="image-20181204112829260" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030116.jpg" alt="image-20181204112829260" title class></a>
+                <p>image-20181204112829260</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030117.jpg" title="image-20181204113102818" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030117.jpg" alt="image-20181204113102818" title class></a>
+                <p>image-20181204113102818</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030118.jpg" title="image-20181204113112596" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030118.jpg" alt="image-20181204113112596" title class></a>
+                <p>image-20181204113112596</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030119.jpg" title="image-20181204113137177" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030119.jpg" alt="image-20181204113137177" title class></a>
+                <p>image-20181204113137177</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030120.jpg" title="image-20181204114008113" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030120.jpg" alt="image-20181204114008113" title class></a>
+                <p>image-20181204114008113</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030122.jpg" title="image-20181204114323513" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030122.jpg" alt="image-20181204114323513" title class></a>
+                <p>image-20181204114323513</p>
+            </figure>
+
+<hr>
+<h1 id="2-Spring-注入"><a href="#2-Spring-注入" class="headerlink" title="2.Spring 注入"></a>2.Spring 注入</h1><figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030124.jpg" title="image-20181204114410294" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030124.jpg" alt="image-20181204114410294" title class></a>
+                <p>image-20181204114410294</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030126.jpg" title="image-20181204114441779" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030126.jpg" alt="image-20181204114441779" title class></a>
+                <p>image-20181204114441779</p>
+            </figure>
+
+<h3 id="lt-必须要有get-set方法-gt-lt-property-name-””-ref-””-gt"><a href="#lt-必须要有get-set方法-gt-lt-property-name-””-ref-””-gt" class="headerlink" title="&lt;必须要有get/set方法&gt;  &lt; property  name=”” ref=””&gt;"></a>&lt;必须要有get/set方法&gt;  &lt; property  name=”” ref=””&gt;</h3><p>⭐️</p>
+<h2 id="name-当前Bean中class所在的类的注入的属性的-成员变量名"><a href="#name-当前Bean中class所在的类的注入的属性的-成员变量名" class="headerlink" title="* name= 当前Bean中class所在的类的注入的属性的 成员变量名"></a>* name= 当前Bean中class所在的类的注入的属性的 成员变量名</h2><p><a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030128.jpg" title="image-20181204124649320" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030128.jpg" alt="image-20181204124649320"></a></p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030129.jpg" title="image-20181204124830178" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030129.jpg" alt="image-20181204124830178" title class></a>
+                <p>image-20181204124830178</p>
+            </figure>
+
+<h1 id="ref-表示引用-下一个的ID值"><a href="#ref-表示引用-下一个的ID值" class="headerlink" title="*  ref=表示引用 下一个的ID值"></a>*  ref=表示引用 下一个的ID值</h1><figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030131.jpg" title="image-20181204125020261" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030131.jpg" alt="image-20181204125020261" title class></a>
+                <p>image-20181204125020261</p>
+            </figure>
+
+
+
+
+
+<hr>
+<p><a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30132.jpg" title="image-20181204114612223" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30132.jpg" alt="image-20181204114612223"></a></p>
+<p>** &lt;必须要有构造器方法&gt;</p>
+<hr>
+<h1 id="3-实战–IOC"><a href="#3-实战–IOC" class="headerlink" title="3.实战–IOC"></a>3.实战–IOC</h1><h2 id="3-1传统的new-方式实现接口编程"><a href="#3-1传统的new-方式实现接口编程" class="headerlink" title="3.1传统的new 方式实现接口编程"></a>3.1传统的new 方式实现接口编程</h2><p><a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030133.jpg" title="image-20181204170512470" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030133.jpg" alt="image-20181204170512470"></a>​            <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030135.jpg" title="image-20181204170523359" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030135.jpg" alt="image-20181204170523359"></a></p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030137.jpg" title="image-20181204170549881" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030137.jpg" alt="image-20181204170549881" title class></a>
+                <p>image-20181204170549881</p>
+            </figure>
+
+<hr>
+<h3 id="3-2使用Bean开发"><a href="#3-2使用Bean开发" class="headerlink" title="3.2使用Bean开发"></a>3.2使用Bean开发</h3><figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030138.jpg" title="image-20181204171605641" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030138.jpg" alt="image-20181204171605641" title class></a>
+                <p>image-20181204171605641</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30141.jpg" title="image-20181204171627549" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30141.jpg" alt="image-20181204171627549" title class></a>
+                <p>image-20181204171627549</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030142.jpg" title="image-20181204171639524" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030142.jpg" alt="image-20181204171639524" title class></a>
+                <p>image-20181204171639524</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030143.jpg" title="image-20181204171650863" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030143.jpg" alt="image-20181204171650863" title class></a>
+                <p>image-20181204171650863</p>
+            </figure>
+
+<hr>
+<h2 id="3-2-set注入"><a href="#3-2-set注入" class="headerlink" title="3.2  set注入"></a>3.2  set注入</h2><p>1.Dao层</p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030146.jpg" title="image-20181204172436838" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030146.jpg" alt="image-20181204172436838" title class></a>
+                <p>image-20181204172436838</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030147.jpg" title="image-20181204172457619" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030147.jpg" alt="image-20181204172457619" title class></a>
+                <p>image-20181204172457619</p>
+            </figure>
+
+<p>2.service层</p>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30150.jpg" title="image-20181204172514000" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30150.jpg" alt="image-20181204172514000" title class></a>
+                <p>image-20181204172514000</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030151.jpg" title="image-20181204172733300" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030151.jpg" alt="image-20181204172733300" title class></a>
+                <p>image-20181204172733300</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030154.jpg" title="image-20181204173155624" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030154.jpg" alt="image-20181204173155624" title class></a>
+                <p>image-20181204173155624</p>
+            </figure>
+
+<h2 id="3-3-构造方法注入"><a href="#3-3-构造方法注入" class="headerlink" title="3.3 构造方法注入"></a>3.3 构造方法注入</h2><figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030155.jpg" title="image-20181204173304844" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030155.jpg" alt="image-20181204173304844" title class></a>
+                <p>image-20181204173304844</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030156.jpg" title="image-20181204173423731" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030156.jpg" alt="image-20181204173423731" title class></a>
+                <p>image-20181204173423731</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030158.jpg" title="image-20181204173457333" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030158.jpg" alt="image-20181204173457333" title class></a>
+                <p>image-20181204173457333</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030201.jpg" title="image-20181204173729662" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-030201.jpg" alt="image-20181204173729662" title class></a>
+                <p>image-20181204173729662</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=Spring IOC 及bean容器 注入 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30205.jpg" title="image-20181204173750205" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-30205.jpg" alt="image-20181204173750205" title class></a>
+                <p>image-20181204173750205</p>
+            </figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-19T13:11:13.950Z" itemprop="dateUpdated">2019-06-19 21:11:13</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/12/04/Spring/1.SpringIOC/" target="_blank" rel="external">http://yoursite.com/2018/12/04/Spring/1.SpringIOC/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/04/Spring/1.SpringIOC/&title=《Spring IOC 及bean容器 注入》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/04/Spring/1.SpringIOC/&title=《Spring IOC 及bean容器 注入》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/12/04/Spring/7.SpringAOP/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Spring AOP</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/12/03/消息队列/RabbitMQ/2.命令行与管控台/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Rabbit MQ 命令行与管控台</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-IOC及Bean容器"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.IOC及Bean容器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Spring-注入"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.Spring 注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#lt-必须要有get-set方法-gt-lt-property-name-””-ref-””-gt"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">&lt;必须要有get/set方法&gt;  &lt; property  name=”” ref=””&gt;</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#name-当前Bean中class所在的类的注入的属性的-成员变量名"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">* name= 当前Bean中class所在的类的注入的属性的 成员变量名</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ref-表示引用-下一个的ID值"><span class="post-toc-number">3.</span> <span class="post-toc-text">*  ref=表示引用 下一个的ID值</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-实战–IOC"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.实战–IOC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1传统的new-方式实现接口编程"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1传统的new 方式实现接口编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2使用Bean开发"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">3.2使用Bean开发</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-set注入"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2  set注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-构造方法注入"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.3 构造方法注入</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/04/Spring/1.SpringIOC/&title=《Spring IOC 及bean容器 注入》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/04/Spring/1.SpringIOC/&title=《Spring IOC 及bean容器 注入》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQXLjMAwEwPz/097rbmWlzICKq0w2T65YEdU6wACIr694vf5as+u/f/5+t3aXemFgYHws43W77q9J7pzcod33P7tjYGAcwEge4n7L+/9KeLM7YGBgYFxdc7/9fUBf2RcDAwOjDbh5YjcrbjEwMDDaIrZNE9sA+qZaHAMD4wMZedf9/Z9/5XwDAwPjoxivcj2VCLaJ5g9PhYGBsTUjD3CzxPGxVloy/IGBgXEAox3VmoXINiksSlYMDIxNGXkjvh35mhXAOf6fv2BgYBzPyFv5+cFk20P74VsMDIytGe1j5UlkHoJn4RsDA+McRpu05Y/SFsnJXpchGwMDY2tGm8bNjjNnATd5tsvzDQwMjI0Ys/SuDaxvqsUxMDA2ZayMQdRjW8svK7kzBgbGfoz1QYr1o4JZwRxFXwwMjC0Y6+lgPp01a6UVx6sYGBgHMPKGWnt9Gzrb14eBgXEC46nQmRSfK9cUFTkGBsamjLzIbAfFVgrdfC8MDIy9GW3DK9++HaRIwvewiMXAwNiCMQuCbUn81FDFZcDFwMA4gNEGyjZEtiVr/roxMDB2ZbzKlTfx2+GwpKF2+aIxMDC2ZsxOA9uxifXkEgMDA2M2Fvbwqeko4EZvGgMDYyPGStq3EoLbX4DoDBYDA+N4xm8nfMNDTQwMDIy4ZXaf2LUHnEWIx8DAOICRFLGzdDAvR/OiFwMD4zTGrHRsx1hXGnArIxoYGBgfzvgD9hZBzxOoztMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

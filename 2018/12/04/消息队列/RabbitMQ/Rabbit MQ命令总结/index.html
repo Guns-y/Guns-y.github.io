@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Rabbit MQ命令总结 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+            
+              <span>2</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>3</span>
+            
+              <span>7</span>
+            
+              <span>7</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Rabbit MQ命令总结</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Rabbit MQ命令总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-04T10:37:35.436Z" itemprop="datePublished" class="page-time">
+  2018-12-04
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-消息队列/RabbitMQ/Rabbit MQ命令总结"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Rabbit MQ命令总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-04 18:37:35" datetime="2018-12-04T10:37:35.436Z"  itemprop="datePublished">2018-12-04</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="命令总结-RabbitMQ"><a href="#命令总结-RabbitMQ" class="headerlink" title="命令总结 RabbitMQ"></a>命令总结 RabbitMQ</h1><h1 id="不积跬步无以至千里"><a href="#不积跬步无以至千里" class="headerlink" title="不积跬步无以至千里"></a>不积跬步无以至千里</h1><h5 id="1-lsof-i-5672-查看有没有启动成功"><a href="#1-lsof-i-5672-查看有没有启动成功" class="headerlink" title="1.lsof -i :5672 查看有没有启动成功"></a>1.lsof -i :5672 查看有没有启动成功</h5><figure class="image-box">
+                <a rel=Rabbit MQ命令总结 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024419.jpg" title="image-20181204184449441" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024419.jpg" alt="image-20181204184449441" title class></a>
+                <p>image-20181204184449441</p>
+            </figure>
+
+<h5 id="2-rabbitmq"><a href="#2-rabbitmq" class="headerlink" title="2.rabbitmq"></a>2.rabbitmq</h5><figure class="image-box">
+                <a rel=Rabbit MQ命令总结 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024423.jpg" title="image-20181204184714442" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024423.jpg" alt="image-20181204184714442" title class></a>
+                <p>image-20181204184714442</p>
+            </figure>
+
+<h5 id="3-rabbitmqctl-list-queues-查看所有队列的名称"><a href="#3-rabbitmqctl-list-queues-查看所有队列的名称" class="headerlink" title="3.rabbitmqctl list_queues 查看所有队列的名称"></a>3.rabbitmqctl list_queues 查看所有队列的名称</h5><figure class="image-box">
+                <a rel=Rabbit MQ命令总结 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024425.jpg" title="image-20181204184817578" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024425.jpg" alt="image-20181204184817578" title class></a>
+                <p>image-20181204184817578</p>
+            </figure>
+
+<h5 id="4-rabbitmqctl-list-vhosts"><a href="#4-rabbitmqctl-list-vhosts" class="headerlink" title="4.rabbitmqctl list_vhosts"></a>4.rabbitmqctl list_vhosts</h5><figure class="image-box">
+                <a rel=Rabbit MQ命令总结 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024426.jpg" title="image-20181204184926639" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024426.jpg" alt="image-20181204184926639" title class></a>
+                <p>image-20181204184926639</p>
+            </figure>
+
+<h5 id="5-rabbitmqctl-status-查看当前节点的状态"><a href="#5-rabbitmqctl-status-查看当前节点的状态" class="headerlink" title="5.rabbitmqctl status 查看当前节点的状态"></a>5.rabbitmqctl status 查看当前节点的状态</h5><figure class="image-box">
+                <a rel=Rabbit MQ命令总结 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024428.jpg" title="image-20181204185059365" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-024428.jpg" alt="image-20181204185059365" title class></a>
+                <p>image-20181204185059365</p>
+            </figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-29T03:08:30.621Z" itemprop="dateUpdated">2019-04-29 11:08:30</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/" target="_blank" rel="external">http://yoursite.com/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/&title=《Rabbit MQ命令总结》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/&title=《Rabbit MQ命令总结》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/12/04/消息队列/RabbitMQ/3.管控台/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RabbitMQ管控台</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/12/04/java基础/集合/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">javaSE 总结 IO 集合 线程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#命令总结-RabbitMQ"><span class="post-toc-number">1.</span> <span class="post-toc-text">命令总结 RabbitMQ</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不积跬步无以至千里"><span class="post-toc-number">2.</span> <span class="post-toc-text">不积跬步无以至千里</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/&title=《Rabbit MQ命令总结》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/04/消息队列/RabbitMQ/Rabbit MQ命令总结/&title=《Rabbit MQ命令总结》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aQW5bMQwE0Nz/0um2QGp7hpQco3heBYn9raeFxAz59RW/vv96/fzNz78+f86jZybv/7rxwsPDw1ss/dFyHy0leWfyqQSQbO4/noCHh4d3jTc7lFvY/hLK14OHh4f3Obz80c+fkJfUeHh4eP8HL8HkpfmsxMfDw8P7Xd7mce1n8yvkrVkLHh4eXszLA4LP+flKfw8PDw9v3VVvD/q8STYru+vV4uHh4V3g5QduDshHEGaxb9s8w8PDwzvLm8HaMvfsNVMU+nh4eHgXeJsPtGMByWWwiT+OZSp4eHh4T3nPv362xFkjKt+U4iLBw8PDu8bL2/Czcat27CAZpYq2Dw8PD+8tvM0WtKNam8g4Wj8eHh7eNd6+DbYvu9uNi9aPh4eHd4134+g/G0DMElo8PDy827zkCJ41ovZbNhzewsPDw7vAm0Wxbbzbjh20Dbnhfw94eHh4I15+sLYFbjue1ca+UfMMDw8P7wJv1qRvw4sc2QYTNRIPDw/vKK9tWZ3dmn0o/GKdeHh4eId4m0M8H4FqN2UTZODh4eHd5t34yk177MZ24OHh4Z3l5c2ttpHfjiPMguAX78HDw8O7xpu17WdjB3kcvAlBhp03PDw8vLTvXx/3b+rFjUYWiikJPDw8vAWv/bI8XNgX622DbbhoPDw8vAXvVIjQBgrJX/N1PrwY8PDw8I7y8qbUrBTOi/Xi0M/bYHh4eHiHeN/lq004ZlMM7YVUFNN4eHh4a97swM2DhjYU3pTsbbCCh4eHt+HtC9xZ8NqW5skl9KKzh4eHh3eUlzx6th3te07Vxnh4eHifw2uP8vy4348RHLgY8PDw8C7XnJswd78dRVaNh4eHd4E3G2zKh5+S4LW9DCIwHh4e3gXeplDOi+M81Mg3/fDoAB4eHt7r1x+yuH2Cq9mElgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
