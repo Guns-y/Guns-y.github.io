@@ -390,12 +390,130 @@
                 <p>image-20190801160757286</p>
             </figure>
 
-<h2 id="3-可见性"><a href="#3-可见性" class="headerlink" title="3 可见性"></a>3 可见性</h2><figure class="image-box">
+<h2 id="3-可见vcolatile"><a href="#3-可见vcolatile" class="headerlink" title="3 可见vcolatile"></a>3 可见vcolatile</h2><figure class="image-box">
                 <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-080916.png" title="image-20190801160914371" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-080916.png" alt="image-20190801160914371" title class></a>
                 <p>image-20190801160914371</p>
             </figure>
 
 <hr>
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-080946.png" title="image-20190801160944292" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-080946.png" alt="image-20190801160944292" title class></a>
+                <p>image-20190801160944292</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081038.png" title="image-20190801161036219" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081038.png" alt="image-20190801161036219" title class></a>
+                <p>image-20190801161036219</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081120.png" title="image-20190801161118659" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081120.png" alt="image-20190801161118659" title class></a>
+                <p>image-20190801161118659</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081138.png" title="image-20190801161137226" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081138.png" alt="image-20190801161137226" title class></a>
+                <p>image-20190801161137226</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081359.png" title="image-20190801161357427" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081359.png" alt="image-20190801161357427" title class></a>
+                <p>image-20190801161357427</p>
+            </figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample4</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.error(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="comment">// 1、count</span></span><br><span class="line">        <span class="comment">// 2、+1</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="comment">// 3、count</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在单线程执行此操作绝对没有问题，但是在多线程环境中，假设有两个线程A、B同时执行count++操作，某一刻A与B同时读取主存中count的值，然后在自己线程对应的工作空间中对count+<span class="number">1</span>，最后又同时将count+<span class="number">1</span>的值写回主存。到此，count+<span class="number">1</span>的值被写回主存两遍，所以导致最终的count值小了<span class="number">1</span>。在整体程序执行过程中，该事件发生一次或多次，自然结果就不正确。 </span><br><span class="line">那么<span class="keyword">volatile</span>适合做什么呢？其实它比较适合做状态标记量（不会涉及到多线程同时读写的操作），而且要保证两点： </span><br><span class="line">（<span class="number">1</span>）对变量的写操作不依赖于当前值 </span><br><span class="line">（<span class="number">2</span>）该变量没有包含在具有其他变量的不变的式子中 </span><br><span class="line">例如：</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">boolean</span> inited = <span class="keyword">false</span>;</span><br><span class="line"><span class="comment">//线程一：</span></span><br><span class="line">context = loadContext();</span><br><span class="line">inited = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程二：</span></span><br><span class="line"><span class="keyword">while</span>（!inited）&#123;</span><br><span class="line">    sleep();</span><br><span class="line">&#125;</span><br><span class="line">doSomethingWithConfig(context);</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-082330.png" title="image-20190801162328034" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-082330.png" alt="image-20190801162328034" title class></a>
+                <p>image-20190801162328034</p>
+            </figure>
+
+<h4 id="Volatile概述"><a href="#Volatile概述" class="headerlink" title="Volatile概述"></a>Volatile概述</h4><p>指一个线程对主内存的修改，可以及时地被其他线程观察到。</p>
+<blockquote>
+<p>导致共享变量在线程间不可见的原因有：</p>
+<ol>
+<li>多线程交叉进行。</li>
+<li>重排序结合多线程运行。</li>
+<li>共享变量更新后的值未及时进行工作内存与主内存的更新。</li>
+</ol>
+</blockquote>
+<p>Java内存模型对synchronized关键字有两条规定。</p>
+<ol>
+<li>线程解锁前必须把共享变量的最新值刷新到主内存。</li>
+<li>线程加锁时，将清空工作内存中共享变量的值。那么工作内存需要时只能从工作内存中取值。</li>
+</ol>
+<p><strong>工作原理：此时的加锁和解锁用的是一个锁，即多线程之间共享synchronized一个锁。</strong></p>
+<h4 id="可见性之volatile关键字"><a href="#可见性之volatile关键字" class="headerlink" title="可见性之volatile关键字"></a>可见性之volatile关键字</h4><p><strong>工作原理：通过加入内存屏障和禁止重排序优化来实现，即通过内存屏障保证了禁止重排序优化</strong><br><code>内存屏障</code>从以下两点进行说明：</p>
+<ol>
+<li><p>对volatile变量进行写操作时，会在写操作后加入一条store屏障指令，将本地工作内存中的值刷新到主内存。</p>
+</li>
+<li><p>对volatile变量进行读操作时，会在读操作前加入一条load屏障指令，从主内存读取共享变量的值。</p>
+<blockquote>
+<p>即强迫从主内存中的共享变量进行交互。</p>
+</blockquote>
+</li>
+</ol>
+<p>** volatile使用的场景</p>
+<p>场景需具备的条件：</p>
+<ol>
+<li>对变量的写操作不依赖与当前值</li>
+<li>该变量没有包含在具有其他变量的不变的式子中。</li>
+</ol>
+<p>因此，</p>
+<ol>
+<li><strong>volatile适合作为状态标记量(boolean型)</strong></li>
+<li><strong>适用于doublecheck场景。</strong>（例子会在之后手记中添上……）</li>
+</ol>
+<p>**</p>
+<h1 id="4-有序性"><a href="#4-有序性" class="headerlink" title="4 有序性"></a>4 有序性</h1><figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081727.png" title="image-20190801161725846" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081727.png" alt="image-20190801161725846" title class></a>
+                <p>image-20190801161725846</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081736.png" title="image-20190801161735392" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081736.png" alt="image-20190801161735392" title class></a>
+                <p>image-20190801161735392</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081857.png" title="image-20190801161855638" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081857.png" alt="image-20190801161855638" title class></a>
+                <p>image-20190801161855638</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第3章 线程安全性 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081910.png" title="image-20190801161909005" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-081910.png" alt="image-20190801161909005" title class></a>
+                <p>image-20190801161909005</p>
+            </figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">java中保证有序性</span><br><span class="line"></span><br><span class="line">java提供了 volatile、synchronized、Lock可以用来保证有序性 </span><br><span class="line">另外，java内存模型具备一些先天的有序性，即不需要任何手段就能得到保证的有序性。通常被我们成为happens-before原则（先行发生原则）。如果两个线程的执行顺序无法从happens-before原则推导出来，那么就不能保证它们的有序性，虚拟机就可以对它们进行重排序。</span><br><span class="line"></span><br><span class="line">【以下规则来自于《深入理解java虚拟机》】</span><br><span class="line"></span><br><span class="line">程序次序规则：一个线程内，按照代码顺序，书写在前面的操作先行发生于书写在后面的操作</span><br><span class="line">锁定规则：一个unlock操作先行发生于后面对同一个锁的lock操作</span><br><span class="line">volatile变量规则：对一个变量的写操作先行发生于后面对这个变量的读操作（重要）</span><br><span class="line">传递规则：如果操作A先行发生于操作B，而操作B又先行发生于操作C，则可以得出操作A先行发生于操作C</span><br><span class="line">——————————————————————————————————————————————</span><br><span class="line">线程启动规则：Thread对象的start()方法先行发生于此线程的每一个动作</span><br><span class="line">线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生</span><br><span class="line">线程终结规则：线程中所有的操作都先行发生于线程的终止检测，我们可以通过Thread.join()方法结束、Thread.isAlive()的返回值手段检测到线程已经终止执行</span><br><span class="line">对象终结规则：一个对象的初始化完成先行发生于他的finalize()方法的开始</span><br></pre></td></tr></table></figure>
+
+<h4 id="问题导出"><a href="#问题导出" class="headerlink" title="问题导出"></a>问题导出</h4><ol>
+<li>Java内存模型中，允许编译器和翻译器对指令进行重排序，但是重排序的过程不会影响到<strong>单线程</strong>程序的运行，却会影响到多线程并发执行的正确性。</li>
+<li>Java中的volatile通过<code>内存屏障</code>也可以一定程度上禁止指令的重排序。</li>
+<li>synchronized和Lock机制都是通过线程阻塞对于主内存来讲其同一时刻只有一个线程可以访问操作，保证了有序性。</li>
+<li>Java内存模型实际存在先天的有序性：不需要通过任何手段即可保证一定的有序性，即happens-before原则。</li>
+</ol>
+<blockquote>
+<p>如果两个操作的次序无法从happens-before原则中得到保证，那么该两个操作不能保证自己的有序性：即被JVM随意地进行重排序。</p>
+</blockquote>
+<h4 id="happens-before原则"><a href="#happens-before原则" class="headerlink" title="happens-before原则"></a>happens-before原则</h4><blockquote>
+<p>前四条较为重要，后四条浅显易懂</p>
+</blockquote>
+<ol>
+<li>程序次序规则：<strong>单线程内</strong>，按照代码顺序，书写在前面的操作先行发生与书写在后面的操作。（此时的JVM只会对非数据依赖的指令进行重排序）</li>
+<li>锁定规则：一个unlock操作先行发生于后面对同一个锁的lock操作。</li>
+<li><strong>volatile变量规则：对一个变量的写操作先行发生于后面对这个变量的读操作。</strong></li>
+<li>传递规则：若操作A先行发生于操作B，B又先行发生于操作C，那么操作A先行发生于操作C。</li>
+<li>线程启动规则：Thread对象的start()方法先行发生于此线程的每一个动作。</li>
+<li>线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生。</li>
+<li>线程终结规则：线程中所有的操作都先行发生于线程的终止检测，我们可以通过Thread.join()方法结束、Thread.isAlive()的返回值手段检测到线程已经终止执行。</li>
+<li>对象终结规则：一个对象的初始化完成先行发生于它的finalize()方法的开始。</li>
+</ol>
 
         </div>
         
@@ -403,7 +521,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T08:09:25.256Z" itemprop="dateUpdated">2019-08-01 16:09:25</time>
+    Last updated: <time datetime="2019-08-01T08:25:48.521Z" itemprop="dateUpdated">2019-08-01 16:25:48</time>
 </span><br>
 
 
@@ -498,7 +616,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1线程安全性"><span class="post-toc-number">1.</span> <span class="post-toc-text">1线程安全性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicInteger"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AtomicInteger</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#longAdder"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">longAdder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数，-而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。-当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。-这相当于将AtomicLong的单点的更新压力分担到各个节点上。-在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。-而在高并发的时候通过分散提高了性能。"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数， 而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。 当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。 这相当于将AtomicLong的单点的更新压力分担到各个节点上。 在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。 而在高并发的时候通过分散提高了性能。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicReference"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">AtomicReference</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicIntegerFieldUpdater"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">AtomicIntegerFieldUpdater</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AtomicReferenceFieldUpdater的核心为：原子性地去更新某一个类的实例中指定的某一个字段，而该字段必须使用volatile标识且不能被static标识进行声明。"><span class="post-toc-number">2.</span> <span class="post-toc-text">AtomicReferenceFieldUpdater的核心为：原子性地去更新某一个类的实例中指定的某一个字段，而该字段必须使用volatile标识且不能被static标识进行声明。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicStampReference与CAS的ABA问题"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">AtomicStampReference与CAS的ABA问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicLongArray"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">AtomicLongArray</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicBoolean"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">AtomicBoolean</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-原子性-synchronized"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 原子性-synchronized</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">3.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引申拓展：另一种锁Lock"><span class="post-toc-number">3.0.0.2.</span> <span class="post-toc-text">引申拓展：另一种锁Lock</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程安全中原子性方式的简单对比"><span class="post-toc-number">3.0.0.3.</span> <span class="post-toc-text">线程安全中原子性方式的简单对比</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-可见性"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3 可见性</span></a></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1线程安全性"><span class="post-toc-number">1.</span> <span class="post-toc-text">1线程安全性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicInteger"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AtomicInteger</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#longAdder"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">longAdder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数，-而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。-当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。-这相当于将AtomicLong的单点的更新压力分担到各个节点上。-在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。-而在高并发的时候通过分散提高了性能。"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">LongAdder类的实现核心是将热点数据分离，比如说它可以将AtomicLong内部的内部核心数据value分离成一个数组，每个线程访问时，通过hash等算法映射到其中一个数字进行计数， 而最终的计数结果则为这个数组的求和累加，其中热点数据value会被分离成多个单元的cell，每个cell独自维护内部的值。 当前对象的实际值由所有的cell累计合成，这样热点就进行了有效地分离，并提高了并行度。 这相当于将AtomicLong的单点的更新压力分担到各个节点上。 在低并发的时候通过对base的直接更新，可以保障和AtomicLong的性能基本一致。 而在高并发的时候通过分散提高了性能。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicReference"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">AtomicReference</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicIntegerFieldUpdater"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">AtomicIntegerFieldUpdater</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AtomicReferenceFieldUpdater的核心为：原子性地去更新某一个类的实例中指定的某一个字段，而该字段必须使用volatile标识且不能被static标识进行声明。"><span class="post-toc-number">2.</span> <span class="post-toc-text">AtomicReferenceFieldUpdater的核心为：原子性地去更新某一个类的实例中指定的某一个字段，而该字段必须使用volatile标识且不能被static标识进行声明。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicStampReference与CAS的ABA问题"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">AtomicStampReference与CAS的ABA问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicLongArray"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">AtomicLongArray</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AtomicBoolean"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">AtomicBoolean</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-原子性-synchronized"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 原子性-synchronized</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">3.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引申拓展：另一种锁Lock"><span class="post-toc-number">3.0.0.2.</span> <span class="post-toc-text">引申拓展：另一种锁Lock</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线程安全中原子性方式的简单对比"><span class="post-toc-number">3.0.0.3.</span> <span class="post-toc-text">线程安全中原子性方式的简单对比</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-可见vcolatile"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3 可见vcolatile</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Volatile概述"><span class="post-toc-number">3.1.0.1.</span> <span class="post-toc-text">Volatile概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可见性之volatile关键字"><span class="post-toc-number">3.1.0.2.</span> <span class="post-toc-text">可见性之volatile关键字</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-有序性"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 有序性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题导出"><span class="post-toc-number">4.0.0.1.</span> <span class="post-toc-text">问题导出</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#happens-before原则"><span class="post-toc-number">4.0.0.2.</span> <span class="post-toc-text">happens-before原则</span></a></li></ol></li></ol></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
