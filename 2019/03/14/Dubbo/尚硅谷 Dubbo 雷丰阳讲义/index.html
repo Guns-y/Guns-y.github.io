@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>尚硅谷 Dubbo 雷丰阳讲义 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Dubbo">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>尚硅谷 Dubbo 雷丰阳讲义</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">尚硅谷 Dubbo 雷丰阳讲义</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-14T01:21:11.200Z" itemprop="datePublished" class="page-time">
+  2019-03-14
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Dubbo/尚硅谷 Dubbo 雷丰阳讲义"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">尚硅谷 Dubbo 雷丰阳讲义</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-14 09:21:11" datetime="2019-03-14T01:21:11.200Z"  itemprop="datePublished">2019-03-14</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="尚硅谷-Dubbo-雷丰阳讲义"><a href="#尚硅谷-Dubbo-雷丰阳讲义" class="headerlink" title="尚硅谷 Dubbo 雷丰阳讲义"></a>尚硅谷 Dubbo 雷丰阳讲义</h1><h2 id="boot-order-service-consumer"><a href="#boot-order-service-consumer" class="headerlink" title="boot-order-service-consumer"></a>boot-order-service-consumer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderController</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	OrderService orderService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/initOrder"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">initOrder</span><span class="params">(@RequestParam(<span class="string">"uid"</span>)</span>String userId) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> orderService.initOrder(userId);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableDubbo</span></span><br><span class="line"><span class="meta">@EnableHystrix</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootOrderServiceConsumerApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(BootOrderServiceConsumerApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1、将服务提供者注册到注册中心（暴露服务）</span></span><br><span class="line"><span class="comment"> * 		1）、导入dubbo依赖（2.6.2）\操作zookeeper的客户端(curator)</span></span><br><span class="line"><span class="comment"> * 		2）、配置服务提供者</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 2、让服务消费者去注册中心订阅服务提供者的服务地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lfy</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderServiceImpl</span> <span class="keyword">implements</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//@Autowired</span></span><br><span class="line">	<span class="meta">@Reference</span>(loadbalance=<span class="string">"random"</span>,timeout=<span class="number">1000</span>) <span class="comment">//dubbo直连</span></span><br><span class="line">	UserService userService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@HystrixCommand</span>(fallbackMethod=<span class="string">"hello"</span>)</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">initOrder</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"用户id："</span>+userId);</span><br><span class="line">		<span class="comment">//1、查询用户的收货地址</span></span><br><span class="line">		List&lt;UserAddress&gt; addressList = userService.getUserAddressList(userId);</span><br><span class="line">		<span class="keyword">return</span> addressList;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">hello</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">	</span><br><span class="line">		<span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> UserAddress(<span class="number">10</span>, <span class="string">"测试地址"</span>, <span class="string">"1"</span>, <span class="string">"测试"</span>, <span class="string">"测试"</span>, <span class="string">"Y"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.port=8081</span><br><span class="line"></span><br><span class="line">dubbo.application.name=boot-order-service-consumer</span><br><span class="line">dubbo.registry.address=zookeeper://127.0.0.1:2181</span><br><span class="line">dubbo.monitor.protocol=registry</span><br></pre></td></tr></table></figure>
+
+<h2 id="boot-user-service-provider"><a href="#boot-user-service-provider" class="headerlink" title="boot-user-service-provider"></a>boot-user-service-provider</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyDubboConfig</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ApplicationConfig <span class="title">applicationConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ApplicationConfig applicationConfig = <span class="keyword">new</span> ApplicationConfig();</span><br><span class="line">		applicationConfig.setName(<span class="string">"boot-user-service-provider"</span>);</span><br><span class="line">		<span class="keyword">return</span> applicationConfig;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&lt;dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"&gt;&lt;/dubbo:registry&gt;</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> RegistryConfig <span class="title">registryConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		RegistryConfig registryConfig = <span class="keyword">new</span> RegistryConfig();</span><br><span class="line">		registryConfig.setProtocol(<span class="string">"zookeeper"</span>);</span><br><span class="line">		registryConfig.setAddress(<span class="string">"127.0.0.1:2181"</span>);</span><br><span class="line">		<span class="keyword">return</span> registryConfig;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&lt;dubbo:protocol name="dubbo" port="20882"&gt;&lt;/dubbo:protocol&gt;</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ProtocolConfig <span class="title">protocolConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ProtocolConfig protocolConfig = <span class="keyword">new</span> ProtocolConfig();</span><br><span class="line">		protocolConfig.setName(<span class="string">"dubbo"</span>);</span><br><span class="line">		protocolConfig.setPort(<span class="number">20882</span>);</span><br><span class="line">		<span class="keyword">return</span> protocolConfig;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *&lt;dubbo:service interface="com.atguigu.gmall.service.UserService" </span></span><br><span class="line"><span class="comment">		ref="userServiceImpl01" timeout="1000" version="1.0.0"&gt;</span></span><br><span class="line"><span class="comment">		&lt;dubbo:method name="getUserAddressList" timeout="1000"&gt;&lt;/dubbo:method&gt;</span></span><br><span class="line"><span class="comment">	&lt;/dubbo:service&gt;</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ServiceConfig&lt;UserService&gt; <span class="title">userServiceConfig</span><span class="params">(UserService userService)</span></span>&#123;</span><br><span class="line">		ServiceConfig&lt;UserService&gt; serviceConfig = <span class="keyword">new</span> ServiceConfig&lt;&gt;();</span><br><span class="line">		serviceConfig.setInterface(UserService.class);</span><br><span class="line">		serviceConfig.setRef(userService);</span><br><span class="line">		serviceConfig.setVersion(<span class="string">"1.0.0"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//配置每一个method的信息</span></span><br><span class="line">		MethodConfig methodConfig = <span class="keyword">new</span> MethodConfig();</span><br><span class="line">		methodConfig.setName(<span class="string">"getUserAddressList"</span>);</span><br><span class="line">		methodConfig.setTimeout(<span class="number">1000</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将method的设置关联到service配置中</span></span><br><span class="line">		List&lt;MethodConfig&gt; methods = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		methods.add(methodConfig);</span><br><span class="line">		serviceConfig.setMethods(methods);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//ProviderConfig</span></span><br><span class="line">		<span class="comment">//MonitorConfig</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> serviceConfig;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1、导入依赖；</span></span><br><span class="line"><span class="comment"> * 		1）、导入dubbo-starter</span></span><br><span class="line"><span class="comment"> * 		2）、导入dubbo的其他依赖</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lfy</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * SpringBoot与dubbo整合的三种方式：</span></span><br><span class="line"><span class="comment"> * 1）、导入dubbo-starter，在application.properties配置属性，使用<span class="doctag">@Service</span>【暴露服务】使用<span class="doctag">@Reference</span>【引用服务】</span></span><br><span class="line"><span class="comment"> * 2）、保留dubbo xml配置文件;</span></span><br><span class="line"><span class="comment"> * 		导入dubbo-starter，使用<span class="doctag">@ImportResource</span>导入dubbo的配置文件即可</span></span><br><span class="line"><span class="comment"> * 3）、使用注解API的方式：</span></span><br><span class="line"><span class="comment"> * 		将每一个组件手动创建到容器中,让dubbo来扫描其他的组件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//@EnableDubbo //开启基于注解的dubbo功能</span></span><br><span class="line"><span class="comment">//@ImportResource(locations="classpath:provider.xml")</span></span><br><span class="line"><span class="meta">@EnableDubbo</span>(scanBasePackages=<span class="string">"com.atguigu.gmall"</span>)</span><br><span class="line"><span class="meta">@EnableHystrix</span> <span class="comment">//开启服务容错</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootUserServiceProviderApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(BootUserServiceProviderApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span><span class="comment">//暴露服务 </span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@HystrixCommand</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">getUserAddressList</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"UserServiceImpl..3....."</span>);</span><br><span class="line">		UserAddress address1 = <span class="keyword">new</span> UserAddress(<span class="number">1</span>, <span class="string">"北京市昌平区宏福科技园综合楼3层"</span>, <span class="string">"1"</span>, <span class="string">"李老师"</span>, <span class="string">"010-56253825"</span>, <span class="string">"Y"</span>);</span><br><span class="line">		UserAddress address2 = <span class="keyword">new</span> UserAddress(<span class="number">2</span>, <span class="string">"深圳市宝安区西部硅谷大厦B座3层（深圳分校）"</span>, <span class="string">"1"</span>, <span class="string">"王老师"</span>, <span class="string">"010-56253825"</span>, <span class="string">"N"</span>);</span><br><span class="line"><span class="comment">//		try &#123;</span></span><br><span class="line"><span class="comment">//			Thread.sleep(2000);</span></span><br><span class="line"><span class="comment">//		&#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="comment">//			e.printStackTrace();</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">		<span class="keyword">if</span>(Math.random()&gt;<span class="number">0.5</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> Arrays.asList(address1,address2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#dubbo.application.name=user-service-provider</span><br><span class="line">#dubbo.registry.address=127.0.0.1:2181</span><br><span class="line">#dubbo.registry.protocol=zookeeper</span><br><span class="line">#dubbo.protocol.name=dubbo</span><br><span class="line">##dubbo.protocol.port=20881</span><br><span class="line">#dubbo.monitor.protocol=registry</span><br><span class="line">##dubbo.scan.base-packages=com.atguigu.gmall</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dubbo.protocol.port=20882</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">		http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd</span><br><span class="line">		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 1、指定当前服务/应用的名字（同样的服务名字相同，不要和别的服务同名） --&gt;</span><br><span class="line">	&lt;dubbo:application name=&quot;boot-user-service-provider&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 2、指定注册中心的位置 --&gt;</span><br><span class="line">	&lt;!-- &lt;dubbo:registry address=&quot;zookeeper://127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt; --&gt;</span><br><span class="line">	&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 3、指定通信规则（通信协议？通信端口） --&gt;</span><br><span class="line">	&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20882&quot;&gt;&lt;/dubbo:protocol&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 4、暴露服务   ref：指向服务的真正的实现对象 --&gt;</span><br><span class="line">	&lt;dubbo:service interface=&quot;com.atguigu.gmall.service.UserService&quot; </span><br><span class="line">		ref=&quot;userServiceImpl01&quot; timeout=&quot;1000&quot; version=&quot;1.0.0&quot;&gt;</span><br><span class="line">		&lt;dubbo:method name=&quot;getUserAddressList&quot; timeout=&quot;1000&quot;&gt;&lt;/dubbo:method&gt;</span><br><span class="line">	&lt;/dubbo:service&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--统一设置服务提供方的规则  --&gt;</span><br><span class="line">	&lt;dubbo:provider timeout=&quot;1000&quot;&gt;&lt;/dubbo:provider&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 服务的实现 --&gt;</span><br><span class="line">	&lt;bean id=&quot;userServiceImpl01&quot; class=&quot;com.atguigu.gmall.service.impl.UserServiceImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 连接监控中心 --&gt;</span><br><span class="line">	&lt;dubbo:monitor protocol=&quot;registry&quot;&gt;&lt;/dubbo:monitor&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="gmall-interface"><a href="#gmall-interface" class="headerlink" title="gmall-interface"></a>gmall-interface</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAddress</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String userAddress; <span class="comment">//用户地址</span></span><br><span class="line">    <span class="keyword">private</span> String userId; <span class="comment">//用户id</span></span><br><span class="line">    <span class="keyword">private</span> String consignee; <span class="comment">//收货人</span></span><br><span class="line">    <span class="keyword">private</span> String phoneNum; <span class="comment">//电话号码</span></span><br><span class="line">    <span class="keyword">private</span> String isDefault; <span class="comment">//是否为默认地址    Y-是     N-否</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface OrderService &#123;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 初始化订单</span><br><span class="line">	 * @param userId</span><br><span class="line">	 */</span><br><span class="line">	public List&lt;UserAddress&gt; initOrder(String userId);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> /**</span><br><span class="line"> * 用户服务</span><br><span class="line"> */</span><br><span class="line">public interface UserService &#123;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 按照用户id返回所有的收货地址</span><br><span class="line">	 * @param userId</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public List&lt;UserAddress&gt; getUserAddressList(String userId);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="order-service-consumer"><a href="#order-service-consumer" class="headerlink" title="order-service-consumer"></a>order-service-consumer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class MainApplication &#123;</span><br><span class="line">	</span><br><span class="line">	@SuppressWarnings(&quot;resource&quot;)</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;consumer.xml&quot;);</span><br><span class="line">		</span><br><span class="line">		OrderService orderService = applicationContext.getBean(OrderService.class);</span><br><span class="line">		</span><br><span class="line">		orderService.initOrder(&quot;1&quot;);</span><br><span class="line">		System.out.println(&quot;调用完成....&quot;);</span><br><span class="line">		System.in.read();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1、将服务提供者注册到注册中心（暴露服务）</span></span><br><span class="line"><span class="comment"> * 		1）、导入dubbo依赖（2.6.2）\操作zookeeper的客户端(curator)</span></span><br><span class="line"><span class="comment"> * 		2）、配置服务提供者</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 2、让服务消费者去注册中心订阅服务提供者的服务地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> lfy</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderServiceImpl</span> <span class="keyword">implements</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	UserService userService;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">initOrder</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"用户id："</span>+userId);</span><br><span class="line">		<span class="comment">//1、查询用户的收货地址</span></span><br><span class="line">		List&lt;UserAddress&gt; addressList = userService.getUserAddressList(userId);</span><br><span class="line">		<span class="keyword">for</span> (UserAddress userAddress : addressList) &#123;</span><br><span class="line">			System.out.println(userAddress.getUserAddress());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> addressList;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:dubbo</span>=<span class="string">"http://dubbo.apache.org/schema/dubbo"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.atguigu.gmall.service.impl"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"order-service-consumer"</span>&gt;</span><span class="tag">&lt;/<span class="name">dubbo:application</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"zookeeper://127.0.0.1:2181"</span>&gt;</span><span class="tag">&lt;/<span class="name">dubbo:registry</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!--  配置本地存根--&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!--声明需要调用的远程服务的接口；生成远程服务代理  --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		1）、精确优先 (方法级优先，接口级次之，全局配置再次之)</span></span><br><span class="line"><span class="comment">		2）、消费者设置优先(如果级别一样，则消费方优先，提供方次之)</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- timeout="0" 默认是1000ms--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- retries="":重试次数，不包含第一次调用，0代表不重试--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 幂等（设置重试次数）【查询、删除、修改】、非幂等（不能设置重试次数）【新增】 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">interface</span>=<span class="string">"com.atguigu.gmall.service.UserService"</span> </span></span><br><span class="line"><span class="tag">		<span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">timeout</span>=<span class="string">"5000"</span> <span class="attr">retries</span>=<span class="string">"3"</span> <span class="attr">version</span>=<span class="string">"*"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;dubbo:method name="getUserAddressList" timeout="1000"&gt;&lt;/dubbo:method&gt; --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dubbo:reference</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="comment">&lt;!-- 配置当前消费者的统一规则：所有的服务都不检查 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dubbo:consumer</span> <span class="attr">check</span>=<span class="string">"false"</span> <span class="attr">timeout</span>=<span class="string">"5000"</span>&gt;</span><span class="tag">&lt;/<span class="name">dubbo:consumer</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dubbo:monitor</span> <span class="attr">protocol</span>=<span class="string">"registry"</span>&gt;</span><span class="tag">&lt;/<span class="name">dubbo:monitor</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;dubbo:monitor address="127.0.0.1:7070"&gt;&lt;/dubbo:monitor&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="user-service-provider"><a href="#user-service-provider" class="headerlink" title="user-service-provider"></a>user-service-provider</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class UserServiceImpl implements UserService &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public List&lt;UserAddress&gt; getUserAddressList(String userId) &#123;</span><br><span class="line">		System.out.println(&quot;UserServiceImpl.....old...&quot;);</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		UserAddress address1 = new UserAddress(1, &quot;北京市昌平区宏福科技园综合楼3层&quot;, &quot;1&quot;, &quot;李老师&quot;, &quot;010-56253825&quot;, &quot;Y&quot;);</span><br><span class="line">		UserAddress address2 = new UserAddress(2, &quot;深圳市宝安区西部硅谷大厦B座3层（深圳分校）&quot;, &quot;1&quot;, &quot;王老师&quot;, &quot;010-56253825&quot;, &quot;N&quot;);</span><br><span class="line">		/*try &#123;</span><br><span class="line">			Thread.sleep(4000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;*/</span><br><span class="line">		return Arrays.asList(address1,address2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceImpl2 implements UserService &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public List&lt;UserAddress&gt; getUserAddressList(String userId) &#123;</span><br><span class="line">		System.out.println(&quot;UserServiceImpl.....new...&quot;);</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		UserAddress address1 = new UserAddress(1, &quot;北京市昌平区宏福科技园综合楼3层&quot;, &quot;1&quot;, &quot;李老师&quot;, &quot;010-56253825&quot;, &quot;Y&quot;);</span><br><span class="line">		UserAddress address2 = new UserAddress(2, &quot;深圳市宝安区西部硅谷大厦B座3层（深圳分校）&quot;, &quot;1&quot;, &quot;王老师&quot;, &quot;010-56253825&quot;, &quot;N&quot;);</span><br><span class="line">		</span><br><span class="line">		return Arrays.asList(address1,address2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceStub implements UserService &#123;</span><br><span class="line">	private final UserService userService&#123;</span><br><span class="line">	/*</span><br><span class="line">	 * 传入的是userService远程的代理对象</span><br><span class="line">	 * @param userService</span><br><span class="line">	 */</span><br><span class="line">	public UserServiceStub(UserService userService) &#123;</span><br><span class="line">		super();</span><br><span class="line">		this.userService = userService;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public List&lt;UserAddress&gt; getUserAddressList(String userId) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		System.out.println(&quot;UserServiceStub.....&quot;);</span><br><span class="line">		if(!StringUtils.isEmpty(userId)) &#123;</span><br><span class="line">			return userService.getUserAddressList(userId);</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class MainApplication &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) throws IOException &#123;</span><br><span class="line">		ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext(&quot;provider.xml&quot;);</span><br><span class="line">		ioc.start();</span><br><span class="line">		</span><br><span class="line">		System.in.read();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">		http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd</span><br><span class="line">		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 1、指定当前服务/应用的名字（同样的服务名字相同，不要和别的服务同名） --&gt;</span><br><span class="line">	&lt;dubbo:application name=&quot;user-service-provider&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 2、指定注册中心的位置 --&gt;</span><br><span class="line">	&lt;!-- &lt;dubbo:registry address=&quot;zookeeper://127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt; --&gt;</span><br><span class="line">	&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 3、指定通信规则（通信协议？通信端口） --&gt;</span><br><span class="line">	&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20882&quot;&gt;&lt;/dubbo:protocol&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 4、暴露服务   ref：指向服务的真正的实现对象 --&gt;</span><br><span class="line">	&lt;dubbo:service interface=&quot;com.atguigu.gmall.service.UserService&quot; </span><br><span class="line">		ref=&quot;userServiceImpl01&quot; timeout=&quot;1000&quot; version=&quot;1.0.0&quot;&gt;</span><br><span class="line">		&lt;dubbo:method name=&quot;getUserAddressList&quot; timeout=&quot;1000&quot;&gt;&lt;/dubbo:method&gt;</span><br><span class="line">	&lt;/dubbo:service&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--统一设置服务提供方的规则  --&gt;</span><br><span class="line">	&lt;dubbo:provider timeout=&quot;1000&quot;&gt;&lt;/dubbo:provider&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 服务的实现 --&gt;</span><br><span class="line">	&lt;bean id=&quot;userServiceImpl01&quot; class=&quot;com.atguigu.gmall.service.impl.UserServiceImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;dubbo:service interface=&quot;com.atguigu.gmall.service.UserService&quot; </span><br><span class="line">		ref=&quot;userServiceImpl02&quot; timeout=&quot;1000&quot; version=&quot;2.0.0&quot;&gt;</span><br><span class="line">		&lt;dubbo:method name=&quot;getUserAddressList&quot; timeout=&quot;1000&quot;&gt;&lt;/dubbo:method&gt;</span><br><span class="line">	&lt;/dubbo:service&gt;</span><br><span class="line">	&lt;bean id=&quot;userServiceImpl02&quot; class=&quot;com.atguigu.gmall.service.impl.UserServiceImpl2&quot;&gt;&lt;/bean&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 连接监控中心 --&gt;</span><br><span class="line">	&lt;dubbo:monitor protocol=&quot;registry&quot;&gt;&lt;/dubbo:monitor&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-29T03:08:30.216Z" itemprop="dateUpdated">2019-04-29 11:08:30</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/" target="_blank" rel="external">http://yoursite.com/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/&title=《尚硅谷 Dubbo 雷丰阳讲义》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/&title=《尚硅谷 Dubbo 雷丰阳讲义》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/03/15/工具类🔧/HttpClient/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HttpClient</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/03/14/Dubbo/Dubbo尚硅谷/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[no title]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#尚硅谷-Dubbo-雷丰阳讲义"><span class="post-toc-number">1.</span> <span class="post-toc-text">尚硅谷 Dubbo 雷丰阳讲义</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#boot-order-service-consumer"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">boot-order-service-consumer</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#boot-user-service-provider"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">boot-user-service-provider</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#gmall-interface"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">gmall-interface</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#order-service-consumer"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">order-service-consumer</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#user-service-provider"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">user-service-provider</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/&title=《尚硅谷 Dubbo 雷丰阳讲义》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/14/Dubbo/尚硅谷 Dubbo 雷丰阳讲义/&title=《尚硅谷 Dubbo 雷丰阳讲义》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3awW7bMBAEUP//T6dATwUaKzO7ZJoCTydDsSU+HribIV+v+Pr4fbX3/7ze/erv7yR3Dl94eHh4o6G/u9rvzKbpeVJm48HDw8O7zXseSjsFs9LSlpPoLXh4eHj/lJf3q8/Pz6fm3Rjw8PDw/i/eFy3siJHnCXh4eHg/hzcLGpI2+rkwzNroK1kLHh4eXsxrN8B+wueL+3t4eHh4i131pEgkf02CiU0ZeDtaPDw8vAu8ZMP+1Nq7aZRngQUeHh7ePd5+0PkBqdmA2iMLXzwTDw8Pb8E71RznvDzwbcfzya/w8PDwLvDy0LbdHpshN4e06rqHh4eHN+JtXrmJdGcRbT6q135G8fDw8MpjAfmiP2vEZ1OZRBufPAEPDw/vKC8JW2flJIlc23g3uVOUBDw8PLwRrz381N7ZHCNIwoiCjYeHh3eUly+4yVI+OzrQFpiiZcfDw8P7Ft6pTax9wz2j4uHh4d3mnQ0a2kIyKzltwIGHh4d3ind4J62NVst2vD5SgIeHh3eZ18apm7Y4f+amKcfDw8O7xzu7wZ8cotqUlrqlxsPDwzvK2wy3XdCTACKJORJ8nSvj4eHhrXlF7rueptkBrPrteHh4eN/Imw1utvS37y0iYzw8PLwLvOdH5P/85wHuZlKGJyPw8PDw1rx6M37Ugj9/bicriYDx8PDwvod3dtFvh7sJbaOjA3h4eHiHeHkbvY9uk5LTvrf4FR4eHt4h3kd5bVrhWQi7OliAh4eHd4E32zPKt9DapX8fQ7xmFx4eHl7JmxWD9pjUc6nIC0kyQUX1w8PDw1vwNseb8mG1Ue+s7R6mIHh4eHgXeO2GVgKbte9Fs46Hh4f3Y3j5AYK8kOTlp5g4PDw8vGu82YZWGyhsottZQ4+Hh4d3gzdrXmcbZu32WBHXbi48PDy8lPcLQES7YHNPHCcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

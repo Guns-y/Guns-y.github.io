@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Docker SpringBoot | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Docker,SpringBoot">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Docker SpringBoot</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Docker SpringBoot</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-07T10:04:37.000Z" itemprop="datePublished" class="page-time">
+  2018-11-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Docker/Docker-SpringBoot"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Docker SpringBoot</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-07 18:04:37" datetime="2018-11-07T10:04:37.000Z"  itemprop="datePublished">2018-11-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="DockerMachine应用"><a href="#DockerMachine应用" class="headerlink" title="DockerMachine应用"></a>DockerMachine应用</h2><h4 id="注意整个过程要等待一下"><a href="#注意整个过程要等待一下" class="headerlink" title="注意整个过程要等待一下"></a>注意整个过程要等待一下</h4><blockquote>
+<p>参考<a href="https://study.163.com/course/courseLearn.htm?courseId=1002892012#/learn/video?lessonId=1003309140&amp;courseId=1002892012" target="_blank" rel="noopener">https://study.163.com/course/courseLearn.htm?courseId=1002892012#/learn/video?lessonId=1003309140&amp;courseId=1002892012</a></p>
+<p>网易云课堂 动手玩Docker</p>
+</blockquote>
+<ul>
+<li>安装DockerMachine</li>
+<li>docker-machine ls    tcp://192.168.99.100:2376   name：cloudcomb</li>
+</ul>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022300.jpg" title="image-20181107181833492" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022300.jpg" alt="image-20181107181833492" title class></a>
+                <p>image-20181107181833492</p>
+            </figure>
+
+<ul>
+<li><p>docker-machine create –driver virtualbox cloudcomb </p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022301.jpg" title="image-20181107181903652" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022301.jpg" alt="image-20181107181903652"></a></p>
+</li>
+<li><p>Docker-machine env cloudcomb</p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022303.jpg" title="image-20181107182121568" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022303.jpg" alt="image-20181107182121568"></a></p>
+</li>
+</ul>
+<p>⚠️第四个变量eval说的是当前Dockermachine的名字是—cloudcomb</p>
+<ul>
+<li><p>eval $(docker-machine env cloudcomb) 拷贝放到底下</p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022305.jpg" title="image-20181107182325486" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022305.jpg" alt="image-20181107182325486"></a></p>
+</li>
+<li><p>使用网易蜂巢</p>
+</li>
+<li><p>Docker run hub.c163.com/library/busybox:latest echon hello world （unable。。这个过程要等待啊）⭐️</p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022306.jpg" title="image-20181107182746194" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022306.jpg" alt="image-20181107182746194"></a></p>
+</li>
+<li><p>docker-machine rm cloudcomb 删除docker-machine</p>
+</li>
+</ul>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022308.jpg" title="image-20181107182909832" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022308.jpg" alt="image-20181107182909832" title class></a>
+                <p>image-20181107182909832</p>
+            </figure>
+
+
+
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022309.jpg" title="image-20181107183004383" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022309.jpg" alt="image-20181107183004383"></a></p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022310.jpg" title="image-20181107183018420" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022310.jpg" alt="image-20181107183018420"></a></p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022313.jpg" title="image-20181107183034881" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022313.jpg" alt="image-20181107183034881"></a></p>
+<h1 id="SpringBoot整合Docker"><a href="#SpringBoot整合Docker" class="headerlink" title="SpringBoot整合Docker"></a>SpringBoot整合Docker</h1><blockquote>
+<p>Emmmm.等我有钱了 把Xnip去掉哈哈</p>
+</blockquote>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022315.jpg" title="image-20181107183409783" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022315.jpg" alt="image-20181107183409783" title class></a>
+                <p>image-20181107183409783</p>
+            </figure>
+
+<ul>
+<li><p>下载源码<a href="https://github.com/bingohuang/spring-boot-docker" target="_blank" rel="noopener">https://github.com/bingohuang/spring-boot-docker</a></p>
+<blockquote>
+<p>Git 通过命令行下载文件 先cd一下指定一下下载的路径</p>
+</blockquote>
+</li>
+<li><p>导入项目到Idea 然后查看一下源码</p>
+</li>
+<li><p>运行一下项目（访问一下 测试一下）</p>
+<h2 id="Docker-SpringBoot部署项目"><a href="#Docker-SpringBoot部署项目" class="headerlink" title="Docker SpringBoot部署项目"></a>Docker SpringBoot部署项目</h2></li>
+</ul>
+<p>⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️</p>
+<h3 id="1-install项目"><a href="#1-install项目" class="headerlink" title="1.install项目"></a>1.install项目</h3><p>  <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022316.jpg" title="image-20181107185602118" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022316.jpg" alt="image-20181107185602118"></a></p>
+<blockquote>
+<p>找到这两个文件 放到桌面上</p>
+</blockquote>
+<h3 id="2-将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0-0-1-jar"><a href="#2-将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0-0-1-jar" class="headerlink" title="2.将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0.0.1.jar"></a>2.将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0.0.1.jar</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022318.jpg" title="image-20181107191351622" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022318.jpg" alt="image-20181107191351622" title class></a>
+                <p>image-20181107191351622</p>
+            </figure>
+
+
+
+
+
+<h3 id="3-cd到文件下-ls一下"><a href="#3-cd到文件下-ls一下" class="headerlink" title="3.cd到文件下 ls一下"></a>3.cd到文件下 ls一下</h3><h3 id="4-执行-˛docker-version"><a href="#4-执行-˛docker-version" class="headerlink" title="4.执行  ˛docker version"></a>4.执行  ˛docker version</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022320.jpg" title="image-20181107191444666" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022320.jpg" alt="image-20181107191444666" title class></a>
+                <p>image-20181107191444666</p>
+            </figure>
+
+
+
+<h3 id="5-执行-docker-machine-env"><a href="#5-执行-docker-machine-env" class="headerlink" title="5.执行 docker-machine env"></a>5.执行 docker-machine env</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022322.jpg" title="image-20181107191515590" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022322.jpg" alt="image-20181107191515590" title class></a>
+                <p>image-20181107191515590</p>
+            </figure>
+
+<h3 id="6-执行eval-docker-machine-env-（复制后面的第四条）"><a href="#6-执行eval-docker-machine-env-（复制后面的第四条）" class="headerlink" title="6.执行eval $(docker-machine env)（复制后面的第四条）"></a>6.执行eval $(docker-machine env)（复制后面的第四条）</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022325.jpg" title="image-20181107191547911" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022325.jpg" alt="image-20181107191547911" title class></a>
+                <p>image-20181107191547911</p>
+            </figure>
+
+<p>tcp://192.168.99.100:2376192.168.99.100</p>
+<p> tcp://127.0.0.1:2376 tcp://127.0.0.1:2376</p>
+<p>###7.docker version（没有-）</p>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022326.jpg" title="image-20181107191658043" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022326.jpg" alt="image-20181107191658043" title class></a>
+                <p>image-20181107191658043</p>
+            </figure>
+
+
+
+<h3 id="8-ls一下目录"><a href="#8-ls一下目录" class="headerlink" title="8.ls一下目录"></a>8.ls一下目录</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22329.jpg" title="image-20181107191730046" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22329.jpg" alt="image-20181107191730046" title class></a>
+                <p>image-20181107191730046</p>
+            </figure>
+
+<h3 id="9-docker-build-t-cloudcomb-sun-1-0"><a href="#9-docker-build-t-cloudcomb-sun-1-0" class="headerlink" title="9.docker build -t cloudcomb/sun:1.0 ."></a>9.docker build -t cloudcomb/sun:1.0 .</h3><blockquote>
+<p> （桌面上要有jar包和dockerfilede 文件）</p>
+</blockquote>
+<p>![image-20181107191826890](/Users/apple/Library/Application Support/typora-user-images/image-20181107191826890.png)</p>
+<blockquote>
+<p>此时报错 没有gs-spring-boot-docker.jar文件 其实ls的时候就应该是gs-spring-boot-docker.jar 这儿是个bug。</p>
+<p>解决办法 改jar包名 添加gs前缀</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docker.mirrors.ustc.edu.cn</span><br></pre></td></tr></table></figure>
+
+<h3 id="10。docker-build-t-cloudcomb-sun-1-0-（大佬说这一步是拉取镜像。用加速器-改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像"><a href="#10。docker-build-t-cloudcomb-sun-1-0-（大佬说这一步是拉取镜像。用加速器-改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像" class="headerlink" title="10。docker build -t cloudcomb/sun:1.0 .（大佬说这一步是拉取镜像。用加速器 改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像"></a>10。docker build -t cloudcomb/sun:1.0 .（大佬说这一步是拉取镜像。用加速器 改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022330.jpg" title="image-20181107192039326" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022330.jpg" alt="image-20181107192039326" title class></a>
+                <p>image-20181107192039326</p>
+            </figure>
+
+<h3 id="11-docker-images-a"><a href="#11-docker-images-a" class="headerlink" title="11. docker images -a"></a>11. docker images -a</h3><figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022332.jpg" title="image-20181107192154611" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022332.jpg" alt="image-20181107192154611" title class></a>
+                <p>image-20181107192154611</p>
+            </figure>
+
+
+
+<h3 id="12-docker-run-p-1024-8080-t-cloudcomb-sun-1-0"><a href="#12-docker-run-p-1024-8080-t-cloudcomb-sun-1-0" class="headerlink" title="12.docker run -p 1024:8080 -t cloudcomb/sun:1.0 ."></a>12.docker run -p 1024:8080 -t cloudcomb/sun:1.0 .</h3><blockquote>
+<p>注意 cloudcomb和前面的cloudcomb要一一对应</p>
+<p>1024 与8080是一一对应的关系</p>
+<p>Error: Unable to access jarfile /app.jar</p>
+<p>⭐️ ADD user-server-0.0.1-SNAPSHOT.jar app.jar 要和pom的<artifactid>user-server</artifactid></p>
+<p>保持名字一样，不然maven打出来的包，docker找不到。</p>
+<ul>
+<li>最终的结局办法 好像是将copy去掉了 注意看控制台打印的信息 兄dei</li>
+</ul>
+</blockquote>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022334.jpg" title="image-20181107192857396" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022334.jpg" alt="image-20181107192857396"></a></p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022336.jpg" title="image-20181107193127019" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022336.jpg" alt="image-20181107193127019"></a></p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022338.jpg" title="image-20181107193051806" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022338.jpg" alt="image-20181107193051806"></a></p>
+<p>DockerFile：</p>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022340.jpg" title="image-20181107193402453" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022340.jpg" alt="image-20181107193402453" title class></a>
+                <p>image-20181107193402453</p>
+            </figure>
+
+
+
+<blockquote>
+<p>Docker就是给一名字 gs-spring-bbot</p>
+</blockquote>
+<p>贴一个Dockerfilr。</p>
+<ul>
+<li><input checked disabled type="checkbox"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">FROM hub.c.163.com/xbingo/jdk8:latest</span><br><span class="line"></span><br><span class="line">from hub.c.163.com/library/tomcat</span><br><span class="line"></span><br><span class="line">MAINTAINER Freemana2017 1047629166@qq.com</span><br><span class="line"></span><br><span class="line">ADD  atcrodfunding3_ssm-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line"></span><br><span class="line">COPY atcrod.war /usr/local/tomcat/webapps</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#FROM openjdk:8-jdk-alpine</span><br><span class="line">#VOLUME /tmp</span><br><span class="line">#ADD  atcrodfunding3_ssm-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">#ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line">#</span><br><span class="line"> </span><br><span class="line">#FROM hub.c.163.com/xbingo/jdk8:latest</span><br><span class="line">#</span><br><span class="line">#ADD gs-spring-boot-docker-0.1.0.jar app.jar</span><br><span class="line">#</span><br><span class="line">#ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">#这个 Dockerfile 文件很简单，构建 Jdk 基础环境，添加 Spring Boot Jar 到镜像中，简单解释一下:</span><br><span class="line">#</span><br><span class="line">#FROM ，表示使用 Jdk8 环境 为基础镜像，如果镜像不是本地的会从 DockerHub 进行下载</span><br><span class="line">#VOLUME ，VOLUME 指向了一个/tmp的目录，由于 Spring Boot 使用内置的Tomcat容器，Tomcat 默认使用/tmp作为工作目录。这个命令的效果是：</span><br><span class="line">#在宿主机的/var/lib/docker目录下创建一个临时文件并把它链接到容器中的/tmp目录</span><br><span class="line">#ADD ，拷贝文件并且重命名</span><br><span class="line">#ENTRYPOINT ，为了缩短 Tomcat 的启动时间，添加java.security.egd的系统属性指向/dev/urandom作为 ENTRYPOINT</span><br><span class="line">#这样 Spring Boot 项目添加 Docker 依赖就完成了。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<p>Dockerfile 用的war要有Tomcat </p>
+<p>自己理解吧 多看一些视频笔记什么的 反正很难,,,</p>
+<p><a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022341.jpg" title="image-20181107184402451" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022341.jpg" alt="image-20181107184402451"></a></p>
+<hr>
+<hr>
+<hr>
+<h1 id="以上的文件是从github上拉的-现在自己构建SpringBoot-jar的应用"><a href="#以上的文件是从github上拉的-现在自己构建SpringBoot-jar的应用" class="headerlink" title="以上的文件是从github上拉的 现在自己构建SpringBoot -jar的应用"></a>以上的文件是从github上拉的 现在自己构建SpringBoot -jar的应用</h1><blockquote>
+<p>通过群里的指导 估计jar打包和war打包区别不大吧</p>
+<p>下面通过SpringBoot构建Docker部署一下试试</p>
+<p><a href="https://waylau.com/docker-spring-boot/" target="_blank" rel="noopener">https://waylau.com/docker-spring-boot/</a></p>
+<p><a href="http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html" target="_blank" rel="noopener">http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html</a></p>
+<p><a href="https://lw900925.github.io/docker/docker-springboot.html" target="_blank" rel="noopener">https://lw900925.github.io/docker/docker-springboot.html</a></p>
+<p><a href="https://www.tianmaying.com/tutorial/spring-boot-docker" target="_blank" rel="noopener">https://www.tianmaying.com/tutorial/spring-boot-docker</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://bingohuang.com/spring-boot-docker/" target="_blank" rel="noopener">https://bingohuang.com/spring-boot-docker/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.imooc.com/search/?words=docker" target="_blank" rel="noopener">https://www.imooc.com/search/?words=docker</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.ityouknow.com/docker/2018/03/30/docker-machine.html" target="_blank" rel="noopener">http://www.ityouknow.com/docker/2018/03/30/docker-machine.html</a></p>
+<p><a href="https://spring.io/guides/gs/spring-boot-docker/" target="_blank" rel="noopener">https://spring.io/guides/gs/spring-boot-docker/</a></p>
+</blockquote>
+<h2 id="SpringBoot-Docker"><a href="#SpringBoot-Docker" class="headerlink" title="SpringBoot Docker"></a>SpringBoot Docker</h2><blockquote>
+<p><a href="https://lw900925.github.io/docker/docker-springboot.html" target="_blank" rel="noopener">https://lw900925.github.io/docker/docker-springboot.html</a></p>
+</blockquote>
+<p><a href="http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html" target="_blank" rel="noopener">http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html</a> 主要环节</p>
+<figure class="image-box">
+                <a rel=Docker SpringBoot href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022342.jpg" title="image-20181110214317827" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022342.jpg" alt="image-20181110214317827" title class></a>
+                <p>image-20181110214317827</p>
+            </figure>
+
+
+
+
+
+<p>![image-20181115165826700](/Users/apple/Library/Application Support/typora-user-images/image-20181115165826700.png)</p>
+<p>$ sudo docker tag [ImageId] ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]<br>$ sudo docker push ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]</p>
+<p>⭐️</p>
+<p> sudo docker tag 5fc4ede68fcd ccr.ccs.tencentyun.com/atcrod/latest</p>
+<p> sudo docker push ccr.ccs.tencentyun.com/atcrod/latest</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-29T03:08:28.471Z" itemprop="dateUpdated">2019-04-29 11:08:28</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/11/07/Docker/Docker-SpringBoot/" target="_blank" rel="external">http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/&title=《Docker SpringBoot》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/&title=《Docker SpringBoot》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/11/08/Docker/Docker-web/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">docker-web</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/11/07/Docker/Docker-Idea/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Docker-Idea</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DockerMachine应用"><span class="post-toc-number">1.</span> <span class="post-toc-text">DockerMachine应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意整个过程要等待一下"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">注意整个过程要等待一下</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringBoot整合Docker"><span class="post-toc-number"></span> <span class="post-toc-text">SpringBoot整合Docker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Docker-SpringBoot部署项目"><span class="post-toc-number">1.</span> <span class="post-toc-text">Docker SpringBoot部署项目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-install项目"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.install项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0-0-1-jar"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0.0.1.jar</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-cd到文件下-ls一下"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.cd到文件下 ls一下</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-执行-˛docker-version"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.执行  ˛docker version</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-执行-docker-machine-env"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5.执行 docker-machine env</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-执行eval-docker-machine-env-（复制后面的第四条）"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">6.执行eval $(docker-machine env)（复制后面的第四条）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-ls一下目录"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">8.ls一下目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-docker-build-t-cloudcomb-sun-1-0"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">9.docker build -t cloudcomb/sun:1.0 .</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10。docker-build-t-cloudcomb-sun-1-0-（大佬说这一步是拉取镜像。用加速器-改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">10。docker build -t cloudcomb/sun:1.0 .（大佬说这一步是拉取镜像。用加速器 改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-docker-images-a"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">11. docker images -a</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-docker-run-p-1024-8080-t-cloudcomb-sun-1-0"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">12.docker run -p 1024:8080 -t cloudcomb/sun:1.0 .</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#以上的文件是从github上拉的-现在自己构建SpringBoot-jar的应用"><span class="post-toc-number"></span> <span class="post-toc-text">以上的文件是从github上拉的 现在自己构建SpringBoot -jar的应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SpringBoot-Docker"><span class="post-toc-number">1.</span> <span class="post-toc-text">SpringBoot Docker</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/&title=《Docker SpringBoot》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/&title=《Docker SpringBoot》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3ay24DIQwF0Pz/T6dSV5XapPfi6SNwWEXNFDizcMD27RaP+/v4+DkZj55P5rn9xMDAwHhZRr6VNdLn/0rmqakYGBgHMJIg2+KfP/n522Tdh3/HwMDAeLrFyXaTOTEwMDDWAm4ydb6JP/vdwMDAeClGmzJ7Dls7JraXZAwMjHMYa4WB3/n84/UNDAyMf8+4D0ZyNU1SaW0i74uZMTAwtmY8ny6Pb0mKP59nbTYMDIwTGJMmsHzTa0m36NVjYGBsylhLorUh+6rWsfoSi4GBsQVj7eqYh8i2saxty8DAwDiNkUw9KSTMt1v8PGBgYBzAmLQ+TLablxAwMDDOYUwOgi3s2vIABgbGOYxJhJ4smb+4Ig2HgYGxKaNNyk82mr+yOpOGgYGxNaO9rCbLJ0Fzwv4GjIGBsR0jP/ZNmrcmLV/RDjEwMLZmtIXDSXfWJMVWL4mBgbER46qAOGkFWzt6RndxDAyMLRjJtTNPiiUp/rypIi8nYGBgnMNYK1vm37bVxvrIiIGBcQAjX3itPWItbZeXPzEwMPZmtIXJFlNfRyd4DAyM7Rj3ckxaJdryZNE0hoGBsTWjLUm2z+RX1rYiOarWYmBgvCAjD7ITQP4u2/CNgYFxDmOexJ/jk4D+cH4MDAyMsoGsLR6sXXejt4KBgXEYI0/rt0fDeasHBgbGCYy1YsDake6yrWNgYBzDmHRqrAXiPFhf1aKBgYHxsow3KRoZBunO/2UAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

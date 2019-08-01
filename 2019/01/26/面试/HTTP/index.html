@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>HTTP协议 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Http">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>HTTP协议</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">HTTP协议</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-26T10:04:09.429Z" itemprop="datePublished" class="page-time">
+  2019-01-26
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-面试/HTTP"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP协议</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-26 18:04:09" datetime="2019-01-26T10:04:09.429Z"  itemprop="datePublished">2019-01-26</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1.HTTP"></a>1.HTTP</h1><figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023506.jpg" title="image-20190126181037515" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023506.jpg" alt="image-20190126181037515" title class></a>
+                <p>image-20190126181037515</p>
+            </figure>
+
+<hr>
+<h1 id="2-网络协议分层"><a href="#2-网络协议分层" class="headerlink" title="2 .网络协议分层"></a>2 .网络协议分层</h1><figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023509.jpg" title="image-20190126183248271" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023509.jpg" alt="image-20190126183248271" title class></a>
+                <p>image-20190126183248271</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023510.jpg" title="image-20190126183344447" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023510.jpg" alt="image-20190126183344447" title class></a>
+                <p>image-20190126183344447</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023512.jpg" title="image-20190127065844792" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023512.jpg" alt="image-20190127065844792" title class></a>
+                <p>image-20190127065844792</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023513.jpg" title="image-20190127065939549" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023513.jpg" alt="image-20190127065939549" title class></a>
+                <p>image-20190127065939549</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023520.jpg" title="image-20190127070345471" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023520.jpg" alt="image-20190127070345471" title class></a>
+                <p>image-20190127070345471</p>
+            </figure>
+
+<p>#3  HTTP 三次握手</p>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023522.jpg" title="image-20190127071331819" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023522.jpg" alt="image-20190127071331819" title class></a>
+                <p>image-20190127071331819</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23525.jpg" title="image-20190127071348307" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23525.jpg" alt="image-20190127071348307" title class></a>
+                <p>image-20190127071348307</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023527.jpg" title="image-20190127071732438" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023527.jpg" alt="image-20190127071732438" title class></a>
+                <p>image-20190127071732438</p>
+            </figure>
+
+<h1 id="4-URI-URL-URN"><a href="#4-URI-URL-URN" class="headerlink" title="4 URI URL URN"></a>4 URI URL URN</h1><figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023529.jpg" title="image-20190127071844839" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023529.jpg" alt="image-20190127071844839" title class></a>
+                <p>image-20190127071844839</p>
+            </figure>
+
+<p>包括URL 和URN</p>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023531.jpg" title="image-20190127072003375" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023531.jpg" alt="image-20190127072003375" title class></a>
+                <p>image-20190127072003375</p>
+            </figure>
+
+<p>ftp协议</p>
+<hr>
+<figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023533.jpg" title="image-20190127072410668" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023533.jpg" alt="image-20190127072410668" title class></a>
+                <p>image-20190127072410668</p>
+            </figure>
+
+<h1 id="5-HTTP-报文"><a href="#5-HTTP-报文" class="headerlink" title="5 HTTP 报文"></a>5 HTTP 报文</h1><figure class="image-box">
+                <a rel=HTTP协议 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023534.jpg" title="image-20190127072505398" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023534.jpg" alt="image-20190127072505398" title class></a>
+                <p>image-20190127072505398</p>
+            </figure>
+
+<hr>
+<h1 id="6Http客户端-CURL"><a href="#6Http客户端-CURL" class="headerlink" title="6Http客户端 CURL"></a>6Http客户端 CURL</h1><p><a rel=HTTP协议 href="../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190129080152157.png" title="image-20190129080152157" data-fancybox="images"><img src="../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190129080152157.png" alt="image-20190129080152157"></a></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-29T03:08:30.116Z" itemprop="dateUpdated">2019-04-29 11:08:30</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/01/26/面试/HTTP/" target="_blank" rel="external">http://yoursite.com/2019/01/26/面试/HTTP/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Http/">Http</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/26/面试/HTTP/&title=《HTTP协议》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/26/面试/HTTP/&title=《HTTP协议》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/01/29/java基础/枚举/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">枚举</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/01/26/面试/面试Google/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">慕课网Java校招面试 Google面试官亲授</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-HTTP"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.HTTP</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-网络协议分层"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 .网络协议分层</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-URI-URL-URN"><span class="post-toc-number">3.</span> <span class="post-toc-text">4 URI URL URN</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-HTTP-报文"><span class="post-toc-number">4.</span> <span class="post-toc-text">5 HTTP 报文</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6Http客户端-CURL"><span class="post-toc-number">5.</span> <span class="post-toc-text">6Http客户端 CURL</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/26/面试/HTTP/&title=《HTTP协议》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/26/面试/HTTP/&title=《HTTP协议》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS27DMAwFwNz/0inQVYHC9iOpFLU8WhlJK3myIPjR6xWv9/f6+fzzk99/+fvb5PPznRcsDAyM2zLepys57L1onf9kF1QMDIwHMJIguyqwnp9+fu7h5xgYGBgfDrhHVAwMDIwJIzm494yBgYExKWKTdtv5ztX08SO1OAYGxg0ZvcHA3zx/fL6BgYHx7xmTgjMfQK4aah6ehYGBsTUjL1bzplueFFYL44ugjIGBsTWjlxRWE8fqnr1LaRgYGM9kTK6o5mG3GvoXVO0YGBi3Yhy9UJ4sVgeivbMugjUGBsamjE9MGCZBNgEfdg0xMDC2ZiRttbzdNl/lQIyBgfEARq/RNg+dyXMyJMDAwNibkfxzcp1iMsJMfsSo5YeBgbEpY54UrmrA5XtetNswMDC2Y+QtrRw8KZKTqxUYGBjPZFRHAknZ2RtnVi+BYWBgPIHROzIPstWov/iyBQYGxhaMvPhsxvLit1UeBgbGExi9RHCS/PWSwotzMTAwtmZMXjc/slqgVvfBwMDYm1EtR6uHJcF3MmDAwMB4AuP84HzTXkrXe7nCGAMDA2MLxru4eiOEyeAhujqGgYGxNaMX5qrxO78OW8U3k0UMDIwbMvIgO0n71gbcV14TY2BgbMToNfGTaxnlex9B4D4MuBgYGBhF2NqQfRFdMTAwME4TuDxEVkcL5XksBgbG1oy8iM2Hi9Xm/oiKgYGxNWPtTY1e+tgbLYxGmBgYGPdgfAG+9sxSnLGERQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

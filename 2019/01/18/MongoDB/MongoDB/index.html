@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>MongoDB | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="MongoDB">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>MongoDB</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">MongoDB</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-18T08:22:15.795Z" itemprop="datePublished" class="page-time">
+  2019-01-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MongoDB/">MongoDB</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-MongoDB/MongoDB"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">MongoDB</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-18 16:22:15" datetime="2019-01-18T08:22:15.795Z"  itemprop="datePublished">2019-01-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MongoDB/">MongoDB</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-安装与简介"><a href="#1-安装与简介" class="headerlink" title="1.安装与简介"></a>1.安装与简介</h1><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023053.jpg" title="image-20190118162410392" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023053.jpg" alt="image-20190118162410392" title class></a>
+                <p>image-20190118162410392</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023054.jpg" title="image-20190118200004088" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023054.jpg" alt="image-20190118200004088" title class></a>
+                <p>image-20190118200004088</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023057.jpg" title="image-20190118200152427" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023057.jpg" alt="image-20190118200152427" title class></a>
+                <p>image-20190118200152427</p>
+            </figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /data/db</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023101.jpg" title="image-20190118202151819" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023101.jpg" alt="image-20190118202151819" title class></a>
+                <p>image-20190118202151819</p>
+            </figure>
+
+<hr>
+<h2 id="使用-brew-安装"><a href="#使用-brew-安装" class="headerlink" title="使用 brew 安装"></a>使用 brew 安装</h2><p>此外你还可以使用 OSX 的 brew 来安装 mongodb：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install mongodb</span><br></pre></td></tr></table></figure>
+
+<p>如果要安装支持 TLS/SSL 命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install mongodb --with-openssl</span><br></pre></td></tr></table></figure>
+
+<p>安装最新开发版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install mongodb --devel</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="运行-MongoDB"><a href="#运行-MongoDB" class="headerlink" title="运行 MongoDB"></a>运行 MongoDB</h2><p>1、首先我们创建一个数据库存储目录 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /data/db</span><br></pre></td></tr></table></figure>
+
+<p>启动 mongodb，默认数据库目录即为 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mongod</span><br><span class="line"></span><br><span class="line"># 如果没有创建全局路径 PATH，需要进入以下目录</span><br><span class="line">cd /usr/local/mongodb/bin</span><br><span class="line">sudo ./mongod</span><br></pre></td></tr></table></figure>
+
+<p>再打开一个终端进入执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/(Cellar)/mongodb/bin </span><br><span class="line">$ ./mongo</span><br><span class="line">MongoDB shell version v3.4.2</span><br><span class="line">connecting to: mongodb://127.0.0.1:27017</span><br><span class="line">MongoDB server version: 3.4.2</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">……</span><br><span class="line">&gt; 1 + 1</span><br><span class="line">2</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-启动mongodb"><a href="#1-启动mongodb" class="headerlink" title="1.启动mongodb"></a>1.启动mongodb</h3><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023104.jpg" title="image-20190119095105137" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023104.jpg" alt="image-20190119095105137" title class></a>
+                <p>image-20190119095105137</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023106.jpg" title="image-20190119095125921" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023106.jpg" alt="image-20190119095125921" title class></a>
+                <p>image-20190119095125921</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023108.jpg" title="image-20190119095147334" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023108.jpg" alt="image-20190119095147334" title class></a>
+                <p>image-20190119095147334</p>
+            </figure>
+
+<hr>
+<h4 id="Mongodb-配置文件路径"><a href="#Mongodb-配置文件路径" class="headerlink" title="Mongodb 配置文件路径"></a>Mongodb 配置文件路径</h4><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023111.jpg" title="image-20190419160414229" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023111.jpg" alt="image-20190419160414229" title class></a>
+                <p>image-20190419160414229</p>
+            </figure>
+
+<h1 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2 基本使用"></a>2 基本使用</h1><p><a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023112.jpg" title="image-20190119095334614" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023112.jpg" alt="image-20190119095334614"></a></p>
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23113.jpg" title="image-20190119095508788" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23113.jpg" alt="image-20190119095508788" title class></a>
+                <p>image-20190119095508788</p>
+            </figure>
+
+<h1 id="3文档之间的关系"><a href="#3文档之间的关系" class="headerlink" title="3文档之间的关系"></a>3文档之间的关系</h1><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23116.jpg" title="image-20190119153806950" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-23116.jpg" alt="image-20190119153806950" title class></a>
+                <p>image-20190119153806950</p>
+            </figure>
+
+<h5 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h5><p><a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023116.jpg" title="image-20190119153643934" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023116.jpg" alt="image-20190119153643934"></a></p>
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023118.jpg" title="image-20190119153708935" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023118.jpg" alt="image-20190119153708935" title class></a>
+                <p>image-20190119153708935</p>
+            </figure>
+
+<hr>
+<h5 id="一对多-【重要】"><a href="#一对多-【重要】" class="headerlink" title="一对多 【重要】"></a>一对多 【重要】</h5><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023119.jpg" title="image -20190119153956590" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023119.jpg" alt="image -20190119153956590" title class></a>
+                <p>image -20190119153956590</p>
+            </figure>
+
+<hr>
+<h1 id="4-sort-和投影"><a href="#4-sort-和投影" class="headerlink" title="4 sort 和投影"></a>4 sort 和投影</h1><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023122.jpg" title="image-20190123155657711" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023122.jpg" alt="image-20190123155657711" title class></a>
+                <p>image-20190123155657711</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023124.jpg" title="image-20190123155842182" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023124.jpg" alt="image-20190123155842182" title class></a>
+                <p>image-20190123155842182</p>
+            </figure>
+
+<h1 id="5-Mongoose-Node-js"><a href="#5-Mongoose-Node-js" class="headerlink" title="5 Mongoose Node.js"></a>5 Mongoose Node.js</h1><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023126.jpg" title="image-20190123160328609" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023126.jpg" alt="image-20190123160328609" title class></a>
+                <p>image-20190123160328609</p>
+            </figure>
+
+<hr>
+<h1 id="修改文档"><a href="#修改文档" class="headerlink" title="修改文档"></a>修改文档</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    修改</span></span><br><span class="line"><span class="comment">     db.collection.update(查询条件,新对象)</span></span><br><span class="line"><span class="comment">        - update()默认情况下会使用新对象来替换旧的对象</span></span><br><span class="line"><span class="comment">        - 如果需要修改指定的属性，而不是替换需要使用“修改操作符”来完成修改</span></span><br><span class="line"><span class="comment">            $set 可以用来修改文档中的指定属性</span></span><br><span class="line"><span class="comment">            $unset 可以用来删除文档的指定属性</span></span><br><span class="line"><span class="comment">        - update()默认只会修改一个</span></span><br><span class="line"><span class="comment">            </span></span><br><span class="line"><span class="comment">        db.collection.updateMany()</span></span><br><span class="line"><span class="comment">        - 同时修改多个符合条件的文档</span></span><br><span class="line"><span class="comment">   </span></span><br><span class="line"><span class="comment">        db.collection.updateOne()</span></span><br><span class="line"><span class="comment">        - 修改一个符合条件的文档    </span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        db.collection.replaceOne()</span></span><br><span class="line"><span class="comment">        - 替换一个文档</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">db.stus.find(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//替换</span></span><br><span class="line">db.stus.update(&#123;name:<span class="string">"沙和尚"</span>&#125;,&#123;age:<span class="number">28</span>&#125;);</span><br><span class="line"></span><br><span class="line">db.stus.update(</span><br><span class="line">    &#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"59c219689410bc1dbecc0709"</span>)&#125;,</span><br><span class="line">    &#123;$set:&#123;</span><br><span class="line">        gender:<span class="string">"男"</span>,</span><br><span class="line">        address:<span class="string">"流沙河"</span></span><br><span class="line">    &#125;&#125;    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">db.stus.update(</span><br><span class="line">    &#123;<span class="string">"_id"</span> : ObjectId(<span class="string">"59c219689410bc1dbecc0709"</span>)&#125;,</span><br><span class="line">    &#123;$unset:&#123;</span><br><span class="line">        address:<span class="number">1</span></span><br><span class="line">    &#125;&#125;    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">db.stus.updateMany(</span><br><span class="line">    &#123;<span class="string">"name"</span> : <span class="string">"猪八戒"</span>&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        $set:&#123;</span><br><span class="line">            address:<span class="string">"猪老庄"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">);</span><br><span class="line">    </span><br><span class="line">db.stus.update(</span><br><span class="line">    &#123;<span class="string">"name"</span> : <span class="string">"猪八戒"</span>&#125;,</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        $set:&#123;</span><br><span class="line">        address:<span class="string">"呵呵呵"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  ,</span><br><span class="line">    &#123;</span><br><span class="line">        multi:<span class="keyword">true</span></span><br><span class="line">    &#125;    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">db.stus.find()</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    db.collection.remove()</span></span><br><span class="line"><span class="comment">        - 删除一个或多个，可以第二个参数传递一个true，则只会删除一个</span></span><br><span class="line"><span class="comment">        - 如果传递一个空对象作为参数，则会删除所有的</span></span><br><span class="line"><span class="comment">    db.collection.deleteOne()</span></span><br><span class="line"><span class="comment">    db.collection.deleteMany()</span></span><br><span class="line"><span class="comment">    db.collection.drop() 删除集合</span></span><br><span class="line"><span class="comment">    db.dropDatabase() 删除数据库</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">        - 一般数据库中的数据都不会删除，所以删除的方法很少调用</span></span><br><span class="line"><span class="comment">            一般会在数据中添加一个字段，来表示数据是否被删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">        </span><br><span class="line">db.stus.insert([</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">"zbj"</span>,</span><br><span class="line">        isDel:<span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        name:<span class="string">"shs"</span>,</span><br><span class="line">        isDel:<span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">    name:<span class="string">"ts"</span>,</span><br><span class="line">        isDel:<span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">db.stus.updateOne(&#123;name:<span class="string">"ts"</span>&#125;,&#123;$set:&#123;isDel:<span class="number">1</span>&#125;&#125;);</span><br><span class="line">    </span><br><span class="line">db.stus.find(&#123;isDel:<span class="number">0</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    向数据库插入文档</span></span><br><span class="line"><span class="comment">        db.&lt;collection&gt;.insert()</span></span><br><span class="line"><span class="comment">        - 向集合中插入一个或多个文档</span></span><br><span class="line"><span class="comment">        - 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id</span></span><br><span class="line"><span class="comment">            该属性用来作为文档的唯一标识</span></span><br><span class="line"><span class="comment">        - _id我们可以自己指定，如果我们指定了数据库就不会在添加了，如果自己指定_id 也必须确保它的唯一性</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    db.collection.insertOne()</span></span><br><span class="line"><span class="comment">        - 插入一个文档对象</span></span><br><span class="line"><span class="comment">    db.collection.insertMany() </span></span><br><span class="line"><span class="comment">        - 插入多个文档对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">db.stus.insert(&#123;name:<span class="string">"猪八戒"</span>,age:<span class="number">28</span>,gender:<span class="string">"男"</span>&#125;);</span><br><span class="line"></span><br><span class="line">db.stus.insert([</span><br><span class="line">    &#123;name:<span class="string">"沙和尚"</span>,age:<span class="number">38</span>,gender:<span class="string">"男"</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">"白骨精"</span>,age:<span class="number">16</span>,gender:<span class="string">"女"</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">"蜘蛛精"</span>,age:<span class="number">14</span>,gender:<span class="string">"女"</span>&#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">db.stus.insert(&#123;_id:<span class="string">"hello"</span>,name:<span class="string">"猪八戒"</span>,age:<span class="number">28</span>,gender:<span class="string">"男"</span>&#125;);</span><br><span class="line"></span><br><span class="line">db.stus.find();</span><br><span class="line"></span><br><span class="line">ObjectId()</span><br></pre></td></tr></table></figure>
+
+<h1 id="文档查询"><a href="#文档查询" class="headerlink" title="文档查询"></a>文档查询</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    查询</span></span><br><span class="line"><span class="comment">        db.collection.find()</span></span><br><span class="line"><span class="comment">        - find()用来查询集合中所有符合条件的文档</span></span><br><span class="line"><span class="comment">        - find()可以接收一个对象作为条件参数</span></span><br><span class="line"><span class="comment">            &#123;&#125; 表示查询集合中所有的文档</span></span><br><span class="line"><span class="comment">            &#123;属性:值&#125; 查询属性是指定值的文档</span></span><br><span class="line"><span class="comment">        - find()返回的是一个数组</span></span><br><span class="line"><span class="comment">            </span></span><br><span class="line"><span class="comment">        db.collection.findOne()</span></span><br><span class="line"><span class="comment">        - 用来查询集合中符合条件的第一个文档  </span></span><br><span class="line"><span class="comment">        - findOne()返回的是一个文档对象 </span></span><br><span class="line"><span class="comment">       </span></span><br><span class="line"><span class="comment">       db.collection.find(&#123;&#125;).count() </span></span><br><span class="line"><span class="comment">        - 查询所有结果的数量</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">db.stus.find(&#123;_id:<span class="string">"hello"</span>&#125;);</span><br><span class="line">db.stus.find(&#123;age:<span class="number">16</span> , name:<span class="string">"白骨精"</span>&#125;);</span><br><span class="line">db.stus.find(&#123;age:<span class="number">28</span>&#125;);</span><br><span class="line">db.stus.findOne(&#123;age:<span class="number">28</span>&#125;);</span><br><span class="line"></span><br><span class="line">db.stus.find(&#123;&#125;).count();</span><br></pre></td></tr></table></figure>
+
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><p>MongoDB<br>    - MongoDB是一个NoSQL的数据库<br>    - MongoDB是一款文档型数据库<br>    - 数据库指的就是一个存储数据的仓库<br>        数据库可以使我们完成对数据的持久化的操作<br>    - MongoDB数据库中存储的数据的基本单位就是文档，<br>        MongoDB中存储的就是文档，所谓文档其实就是一个“JSON”<br>    - MongoDB中的“JSON”我们称为BSON，比普通的JSON的功能要更加的强大<br>    - MongoDB数据库使用的是JavaScript进行操作的，在MongoDB含有一个对ES标准实现的引擎，<br>        在MongoDB中所有ES中的语法中都可以使用</p>
+<pre><code>- MongoDB的基本的指令
+    - 启动服务器
+        mongod --dbpath 路径 --port 端口号
+
+    - 启动客户端
+        mongo
+
+- MongoDB的CRUD的操作            
+    - 基本操作
+        use 数据库
+            - 进入指定的数据库
+        show dbs
+            - 显示所有的数据库
+        show collections
+            - 显示数据库中所有的集合
+        db
+            - 显示当前所在的数据库
+
+    - 向数据库中插入文档
+        - db.collection.insert()
+            - insert()可以向集合中插入一个或多个文档
+        - db.collection.insertOne()
+            - 向集合中插入一个文档
+        - db.collection.insertMany()
+            - 向集合中插入多个文档
+
+    - 查询数据库中的文档
+        - db.collection.find()
+            - 可以根据指定条件从集合中查询所有符合条件的文档
+            - 返回的是一个数组
+        - db.collection.findOne()
+            - 查询第一个符合条件的文档
+            - 返回的是一个对象
+        - db.collection.find().count()
+            - 查询符合条件的文档的数量
+
+    - 修改数据库中的文档
+        - db.collection.update()
+            - 可以修改、替换集合中的一个或多个文档
+        - db.collection.updateOne()
+            - 修改集合中的一个文档
+        - db.collection.updateMany()
+            - 修改集合中的多个文档
+        - db.collection.replaceOne()
+            - 替换集合中的一个文档
+
+    - 删除集合中的文档
+        - db.collection.remove()
+            - 删除集合中的一个或多个文档（默认删除多个）
+        - db.collection.deleteOne()
+            - 删除集合中的一个文档
+        - db.collection.deleteMany()
+            - 删除集合中的多个文档
+        - 清空一个集合
+            db.collection.remove({})
+        - 删除一个集合
+            db.collection.drop()
+        - 删除一个数据库
+            db.dropDatabase()</code></pre><h1 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.进入my_test数据库</span></span><br><span class="line">use my_test</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.向数据库的user集合中插入一个文档  </span></span><br><span class="line">db.users.insert(&#123;</span><br><span class="line">    username:<span class="string">"sunwukong"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.查询user集合中的文档</span></span><br><span class="line">db.users.find();</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.向数据库的user集合中插入一个文档   </span></span><br><span class="line">db.users.insert(&#123;</span><br><span class="line">    username:<span class="string">"zhubajie"</span></span><br><span class="line">&#125;);</span><br><span class="line">   </span><br><span class="line"><span class="comment">//5.查询数据库user集合中的文档</span></span><br><span class="line">db.users.find();</span><br><span class="line"></span><br><span class="line"><span class="comment">//6.统计数据库user集合中的文档数量</span></span><br><span class="line">db.users.find().count();</span><br><span class="line"></span><br><span class="line"><span class="comment">//7.查询数据库user集合中username为sunwukong的文档</span></span><br><span class="line">db.users.find(&#123;username:<span class="string">"sunwukong"</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//8.向数据库user集合中的username为sunwukong的文档，添加一个address属性，属性值为huaguoshan</span></span><br><span class="line">db.users.update(&#123;username:<span class="string">"sunwukong"</span>&#125;,&#123;$set:&#123;address:<span class="string">"huaguoshan"</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//9.使用&#123;username:"tangseng"&#125; 替换 username 为 zhubajie的文档</span></span><br><span class="line">db.users.replaceOne(&#123;username:<span class="string">"zhubajie"</span>&#125;,&#123;username:<span class="string">"tangseng"</span>&#125;);    </span><br><span class="line">    </span><br><span class="line"><span class="comment">//10.删除username为sunwukong的文档的address属性</span></span><br><span class="line">db.users.update(&#123;username:<span class="string">"sunwukong"</span>&#125;,&#123;$unset:&#123;address:<span class="number">1</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//11.向username为sunwukong的文档中，添加一个hobby:&#123;cities:["beijing","shanghai","shenzhen"] , movies:["sanguo","hero"]&#125;</span></span><br><span class="line"><span class="comment">//MongoDB的文档的属性值也可以是一个文档，当一个文档的属性值是一个文档时，我们称这个文档叫做 内嵌文档</span></span><br><span class="line">db.users.update(&#123;username:<span class="string">"sunwukong"</span>&#125;,&#123;$set:&#123;hobby:&#123;cities:[<span class="string">"beijing"</span>,<span class="string">"shanghai"</span>,<span class="string">"shenzhen"</span>] , movies:[<span class="string">"sanguo"</span>,<span class="string">"hero"</span>]&#125;&#125;&#125;);</span><br><span class="line">db.users.find();</span><br><span class="line"></span><br><span class="line"><span class="comment">//12.向username为tangseng的文档中，添加一个hobby:&#123;movies:["A Chinese Odyssey","King of comedy"]&#125;</span></span><br><span class="line">db.users.update(&#123;username:<span class="string">"tangseng"</span>&#125;,&#123;$set:&#123;hobby:&#123;movies:[<span class="string">"A Chinese Odyssey"</span>,<span class="string">"King of comedy"</span>]&#125;&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//13.查询喜欢电影hero的文档</span></span><br><span class="line"><span class="comment">//MongoDB支持直接通过内嵌文档的属性进行查询，如果要查询内嵌文档则可以通过.的形式来匹配</span></span><br><span class="line"><span class="comment">//如果要通过内嵌文档来对文档进行查询，此时属性名必须使用引号 </span></span><br><span class="line">db.users.find(&#123;<span class="string">'hobby.movies'</span>:<span class="string">"hero"</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//14.向tangseng中添加一个新的电影Interstellar</span></span><br><span class="line"><span class="comment">//$push 用于向数组中添加一个新的元素</span></span><br><span class="line"><span class="comment">//$addToSet 向数组中添加一个新元素 ， 如果数组中已经存在了该元素，则不会添加</span></span><br><span class="line">db.users.update(&#123;username:<span class="string">"tangseng"</span>&#125;,&#123;$push:&#123;<span class="string">"hobby.movies"</span>:<span class="string">"Interstellar"</span>&#125;&#125;);</span><br><span class="line">db.users.update(&#123;username:<span class="string">"tangseng"</span>&#125;,&#123;$addToSet:&#123;<span class="string">"hobby.movies"</span>:<span class="string">"Interstellar"</span>&#125;&#125;);</span><br><span class="line">db.users.find();</span><br><span class="line"></span><br><span class="line"><span class="comment">//15.删除喜欢beijing的用户</span></span><br><span class="line">db.users.remove(&#123;<span class="string">"hobby.cities"</span>:<span class="string">"beijing"</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//16.删除user集合</span></span><br><span class="line">db.users.remove(&#123;&#125;);</span><br><span class="line">db.users.drop();</span><br><span class="line"></span><br><span class="line">show dbs;</span><br><span class="line"></span><br><span class="line"><span class="comment">//17.向numbers中插入20000条数据 7.2s</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span> ; i&lt;=<span class="number">20000</span> ; i++)&#123;</span><br><span class="line">    db.numbers.insert(&#123;num:i&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.numbers.find()</span><br><span class="line"></span><br><span class="line">db.numbers.remove(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//0.4s</span></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span> ; i&lt;=<span class="number">20000</span> ; i++)&#123;</span><br><span class="line">    arr.push(&#123;num:i&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.numbers.insert(arr);</span><br></pre></td></tr></table></figure>
+
+<h1 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a>练习2</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//18.查询numbers中num为500的文档</span></span><br><span class="line">db.numbers.find(&#123;num:<span class="number">500</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//19.查询numbers中num大于5000的文档</span></span><br><span class="line">db.numbers.find(&#123;num:&#123;$gt:<span class="number">500</span>&#125;&#125;);</span><br><span class="line">db.numbers.find(&#123;num:&#123;$eq:<span class="number">500</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//20.查询numbers中num小于30的文档</span></span><br><span class="line">db.numbers.find(&#123;num:&#123;$lt:<span class="number">30</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//21.查询numbers中num大于40小于50的文档</span></span><br><span class="line">db.numbers.find(&#123;num:&#123;$gt:<span class="number">40</span> , $lt:<span class="number">50</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//22.查询numbers中num大于19996的文档</span></span><br><span class="line">db.numbers.find(&#123;num:&#123;$gt:<span class="number">19996</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//23.查看numbers集合中的前10条数据</span></span><br><span class="line">db.numbers.find(&#123;num:&#123;$lte:<span class="number">10</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//limit()设置显示数据的上限</span></span><br><span class="line">db.numbers.find().limit(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//在开发时，我们绝对不会执行不带条件的查询</span></span><br><span class="line">db.numbers.find();</span><br><span class="line"></span><br><span class="line"><span class="comment">//24.查看numbers集合中的第11条到20条数据</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    分页 每页显示10条</span></span><br><span class="line"><span class="comment">        1-10     0</span></span><br><span class="line"><span class="comment">        11-20    10</span></span><br><span class="line"><span class="comment">        21-30    20</span></span><br><span class="line"><span class="comment">        。。。</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        skip((页码-1) * 每页显示的条数).limit(每页显示的条数);</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    skip()用于跳过指定数量的数据    </span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    MongoDB会自动调整skip和limit的位置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">db.numbers.find().skip(<span class="number">10</span>).limit(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//25.查看numbers集合中的第21条到30条数据</span></span><br><span class="line">db.numbers.find().skip(<span class="number">20</span>).limit(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">db.numbers.find().limit(<span class="number">10</span>).skip(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//26.将dept和emp集合导入到数据库中</span></span><br><span class="line">db.dept.find()</span><br><span class="line">db.emp.find()</span><br><span class="line"></span><br><span class="line"><span class="comment">//27.查询工资小于2000的员工</span></span><br><span class="line">db.emp.find(&#123;sal:&#123;$lt:<span class="number">2000</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//28.查询工资在1000-2000之间的员工</span></span><br><span class="line">db.emp.find(&#123;sal:&#123;$lt:<span class="number">2000</span> , $gt:<span class="number">1000</span>&#125;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//29.查询工资小于1000或大于2500的员工</span></span><br><span class="line">db.emp.find(&#123;$or:[&#123;sal:&#123;$lt:<span class="number">1000</span>&#125;&#125; , &#123;sal:&#123;$gt:<span class="number">2500</span>&#125;&#125;]&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//30.查询财务部的所有员工</span></span><br><span class="line"><span class="comment">//(depno)</span></span><br><span class="line"><span class="keyword">var</span> depno = db.dept.findOne(&#123;dname:<span class="string">"财务部"</span>&#125;).deptno;</span><br><span class="line">db.emp.find(&#123;depno:depno&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//31.查询销售部的所有员工</span></span><br><span class="line"><span class="keyword">var</span> depno = db.dept.findOne(&#123;dname:<span class="string">"销售部"</span>&#125;).deptno;</span><br><span class="line">db.emp.find(&#123;depno:depno&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//32.查询所有mgr为7698的所有员工</span></span><br><span class="line">db.emp.find(&#123;mgr:<span class="number">7698</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//33.为所有薪资低于1000的员工增加工资400元</span></span><br><span class="line">db.emp.updateMany(&#123;sal:&#123;$lte:<span class="number">1000</span>&#125;&#125; , &#123;$inc:&#123;sal:<span class="number">400</span>&#125;&#125;);</span><br><span class="line">db.emp.find()</span><br></pre></td></tr></table></figure>
+
+<h1 id="文档间的关系"><a href="#文档间的关系" class="headerlink" title="文档间的关系"></a>文档间的关系</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">  文档之间的关系</span></span><br><span class="line"><span class="comment">    一对一（one to one）</span></span><br><span class="line"><span class="comment">        - 夫妻 (一个丈夫 对应 一个妻子)</span></span><br><span class="line"><span class="comment">        - 在MongoDB，可以通过内嵌文档的形式来体现出一对一的关系</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    一对多（one to many）/多对一(many to one)</span></span><br><span class="line"><span class="comment">        - 父母 - 孩子</span></span><br><span class="line"><span class="comment">          用户 - 订单</span></span><br><span class="line"><span class="comment">          文章 - 评论</span></span><br><span class="line"><span class="comment">          - 也可以通过内嵌文档来映射一对多的关系</span></span><br><span class="line"><span class="comment">          </span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    多对多(many to many)</span></span><br><span class="line"><span class="comment">       - 分类 - 商品</span></span><br><span class="line"><span class="comment">         老师 - 学生 </span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">db.wifeAndHusband.insert([</span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">"黄蓉"</span>,</span><br><span class="line">        husband:&#123;</span><br><span class="line">            name:<span class="string">"郭靖"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        name:<span class="string">"潘金莲"</span>,</span><br><span class="line">        husband:&#123;</span><br><span class="line">            name:<span class="string">"武大郎"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">db.wifeAndHusband.find();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//一对多 用户(users) 和 订单(orders)</span></span><br><span class="line">db.users.insert([&#123;</span><br><span class="line">    username:<span class="string">"swk"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">    username:<span class="string">"zbj"</span></span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">db.order.insert(&#123;</span><br><span class="line">    </span><br><span class="line">    list:[<span class="string">"牛肉"</span>,<span class="string">"漫画"</span>],</span><br><span class="line">    user_id: ObjectId(<span class="string">"59c47e35241d8d36a1d50de0"</span>)</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">db.users.find()</span><br><span class="line">db.order.find()</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找用户swk的订单</span></span><br><span class="line"><span class="keyword">var</span> user_id = db.users.findOne(&#123;username:<span class="string">"zbj"</span>&#125;)._id;</span><br><span class="line">db.order.find(&#123;user_id:user_id&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//多对多</span></span><br><span class="line">db.teachers.insert([</span><br><span class="line">    &#123;name:<span class="string">"洪七公"</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">"黄药师"</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">"龟仙人"</span>&#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">db.stus.insert([</span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">"郭靖"</span>,</span><br><span class="line">        tech_ids:[</span><br><span class="line">            ObjectId(<span class="string">"59c4806d241d8d36a1d50de4"</span>),</span><br><span class="line">            ObjectId(<span class="string">"59c4806d241d8d36a1d50de5"</span>)</span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        name:<span class="string">"孙悟空"</span>,</span><br><span class="line">        tech_ids:[</span><br><span class="line">            ObjectId(<span class="string">"59c4806d241d8d36a1d50de4"</span>),</span><br><span class="line">            ObjectId(<span class="string">"59c4806d241d8d36a1d50de5"</span>),</span><br><span class="line">            ObjectId(<span class="string">"59c4806d241d8d36a1d50de6"</span>)</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">db.teachers.find()</span><br><span class="line"></span><br><span class="line">db.stus.find()</span><br></pre></td></tr></table></figure>
+
+<h1 id="Sort和投影"><a href="#Sort和投影" class="headerlink" title="Sort和投影"></a>Sort和投影</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询文档时，默认情况是按照_id的值进行排列（升序）</span></span><br><span class="line"><span class="comment">//sort()可以用来指定文档的排序的规则,sort()需要传递一个对象来指定排序规则 1表示升序 -1表示降序</span></span><br><span class="line"><span class="comment">//limit skip sort 可以以任意的顺序进行调用</span></span><br><span class="line">db.emp.find(&#123;&#125;).sort(&#123;sal:<span class="number">1</span>,empno:-<span class="number">1</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在查询时，可以在第二个参数的位置来设置查询结果的 投影</span></span><br><span class="line">db.emp.find(&#123;&#125;,&#123;ename:<span class="number">1</span> , _id:<span class="number">0</span> , sal:<span class="number">1</span>&#125;);	</span><br><span class="line">​				</span><br><span class="line">​				</span><br><span class="line">​		</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023128.jpg" title="image-20190420135904435" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023128.jpg" alt="image-20190420135904435" title class></a>
+                <p>image-20190420135904435</p>
+            </figure>
+
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew services start mongodb</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>SpringBoot 整合mongodb</strong></p>
+<h1 id><a href="#" class="headerlink" title></a><figure class="image-box">
+                <a rel=MongoDB href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023133.jpg" title="image-20190420152917108" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023133.jpg" alt="image-20190420152917108" title class></a>
+                <p>image-20190420152917108</p>
+            </figure></h1>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-06-19T13:10:43.054Z" itemprop="dateUpdated">2019-06-19 21:10:43</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/01/18/MongoDB/MongoDB/" target="_blank" rel="external">http://yoursite.com/2019/01/18/MongoDB/MongoDB/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/18/MongoDB/MongoDB/&title=《MongoDB》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/18/MongoDB/MongoDB/&title=《MongoDB》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/01/24/项目实战/Guns实战/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Guns实战</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/01/18/项目实战/慕课网 Java从零到企业级电商项目实战/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">实战电商项目</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-安装与简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.安装与简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-brew-安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">使用 brew 安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行-MongoDB"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">运行 MongoDB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-启动mongodb"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1.启动mongodb</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mongodb-配置文件路径"><span class="post-toc-number">1.2.1.1.</span> <span class="post-toc-text">Mongodb 配置文件路径</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-基本使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 基本使用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3文档之间的关系"><span class="post-toc-number">3.</span> <span class="post-toc-text">3文档之间的关系</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-sort-和投影"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 sort 和投影</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Mongoose-Node-js"><span class="post-toc-number">5.</span> <span class="post-toc-text">5 Mongoose Node.js</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#修改文档"><span class="post-toc-number">6.</span> <span class="post-toc-text">修改文档</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#删除文档"><span class="post-toc-number">7.</span> <span class="post-toc-text">删除文档</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#插入文档"><span class="post-toc-number">8.</span> <span class="post-toc-text">插入文档</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文档查询"><span class="post-toc-number">9.</span> <span class="post-toc-text">文档查询</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#笔记"><span class="post-toc-number">10.</span> <span class="post-toc-text">笔记</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#练习1"><span class="post-toc-number">11.</span> <span class="post-toc-text">练习1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#练习2"><span class="post-toc-number">12.</span> <span class="post-toc-text">练习2</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#练习3"><span class="post-toc-number">13.</span> <span class="post-toc-text">练习3</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文档间的关系"><span class="post-toc-number">14.</span> <span class="post-toc-text">文档间的关系</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Sort和投影"><span class="post-toc-number">15.</span> <span class="post-toc-text">Sort和投影</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#null"><span class="post-toc-number">16.</span> <span class="post-toc-text">
+                
+                image-20190420152917108
+            </span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/18/MongoDB/MongoDB/&title=《MongoDB》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/18/MongoDB/MongoDB/&title=《MongoDB》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aQW7jMBAEwPz/0wqwp1ysdA/lYE0WT4KhOKwcOsMZfn3F6/q3ks+vH6v9/NU7jy0MDIyPZVy3a7aJVz97/86r54iKgYFxAOM+TNsAvc/DPNzzoMfAwMBISrdrtO6pGBgYGDNGjkyeMTAwMHLG7JCZMJIj8Z+exTEwMD6Q0Q4G/vL5jfMNDAyMD2Fcy+up4eXKrjAwMPZmtG21pEBsi8W8cPwllDEwMA5gzGJxZQC5MtTEwMA4h5E0ufJNrLTb2uYaBgbGyYx2SLBykSsfWBYzWAwMjO0YSQnYlont8bUFF/NYDAyMjRizJtqzk8Tke4ZTVgwMjI0YebO+Dcp3XN2IuoYYGBgbMWaHxpUDcFuGzr4BAwNjD0Z7yKxb9ssNuCiIMTAwtmbMYjRv0rXbSgrB6D8GBgbGRox2iHj/fhu1j8U6BgbGAYw2attPZuyiVYeBgbE1o72k1QZ0famrjGkMDIwTGCuBmwdr24yrL3xgYGBszWivi81I7Ybywy0GBsYJjNnFiGdHmG2xWNxrw8DA2IKxUn5d5ZoFdDtUwMDA2I/x1FZmA86kqRcdrTEwMLZmzBr6eVGYDzjX8RgYGHsz8pDND5zro4J6DxgYGAcwngrZp4ad9Z0RDAwMjIUGXBvryW/8pV+IgYFxMKOIv7LIW7mEgYGBcQ7jfXG5UiDmfxoMDIy9GeuDgVlEzuL4jfMNDAyM/5HxDaUvUffVheBtAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

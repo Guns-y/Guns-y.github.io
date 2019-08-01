@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>docker-web | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="docker">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-"></i>
+                About
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>docker-web</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">docker-web</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-08T02:20:30.247Z" itemprop="datePublished" class="page-time">
+  2018-11-08
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Docker/Docker-web"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">docker-web</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-08 10:20:30" datetime="2018-11-08T02:20:30.247Z"  itemprop="datePublished">2018-11-08</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <blockquote>
+<p> 学习地址* <a href="https://www.imooc.com/video/14624（慕课网）-6⃣刘果国" target="_blank" rel="noopener">https://www.imooc.com/video/14624（慕课网）-6⃣刘果国</a></p>
+</blockquote>
+<p>#第一个 java web项目 （SpringBoot 项目打包成一个war包的方式）</p>
+<h3 id="一制作自己的景象"><a href="#一制作自己的景象" class="headerlink" title="一制作自己的景象"></a>一制作自己的景象</h3><ul>
+<li><p>Dockerfile</p>
+</li>
+<li><p>docker build</p>
+<hr>
+<ul>
+<li>首先需要一个war文件 拷贝在桌面上</li>
+</ul>
+<blockquote>
+<p>Docker images</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1-建立一个Dockerfile"><a href="#1-建立一个Dockerfile" class="headerlink" title="1.建立一个Dockerfile"></a>1.建立一个Dockerfile</h5><blockquote>
+<p>vim Dockerfile</p>
+</blockquote>
+<h6 id="2-下载Tomcat镜像"><a href="#2-下载Tomcat镜像" class="headerlink" title="2. 下载Tomcat镜像"></a>2. 下载Tomcat镜像</h6><blockquote>
+<p>网易镜像中心 找Tomcat的镜像 <a href="https://c.163yun.com/hub#/m/home/" target="_blank" rel="noopener">https://c.163yun.com/hub#/m/home/</a></p>
+<figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22404.jpg" title="image-20181108171728002" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22404.jpg" alt="image-20181108171728002" title class></a>
+                <p>image-20181108171728002</p>
+            </figure>
+</blockquote>
+<p>（包括JDK Tomcat）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hub.c.163.com/library/tomcat:latest</span><br></pre></td></tr></table></figure>
+
+<p> <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022405.jpg" title="image-20181108172737831" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022405.jpg" alt="image-20181108172737831"></a></p>
+<p>站在巨人的肩上</p>
+<h5 id="3-编辑Dockerfile"><a href="#3-编辑Dockerfile" class="headerlink" title="3.编辑Dockerfile"></a>3.编辑Dockerfile</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在Mac终端中使用vim编辑文件步骤</span><br><span class="line">1.  cd   文件所在的文件夹路径  &lt;回車&gt;</span><br><span class="line">2. 輸入  vim 文件名 &lt;回車&gt;</span><br><span class="line">3. 按下 i 鍵來编辑文本文字</span><br><span class="line">4. 退出vim編輯器：</span><br><span class="line">     不保存并退出  &lt;ESC&gt;   :q!   &lt;回車&gt;</span><br><span class="line">     保存并退出     &lt;ESC&gt;   :wq   &lt;回車&gt;</span><br></pre></td></tr></table></figure>
+
+<p>from hub.c.163.com/library/tomcat</p>
+<p>MAINTAINER Freemana2017 <a href="mailto:1047629166@qq.com" target="_blank" rel="noopener">1047629166@qq.com</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/apple/Desktop/Dockerweb</span><br><span class="line">ls</span><br><span class="line">&gt; mv atcrodfunding3_ssm-0.0.1-SNAPSHOT.war atcrod.war</span><br><span class="line">mv atcrodfunding3_ssm-0.0.1-SNAPSHOT.war atcrod.war (用MV 重新命名一下)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>进入文件夹里面 编写Dockerfile</p>
+</li>
+<li><p>学会看镜像的说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">How to use this image.</span><br><span class="line"></span><br><span class="line">Run the default Tomcat server (CMD [\&quot;catalina.sh\&quot;, \&quot;run\&quot;]):</span><br><span class="line"></span><br><span class="line">$ docker run -it --rm tomcat:8.0</span><br><span class="line">You can test it by visiting http://container-ip:8080 in a browser or, if you need access outside the host, on port 8888:</span><br><span class="line"></span><br><span class="line">$ docker run -it --rm -p 8888:8080 tomcat:8.0</span><br><span class="line">You can then go to http://localhost:8888 or http://host-ip:8888 in a browser.</span><br><span class="line"></span><br><span class="line">The default Tomcat environment in the image for versions 7 and 8 is:</span><br><span class="line"></span><br><span class="line">⭐️CATALINA_BASE:   /usr/local/tomcat</span><br><span class="line">⭐️CATALINA_HOME:   /usr/local/tomcat</span><br><span class="line">CATALINA_TMPDIR: /usr/local/tomcat/temp</span><br><span class="line">JRE_HOME:        /usr</span><br><span class="line">CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="1。编写Dockerfile-文件–Dockerfile"><a href="#1。编写Dockerfile-文件–Dockerfile" class="headerlink" title="1。编写Dockerfile 文件–Dockerfile"></a>1。编写Dockerfile 文件–Dockerfile</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from hub.c.163.com/library/tomcat</span><br><span class="line"></span><br><span class="line">MAINTAINER Freemana2017 1047629166@qq.com</span><br><span class="line"></span><br><span class="line">COPY atcrod.war /usr/local/tomcat/webapps</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-创建镜像-–docker-build"><a href="#2-创建镜像-–docker-build" class="headerlink" title="2.创建镜像 –docker build"></a>2.创建镜像 –docker build</h3><figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22408.jpg" title="image-20181108174858497" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22408.jpg" alt="image-20181108174858497" title class></a>
+                <p>image-20181108174858497</p>
+            </figure>
+
+
+
+<h3 id="3-查看镜像–docker-images"><a href="#3-查看镜像–docker-images" class="headerlink" title="3.查看镜像–docker images"></a>3.查看镜像–docker images</h3><figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022408.jpg" title="image-20181108174929561" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022408.jpg" alt="image-20181108174929561" title class></a>
+                <p>image-20181108174929561</p>
+            </figure>
+
+
+
+<h2 id="4-给镜像写名字-docker-build-t-atcrod-latest"><a href="#4-给镜像写名字-docker-build-t-atcrod-latest" class="headerlink" title="4.给镜像写名字 docker build -t atcrod:latest ."></a>4.给镜像写名字 docker build -t atcrod:latest .</h2><figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022409.jpg" title="image-20181108175158795" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022409.jpg" alt="image-20181108175158795" title class></a>
+                <p>image-20181108175158795</p>
+            </figure>
+
+<h3 id="5-再次查看镜像-docker-images"><a href="#5-再次查看镜像-docker-images" class="headerlink" title="5.再次查看镜像 docker images"></a>5.再次查看镜像 docker images</h3><figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022411.jpg" title="image-20181108175309803" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022411.jpg" alt="image-20181108175309803" title class></a>
+                <p>image-20181108175309803</p>
+            </figure>
+
+
+
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="二运行自己的容器"><a href="#二运行自己的容器" class="headerlink" title="###二运行自己的容器"></a>###二运行自己的容器</h1><h3 id="1-docker-run-d-p-8888-8080-atcrod"><a href="#1-docker-run-d-p-8888-8080-atcrod" class="headerlink" title="1.docker run -d -p 8888:8080 atcrod"></a>1.docker run -d -p 8888:8080 atcrod</h3><blockquote>
+<p>8888本机的端口号。8080Tomcat的端口号 去163.com查询 atcrod镜像的名字</p>
+</blockquote>
+<figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022413.jpg" title="image-20181108175738036" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022413.jpg" alt="image-20181108175738036" title class></a>
+                <p>image-20181108175738036</p>
+            </figure>
+
+<h4 id="2-docker-ps"><a href="#2-docker-ps" class="headerlink" title="2.docker ps"></a>2.docker ps</h4><blockquote>
+<p>查看Tomcat的进程 检查容器是不是启动啦</p>
+</blockquote>
+<figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22416.jpg" title="image-20181108175751244" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22416.jpg" alt="image-20181108175751244" title class></a>
+                <p>image-20181108175751244</p>
+            </figure>
+
+<h3 id="3-netstat-na-grep-8888"><a href="#3-netstat-na-grep-8888" class="headerlink" title="3.netstat -na|grep 8888"></a>3.netstat -na|grep 8888</h3><blockquote>
+<p>检查端口是不是存在了  输入localhost:8888测试Tomcat是否启动啦</p>
+</blockquote>
+<figure class="image-box">
+                <a rel=docker-web href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022418.jpg" title="image-20181108180034419" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022418.jpg" alt="image-20181108180034419" title class></a>
+                <p>image-20181108180034419</p>
+            </figure>
+
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="⚠️-以上只是web项目在Docker中的部署项目"><a href="#⚠️-以上只是web项目在Docker中的部署项目" class="headerlink" title="⚠️ 以上只是web项目在Docker中的部署项目"></a>⚠️ 以上只是web项目在Docker中的部署项目</h1><h1 id="3-Docker-部署SpringBoot-web项目"><a href="#3-Docker-部署SpringBoot-web项目" class="headerlink" title="3.Docker 部署SpringBoot web项目"></a>3.Docker 部署SpringBoot web项目</h1><blockquote>
+<p>学习资源汇总</p>
+<p><a href="http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html" target="_blank" rel="noopener">http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html</a></p>
+<p><a href="https://blog.csdn.net/weixin_39800144/article/details/79214978" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39800144/article/details/79214978</a></p>
+<p><a href="https://blog.csdn.net/weixin_39800144/article/details/79213276" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39800144/article/details/79213276</a></p>
+<p><a href="https://bingohuang.com/spring-boot-docker/" target="_blank" rel="noopener">https://bingohuang.com/spring-boot-docker/</a></p>
+</blockquote>
+<blockquote>
+<p>FROM java:8</p>
+<p>VOLUME /tmp</p>
+<p>COPY target/tran4spd-1.0-SNAPSHOT.jar resource.jar.   #这边放的是Docker部署的jar包的位置 绝对路径</p>
+<p>RUN bash -c “touch /resource.jar”</p>
+<p>EXPOSE 8080</p>
+<p>ENTRYPOINT [“java”,”-jar”,”resource.jar”]</p>
+<p># docker run -d -p 18080:8099 –name docker-resource leesia/resource:1.0</p>
+</blockquote>
+<p> 注意java-jar无法运行Tomcat要外置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.5&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>##文件路径不要用中文！！！</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-29T03:08:28.512Z" itemprop="dateUpdated">2019-04-29 11:08:28</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/11/08/Docker/Docker-web/" target="_blank" rel="external">http://yoursite.com/2018/11/08/Docker/Docker-web/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/08/Docker/Docker-web/&title=《docker-web》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/08/Docker/Docker-web/&title=《docker-web》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/11/09/开发遇到的问题/Iterm2配置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ITerm2的配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/11/07/Docker/Docker-SpringBoot/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Docker SpringBoot</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一制作自己的景象"><span class="post-toc-number">1.</span> <span class="post-toc-text">一制作自己的景象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1。编写Dockerfile-文件–Dockerfile"><span class="post-toc-number">2.</span> <span class="post-toc-text">1。编写Dockerfile 文件–Dockerfile</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-创建镜像-–docker-build"><span class="post-toc-number">3.</span> <span class="post-toc-text">2.创建镜像 –docker build</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-查看镜像–docker-images"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.查看镜像–docker images</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-给镜像写名字-docker-build-t-atcrod-latest"><span class="post-toc-number"></span> <span class="post-toc-text">4.给镜像写名字 docker build -t atcrod:latest .</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-再次查看镜像-docker-images"><span class="post-toc-number">1.</span> <span class="post-toc-text">5.再次查看镜像 docker images</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二运行自己的容器"><span class="post-toc-number"></span> <span class="post-toc-text">###二运行自己的容器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-docker-run-d-p-8888-8080-atcrod"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.docker run -d -p 8888:8080 atcrod</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-docker-ps"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">2.docker ps</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-netstat-na-grep-8888"><span class="post-toc-number">2.</span> <span class="post-toc-text">3.netstat -na|grep 8888</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#⚠️-以上只是web项目在Docker中的部署项目"><span class="post-toc-number"></span> <span class="post-toc-text">⚠️ 以上只是web项目在Docker中的部署项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Docker-部署SpringBoot-web项目"><span class="post-toc-number"></span> <span class="post-toc-text">3.Docker 部署SpringBoot web项目</span></a>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/08/Docker/Docker-web/&title=《docker-web》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/08/Docker/Docker-web/&title=《docker-web》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aS27DMAxFUe9/0y7QUYG0yn2kHdTU9ShwA1nHBRh+dBz4Or+vn59/3nn95utfX++fy+u445IhQ8ZjGWQ58nm9Jn81RaoMGTI2YJDHrJdOI+E6EPO9yZAhQwYJoJ0Avb4jQ4YMGf2Aix6AX4QMGTJkrBn9BI43y1LSxbW4DBkyHsioDQY+8/n2+YYMGTL+PeO86KqNP0lJjJ4uQ4aM0QxSlPaj3B0tvIOf8pAhQ8bDGaRMbRWNeACQJoi//G7IkCFjA0Z/VLDeXBqOg4JWhgwZoxn9pI0PDPh4gNyRIUPGPgxegvLQTDbHAej1yZAhYzSjlg6m3yTbIukm2okMGTKGMtKFyAN4ZlobD8iQIUMGT+nSEjQ9eBG04WTIkDGUwVv2nQFDmvClhzxkyJCxA6MWatMDGZ2g/GZQKkOGjNGMdXDkoTM9KlE7nIEOYciQIWMco1NefmZUGWSmMmTI2IBx9wHWDvJNEilDhozRjH55ycN0evwi/hmQIUPGBox+mz5N70hoDtaUIUPGNow0/NXabbzRHzxRhgwZoxkkdUuPZfCRZNpce/NNGTJkjGOc4XVtelcbOaD/gAwZMgYx+JW2+4uJXTh+iGEyZMh4LIOPFa9ttHXSSnQ4TIYMGeMYtVZXp/isrfDnrmTIkCEDbKLTYquVu6idKEOGjM0YaWWcHikjq8mQIWNnBj88mqZxnfWDvqAMGTJGM/qDAVRkhiPMdAghQ4aMoYwvTDw39SczGCIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
