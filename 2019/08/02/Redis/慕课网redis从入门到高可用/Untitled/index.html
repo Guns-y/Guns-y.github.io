@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>第一章 Redis 初识 | Hexo</title>
+    <title>No title | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="Redis">
+    <meta name="keywords" content>
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.3">
@@ -148,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>第一章 Redis 初识</span>
+            <span></span>
             
         </div>
         
@@ -161,15 +161,13 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">第一章 Redis 初识</h1>
+        <h1 class="title"></h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-08-02T02:46:52.239Z" itemprop="datePublished" class="page-time">
+                <time datetime="2019-08-02T03:13:07.894Z" itemprop="datePublished" class="page-time">
   2019-08-02
 </time>
 
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
 
             
         </h5>
@@ -197,13 +195,11 @@
     <article id="post-Redis/慕课网redis从入门到高可用/Untitled"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">第一章 Redis 初识</h1>
+        <h1 class="post-card-title"></h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-08-02 10:46:52" datetime="2019-08-02T02:46:52.239Z"  itemprop="datePublished">2019-08-02</time>
+            <time class="post-time" title="2019-08-02 11:13:07" datetime="2019-08-02T03:13:07.894Z"  itemprop="datePublished">2019-08-02</time>
 
             
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
-
 
 
             
@@ -215,221 +211,14 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <h1 id="Redis从入门到实践"><a href="#Redis从入门到实践" class="headerlink" title="Redis从入门到实践"></a>Redis从入门到实践</h1><p>花了一周左右，全面的学习redis的知识，并记录学习笔记] </p>
-<h3 id="盛赞redis"><a href="#盛赞redis" class="headerlink" title="盛赞redis"></a>盛赞redis</h3><ul>
-<li>高性能key-value服务器</li>
-<li>多种数据结构</li>
-<li>丰富的功能</li>
-<li>高可用的分布式支持</li>
-</ul>
-<h2 id="redis初识"><a href="#redis初识" class="headerlink" title="redis初识"></a>redis初识</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库</p>
-</blockquote>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>开源</li>
-<li>多种数据结构</li>
-<li>基于键值的存储服务系统</li>
-<li>高性能，功能服务</li>
-</ul>
-<h3 id="redis的前世今生"><a href="#redis的前世今生" class="headerlink" title="redis的前世今生"></a>redis的前世今生</h3><p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bc8da48?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bc8da48?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<h2 id="谁在使用redis"><a href="#谁在使用redis" class="headerlink" title="谁在使用redis"></a>谁在使用redis</h2><ul>
-<li>github</li>
-<li>twitter</li>
-<li>微博</li>
-<li>Stack Overflow</li>
-<li>阿里巴巴</li>
-<li>百度</li>
-<li>美团</li>
-<li>搜狐</li>
-<li>……</li>
-</ul>
-<h2 id="redis特性目录"><a href="#redis特性目录" class="headerlink" title="redis特性目录"></a>redis特性目录</h2><ul>
-<li>速度快</li>
-<li>持久化</li>
-<li>多种数据结构</li>
-<li>支持多种编程语言</li>
-<li>功能丰富</li>
-<li>简单：代码短小精悍</li>
-<li>主从复制</li>
-<li>高可用、分布式</li>
-</ul>
-<h3 id="特性1：速度快"><a href="#特性1：速度快" class="headerlink" title="特性1：速度快"></a>特性1：速度快</h3><p>10w QPS</p>
-<p><strong>原因</strong></p>
-<ul>
-<li>数据存在内存</li>
-<li>c语言编写</li>
-<li>单线程编写</li>
-</ul>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0be1b44a?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0be1b44a?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bb18988?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bb18988?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<h3 id="特性2：持久化"><a href="#特性2：持久化" class="headerlink" title="特性2：持久化"></a>特性2：持久化</h3><ul>
-<li>redis所有的数据保存在内存中，对数据的更新将异步地保存到磁盘上</li>
-</ul>
-<h3 id="特性3：数据结构"><a href="#特性3：数据结构" class="headerlink" title="特性3：数据结构"></a>特性3：数据结构</h3><p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0cf21ee4?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0cf21ee4?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<h3 id="特性4：多语言客户端"><a href="#特性4：多语言客户端" class="headerlink" title="特性4：多语言客户端"></a>特性4：多语言客户端</h3><ul>
-<li>java</li>
-<li>php</li>
-<li>python</li>
-<li>ruby</li>
-<li>lua</li>
-<li>nodejs</li>
-</ul>
-<h3 id="特性5：功能丰富"><a href="#特性5：功能丰富" class="headerlink" title="特性5：功能丰富"></a>特性5：功能丰富</h3><ul>
-<li>发布订阅</li>
-<li>lua脚本</li>
-<li>事务</li>
-<li>pipeline</li>
-</ul>
-<h3 id="特性6：简单"><a href="#特性6：简单" class="headerlink" title="特性6：简单"></a>特性6：简单</h3><ul>
-<li>23000行代码实现核心功能</li>
-<li>不依赖外部库</li>
-<li>单线程模型</li>
-</ul>
-<h3 id="特性7：复制"><a href="#特性7：复制" class="headerlink" title="特性7：复制"></a>特性7：复制</h3><p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bf491e9?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bf491e9?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<h3 id="特性8：-高可用"><a href="#特性8：-高可用" class="headerlink" title="特性8： 高可用"></a>特性8： 高可用</h3><ul>
-<li>redis-sentinel支持高可用</li>
-<li>分布式 redis-cluster支持分布式</li>
-</ul>
-<h2 id="redis典型使用场景"><a href="#redis典型使用场景" class="headerlink" title="redis典型使用场景"></a>redis典型使用场景</h2><ul>
-<li>缓存系统</li>
-</ul>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0d0f0ece?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0d0f0ece?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<ul>
-<li>计数器</li>
-</ul>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bdba35a?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bdba35a?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<ul>
-<li>消息队列系统</li>
-</ul>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bb3fa29?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bb3fa29?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<ul>
-<li>排行榜</li>
-</ul>
-<p><a rel=第一章 Redis 初识 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bd9c7ee?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bd9c7ee?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<ul>
-<li>社交网络</li>
-<li>实时系统</li>
-</ul>
-<hr>
-<h1 id="Redis特性"><a href="#Redis特性" class="headerlink" title="Redis特性"></a>Redis特性</h1><h3 id="1-速度快"><a href="#1-速度快" class="headerlink" title="1.速度快"></a>1.速度快</h3><ul>
-<li>官方称可以达到10W的qps</li>
-<li>将数据存储在内存中</li>
-<li>由C语言编写</li>
-<li>线程模型为单线程</li>
-</ul>
-<h3 id="2-持久化"><a href="#2-持久化" class="headerlink" title="2.持久化"></a>2.持久化</h3><ul>
-<li>Redis将所有数据保持在内存中，并异步更新到磁盘上</li>
-</ul>
-<h3 id="3-支持多种数据结构"><a href="#3-支持多种数据结构" class="headerlink" title="3.支持多种数据结构"></a>3.支持多种数据结构</h3><ul>
-<li>String</li>
-<li>Hash</li>
-<li>List</li>
-<li>Set</li>
-<li>ZSet</li>
-<li>BitMap（位图）</li>
-<li>HyperLogLog（超小的内存唯一值计数器）</li>
-<li>GEO（地理信息定位）</li>
-</ul>
-<h3 id="4-支持多种编程语言"><a href="#4-支持多种编程语言" class="headerlink" title="4.支持多种编程语言"></a>4.支持多种编程语言</h3><ul>
-<li>Java</li>
-<li>Python</li>
-<li>Ruby</li>
-<li>Lua</li>
-<li>NodeJS</li>
-</ul>
-<h3 id="5-功能丰富"><a href="#5-功能丰富" class="headerlink" title="5.功能丰富"></a>5.功能丰富</h3><ul>
-<li>支持类MQ的发布订阅功能</li>
-<li>支持Lua脚本</li>
-<li>支持事务</li>
-<li>支持pipeline</li>
-</ul>
-<h3 id="6-非常简单"><a href="#6-非常简单" class="headerlink" title="6.非常简单"></a>6.非常简单</h3><ul>
-<li>Redis 3.0的单机核心代码只有2300行代码</li>
-<li>单线程模型</li>
-</ul>
-<h3 id="7-支持主从复制"><a href="#7-支持主从复制" class="headerlink" title="7.支持主从复制"></a>7.支持主从复制</h3><h3 id="8-高可用、分布式"><a href="#8-高可用、分布式" class="headerlink" title="8.高可用、分布式"></a>8.高可用、分布式</h3><ul>
-<li>在 V2.8 中支持Redis Sentinel</li>
-<li>在 V3.0 中支持Redis Cluster</li>
-</ul>
-<h1 id="Redis启动方式"><a href="#Redis启动方式" class="headerlink" title="Redis启动方式"></a>Redis启动方式</h1><h3 id="1-最简启动：使用默认配置"><a href="#1-最简启动：使用默认配置" class="headerlink" title="1.最简启动：使用默认配置"></a>1.最简启动：使用默认配置</h3><ul>
-<li>./redis-server</li>
-</ul>
-<h3 id="2-动态参数启动"><a href="#2-动态参数启动" class="headerlink" title="2.动态参数启动"></a>2.动态参数启动</h3><p>./redis-server –port 6379</p>
-<h3 id="3-指定配置文件启动"><a href="#3-指定配置文件启动" class="headerlink" title="3.指定配置文件启动"></a>3.指定配置文件启动</h3><p>./redis-server configPath</p>
-<p>生产环境推荐此方式：单机多实例配置</p>
-<h1 id="Redis基础常用配置"><a href="#Redis基础常用配置" class="headerlink" title="Redis基础常用配置"></a>Redis基础常用配置</h1><h3 id="1-daemonize"><a href="#1-daemonize" class="headerlink" title="1.daemonize"></a>1.daemonize</h3><p>​    是否是守护进程（yes/no)，设置为yes时，Redis会把启动日志输出到日志文件中</p>
-<h3 id="2-port"><a href="#2-port" class="headerlink" title="2.port"></a>2.port</h3><p>​    Redis端口号</p>
-<h3 id="3-logfile"><a href="#3-logfile" class="headerlink" title="3.logfile"></a>3.logfile</h3><p>​    log 输出到标准设备，logs 不写文件，输出到空设备，/deb/null </p>
-<h3 id="4-dir"><a href="#4-dir" class="headerlink" title="4.dir"></a>4.dir</h3><p>​    数据库存放路径</p>
-<h1 id="Redis数据结构与内部编码"><a href="#Redis数据结构与内部编码" class="headerlink" title="Redis数据结构与内部编码"></a>Redis数据结构与内部编码</h1><ul>
-<li>string    ：raw ， int ， embstr<ul>
-<li>int的范围相当于Java中的long，为8个字节长整型</li>
-<li>字符长度少于等于39个长度时为embstr</li>
-<li>字符长度超过39个长度时为raw，比起embstr，是不连续的</li>
-</ul>
-</li>
-<li>hash       ：hashtable（哈希表） ， ziplist（压缩列表）<ul>
-<li>hash-max-ziplist-entries 512</li>
-<li>hash-max-ziplist-value 64</li>
-<li>当hash结构的field数量小于等于512并且每个field与value的长度小于等于64时，hash会采用ziplist</li>
-</ul>
-</li>
-<li>list           ：linkedlist（双向循环链表） ， ziplist（压缩列表）<ul>
-<li>list-max-ziplist-entries 512</li>
-<li>list-max-ziplist-value 64</li>
-<li>当list结构的元素数量小于等于512并且每个item的长度小于等于64时，list会采用ziplist</li>
-</ul>
-</li>
-<li>set           ：hashtable（哈希表） ， intset（整数集合）<ul>
-<li>set-max-intset-entries 512</li>
-<li>当set结构的元素数量小于等于512时候，set将采用intset</li>
-</ul>
-</li>
-<li>zset         ：skiplist（跳跃列表） ， ziplist（压缩列表）<ul>
-<li>zset-max-ziplist-entries 512</li>
-<li>zset-max-ziplist-value 64</li>
-<li>当zset结构的元素数量小于等于512并且每个member的长度小于等于64时，zset会采用ziplist</li>
-</ul>
-</li>
-<li>当key的数量比较少时，Redis采取以时间换空间的策略</li>
-<li>当key的数量增多时，Redis采取以空间换时间的策略</li>
-<li>查看内部编码的方式 object encoding ${key}</li>
-<li>ziplist的特点<ul>
-<li>连续内存</li>
-<li>读写有指针位移，最坏O(n<sup>2</sup>)</li>
-<li>新增删除有内存重分配</li>
-</ul>
-</li>
-</ul>
-<h1 id="Redis单线程为什么速度还那么快"><a href="#Redis单线程为什么速度还那么快" class="headerlink" title="Redis单线程为什么速度还那么快"></a>Redis单线程为什么速度还那么快</h1><ul>
-<li>纯内存</li>
-<li>使用epoll创建非阻塞IO</li>
-<li>由于是单线程，因此避免了线程切换和竞态消耗</li>
-</ul>
-<h1 id="Redis单线程需要注意的点"><a href="#Redis单线程需要注意的点" class="headerlink" title="Redis单线程需要注意的点"></a>Redis单线程需要注意的点</h1><ul>
-<li>一次只会运行一条命令</li>
-<li>拒绝长命令/慢命令<ul>
-<li>keys</li>
-<li>flushall</li>
-<li>flushdb</li>
-<li>slow lua script</li>
-<li>mutil/exec</li>
-<li>operate</li>
-</ul>
-</li>
-</ul>
-<h1 id="Redis配置生效方法"><a href="#Redis配置生效方法" class="headerlink" title="Redis配置生效方法"></a>Redis配置生效方法</h1><ul>
-<li>修改config配置文件，然后重启redis服务</li>
-<li>config set configName configValue  （前提需要当前配置支持动态配置）</li>
-</ul>
-
+            
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-08-02T02:56:30.786Z" itemprop="dateUpdated">2019-08-02 10:56:30</time>
+    Last updated: <time datetime="2019-08-02T03:13:07.894Z" itemprop="dateUpdated">2019-08-02 11:13:07</time>
 </span><br>
 
 
@@ -454,8 +243,6 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
-
             <div class="page-share-wrap">
     
 
@@ -463,7 +250,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《第一章 Redis 初识》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -475,7 +262,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《第一章 Redis 初识》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -498,21 +285,14 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled 1/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">No title</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="next">
-      <a href="/2019/08/02/Redis/Untitled/" id="post-next" class="post-nav-link">
+      <a href="/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled 1/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">No title</h4>
+        <h4 class="title">[no title]</h4>
       </a>
     </div>
   
@@ -520,14 +300,6 @@
 
 
     
-    
-        <aside class="post-widget">
-            <nav class="post-toc-wrap" id="post-toc">
-                <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis从入门到实践"><span class="post-toc-number">1.</span> <span class="post-toc-text">Redis从入门到实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#盛赞redis"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">盛赞redis</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#redis初识"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">redis初识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#redis的前世今生"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">redis的前世今生</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#谁在使用redis"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">谁在使用redis</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#redis特性目录"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">redis特性目录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性1：速度快"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">特性1：速度快</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性2：持久化"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">特性2：持久化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性3：数据结构"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">特性3：数据结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性4：多语言客户端"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">特性4：多语言客户端</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性5：功能丰富"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">特性5：功能丰富</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性6：简单"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">特性6：简单</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性7：复制"><span class="post-toc-number">1.3.7.</span> <span class="post-toc-text">特性7：复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性8：-高可用"><span class="post-toc-number">1.3.8.</span> <span class="post-toc-text">特性8： 高可用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#redis典型使用场景"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">redis典型使用场景</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis特性"><span class="post-toc-number">2.</span> <span class="post-toc-text">Redis特性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-速度快"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">1.速度快</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-持久化"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">2.持久化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-支持多种数据结构"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">3.支持多种数据结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-支持多种编程语言"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">4.支持多种编程语言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-功能丰富"><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">5.功能丰富</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-非常简单"><span class="post-toc-number">2.0.6.</span> <span class="post-toc-text">6.非常简单</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-支持主从复制"><span class="post-toc-number">2.0.7.</span> <span class="post-toc-text">7.支持主从复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-高可用、分布式"><span class="post-toc-number">2.0.8.</span> <span class="post-toc-text">8.高可用、分布式</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis启动方式"><span class="post-toc-number">3.</span> <span class="post-toc-text">Redis启动方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-最简启动：使用默认配置"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">1.最简启动：使用默认配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-动态参数启动"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2.动态参数启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-指定配置文件启动"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">3.指定配置文件启动</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis基础常用配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">Redis基础常用配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-daemonize"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">1.daemonize</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-port"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">2.port</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-logfile"><span class="post-toc-number">4.0.3.</span> <span class="post-toc-text">3.logfile</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-dir"><span class="post-toc-number">4.0.4.</span> <span class="post-toc-text">4.dir</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis数据结构与内部编码"><span class="post-toc-number">5.</span> <span class="post-toc-text">Redis数据结构与内部编码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis单线程为什么速度还那么快"><span class="post-toc-number">6.</span> <span class="post-toc-text">Redis单线程为什么速度还那么快</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis单线程需要注意的点"><span class="post-toc-number">7.</span> <span class="post-toc-text">Redis单线程需要注意的点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis配置生效方法"><span class="post-toc-number">8.</span> <span class="post-toc-text">Redis配置生效方法</span></a></li></ol>
-            </nav>
-            <div class="toc-bar"><div>
-        </aside>
     
 </article>
 
@@ -621,7 +393,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《第一章 Redis 初识》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《No title》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -633,7 +405,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《第一章 Redis 初识》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled/&title=《No title》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

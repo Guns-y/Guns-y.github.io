@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>第二章 API理解与适用 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Redis">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>第二章 API理解与适用</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">第二章 API理解与适用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-02T02:47:06.228Z" itemprop="datePublished" class="page-time">
+  2019-08-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 "
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">第二章 API理解与适用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-02 10:47:06" datetime="2019-08-02T02:47:06.228Z"  itemprop="datePublished">2019-08-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h1><h3 id="1-keys-pattern"><a href="#1-keys-pattern" class="headerlink" title="1.keys pattern"></a>1.keys pattern</h3><ul>
+<li>含义：查找所有符合给定模式（pattern）的key<ul>
+<li>keys *                遍历所有key</li>
+<li>keys he[h-l]*     遍历以he开头，第三个字符为h-l之间的所有key</li>
+<li>keys ph?             ?代表一个字符</li>
+</ul>
+</li>
+<li>注意：keys命令一般不在生产环境中使用<ul>
+<li>生产环境的key比较多，keys这个命令是一个O(n)的命令</li>
+<li>由于Redis是单线程的，这个命令的操作会阻塞其他操作</li>
+<li>可以在从节点上执行keys命令</li>
+<li>使用SCAN命令代替keys命令</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-dbsize"><a href="#2-dbsize" class="headerlink" title="2.dbsize"></a>2.dbsize</h3><ul>
+<li>含义：查找当前数据库的key的数量</li>
+</ul>
+<h3 id="3-exists-key"><a href="#3-exists-key" class="headerlink" title="3.exists key"></a>3.exists key</h3><ul>
+<li>含义：检查给定的key是否存在</li>
+</ul>
+<h3 id="4-del-key1-key2…"><a href="#4-del-key1-key2…" class="headerlink" title="4.del key1 [key2…]"></a>4.del key1 [key2…]</h3><ul>
+<li>含义：在key存在时删除key</li>
+</ul>
+<h3 id="5-expire-key-second"><a href="#5-expire-key-second" class="headerlink" title="5.expire key second"></a>5.expire key second</h3><ul>
+<li>含义：为给定key设置过期时间，单位为秒</li>
+</ul>
+<h3 id="6-ttl-key"><a href="#6-ttl-key" class="headerlink" title="6. ttl key"></a>6. ttl key</h3><ul>
+<li>含义：以秒为单位，返回给定key的剩余生存时间（TTL , time to live)<ul>
+<li>不存在key返回-2</li>
+<li>无过期时间的key返回-1</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-persist-key"><a href="#7-persist-key" class="headerlink" title="7.persist key"></a>7.persist key</h3><ul>
+<li>含义：移除key的过期时间，key将持久保存</li>
+</ul>
+<h3 id="8-type-key"><a href="#8-type-key" class="headerlink" title="8.type key"></a>8.type key</h3><ul>
+<li>含义：返回key所存储的值的类型<ul>
+<li>不存在的key返回none</li>
+</ul>
+</li>
+</ul>
+<h1 id="String数据类型"><a href="#String数据类型" class="headerlink" title="String数据类型"></a>String数据类型</h1><h2 id="String-结构"><a href="#String-结构" class="headerlink" title="String-结构"></a>String-结构</h2><ul>
+<li>结构：Key-Value对</li>
+<li>Value：可以是字符串、数字，也可以是二进制数组</li>
+<li>限制：Value最大值为512MB</li>
+</ul>
+<h2 id="String-常用命令"><a href="#String-常用命令" class="headerlink" title="String-常用命令"></a>String-常用命令</h2><h3 id="1-get-key"><a href="#1-get-key" class="headerlink" title="1.get  key"></a>1.get  key</h3><ul>
+<li>含义：获取指定key的值</li>
+</ul>
+<h3 id="2-set-key-value"><a href="#2-set-key-value" class="headerlink" title="2.set key value"></a>2.set key value</h3><ul>
+<li>含义：设置指定key的值</li>
+</ul>
+<h3 id="3-incr-key"><a href="#3-incr-key" class="headerlink" title="3.incr key"></a>3.incr key</h3><ul>
+<li>含义：将key中存储的数字值增一</li>
+</ul>
+<h3 id="4-incrby-key-increment"><a href="#4-incrby-key-increment" class="headerlink" title="4.incrby key increment"></a>4.incrby key increment</h3><ul>
+<li>含义：将key所存储的数字值加上给定的增量</li>
+</ul>
+<h3 id="5-decr-key"><a href="#5-decr-key" class="headerlink" title="5.decr key"></a>5.decr key</h3><ul>
+<li>含义：将key中存储的数字值减一</li>
+</ul>
+<h3 id="6-decrby-key-decrement"><a href="#6-decrby-key-decrement" class="headerlink" title="6.decrby key decrement"></a>6.decrby key decrement</h3><ul>
+<li>含义：将key所存储的数字值减去给定的减量</li>
+</ul>
+<h3 id="7-setnx-key-value"><a href="#7-setnx-key-value" class="headerlink" title="7.setnx key value"></a>7.setnx key value</h3><ul>
+<li>含义：只有当key不存在时才设置key的值</li>
+</ul>
+<h3 id="8-set-key-value-nx"><a href="#8-set-key-value-nx" class="headerlink" title="8.set key value nx"></a>8.set key value nx</h3><ul>
+<li>含义：与⑦相同，只有当key不存在时才设置key的值</li>
+</ul>
+<h3 id="9-setex-key-second-value"><a href="#9-setex-key-second-value" class="headerlink" title="9.setex key second value"></a>9.setex key second value</h3><ul>
+<li>含义：设置指定key的值，同时设置该key的过期时间，单位为秒</li>
+</ul>
+<h3 id="10-set-key-second-value-ex"><a href="#10-set-key-second-value-ex" class="headerlink" title="10.set key second value ex"></a>10.set key second value ex</h3><ul>
+<li>含义：与⑨相同，设置指定key的值，同时设置该key的过期时间，单位为秒</li>
+</ul>
+<h3 id="11-set-key-value-xx"><a href="#11-set-key-value-xx" class="headerlink" title="11.set key value xx"></a>11.set key value xx</h3><ul>
+<li>含义：只有key存在时才设置key的值</li>
+</ul>
+<h3 id="12-mget-key1-key2…"><a href="#12-mget-key1-key2…" class="headerlink" title="12.mget key1 [key2…]"></a>12.mget key1 [key2…]</h3><ul>
+<li>含义：获取所有（一个或多个）指定key的值</li>
+</ul>
+<h3 id="13-mset-key1-value1-key2-value2…"><a href="#13-mset-key1-value1-key2-value2…" class="headerlink" title="13.mset key1 value1 [key2 value2…]"></a>13.mset key1 value1 [key2 value2…]</h3><ul>
+<li>含义：同时设置一个或多个key-value对</li>
+</ul>
+<h2 id="String-不太常用命令"><a href="#String-不太常用命令" class="headerlink" title="String-不太常用命令"></a>String-不太常用命令</h2><h3 id="1-getset-key-value"><a href="#1-getset-key-value" class="headerlink" title="1.getset key value"></a>1.getset key value</h3><ul>
+<li>含义：将给定key的值设置为value，并返回key的旧值</li>
+</ul>
+<h3 id="2-append-key-value"><a href="#2-append-key-value" class="headerlink" title="2.append key value"></a>2.append key value</h3><ul>
+<li>含义：将value追加到旧值的末尾</li>
+</ul>
+<h3 id="3-strlen-key"><a href="#3-strlen-key" class="headerlink" title="3.strlen key"></a>3.strlen key</h3><ul>
+<li>含义：返回key所存储的字符串值的长度<ul>
+<li>当key不存在时，返回0</li>
+<li>一个中文占2个字节</li>
+<li>时间复杂度为O(1)，strlen在redis内部不需要查询整个字符串来得到长度</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-incrbyfloat-key-increment"><a href="#4-incrbyfloat-key-increment" class="headerlink" title="4.incrbyfloat key increment"></a>4.incrbyfloat key increment</h3><ul>
+<li>含义：将key所存储的值加上给定的浮点值</li>
+</ul>
+<h3 id="5-getrange-key-start-end"><a href="#5-getrange-key-start-end" class="headerlink" title="5.getrange key start end"></a>5.getrange key start end</h3><ul>
+<li>含义：返回key中字符串区间为[start,end]的子串，索引从0开始</li>
+</ul>
+<h3 id="6-setrange-key-offset-value"><a href="#6-setrange-key-offset-value" class="headerlink" title="6.setrange key offset value"></a>6.setrange key offset value</h3><ul>
+<li>含义：用value擦书覆盖指定key所存储的字符串值，从偏移量offset开始，索引从0开始<ul>
+<li>key = content的时候，执行setrange key 1 haha 之后，key=chahant</li>
+</ul>
+</li>
+</ul>
+<h1 id="Hash数据类型"><a href="#Hash数据类型" class="headerlink" title="Hash数据类型"></a>Hash数据类型</h1><h2 id="Hash-常用命令"><a href="#Hash-常用命令" class="headerlink" title="Hash-常用命令"></a>Hash-常用命令</h2><h3 id="1-hget-key-field"><a href="#1-hget-key-field" class="headerlink" title="1.hget key field"></a>1.hget key field</h3><ul>
+<li>含义：获取存储在哈希表中指定field的值</li>
+</ul>
+<h3 id="2-hset-key-field-value"><a href="#2-hset-key-field-value" class="headerlink" title="2.hset key field value"></a>2.hset key field value</h3><ul>
+<li>含义：将哈希表中指定field的值设置为value</li>
+</ul>
+<h3 id="3-hdel-key-field1-field2…"><a href="#3-hdel-key-field1-field2…" class="headerlink" title="3.hdel key field1 [field2…]"></a>3.hdel key field1 [field2…]</h3><ul>
+<li>含义：删除哈希表中一个或多个field</li>
+</ul>
+<h3 id="4-hexists-key-field"><a href="#4-hexists-key-field" class="headerlink" title="4.hexists key field"></a>4.hexists key field</h3><ul>
+<li>含义：判断哈希表中，指定field是否存在</li>
+</ul>
+<h3 id="5-hlen-key"><a href="#5-hlen-key" class="headerlink" title="5.hlen key"></a>5.hlen key</h3><ul>
+<li>含义：获取哈希表中字段的数量</li>
+</ul>
+<h3 id="6-hmget-key-field1-field2…"><a href="#6-hmget-key-field1-field2…" class="headerlink" title="6.hmget key field1 [field2…]"></a>6.hmget key field1 [field2…]</h3><ul>
+<li>含义：获取哈希表中所有给定field的值</li>
+</ul>
+<h3 id="7-hmset-key-field1-value1-field2-value2…"><a href="#7-hmset-key-field1-value1-field2-value2…" class="headerlink" title="7.hmset key field1 value1 [field2 value2…]"></a>7.hmset key field1 value1 [field2 value2…]</h3><ul>
+<li>含义：同时将一个或多个field-value对设置到哈希表中</li>
+</ul>
+<h3 id="8-hincrby-key-fiel-increment"><a href="#8-hincrby-key-fiel-increment" class="headerlink" title="8.hincrby key fiel increment"></a>8.hincrby key fiel increment</h3><ul>
+<li>含义：为哈希表中指定field的值加上一个整型增量</li>
+</ul>
+<h3 id="9-hgetall-key"><a href="#9-hgetall-key" class="headerlink" title="9.hgetall key"></a>9.hgetall key</h3><ul>
+<li>含义：获取哈希表中所有字段和值</li>
+<li>时间复杂度为O(n)，不建议使用</li>
+</ul>
+<h3 id="10-hkeys-key"><a href="#10-hkeys-key" class="headerlink" title="10.hkeys key"></a>10.hkeys key</h3><ul>
+<li>含义：获取哈希表中的所有字段</li>
+<li>时间复杂度为O(n)，不建议使用</li>
+</ul>
+<h3 id="11-hvals-key"><a href="#11-hvals-key" class="headerlink" title="11.hvals key"></a>11.hvals key</h3><ul>
+<li>含义：获取哈希表中的所有值</li>
+<li>时间复杂度为O(n)，不建议使用</li>
+</ul>
+<h3 id="12-hsetnx-key-field-value"><a href="#12-hsetnx-key-field-value" class="headerlink" title="12.hsetnx key field value"></a>12.hsetnx key field value</h3><ul>
+<li>含义：只有当哈希表中field不存在时，才设置该field的值</li>
+</ul>
+<h3 id="13-hincrbyfloat-key-field-increment"><a href="#13-hincrbyfloat-key-field-increment" class="headerlink" title="13.hincrbyfloat key field increment"></a>13.hincrbyfloat key field increment</h3><ul>
+<li>含义：为哈希表中指定field的值加上一个浮点数增量</li>
+</ul>
+<h1 id="List数据类型"><a href="#List数据类型" class="headerlink" title="List数据类型"></a>List数据类型</h1><h2 id="List-结构"><a href="#List-结构" class="headerlink" title="List-结构"></a>List-结构</h2><ul>
+<li>列表：有序、可以有重复元素</li>
+<li>索引相关知识<ul>
+<li>索引从左往右，从0开始逐个增大      0      1      2      3      4      5</li>
+<li>索引从右往左，从-1开始逐个减小    -6     -5     -4    -3      -2    -1     </li>
+</ul>
+</li>
+</ul>
+<h2 id="List-常用命令"><a href="#List-常用命令" class="headerlink" title="List-常用命令"></a>List-常用命令</h2><h3 id="1-rpush-key-value1-value2…"><a href="#1-rpush-key-value1-value2…" class="headerlink" title="1.rpush key value1 [value2…]"></a>1.rpush key value1 [value2…]</h3><ul>
+<li>含义：在列表后侧添加一个或多个值</li>
+</ul>
+<h3 id="2-lpush-key-value1-value2…"><a href="#2-lpush-key-value1-value2…" class="headerlink" title="2.lpush key value1 [value2…]"></a>2.lpush key value1 [value2…]</h3><ul>
+<li>含义：在列表左侧添加一个或多个值</li>
+</ul>
+<h3 id="3-linsert-key-before-after-value-newValue"><a href="#3-linsert-key-before-after-value-newValue" class="headerlink" title="3.linsert key before/after value newValue"></a>3.linsert key before/after value newValue</h3><ul>
+<li>含义：在列表指定的value前/后插入newValue，时间复杂度为O(n)</li>
+</ul>
+<h3 id="4-lpop-key"><a href="#4-lpop-key" class="headerlink" title="4.lpop key"></a>4.lpop key</h3><ul>
+<li>含义：从列表左侧弹出一个值</li>
+</ul>
+<h3 id="5-rpop-key"><a href="#5-rpop-key" class="headerlink" title="5.rpop key"></a>5.rpop key</h3><ul>
+<li>含义：从列表右侧弹出一个值</li>
+</ul>
+<h3 id="6-lrem-key-count-value"><a href="#6-lrem-key-count-value" class="headerlink" title="6.lrem key count value"></a>6.lrem key count value</h3><ul>
+<li>含义：根据count值，从列表中删除值为value的项，时间复杂度为O(n)<ul>
+<li>count &gt; 0 时，从左往右遍历，删除最多count个与value相等的值</li>
+<li>count &lt; 0 时，从右往左遍历，删除最多Math.abs(count)个与value相等的值</li>
+<li>count = 0 时，删除所有与value相等的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-ltrim-key-start-end"><a href="#7-ltrim-key-start-end" class="headerlink" title="7.ltrim key start end"></a>7.ltrim key start end</h3><ul>
+<li>含义：对一个列表进行修剪，只保留指定区间内的元素，不在区间内的元素都将被删除，时间复杂度为O(n)</li>
+</ul>
+<h3 id="8-lrange-key-start-end"><a href="#8-lrange-key-start-end" class="headerlink" title="8.lrange key start end"></a>8.lrange key start end</h3><ul>
+<li>含义：获取列表指定索引范围的所有元素，时间复杂度为O(n)</li>
+</ul>
+<h3 id="9-lindex-key-index"><a href="#9-lindex-key-index" class="headerlink" title="9.lindex key index"></a>9.lindex key index</h3><ul>
+<li>含义：获取列表指定索引的元素，时间复杂度为O(n)</li>
+</ul>
+<h3 id="10-llen-key"><a href="#10-llen-key" class="headerlink" title="10.llen key"></a>10.llen key</h3><ul>
+<li>含义：获取列表长度，时间复杂度为O(1)</li>
+</ul>
+<h3 id="11-lset-key-index-newValue"><a href="#11-lset-key-index-newValue" class="headerlink" title="11.lset key index newValue"></a>11.lset key index newValue</h3><ul>
+<li>含义：设置列表指定索引的值为newValue，时间复杂度为O(n)</li>
+<li>注意：<ul>
+<li>必须存在这个值才能设置成功，否则会报错</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-blpop-key-timeout"><a href="#12-blpop-key-timeout" class="headerlink" title="12.blpop key timeout"></a>12.blpop key timeout</h3><ul>
+<li>含义：移除并获取列表左边第一个元素，如果列表没有元素会阻塞直到等待超时或可弹出元素为止<ul>
+<li>timeout单位为秒，timeout=0时不阻塞</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-brpop-key-timeout"><a href="#13-brpop-key-timeout" class="headerlink" title="13.brpop key timeout"></a>13.brpop key timeout</h3><ul>
+<li>含义：移除并获取列表右边第一个元素，如果列表没有元素会阻塞直到等待超时或可弹出元素为止<ul>
+<li>timeout单位为秒，timeout=0时不阻塞</li>
+</ul>
+</li>
+</ul>
+<h1 id="Set数据类型"><a href="#Set数据类型" class="headerlink" title="Set数据类型"></a>Set数据类型</h1><h2 id="Set-结构"><a href="#Set-结构" class="headerlink" title="Set-结构"></a>Set-结构</h2><ul>
+<li>集合：无序、不能包含重复元素</li>
+</ul>
+<h2 id="Set-集合内操作"><a href="#Set-集合内操作" class="headerlink" title="Set-集合内操作"></a>Set-集合内操作</h2><h3 id="1-sadd-key-memebr1-member2…"><a href="#1-sadd-key-memebr1-member2…" class="headerlink" title="1.sadd key memebr1 [member2…]"></a>1.sadd key memebr1 [member2…]</h3><ul>
+<li>含义：向集合中添加一个或多个成员</li>
+</ul>
+<h3 id="2-srem-key-member1-member2…"><a href="#2-srem-key-member1-member2…" class="headerlink" title="2.srem key member1 [member2…]"></a>2.srem key member1 [member2…]</h3><ul>
+<li>含义：从集合中删除一个或多个成员</li>
+</ul>
+<h3 id="3-scard-key"><a href="#3-scard-key" class="headerlink" title="3.scard key"></a>3.scard key</h3><ul>
+<li>含义：获取集合中的元素个数</li>
+</ul>
+<h3 id="4-sismember-key-member"><a href="#4-sismember-key-member" class="headerlink" title="4.sismember key member"></a>4.sismember key member</h3><ul>
+<li>含义：判断member元素是不是集合的成员</li>
+</ul>
+<h3 id="5-srandmember-key-count"><a href="#5-srandmember-key-count" class="headerlink" title="5.srandmember key count"></a>5.srandmember key count</h3><ul>
+<li>含义：随机从集合中取出count个成员</li>
+</ul>
+<h3 id="6-spop-key"><a href="#6-spop-key" class="headerlink" title="6.spop key"></a>6.spop key</h3><ul>
+<li>含义：随机移除并返回集合中的一个成员</li>
+</ul>
+<h3 id="7-smembers-key"><a href="#7-smembers-key" class="headerlink" title="7.smembers key"></a>7.smembers key</h3><ul>
+<li>含义：获取集合中的所有成员</li>
+<li>时间复杂度为O(n)，不建议使用，类似的操作可以使用SSCAN</li>
+</ul>
+<h2 id="Set-集合间操作"><a href="#Set-集合间操作" class="headerlink" title="Set-集合间操作"></a>Set-集合间操作</h2><h3 id="1-sdiff-key1-key2…"><a href="#1-sdiff-key1-key2…" class="headerlink" title="1.sdiff key1 [key2…]"></a>1.sdiff key1 [key2…]</h3><ul>
+<li>含义：返回给定所有集合的差集</li>
+</ul>
+<h3 id="2-sdiffstore-destKey-key1-key2…"><a href="#2-sdiffstore-destKey-key1-key2…" class="headerlink" title="2.sdiffstore destKey key1 [key2…]"></a>2.sdiffstore destKey key1 [key2…]</h3><ul>
+<li>含义：计算给定所有集合的差集，并存入destKey</li>
+</ul>
+<h3 id="3-sinter-key1-key2…"><a href="#3-sinter-key1-key2…" class="headerlink" title="3.sinter key1 [key2…]"></a>3.sinter key1 [key2…]</h3><ul>
+<li>含义：返回给定所有集合的交集</li>
+</ul>
+<h3 id="4-sinterstore-destKey-key1-key2…"><a href="#4-sinterstore-destKey-key1-key2…" class="headerlink" title="4.sinterstore destKey key1 [key2…]"></a>4.sinterstore destKey key1 [key2…]</h3><ul>
+<li>含义：计算给定所有集合的交集，并存入destKey</li>
+</ul>
+<h3 id="5-sunion-key1-key2…"><a href="#5-sunion-key1-key2…" class="headerlink" title="5.sunion key1 [key2…]"></a>5.sunion key1 [key2…]</h3><ul>
+<li>含义：返回给定所有集合的并集</li>
+</ul>
+<h3 id="6-sunionstore-destKey-key1-key2…"><a href="#6-sunionstore-destKey-key1-key2…" class="headerlink" title="6.sunionstore destKey key1 [key2…]"></a>6.sunionstore destKey key1 [key2…]</h3><ul>
+<li>含义：计算给定所有集合的并集，并存入destKey</li>
+</ul>
+<h1 id="ZSet数据类型"><a href="#ZSet数据类型" class="headerlink" title="ZSet数据类型"></a>ZSet数据类型</h1><h2 id="ZSet-结构"><a href="#ZSet-结构" class="headerlink" title="ZSet-结构"></a>ZSet-结构</h2><ul>
+<li>有序集合：有序、不能包含重复元素</li>
+<li>每个节点包含：score和value两个属性，根据score进行排序</li>
+<li>索引相关知识<ul>
+<li>索引从左往右，从0开始逐个增大      0      1      2      3      4      5</li>
+<li>索引从右往左，从-1开始逐个减小    -6     -5     -4    -3      -2    -1    </li>
+</ul>
+</li>
+</ul>
+<h2 id="ZSet-常用命令"><a href="#ZSet-常用命令" class="headerlink" title="ZSet-常用命令"></a>ZSet-常用命令</h2><h3 id="1-zadd-key-score1-member1-score2-member2…"><a href="#1-zadd-key-score1-member1-score2-member2…" class="headerlink" title="1.zadd key score1 member1 [score2 member2…]"></a>1.zadd key score1 member1 [score2 member2…]</h3><ul>
+<li>含义：向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
+</ul>
+<h3 id="2-zrem-key-member1-member2…"><a href="#2-zrem-key-member1-member2…" class="headerlink" title="2.zrem key member1 [member2…]"></a>2.zrem key member1 [member2…]</h3><ul>
+<li>含义：从有序集合中删除一个或多个成员</li>
+</ul>
+<h3 id="3-zscore-key-member"><a href="#3-zscore-key-member" class="headerlink" title="3.zscore key member"></a>3.zscore key member</h3><ul>
+<li>含义：获取有序集合中成员的分数</li>
+</ul>
+<h3 id="4-zincrby-key-increment-member"><a href="#4-zincrby-key-increment-member" class="headerlink" title="4.zincrby key increment member"></a>4.zincrby key increment member</h3><ul>
+<li>含义：对有序集合中指定成员的分数加上增量increment</li>
+</ul>
+<h3 id="5-zcard-key"><a href="#5-zcard-key" class="headerlink" title="5.zcard key"></a>5.zcard key</h3><ul>
+<li>含义：返回有序集合中元素的总个数</li>
+</ul>
+<h3 id="6-zrange-key-start-end-withscores"><a href="#6-zrange-key-start-end-withscores" class="headerlink" title="6.zrange key start end [withscores]"></a>6.zrange key start end [withscores]</h3><ul>
+<li>含义：通过索引返回有序集合中指定区间的成员信息<ul>
+<li>withscores 参数，加上代表一并将score数据返回</li>
+</ul>
+</li>
+<li>时间复杂度：O(log(n) + m) , n=有序集合中的元素个数，m=返回的总个数</li>
+</ul>
+<h3 id="7-zrangebyscore-key-min-max-withscores-limit"><a href="#7-zrangebyscore-key-min-max-withscores-limit" class="headerlink" title="7.zrangebyscore key min max [withscores][limit]"></a>7.zrangebyscore key min max [withscores][limit]</h3><ul>
+<li>含义：通过score返回有序集合中指定分数区间的成员信息<ul>
+<li>withscores 参数，加上代表一并将score数据返回</li>
+<li>limit参数，加上代表限制返回多少条数据</li>
+</ul>
+</li>
+<li>时间复杂度：O(log(n) + m) , n=有序集合中的元素个数，m=返回的总个数</li>
+</ul>
+<h3 id="8-zscore-key-min-max"><a href="#8-zscore-key-min-max" class="headerlink" title="8.zscore key min max"></a>8.zscore key min max</h3><ul>
+<li>含义：返回有序集合中指定分数范围内的元素个数</li>
+<li>时间复杂度：O(log(n) + m) , n=有序集合中的元素个数，m=指定分数范围内的元素个数</li>
+</ul>
+<h3 id="9-zremrangebyscore-key-min-max"><a href="#9-zremrangebyscore-key-min-max" class="headerlink" title="9.zremrangebyscore key min max"></a>9.zremrangebyscore key min max</h3><ul>
+<li>含义：删除有序集合中指定分数区间的所有成员</li>
+<li>时间复杂度：O(log(n) + m) , n=有序集合中的元素个数，m=指定分数范围内的元素个数</li>
+</ul>
+<h3 id="10-zremrangebyrank-key-start-end"><a href="#10-zremrangebyrank-key-start-end" class="headerlink" title="10.zremrangebyrank key start end"></a>10.zremrangebyrank key start end</h3><ul>
+<li>含义：删除有序集合中给定索引区间的所有成员</li>
+<li>时间复杂度：O(log(n) + m) , n=有序集合中的元素个数，m=指定索引范围内的元素个数</li>
+</ul>
+<h1 id="String-VS-Hash"><a href="#String-VS-Hash" class="headerlink" title="String VS Hash"></a>String VS Hash</h1><h2 id="相似的API"><a href="#相似的API" class="headerlink" title="相似的API"></a>相似的API</h2><table>
+<thead>
+<tr>
+<th align="center">String</th>
+<th align="center">Hash</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">get</td>
+<td align="center">hget</td>
+</tr>
+<tr>
+<td align="center">set setnx</td>
+<td align="center">hset hsetnx</td>
+</tr>
+<tr>
+<td align="center">del</td>
+<td align="center">hdel</td>
+</tr>
+<tr>
+<td align="center">incrby</td>
+<td align="center">hincrby</td>
+</tr>
+<tr>
+<td align="center">mget mset</td>
+<td align="center">hmget hmset</td>
+</tr>
+</tbody></table>
+<h2 id="保存对象的三种方式与优缺点"><a href="#保存对象的三种方式与优缺点" class="headerlink" title="保存对象的三种方式与优缺点"></a>保存对象的三种方式与优缺点</h2><ul>
+<li>方式一：采用string，将整个对象进行序列化，设计Key为对象的业务ID</li>
+<li>方式二：采用string，设计Key为对象的业务ID+属性名，对各个属性分散存储</li>
+<li>方式三：采用hash，设计Key为对象的业务ID，属性名为field</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">方式一</td>
+<td align="center">访问Redis编程简单<br>相比方式二比较节约内存</td>
+<td align="center">序列化开销<br>修改属性需要操作整个数据</td>
+</tr>
+<tr>
+<td align="center">方式二</td>
+<td align="center">Redis数据直观可查<br>可以方便更新属性</td>
+<td align="center">内存占用较大<br>key较为分散</td>
+</tr>
+<tr>
+<td align="center">方式三</td>
+<td align="center">Redis数据直观可查<br>比起方式二比较节约内存<br>可以方便更新属性</td>
+<td align="center">访问Redis编码稍微比较复杂<br>TTL不好控制</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
+<hr>
+<h1 id="API的理解和使用"><a href="#API的理解和使用" class="headerlink" title="API的理解和使用"></a>API的理解和使用</h1><h2 id="通用命令-1"><a href="#通用命令-1" class="headerlink" title="通用命令"></a>通用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>keys [pattern]</td>
+<td>遍历所有key</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>dbsize</td>
+<td>遍历所有key</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>exists</td>
+<td>检查key是否存在</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>del key</td>
+<td>删除指定的key-value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>expire key seconds</td>
+<td>key在seconds秒后过期</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>ttl key</td>
+<td>查看key剩余的过期时间</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>persist key</td>
+<td>去掉key的过期时间</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>type key</td>
+<td>返回key的类型</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>keys命令一般不再生产环境使用</p>
+<p>** 演示**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">➜  redis-4.0.8 redis-cli -h 127.0.0.1 -p 6382</span><br><span class="line">127.0.0.1:6382&gt; set hello word</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; set php good</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; set java best</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; keys *</span><br><span class="line">1) &quot;java&quot;</span><br><span class="line">2) &quot;hello&quot;</span><br><span class="line">3) &quot;php&quot;</span><br><span class="line">127.0.0.1:6382&gt; dbsize</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; exists php</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; del php java</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6382&gt; keys *</span><br><span class="line">1) &quot;hello&quot;</span><br><span class="line">127.0.0.1:6382&gt; expire hello 20</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; ttl hello</span><br><span class="line">(integer) 16</span><br><span class="line">127.0.0.1:6382&gt; ttl hello</span><br><span class="line">(integer) 12</span><br><span class="line">127.0.0.1:6382&gt; persist hello</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; ttl hello</span><br><span class="line">(integer) -1</span><br><span class="line">127.0.0.1:6382&gt; type hello</span><br><span class="line">string</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据结构和内部编码"><a href="#数据结构和内部编码" class="headerlink" title="数据结构和内部编码"></a>数据结构和内部编码</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4cc06b0d?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4cc06b0d?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="reidsObject"><a href="#reidsObject" class="headerlink" title="reidsObject"></a>reidsObject</h3><p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4fe23c34?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4fe23c34?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。</p>
+</blockquote>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c7ddce093?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c7ddce093?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="单线程为什么这么快"><a href="#单线程为什么这么快" class="headerlink" title="单线程为什么这么快"></a>单线程为什么这么快</h3><ul>
+<li>纯内存</li>
+<li>非阻塞IO</li>
+<li>避免线程切换和竞态消耗</li>
+</ul>
+<h3 id="使用单线程要注意什么"><a href="#使用单线程要注意什么" class="headerlink" title="使用单线程要注意什么"></a>使用单线程要注意什么</h3><ul>
+<li>一次只能运行一条命令</li>
+<li>拒绝长（慢）命令<ul>
+<li>keys</li>
+<li>flushall</li>
+<li>flushdb</li>
+<li>slow lua script</li>
+<li>mutil/exec</li>
+<li>operate big value(collection)</li>
+</ul>
+</li>
+</ul>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hello</td>
+<td>world</td>
+</tr>
+<tr>
+<td>counter</td>
+<td>1</td>
+</tr>
+<tr>
+<td>bits</td>
+<td>101111101110</td>
+</tr>
+</tbody></table>
+<p>可以是字符串（json);数字，以及二进制</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>缓存</li>
+<li>计数器</li>
+<li>分布式锁</li>
+</ul>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>get key</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>set key value</td>
+<td>设置key value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>del key</td>
+<td>删除key-value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>incr</td>
+<td>key自增1， 如果key不存在，自增后get(key) = 1</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>decr</td>
+<td>key自减1， 如果key不存在，自增后get(key) = -1</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>incrby key k</td>
+<td>key自增k， 如果key不存在，自增后get(key) = k</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>decr key k</td>
+<td>key自减k， 如果key不存在，自增后get(key) = -k</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>set key value</td>
+<td>不管可以是否存在</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>setnx key value</td>
+<td>key不存在，才设置</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>set key value xx</td>
+<td>key存在，才设置</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>mget key1 key2 key3</td>
+<td>批量获取key，原子操作</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>mset key1 value1 key2 value2</td>
+<td>批量设置key-value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>getset key newvalue</td>
+<td>set key newvalue并返回旧的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>append key value</td>
+<td>将value追加到旧的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>strlen key</td>
+<td>返回字符串的长度（注意中文，utf8下一个中文占用3个字符）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>incrbyfloat key 3.5</td>
+<td>增加key对应的值3.5</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>getrange key start end</td>
+<td>获取字符串指定下标所有的值</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>setrange key index value</td>
+<td>设置指定下标所有对应的值</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p><strong>练习</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; set hello &quot;world&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; get hell</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br><span class="line">127.0.0.1:6382&gt; del hello</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6382&gt; get counter</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6382&gt; incr counter</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; get counter</span><br><span class="line">&quot;1&quot;</span><br><span class="line">127.0.0.1:6382&gt; incrby counter 99</span><br><span class="line">(integer) 100</span><br><span class="line">127.0.0.1:6382&gt; get counter </span><br><span class="line">&quot;100&quot;</span><br><span class="line">127.0.0.1:6382&gt; decr counter</span><br><span class="line">(integer) 99</span><br><span class="line">127.0.0.1:6382&gt; get counter</span><br><span class="line">&quot;99&quot;</span><br><span class="line">127.0.0.1:6382&gt; decrby counter 100</span><br><span class="line">(integer) -1</span><br><span class="line">127.0.0.1:6382&gt; get counter</span><br><span class="line">&quot;-1&quot;</span><br><span class="line">127.0.0.1:6382&gt; exists php</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; set php good</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; setnx php bad</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; set php best xx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; get php</span><br><span class="line">&quot;best&quot;</span><br><span class="line">127.0.0.1:6382&gt; exists java</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; setnx java best</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; set java easy xx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; get java</span><br><span class="line">&quot;easy&quot;</span><br><span class="line">127.0.0.1:6382&gt; set hello world</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; getset hello php</span><br><span class="line">&quot;world&quot;</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">&quot;php&quot;</span><br><span class="line">127.0.0.1:6382&gt; append hell &quot;,php&quot;</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">&quot;php&quot;</span><br><span class="line">127.0.0.1:6382&gt; append hello &quot;,php&quot;</span><br><span class="line">(integer) 7</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">&quot;php,php&quot;</span><br><span class="line">127.0.0.1:6382&gt; strlen hello</span><br><span class="line">(integer) 7</span><br><span class="line">127.0.0.1:6382&gt; set hello &quot;吴军旗&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; strlen hello</span><br><span class="line">(integer) 9</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>n次get操作</strong></p>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c7fbac49f?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c7fbac49f?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<p>** 1次mget操作**</p>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710c9282ba12?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c9282ba12?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><ul>
+<li>记录网站每个用户个人主页的访问量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">incr userid: pageview (**主要的是：单线程，所以无竞争）**）</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>缓存视频的基本信息（数据源在mysql中)伪代码</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710ca9387d8d?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710ca9387d8d?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<ul>
+<li>分布式id生成器（单线程的好处）</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710cad3398a2?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710cad3398a2?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">incr id</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><h3 id="哈希键值结构"><a href="#哈希键值结构" class="headerlink" title="哈希键值结构"></a>哈希键值结构</h3><p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710cadc303e5?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710cadc303e5?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>mapmap</li>
+<li>small redis</li>
+<li>field不能相同，value可以相同</li>
+</ul>
+<h3 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hget key field</td>
+<td>获取hash key对应field的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hset key field value</td>
+<td>设置has key 对应的field的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hexists key field</td>
+<td>判断hash key 是否有field</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hlen key</td>
+<td>获取hash key field的数量</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hmget key field1 field2…fieldN</td>
+<td>批量获取hash key的一批field对应的值</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>hset key field1 value1 field2 value2…fieldN valueN</td>
+<td>批量设置hash key的一批field value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hgetall key</td>
+<td>返回hash key对应所有的field和value</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>hvals key</td>
+<td>返回hash key对应所有的field的value</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>hkeys key</td>
+<td>返回hash key对应所有的field</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>hsetnx key field value</td>
+<td>设置has key 对应的field的value(如果field已经存在，则失败）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hincrby key field intCounter</td>
+<td>hash key对应的field的value自增intCounter</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>hincrbyfloat key field floatCounter</td>
+<td>浮点数版本</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>小心使用hgetall（牢记单线程）</p>
+<p><strong>练习</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; hset user1 age 26</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; hset user1 name wujunqi</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; hget all user1</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6382&gt; hgetall user1</span><br><span class="line">1) &quot;age&quot;</span><br><span class="line">2) &quot;26&quot;</span><br><span class="line">3) &quot;name&quot;</span><br><span class="line">4) &quot;wujunqi&quot;</span><br><span class="line">127.0.0.1:6382&gt; hdel user1 age</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; hgetall user1</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;wujunqi&quot;</span><br><span class="line">127.0.0.1:6382&gt; hget user1 name</span><br><span class="line">&quot;wujunqi&quot;</span><br><span class="line">127.0.0.1:6382&gt; hexists user1 name</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; hlen user1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; hmset user2 name xiaofang age 26</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; hmget user2 name age</span><br><span class="line">1) &quot;xiaofang&quot;</span><br><span class="line">2) &quot;26&quot;</span><br><span class="line">127.0.0.1:6382&gt; hgetall user2</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;xiaofang&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;26&quot;</span><br><span class="line">127.0.0.1:6382&gt; hvals user2</span><br><span class="line">1) &quot;xiaofang&quot;</span><br><span class="line">2) &quot;26&quot;</span><br><span class="line">127.0.0.1:6382&gt; hkeys user2</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;age&quot;</span><br><span class="line">127.0.0.1:6382&gt; hincrby user age 2</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6382&gt; hgetall user2</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;xiaofang&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;26&quot;</span><br><span class="line">127.0.0.1:6382&gt; hincrby user2 age 2</span><br><span class="line">(integer) 28</span><br><span class="line">127.0.0.1:6382&gt; hgetall user2</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;xiaofang&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;28&quot;</span><br><span class="line">127.0.0.1:6382&gt; hincrbyfloat user2 age 2.0</span><br><span class="line">&quot;30&quot;</span><br><span class="line">127.0.0.1:6382&gt; hincrbyfloat user2 age 2.5</span><br><span class="line">&quot;32.5&quot;</span><br><span class="line">127.0.0.1:6382&gt; hgetall user2</span><br><span class="line">1) &quot;name&quot;</span><br><span class="line">2) &quot;xiaofang&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;32.5&quot;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><h3 id="列表结构"><a href="#列表结构" class="headerlink" title="列表结构"></a>列表结构</h3><p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710cce19807a?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710cce19807a?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>有序</li>
+<li>可以重复</li>
+<li>左右两边插入弹出</li>
+</ul>
+<h3 id="API-2"><a href="#API-2" class="headerlink" title="API"></a>API</h3><p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/26/161d004127ded303?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/26/161d004127ded303?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<p><strong>练习</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; rpush list1 a b c d</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6382&gt; lpush list1 e f g h i</span><br><span class="line">(integer) 9</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line">1) &quot;i&quot;</span><br><span class="line">2) &quot;h&quot;</span><br><span class="line">3) &quot;g&quot;</span><br><span class="line">4) &quot;f&quot;</span><br><span class="line">5) &quot;e&quot;</span><br><span class="line">6) &quot;a&quot;</span><br><span class="line">7) &quot;b&quot;</span><br><span class="line">8) &quot;c&quot;</span><br><span class="line">9) &quot;d&quot;</span><br><span class="line">127.0.0.1:6382&gt; linsert list1 before i wu</span><br><span class="line">(integer) 10</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line"> 1) &quot;wu&quot;</span><br><span class="line"> 2) &quot;i&quot;</span><br><span class="line"> 3) &quot;h&quot;</span><br><span class="line"> 4) &quot;g&quot;</span><br><span class="line"> 5) &quot;f&quot;</span><br><span class="line"> 6) &quot;e&quot;</span><br><span class="line"> 7) &quot;a&quot;</span><br><span class="line"> 8) &quot;b&quot;</span><br><span class="line"> 9) &quot;c&quot;</span><br><span class="line">10) &quot;d&quot;</span><br><span class="line">127.0.0.1:6382&gt; linsert list1 after i jun</span><br><span class="line">(integer) 11</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line"> 1) &quot;wu&quot;</span><br><span class="line"> 2) &quot;i&quot;</span><br><span class="line"> 3) &quot;jun&quot;</span><br><span class="line"> 4) &quot;h&quot;</span><br><span class="line"> 5) &quot;g&quot;</span><br><span class="line"> 6) &quot;f&quot;</span><br><span class="line"> 7) &quot;e&quot;</span><br><span class="line"> 8) &quot;a&quot;</span><br><span class="line"> 9) &quot;b&quot;</span><br><span class="line">10) &quot;c&quot;</span><br><span class="line">11) &quot;d&quot;</span><br><span class="line">127.0.0.1:6382&gt; lpop list1</span><br><span class="line">&quot;wu&quot;</span><br><span class="line">127.0.0.1:6382&gt; rpop list1</span><br><span class="line">&quot;d&quot;</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line">1) &quot;i&quot;</span><br><span class="line">2) &quot;jun&quot;</span><br><span class="line">3) &quot;h&quot;</span><br><span class="line">4) &quot;g&quot;</span><br><span class="line">5) &quot;f&quot;</span><br><span class="line">6) &quot;e&quot;</span><br><span class="line">7) &quot;a&quot;</span><br><span class="line">8) &quot;b&quot;</span><br><span class="line">9) &quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; lrem list1 1 i</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line">1) &quot;jun&quot;</span><br><span class="line">2) &quot;h&quot;</span><br><span class="line">3) &quot;g&quot;</span><br><span class="line">4) &quot;f&quot;</span><br><span class="line">5) &quot;e&quot;</span><br><span class="line">6) &quot;a&quot;</span><br><span class="line">7) &quot;b&quot;</span><br><span class="line">8) &quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; rpush list1 c c c c c</span><br><span class="line">(integer) 13</span><br><span class="line">127.0.0.1:6382&gt; ltrem list1 -3 c</span><br><span class="line">(error) ERR unknown command &apos;ltrem&apos;</span><br><span class="line">127.0.0.1:6382&gt; lrem list1 -3 c</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line"> 1) &quot;jun&quot;</span><br><span class="line"> 2) &quot;h&quot;</span><br><span class="line"> 3) &quot;g&quot;</span><br><span class="line"> 4) &quot;f&quot;</span><br><span class="line"> 5) &quot;e&quot;</span><br><span class="line"> 6) &quot;a&quot;</span><br><span class="line"> 7) &quot;b&quot;</span><br><span class="line"> 8) &quot;c&quot;</span><br><span class="line"> 9) &quot;c&quot;</span><br><span class="line">10) &quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; lindex list 0</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6382&gt; lindex list1 0</span><br><span class="line">&quot;jun&quot;</span><br><span class="line">127.0.0.1:6382&gt; llen list1</span><br><span class="line">(integer) 10</span><br><span class="line">127.0.0.1:6382&gt; lset list 0 wu</span><br><span class="line">(error) ERR no such key</span><br><span class="line">127.0.0.1:6382&gt; lset list1 0 wu</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; lrange list1 0 -1</span><br><span class="line"> 1) &quot;wu&quot;</span><br><span class="line"> 2) &quot;h&quot;</span><br><span class="line"> 3) &quot;g&quot;</span><br><span class="line"> 4) &quot;f&quot;</span><br><span class="line"> 5) &quot;e&quot;</span><br><span class="line"> 6) &quot;a&quot;</span><br><span class="line"> 7) &quot;b&quot;</span><br><span class="line"> 8) &quot;c&quot;</span><br><span class="line"> 9) &quot;c&quot;</span><br><span class="line">10) &quot;c&quot;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p><a rel=第二章 API理解与适用 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22400%22%20height=%22168%22%3E%3C/svg%3E" title="paste image" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22400%22%20height=%22168%22%3E%3C/svg%3E" alt="paste image"></a></p>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710cdcc64c01?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710cdcc64c01?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<p><a rel=第二章 API理解与适用 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22600%22%20height=%22276%22%3E%3C/svg%3E" title="paste image" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22600%22%20height=%22276%22%3E%3C/svg%3E" alt="paste image"></a></p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>Redis 的 Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。 Redis 中集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</p>
+</blockquote>
+<h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>无序</li>
+<li>无重复</li>
+<li>集合间操作</li>
+</ul>
+<h3 id="API-3"><a href="#API-3" class="headerlink" title="API"></a>API</h3><ul>
+<li>集合内的操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sadd key element</td>
+<td>向集合key添加element(如果element已经存在，添加失败）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>srem key element</td>
+<td>将集合key中的element移除掉</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>scard key</td>
+<td>计算集合大小</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>sismember key element</td>
+<td>判断element 是否在集合中</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>srandmember key count</td>
+<td>从集合中随机挑count个元素</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>spop key</td>
+<td>从集合中随机弹出一个元素</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>smembers key</td>
+<td>获取集合所有元素</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>srem key element</td>
+<td>将集合key中的element移除掉</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>集合间的操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sdiff key1 key2</td>
+<td>差集</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>sinter key1 key2</td>
+<td>交集</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>sunion key1 key2</td>
+<td>并集</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>sidff/sinter/suion + store destkey</td>
+<td>将差集、交集、并集保存在destkey中</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong></p>
+<ul>
+<li>srandmember不会破坏集合</li>
+<li>spop会破会</li>
+<li>smembers 返回的是无序集合，并且要注意量很大的时候回阻塞</li>
+</ul>
+<p><strong>练习</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; sadd set1 a b c d </span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6382&gt; srem set1 a</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; smembers set1</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;c&quot;</span><br><span class="line">3) &quot;b&quot;</span><br><span class="line">127.0.0.1:6382&gt; scard set1</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; sismember set1 d</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; srandmember set1 2</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">127.0.0.1:6382&gt; srandmember set1 2</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; spop set1</span><br><span class="line">&quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; smembers set1</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">127.0.0.1:6382&gt; srem set1 d</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; smembers set1</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">127.0.0.1:6382&gt; sadd set1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6382&gt; sadd set2 a b c 12 8 9 1 2 </span><br><span class="line">(integer) 8</span><br><span class="line">127.0.0.1:6382&gt; sdiff set1 set2</span><br><span class="line">1) &quot;3&quot;</span><br><span class="line">2) &quot;4&quot;</span><br><span class="line">3) &quot;5&quot;</span><br><span class="line">127.0.0.1:6382&gt; sinter set1 set2</span><br><span class="line">1) &quot;2&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">3) &quot;1&quot;</span><br><span class="line">127.0.0.1:6382&gt; sunion set1 set2</span><br><span class="line"> 1) &quot;5&quot;</span><br><span class="line"> 2) &quot;2&quot;</span><br><span class="line"> 3) &quot;4&quot;</span><br><span class="line"> 4) &quot;1&quot;</span><br><span class="line"> 5) &quot;a&quot;</span><br><span class="line"> 6) &quot;8&quot;</span><br><span class="line"> 7) &quot;3&quot;</span><br><span class="line"> 8) &quot;b&quot;</span><br><span class="line"> 9) &quot;9&quot;</span><br><span class="line">10) &quot;12&quot;</span><br><span class="line">11) &quot;c&quot;</span><br><span class="line">127.0.0.1:6382&gt; </span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h3><p><a rel=第二章 API理解与适用 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22600%22%20height=%22158%22%3E%3C/svg%3E" title="paste image" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22600%22%20height=%22158%22%3E%3C/svg%3E" alt="paste image"></a></p>
+<ul>
+<li>抽奖系统， 用spop</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710cff78424f?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710cff78424f?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<ul>
+<li>赞过的文章，收藏过的文章等</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d09f4d601?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d09f4d601?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<ul>
+<li>标签</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d10b7a883?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d10b7a883?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<ul>
+<li>共同关注</li>
+</ul>
+<p><strong>总结</strong></p>
+<p><a rel=第二章 API理解与适用 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d15c01324?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d15c01324?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>Redis 有序集合和集合一样也是string类型元素的集合,且不允许重复的成员。不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。有序集合的成员是唯一的,但分数(score)却可以重复。</p>
+</blockquote>
+<h3 id="API-4"><a href="#API-4" class="headerlink" title="API"></a>API</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zadd key score element</td>
+<td>添加score和element</td>
+<td>O(logN)</td>
+</tr>
+<tr>
+<td>zrem key element(可以是多个)</td>
+<td>将集合key中的element移除掉</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>zscore key element</td>
+<td>返回元素的分数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>zincrby key increScore element</td>
+<td>增加或减少元素的分数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>zcard key</td>
+<td>返回元素的总个数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>zrank(zrevrank) key member</td>
+<td>返回元素的排名</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>zrange(zrevrank) key start end [WITHSCORES]</td>
+<td>返回指定索引范围内的升序元素[分值]</td>
+<td>O(logN + m)</td>
+</tr>
+<tr>
+<td>zrangebyscore(zrevrangebyscore) key minScore maxScore</td>
+<td>返回指定分数范围内的升序元素</td>
+<td>O(logN + m)</td>
+</tr>
+<tr>
+<td>zcount key minScore maxScore</td>
+<td>返回有序集合内在指定分数范围内的个数</td>
+<td>O(logN + m)</td>
+</tr>
+<tr>
+<td>zremrangebyrank key start end</td>
+<td>删除指定排名内的升序元素</td>
+<td>O(logN + m)</td>
+</tr>
+<tr>
+<td>zremrangebyscore key minScore maxScore</td>
+<td>删除指定分数内的升序元素</td>
+<td>O(logN + m)</td>
+</tr>
+<tr>
+<td>ZINTERSTORE destination numkeys(表示key的个数) key [key …]</td>
+<td>计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中</td>
+<td></td>
+</tr>
+<tr>
+<td>ZUNIONSTORE destination numkeys key [key …]</td>
+<td>计算给定的一个或多个有序集的并集，并存储在新的 key 中</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="实战-2"><a href="#实战-2" class="headerlink" title="实战"></a>实战</h3><ul>
+<li>各种榜单（score:timestamp, saleCount, followCount)</li>
+</ul>
+<p><a rel=第二章 API理解与适用 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22400%22%20height=%22711%22%3E%3C/svg%3E" title="paste image" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22400%22%20height=%22711%22%3E%3C/svg%3E" alt="paste image"></a></p>
+<p># </p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-08-02T03:18:54.545Z" itemprop="dateUpdated">2019-08-02 11:18:54</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /" target="_blank" rel="external">http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /&title=《第二章 API理解与适用》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /&title=《第二章 API理解与适用》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/02/Redis/慕课网redis从入门到高可用/Untitled 1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">No title</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/02/Redis/慕课网redis从入门到高可用/第一章 Redis初识/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">第一章 Redis 初识</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#通用命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">通用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-keys-pattern"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1.keys pattern</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-dbsize"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2.dbsize</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-exists-key"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3.exists key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-del-key1-key2…"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4.del key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-expire-key-second"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">5.expire key second</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-ttl-key"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">6. ttl key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-persist-key"><span class="post-toc-number">1.0.7.</span> <span class="post-toc-text">7.persist key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-type-key"><span class="post-toc-number">1.0.8.</span> <span class="post-toc-text">8.type key</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#String数据类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">String数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#String-结构"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">String-结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#String-常用命令"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">String-常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-get-key"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">1.get  key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-set-key-value"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">2.set key value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-incr-key"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">3.incr key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-incrby-key-increment"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">4.incrby key increment</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-decr-key"><span class="post-toc-number">2.2.5.</span> <span class="post-toc-text">5.decr key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-decrby-key-decrement"><span class="post-toc-number">2.2.6.</span> <span class="post-toc-text">6.decrby key decrement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-setnx-key-value"><span class="post-toc-number">2.2.7.</span> <span class="post-toc-text">7.setnx key value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-set-key-value-nx"><span class="post-toc-number">2.2.8.</span> <span class="post-toc-text">8.set key value nx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-setex-key-second-value"><span class="post-toc-number">2.2.9.</span> <span class="post-toc-text">9.setex key second value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-set-key-second-value-ex"><span class="post-toc-number">2.2.10.</span> <span class="post-toc-text">10.set key second value ex</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-set-key-value-xx"><span class="post-toc-number">2.2.11.</span> <span class="post-toc-text">11.set key value xx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-mget-key1-key2…"><span class="post-toc-number">2.2.12.</span> <span class="post-toc-text">12.mget key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-mset-key1-value1-key2-value2…"><span class="post-toc-number">2.2.13.</span> <span class="post-toc-text">13.mset key1 value1 [key2 value2…]</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#String-不太常用命令"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">String-不太常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-getset-key-value"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">1.getset key value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-append-key-value"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">2.append key value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-strlen-key"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">3.strlen key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-incrbyfloat-key-increment"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">4.incrbyfloat key increment</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-getrange-key-start-end"><span class="post-toc-number">2.3.5.</span> <span class="post-toc-text">5.getrange key start end</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-setrange-key-offset-value"><span class="post-toc-number">2.3.6.</span> <span class="post-toc-text">6.setrange key offset value</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Hash数据类型"><span class="post-toc-number">3.</span> <span class="post-toc-text">Hash数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hash-常用命令"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Hash-常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-hget-key-field"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">1.hget key field</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-hset-key-field-value"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">2.hset key field value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-hdel-key-field1-field2…"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">3.hdel key field1 [field2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-hexists-key-field"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">4.hexists key field</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-hlen-key"><span class="post-toc-number">3.1.5.</span> <span class="post-toc-text">5.hlen key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-hmget-key-field1-field2…"><span class="post-toc-number">3.1.6.</span> <span class="post-toc-text">6.hmget key field1 [field2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-hmset-key-field1-value1-field2-value2…"><span class="post-toc-number">3.1.7.</span> <span class="post-toc-text">7.hmset key field1 value1 [field2 value2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-hincrby-key-fiel-increment"><span class="post-toc-number">3.1.8.</span> <span class="post-toc-text">8.hincrby key fiel increment</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-hgetall-key"><span class="post-toc-number">3.1.9.</span> <span class="post-toc-text">9.hgetall key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-hkeys-key"><span class="post-toc-number">3.1.10.</span> <span class="post-toc-text">10.hkeys key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-hvals-key"><span class="post-toc-number">3.1.11.</span> <span class="post-toc-text">11.hvals key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-hsetnx-key-field-value"><span class="post-toc-number">3.1.12.</span> <span class="post-toc-text">12.hsetnx key field value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-hincrbyfloat-key-field-increment"><span class="post-toc-number">3.1.13.</span> <span class="post-toc-text">13.hincrbyfloat key field increment</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#List数据类型"><span class="post-toc-number">4.</span> <span class="post-toc-text">List数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#List-结构"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">List-结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#List-常用命令"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">List-常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-rpush-key-value1-value2…"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1.rpush key value1 [value2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-lpush-key-value1-value2…"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">2.lpush key value1 [value2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-linsert-key-before-after-value-newValue"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">3.linsert key before/after value newValue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-lpop-key"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">4.lpop key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-rpop-key"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">5.rpop key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-lrem-key-count-value"><span class="post-toc-number">4.2.6.</span> <span class="post-toc-text">6.lrem key count value</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-ltrim-key-start-end"><span class="post-toc-number">4.2.7.</span> <span class="post-toc-text">7.ltrim key start end</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-lrange-key-start-end"><span class="post-toc-number">4.2.8.</span> <span class="post-toc-text">8.lrange key start end</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-lindex-key-index"><span class="post-toc-number">4.2.9.</span> <span class="post-toc-text">9.lindex key index</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-llen-key"><span class="post-toc-number">4.2.10.</span> <span class="post-toc-text">10.llen key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-lset-key-index-newValue"><span class="post-toc-number">4.2.11.</span> <span class="post-toc-text">11.lset key index newValue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-blpop-key-timeout"><span class="post-toc-number">4.2.12.</span> <span class="post-toc-text">12.blpop key timeout</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-brpop-key-timeout"><span class="post-toc-number">4.2.13.</span> <span class="post-toc-text">13.brpop key timeout</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Set数据类型"><span class="post-toc-number">5.</span> <span class="post-toc-text">Set数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Set-结构"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Set-结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Set-集合内操作"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">Set-集合内操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-sadd-key-memebr1-member2…"><span class="post-toc-number">5.2.1.</span> <span class="post-toc-text">1.sadd key memebr1 [member2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-srem-key-member1-member2…"><span class="post-toc-number">5.2.2.</span> <span class="post-toc-text">2.srem key member1 [member2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-scard-key"><span class="post-toc-number">5.2.3.</span> <span class="post-toc-text">3.scard key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-sismember-key-member"><span class="post-toc-number">5.2.4.</span> <span class="post-toc-text">4.sismember key member</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-srandmember-key-count"><span class="post-toc-number">5.2.5.</span> <span class="post-toc-text">5.srandmember key count</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-spop-key"><span class="post-toc-number">5.2.6.</span> <span class="post-toc-text">6.spop key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-smembers-key"><span class="post-toc-number">5.2.7.</span> <span class="post-toc-text">7.smembers key</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Set-集合间操作"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Set-集合间操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-sdiff-key1-key2…"><span class="post-toc-number">5.3.1.</span> <span class="post-toc-text">1.sdiff key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-sdiffstore-destKey-key1-key2…"><span class="post-toc-number">5.3.2.</span> <span class="post-toc-text">2.sdiffstore destKey key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-sinter-key1-key2…"><span class="post-toc-number">5.3.3.</span> <span class="post-toc-text">3.sinter key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-sinterstore-destKey-key1-key2…"><span class="post-toc-number">5.3.4.</span> <span class="post-toc-text">4.sinterstore destKey key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-sunion-key1-key2…"><span class="post-toc-number">5.3.5.</span> <span class="post-toc-text">5.sunion key1 [key2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-sunionstore-destKey-key1-key2…"><span class="post-toc-number">5.3.6.</span> <span class="post-toc-text">6.sunionstore destKey key1 [key2…]</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ZSet数据类型"><span class="post-toc-number">6.</span> <span class="post-toc-text">ZSet数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ZSet-结构"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">ZSet-结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ZSet-常用命令"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">ZSet-常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-zadd-key-score1-member1-score2-member2…"><span class="post-toc-number">6.2.1.</span> <span class="post-toc-text">1.zadd key score1 member1 [score2 member2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-zrem-key-member1-member2…"><span class="post-toc-number">6.2.2.</span> <span class="post-toc-text">2.zrem key member1 [member2…]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-zscore-key-member"><span class="post-toc-number">6.2.3.</span> <span class="post-toc-text">3.zscore key member</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-zincrby-key-increment-member"><span class="post-toc-number">6.2.4.</span> <span class="post-toc-text">4.zincrby key increment member</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-zcard-key"><span class="post-toc-number">6.2.5.</span> <span class="post-toc-text">5.zcard key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-zrange-key-start-end-withscores"><span class="post-toc-number">6.2.6.</span> <span class="post-toc-text">6.zrange key start end [withscores]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-zrangebyscore-key-min-max-withscores-limit"><span class="post-toc-number">6.2.7.</span> <span class="post-toc-text">7.zrangebyscore key min max [withscores][limit]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-zscore-key-min-max"><span class="post-toc-number">6.2.8.</span> <span class="post-toc-text">8.zscore key min max</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-zremrangebyscore-key-min-max"><span class="post-toc-number">6.2.9.</span> <span class="post-toc-text">9.zremrangebyscore key min max</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-zremrangebyrank-key-start-end"><span class="post-toc-number">6.2.10.</span> <span class="post-toc-text">10.zremrangebyrank key start end</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#String-VS-Hash"><span class="post-toc-number">7.</span> <span class="post-toc-text">String VS Hash</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相似的API"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">相似的API</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#保存对象的三种方式与优缺点"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">保存对象的三种方式与优缺点</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#API的理解和使用"><span class="post-toc-number">8.</span> <span class="post-toc-text">API的理解和使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通用命令-1"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">通用命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据结构和内部编码"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">数据结构和内部编码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#图示"><span class="post-toc-number">8.2.1.</span> <span class="post-toc-text">图示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#reidsObject"><span class="post-toc-number">8.2.2.</span> <span class="post-toc-text">reidsObject</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单线程"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">单线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义"><span class="post-toc-number">8.3.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#单线程为什么这么快"><span class="post-toc-number">8.3.2.</span> <span class="post-toc-text">单线程为什么这么快</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用单线程要注意什么"><span class="post-toc-number">8.3.3.</span> <span class="post-toc-text">使用单线程要注意什么</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#string"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">string</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结构"><span class="post-toc-number">8.4.1.</span> <span class="post-toc-text">结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用场景"><span class="post-toc-number">8.4.2.</span> <span class="post-toc-text">使用场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API"><span class="post-toc-number">8.4.3.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实战"><span class="post-toc-number">8.4.4.</span> <span class="post-toc-text">实战</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hash"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">hash</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#哈希键值结构"><span class="post-toc-number">8.5.1.</span> <span class="post-toc-text">哈希键值结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">8.5.2.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API-1"><span class="post-toc-number">8.5.3.</span> <span class="post-toc-text">API</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#list"><span class="post-toc-number">8.6.</span> <span class="post-toc-text">list</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#列表结构"><span class="post-toc-number">8.6.1.</span> <span class="post-toc-text">列表结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点-1"><span class="post-toc-number">8.6.2.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API-2"><span class="post-toc-number">8.6.3.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-number">8.6.4.</span> <span class="post-toc-text">应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#set"><span class="post-toc-number">8.7.</span> <span class="post-toc-text">set</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义-1"><span class="post-toc-number">8.7.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点-2"><span class="post-toc-number">8.7.2.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API-3"><span class="post-toc-number">8.7.3.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实战-1"><span class="post-toc-number">8.7.4.</span> <span class="post-toc-text">实战</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zset"><span class="post-toc-number">8.8.</span> <span class="post-toc-text">zset</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义-2"><span class="post-toc-number">8.8.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API-4"><span class="post-toc-number">8.8.2.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实战-2"><span class="post-toc-number">8.8.3.</span> <span class="post-toc-text">实战</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /&title=《第二章 API理解与适用》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /&title=《第二章 API理解与适用》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3awW7bQAwEUP//T6fXAmnkGVIFrM3TyXBled8a6ITkvl7x9fXXdX3P99fX//rTnd/vuX7/9T8ubGxs7Iewvy6v9p5ks5J3ftqg/J2f1omNjY19KnsWSNePvt6aN8sq0ye3YGNjY2MngZEXJPm3tEUONjY2Nnb+uE0I7YMNGxsbG3vfMEqu62UlkTYrb27opWFjY2N/PHsfNp/z+r/Mt7GxsbE/mD0LobZN3w4S2ntqBTY2NvZB7DwA8qM814d1kgM9bZS268fGxsY+lZ3D2iZOPppNxsBtsNUFCTY2NvYD2Xm0JIE0e6dddPtkbGxs7FPZbTwk7+QxsznEsyqKsLGxsQ9ib9o3CbIdAMy2aXUoBxsbG/vh7LaJM2zEj0qdPK7qgzvY2NjYB7HzZv1m3LsZ8bYxmbecsLGxsc9g5y2kNgI3baOEkW/rm98ZGxsb+yD2Zrnt601TqX39JsCwsbGxD2JvDu7kQ+L2U23g1bUXNjY29hHsWVTMDvfMxgybRtU/PouNjY19HHvTmr+3dMmf1n4vNjY29tns6+v6r/fks8mGFvETVBNvNggbGxv7l7E31HxInJc0SRmDjY2N/XvYm9ZMG12zyNl8bxGr2NjY2I9l57zNUctZiXLXIZ5ovo2NjY39cHa7rNmWtRu3GSQUKY2NjY39cPamAGjbOtdbtjle2f482NjY2Oex26/MF3TveLht+hcxho2Njf1YdlIYJH/6v+IrD7P8/rw4wcbGxj6V3ZJm7Z7ks3fd+WZrsLGxsQ9ity2kvP3UNphmW78ZVGNjY2Ofyt4UEvsm1GxwOxxmYGNjYx/HTv58v2uhs5HtrGiJjmBiY2NjH8dug2pWiuwPA702FzY2NvYR7LsO07Rlxqx1NQuqN4NebGxs7IezN//n39X62TStNgNjbGxs7JPYSWjNhsH5M5MBQ/uTvHk+NjY29nHsNhjawqMNqk3LCRsbGxs7GaDWg9VgcfngYdNmwsbGxsZOGkOzMUA+PJ4dHroht7GxsbE/mD1bYjsw2G/TbNC76qVhY2Njfzx7UzDksFmA5QPj5HuxsbGxj2P/AafJDDfcgWuCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
