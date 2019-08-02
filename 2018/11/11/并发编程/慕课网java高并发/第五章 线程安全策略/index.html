@@ -321,6 +321,51 @@
             </figure>
 
 <hr>
+<h1 id="线程封闭"><a href="#线程封闭" class="headerlink" title="线程封闭"></a>线程封闭</h1><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>线程封闭是一种较为简单的线程并发的方法。它其实把对象封装到一个线程里，该对象只对该线程是可见的。当然也就是线程安全的了。</p>
+<h4 id="实现线程封闭的方法"><a href="#实现线程封闭的方法" class="headerlink" title="实现线程封闭的方法"></a>实现线程封闭的方法</h4><ol>
+<li>Ad-hoc 线程封闭：依赖程序控制实现，脆弱，是最糟糕的一种方式，不推荐！</li>
+<li>堆栈封闭：应用广泛，依靠各线程局部变量的堆栈拷贝副本实现，无并发问题。避免使用全局变量。</li>
+<li>数据库连接对应JDBC的Connection对象。</li>
+<li>ThreadLocal线程封闭：实现较好，效率较高。（以后会做源码分析……）</li>
+</ol>
+<h4 id="ThreadLocal测试例子"><a href="#ThreadLocal测试例子" class="headerlink" title="ThreadLocal测试例子"></a>ThreadLocal测试例子</h4><h5 id="RequestHolder-java"><a href="#RequestHolder-java" class="headerlink" title="RequestHolder.java"></a>RequestHolder.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class RequestHolder &#123;</span><br><span class="line"></span><br><span class="line">    private final static ThreadLocal&lt;Long&gt; requestHolder = new ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public static void add(Long id) &#123;</span><br><span class="line">        requestHolder.set(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Long getId() &#123;</span><br><span class="line">        return requestHolder.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void remove() &#123;</span><br><span class="line">        requestHolder.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法分析：</p>
+<ol>
+<li>该类存放需要绑定的信息。</li>
+<li>其中add操作是在请求进入后端服务器，但还未进行实际处理时，调用该方法，写入相关信息。（通过filter：先拦截对应的URL，当前台访问该URL时，将相关信息写入ThreadLocal中；当URL实际被处理时，可直接从ThreadLocal中取出信息）。</li>
+<li>定义移除方法，防止内存泄漏。在接口处理完之后进行处理（通过intercepter实现）。</li>
+</ol>
+<h5 id="HttpFilter-java"><a href="#HttpFilter-java" class="headerlink" title="HttpFilter.java"></a>HttpFilter.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">public class HttpFilter implements Filter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) throws ServletException &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //核心方法</span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException &#123;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line"></span><br><span class="line">        log.info(&quot;do filter, &#123;&#125;, &#123;&#125;&quot;, Thread.currentThread().getId(), request.getServletPath());</span><br><span class="line"></span><br><span class="line">        RequestHolder.add(Thread.currentThread().getId());</span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //销毁</span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法分析：</p>
+<ol>
+<li>因为是通过http请求，ServletRequest需转换为HttpServletRequest类型。</li>
+<li>在RequestHolder中放入URL相关信息。</li>
+<li>最后若该filter不是想拦截住该请求，只是做相关的数据处理，还想让其他过滤器接收到，则需最后调用filterChain.doFilter(servletRequest, servletResponse)。</li>
+</ol>
+<h5 id="HttpInterceptor-java"><a href="#HttpInterceptor-java" class="headerlink" title="HttpInterceptor.java"></a>HttpInterceptor.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">public class HttpInterceptor extends HandlerInterceptorAdapter &#123;</span><br><span class="line"></span><br><span class="line">    //在处理之前输出</span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</span><br><span class="line">        log.info(&quot;preHandle&quot;);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //在完成之后删除信息、输出日志</span><br><span class="line">    @Override</span><br><span class="line">    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;</span><br><span class="line">        RequestHolder.remove();</span><br><span class="line">        log.info(&quot;afterCompletion&quot;);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="ThreadLocalController-java"><a href="#ThreadLocalController-java" class="headerlink" title="ThreadLocalController.java"></a>ThreadLocalController.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">@RequestMapping(&quot;/threadlocal&quot;)</span><br><span class="line">public class ThreadLocalController &#123;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/test&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Long test() &#123;</span><br><span class="line">        return RequestHolder.getId();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="ConcurrencyApplication-java"><a href="#ConcurrencyApplication-java" class="headerlink" title="ConcurrencyApplication.java"></a>ConcurrencyApplication.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">true//使用springboot快速进行测试</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class ConcurrencyApplication extends WebMvcConfigurerAdapter &#123;</span><br><span class="line"></span><br><span class="line">truepublic static void main(String[] args) &#123;</span><br><span class="line">truetrueSpringApplication.run(ConcurrencyApplication.class, args);</span><br><span class="line">true&#125;</span><br><span class="line"></span><br><span class="line">true@Bean</span><br><span class="line">truepublic FilterRegistrationBean httpFilter() &#123;</span><br><span class="line">truetrueFilterRegistrationBean registrationBean = new FilterRegistrationBean();</span><br><span class="line">truetrueregistrationBean.setFilter(new HttpFilter());</span><br><span class="line"></span><br><span class="line">truetrueregistrationBean.addUrlPatterns(&quot;/threadlocal/*&quot;);</span><br><span class="line">truetruereturn registrationBean;</span><br><span class="line">true&#125;</span><br><span class="line"></span><br><span class="line">true@Override</span><br><span class="line">truepublic void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line"></span><br><span class="line">truetrueregistry.addInterceptor(new HttpInterceptor()).addPathPatterns(&quot;/**&quot;);</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法分析：</p>
+<ol>
+<li>通过springboot创建registrationBean并指定过滤URL类型为”/threadlocal/*”。</li>
+<li>重写addInterceptors -&gt; 添加拦截器，并指定拦截的路径类型。</li>
+<li>ThreadLocalController.java中指定请求映射的名称和返回内容。</li>
+</ol>
+<p><strong>接口测试结果：(使用Postman进行接口测试)</strong></p>
+<p> <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-233303.png" title="image-20190803073300869" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-233303.png" alt="image-20190803073300869"></a></p>
+<p><strong>日志部分截图：</strong></p>
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-233239.png" title="image-20190803073237701" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-233239.png" alt="image-20190803073237701" title class></a>
+                <p>image-20190803073237701</p>
+            </figure>
+
+<p>可以看出例子是和日志完全对应的。<br>重复一下<em>threadlocal的实现思想</em>：<strong>当一个请求进来时，通过过滤器Filter，将数据信息（这里是线程id）存储到threadlocal中，当接口被调用处理时，可以直接从中取出来；当接口处理完成，通过拦截器Interceptor的afterCompletion把当前线程中的数据信息（这里是线程id）移除，避免内存泄漏。</strong></p>
+<hr>
 
         </div>
         
@@ -328,7 +373,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-02T01:57:40.734Z" itemprop="dateUpdated">2019-08-02 09:57:40</time>
+    最後更新時間：<time datetime="2019-08-02T23:33:25.402Z" itemprop="dateUpdated">2019-08-03 07:33:25</time>
 </span><br>
 
 
@@ -400,18 +445,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2018/11/11/并发编程/慕课网java高并发/第四章 安全发布对象/" id="post-prev" class="post-nav-link">
+      <a href="/2018/11/11/并发编程/慕课网java高并发/第二章项目准备/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">第4章 安全发布对象</h4>
+        <h4 class="title">第2章 项目准备</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2018/11/11/并发编程/慕课网java高并发/第三章 线程安全性/" id="post-next" class="post-nav-link">
+      <a href="/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">第3章 线程安全性</h4>
+        <h4 class="title">第1章 并发基础</h4>
       </a>
     </div>
   
@@ -423,7 +468,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不可变对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">不可变对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#需满足的条件"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">需满足的条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#final关键字"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">final关键字</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Collections-unmodifiableXXX方法"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">Collections.unmodifiableXXX方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Guava的ImmutableXXX类"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">Guava的ImmutableXXX类</span></a></li></ol></li></ol></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不可变对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">不可变对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#需满足的条件"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">需满足的条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#final关键字"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">final关键字</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Collections-unmodifiableXXX方法"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">Collections.unmodifiableXXX方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Guava的ImmutableXXX类"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">Guava的ImmutableXXX类</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线程封闭"><span class="post-toc-number">2.</span> <span class="post-toc-text">线程封闭</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述-1"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实现线程封闭的方法"><span class="post-toc-number">2.0.0.2.</span> <span class="post-toc-text">实现线程封闭的方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ThreadLocal测试例子"><span class="post-toc-number">2.0.0.3.</span> <span class="post-toc-text">ThreadLocal测试例子</span></a></li></ol></li></ol></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>

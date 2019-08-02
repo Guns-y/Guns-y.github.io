@@ -282,8 +282,15 @@
 <li>订阅者</li>
 <li>频道</li>
 </ul>
-<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d8ca06f56?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d8ca06f56?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d8e187bdb?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d8e187bdb?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><figure class="image-box">
+                <a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-091657.png" title="image-20190802171655978" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-091657.png" alt="image-20190802171655978" title class></a>
+                <p>image-20190802171655978</p>
+            </figure>
+
+
+
+
+
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
 <li>publish channel message</li>
 <li>subscribe [channel] 一个或者多个</li>
@@ -295,7 +302,13 @@
 <p>另外一个cli</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; SUBSCRIBE weibomovie</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) &quot;subscribe&quot;</span><br><span class="line">2) &quot;weibomovie&quot;</span><br><span class="line">3) (integer) 1</span><br><span class="line">1) &quot;message&quot;</span><br><span class="line">2) &quot;weibomovie&quot;</span><br><span class="line">3) &quot;hello world&quot;</span><br><span class="line">1) &quot;message&quot;</span><br><span class="line">2) &quot;weibomovie&quot;</span><br><span class="line">3) &quot;hello world2&quot;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
-<h3 id="发布订阅与消息队列"><a href="#发布订阅与消息队列" class="headerlink" title="发布订阅与消息队列"></a>发布订阅与消息队列</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d7257cb0b?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d7257cb0b?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="发布订阅与消息队列"><a href="#发布订阅与消息队列" class="headerlink" title="发布订阅与消息队列"></a>发布订阅与消息队列</h3><figure class="image-box">
+                <a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-092243.png" title="image-20190802172241335" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-092243.png" alt="image-20190802172241335" title class></a>
+                <p>image-20190802172241335</p>
+            </figure>
+
+
+
 <h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><h3 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d93ae0d8e?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d93ae0d8e?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
 <p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d9a3e7acc?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d9a3e7acc?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
 <h3 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h3><table>
@@ -336,13 +349,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; set hello big</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; getbit hello </span><br><span class="line">(error) ERR wrong number of arguments for &apos;getbit&apos; command</span><br><span class="line">127.0.0.1:6382&gt; getbit hello 0</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; setbit hello 0 1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; get hello</span><br><span class="line">&quot;\xe2ig&quot;</span><br><span class="line">127.0.0.1:6382&gt; set hell a</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; bitcount hell</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; bitop and hell hello</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; set a a</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; set b b</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; bitop and c a b</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; get c</span><br><span class="line">&quot;`&quot;</span><br><span class="line">127.0.0.1:6382&gt; bitpos a 1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; bitpos a 0</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6382&gt; set user2 100</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
 <h3 id="独立用户统计"><a href="#独立用户统计" class="headerlink" title="独立用户统计"></a>独立用户统计</h3><p><strong>重要理解</strong>使用位图去记录用户uid，其实就是记录索引值，比如userid=100代表位图下标100的值为1</p>
-<p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710d9a648b04?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710d9a648b04?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710da1189fef?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710da1189fef?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<p> <a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-134259.png" title="image-20190802214149697" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-134259.png" alt="image-20190802214149697"></a></p>
+<p><a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-134138.png" title="image-20190802214136935" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-134138.png" alt="image-20190802214136935"></a></p>
 <h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><ul>
 <li>type=string,最大512MB</li>
 <li>注意setbit时的偏移量，可能有较大耗时</li>
-<li>位图不是绝对好</li>
+<li>位图不是绝对好.</li>
 </ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/u011489043/article/details/78990162" target="_blank" rel="noopener">https://blog.csdn.net/u011489043/article/details/78990162</a></p>
+<p><a href="https://my.oschina.net/mengyuankan/blog/1932425" target="_blank" rel="noopener">https://my.oschina.net/mengyuankan/blog/1932425</a></p>
+<p><a href="https://segmentfault.com/a/1190000008188655" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008188655</a></p>
+<p><a href="https://segmentfault.com/a/1190000008205145" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008205145</a></p>
+</blockquote>
+<hr>
 <h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><h3 id="新的数据结构"><a href="#新的数据结构" class="headerlink" title="新的数据结构"></a>新的数据结构</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4e57b6f?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4e57b6f?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
 <h3 id="API-2"><a href="#API-2" class="headerlink" title="API"></a>API</h3><table>
 <thead>
@@ -413,7 +433,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-02T09:14:47.295Z" itemprop="dateUpdated">2019-08-02 17:14:47</time>
+    最後更新時間：<time datetime="2019-08-02T13:44:22.899Z" itemprop="dateUpdated">2019-08-02 21:44:22</time>
 </span><br>
 
 
@@ -482,7 +502,14 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/02/Untitled/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[no title]</h4>
+      </a>
+    </div>
   
 
   
