@@ -219,13 +219,116 @@
                 <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-013434.png" title="image-20190802082119551" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-013434.png" alt="image-20190802082119551" title class></a>
                 <p>image-20190802082119551</p>
             </figure>
+
+
+
+<p><a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-013941.png" title="image-20190802093939994" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-013941.png" alt="image-20190802093939994"></a></p>
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-014943.png" title="image-20190802094941922" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-014943.png" alt="image-20190802094941922" title class></a>
+                <p>image-20190802094941922</p>
+            </figure>
+
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>不可变对象一经安全发布，它就是不可变的。</p>
+<h4 id="需满足的条件"><a href="#需满足的条件" class="headerlink" title="需满足的条件"></a>需满足的条件</h4><ul>
+<li><p>对象创建后其状态不能被修改；</p>
+</li>
+<li><p>对象所有的域都是final类型；</p>
+</li>
+<li><p>对象是正确创建的（在对象创建期间，其this引用未逸出）；</p>
+<blockquote>
+<p><strong>其中可以采用的方式包括：</strong></p>
+<ol>
+<li>将类声明为final，不可被继承；</li>
+<li>将所有的成员声明为私有的，不允许直接访问其私有成员；</li>
+<li>对变量不向外提供set方法；</li>
+<li>将所有成员也声明为final，只能赋值一次；</li>
+<li>通过构造器初始化所有成员，进行深度拷贝;</li>
+<li>在get方法中，不直接返回对象本身，而是克隆对象，并返回对象的拷贝。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><p>可以用来修饰类、方法、变量。</p>
+<ol>
+<li>修饰类：该类不能被继承：如Java中的String、Integer、Long等基础类型的封装类均是。</li>
+</ol>
+<ul>
+<li>final类中的成员变量可根据需要设定为final。</li>
+<li>final类中的方法均会被隐式指为final方法。</li>
+</ul>
+<ol>
+<li>修饰方法：场景如下</li>
+</ol>
+<ul>
+<li><p>锁定方法不会被继承类修改；</p>
+</li>
+<li><p>效率：在早期的Java实现版本中，会将final方法转为内嵌调用；但若final方法过大，反而拉低效率。</p>
+</li>
+<li><blockquote>
+<p><strong>一个类的private方法会被隐式地指为final方法。</strong></p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>修饰变量：</li>
+</ol>
+<ul>
+<li>若修饰基础数据类型：一旦初始化就不再更改。</li>
+<li>若修饰引用类型：一旦初始化之后就不能再指向另一个对象。 但可以修改其中的值。 （好吧，这是废话… ）</li>
+</ul>
+<figure class="highlight plain"><figcaption><span>a</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@NotThreadSafe  //非线程安全</span><br><span class="line">public class ImmutableExample1 &#123;</span><br><span class="line"></span><br><span class="line">    private final static Integer a = 1;</span><br><span class="line">    private final static String b = &quot;2&quot;;</span><br><span class="line">    private final static Map&lt;Integer, Integer&gt; map = Maps.newHashMap();</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        map.put(1, 2);</span><br><span class="line">        map.put(3, 4);</span><br><span class="line">        map.put(5, 6);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        map.put(1, 3);</span><br><span class="line">        log.info(&quot;&#123;&#125;&quot;, map.get(1));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void test(final int a) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015408.png" title="image-20190802095406237" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015408.png" alt="image-20190802095406237" title class></a>
+                <p>image-20190802095406237</p>
+            </figure>
+
+<hr>
+<h4 id="Collections-unmodifiableXXX方法"><a href="#Collections-unmodifiableXXX方法" class="headerlink" title="Collections.unmodifiableXXX方法"></a>Collections.unmodifiableXXX方法</h4><p>其中XXX可以是Collection、List、Set、Map等<br><strong>相应的可以通过传入对应的数据类型作为参数传入方法，即可变为不可变对象。</strong></p>
+<p>看一个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImmutableExample2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Integer, Integer&gt; map = Maps.newHashMap();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        map.put(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">        <span class="comment">//调用unmodifiableMap方法</span></span><br><span class="line">        map = Collections.unmodifiableMap(map);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, map.get(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015523.png" title="image-20190802095459825" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015523.png" alt="image-20190802095459825" title class></a>
+                <p>image-20190802095459825</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015527.png" title="image-20190802095526211" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015527.png" alt="image-20190802095526211" title class></a>
+                <p>image-20190802095526211</p>
+            </figure>
+
+<hr>
+<h4 id="Guava的ImmutableXXX类"><a href="#Guava的ImmutableXXX类" class="headerlink" title="Guava的ImmutableXXX类"></a>Guava的ImmutableXXX类</h4><p>相似的，其中XXX可以是<code>Collection</code>、<code>List</code>、<code>Set</code>、<code>Map</code>等<br><strong>这些类都提供了带初始化数据的声明方法，一旦初始化完成就成不可变对象了。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImmutableExample3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ImmutableList&lt;Integer&gt; list = ImmutableList.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ImmutableSet set = ImmutableSet.copyOf(list);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ImmutableMap&lt;Integer, Integer&gt; map = ImmutableMap.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ImmutableMap&lt;Integer, Integer&gt; map2 = ImmutableMap.&lt;Integer, Integer&gt;builder()</span><br><span class="line">            .put(<span class="number">1</span>, <span class="number">2</span>).put(<span class="number">3</span>, <span class="number">4</span>).put(<span class="number">5</span>, <span class="number">6</span>).build();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(map2.get(<span class="number">3</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：4</p>
+<p><strong>例子分析：</strong></p>
+<ol>
+<li><code>ImmutableList</code>通过<code>of(a,b,c,xxxx)</code>方法来填充数据，其中的数据为初始化的数据。</li>
+<li><code>copyOf(xx)</code>方法直接拷贝其他集合中数据。</li>
+<li>通过<code>builder().put(a, b)..put(x, x).(...).build()</code>不停<code>put(x,x)</code>填充数据。</li>
+</ol>
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015618.png" title="image-20190802095616884" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015618.png" alt="image-20190802095616884" title class></a>
+                <p>image-20190802095616884</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第6章 线程安全策略 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015739.png" title="image-20190802095725495" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-015739.png" alt="image-20190802095725495" title class></a>
+                <p>image-20190802095725495</p>
+            </figure>
+
+<hr>
+
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-02T01:36:06.422Z" itemprop="dateUpdated">2019-08-02 09:36:06</time>
+    Last updated: <time datetime="2019-08-02T01:57:40.734Z" itemprop="dateUpdated">2019-08-02 09:57:40</time>
 </span><br>
 
 
@@ -320,7 +423,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不可变对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">不可变对象</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#不可变对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">不可变对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#需满足的条件"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">需满足的条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#final关键字"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">final关键字</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Collections-unmodifiableXXX方法"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">Collections.unmodifiableXXX方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Guava的ImmutableXXX类"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">Guava的ImmutableXXX类</span></a></li></ol></li></ol></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
