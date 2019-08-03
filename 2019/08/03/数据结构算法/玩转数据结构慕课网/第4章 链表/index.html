@@ -411,15 +411,102 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在链表index位置添加元素E e</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Integer index, E e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//设置一个Node prev 从Node head开始</span></span><br><span class="line">        Node prev = head;</span><br><span class="line">        <span class="comment">//从头部索引为0的地方开始 直到索引-1的位置遍历 让prev指向下一个</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            prev = prev.next;</span><br><span class="line">            Node node = <span class="keyword">new</span> Node(e);</span><br><span class="line">            node.next = prev.next;</span><br><span class="line">            prev.next = node;</span><br><span class="line">            size++;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> <span class="comment">//在链表尾部添加元素E e</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">()</span></span>&#123;</span><br><span class="line">  add(size,e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//在链表头部添加元素E e</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个新的节点 Node 一个空格存放元素e</span></span><br><span class="line">        Node node = <span class="keyword">new</span> Node(e);</span><br><span class="line">        <span class="comment">//让这个新的节点指向链表的head</span></span><br><span class="line">        node.next = head;</span><br><span class="line">        <span class="comment">//将head赋值给新创建的head</span></span><br><span class="line">        head = node;</span><br><span class="line">        <span class="comment">//维护size</span></span><br><span class="line">        size++;</span><br><span class="line"><span class="comment">//head=new Node(e,head); size++;</span></span><br></pre></td></tr></table></figure>
 
-<hr>
+<h2 id="4-使用虚拟头节点"><a href="#4-使用虚拟头节点" class="headerlink" title="4 使用虚拟头节点"></a>4 使用虚拟头节点</h2><figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-024931.png" title="image-20190803104929692" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-024931.png" alt="image-20190803104929692" title class></a>
+                <p>image-20190803104929692</p>
+            </figure>
 
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-035457.png" title="image-20190803115455783" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-035457.png" alt="image-20190803115455783" title class></a>
+                <p>image-20190803115455783</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-035703.png" title="image-20190803115702062" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-035703.png" alt="image-20190803115702062" title class></a>
+                <p>image-20190803115702062</p>
+            </figure>
+
+<hr>
+<h2 id="5-获得索引为index的位置的元素"><a href="#5-获得索引为index的位置的元素" class="headerlink" title="5 获得索引为index的位置的元素"></a>5 获得索引为index的位置的元素</h2><figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040537.png" title="image-20190803120535271" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040537.png" alt="image-20190803120535271" title class></a>
+                <p>image-20190803120535271</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040738.png" title="image-20190803120737390" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040738.png" alt="image-20190803120737390" title class></a>
+                <p>image-20190803120737390</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040838.png" title="image-20190803120837225" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-040838.png" alt="image-20190803120837225" title class></a>
+                <p>image-20190803120837225</p>
+            </figure>
+
+<h2 id="6-在链表中删除元素"><a href="#6-在链表中删除元素" class="headerlink" title="6 在链表中删除元素"></a>6 在链表中删除元素</h2><figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041117.png" title="image-20190803121115895" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041117.png" alt="image-20190803121115895" title class></a>
+                <p>image-20190803121115895</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041214.png" title="image-20190803121212721" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041214.png" alt="image-20190803121212721" title class></a>
+                <p>image-20190803121212721</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041229.png" title="image-20190803121228254" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041229.png" alt="image-20190803121228254" title class></a>
+                <p>image-20190803121228254</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041255.png" title="image-20190803121253617" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041255.png" alt="image-20190803121253617" title class></a>
+                <p>image-20190803121253617</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041308.png" title="image-20190803121307292" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-041308.png" alt="image-20190803121307292" title class></a>
+                <p>image-20190803121307292</p>
+            </figure>
+
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从链表中删除index位置的元素 返回删除的元素</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       <span class="comment">//找到待删除的元素之前那个元素的索引</span></span><br><span class="line">       Node prev = dummyhead;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">           <span class="comment">//找到待删除的元素之前的那个节点</span></span><br><span class="line">           prev = prev.next;</span><br><span class="line">       &#125;</span><br><span class="line">       Node retNode = prev.next;</span><br><span class="line">       retNode.next = <span class="keyword">null</span>;</span><br><span class="line">       size--;</span><br><span class="line">       <span class="keyword">return</span> retNode.e;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-042921.png" title="image-20190803122920242" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-042921.png" alt="image-20190803122920242" title class></a>
+                <p>image-20190803122920242</p>
+            </figure>
+
+<blockquote>
+<p>i=0 </p>
+<p>prev=dummyhead </p>
+<p>prev=prev.next—————————》. prev 在索引为0的位置</p>
+</blockquote>
+<blockquote>
+<p>i=1 </p>
+<p>prev=0</p>
+<p>prev=prev.next————————————&gt;prev在索引为1的weizhi</p>
+<p>i=2 不成立退出循环</p>
+<p>待删除的元素retNode=prev.next 索引为2的位置</p>
+<p>prev.next=retNode.next 删去索引为2 的元素 </p>
+<p>retNode=null 销毁这个数据</p>
+</blockquote>
+<hr>
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-044409.png" title="image-20190803124408143" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-044409.png" alt="image-20190803124408143" title class></a>
+                <p>image-20190803124408143</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=第4章  最基础的动态数据结构：链表 href="../../../../../Users/apple/Library/Application" title="Support/typora-user-images/image-20190803124446079.png" data-fancybox="images"><img src="../../../../../Users/apple/Library/Application" alt="image-20190803124446079" title="Support/typora-user-images/image-20190803124446079.png" class></a>
+                <p>Support/typora-user-images/image-20190803124446079.png</p>
+            </figure>
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-08-03T02:33:27.117Z" itemprop="dateUpdated">2019-08-03 10:33:27</time>
+    最后更新时间：<time datetime="2019-08-03T04:44:48.613Z" itemprop="dateUpdated">2019-08-03 12:44:48</time>
 </span><br>
 
 
@@ -507,7 +594,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数据结构之——链表"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据结构之——链表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表与数组"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">链表与数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用虚拟头节点"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用虚拟头节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表的增删改查"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">链表的增删改查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中添加元素"><span class="post-toc-number">1.3.0.1.</span> <span class="post-toc-text">向链表中添加元素</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中删除元素"><span class="post-toc-number">1.3.0.2.</span> <span class="post-toc-text">向链表中删除元素</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中查询及修改元素"><span class="post-toc-number">1.3.0.3.</span> <span class="post-toc-text">向链表中查询及修改元素</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表的时间复杂度分析"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">链表的时间复杂度分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用链表实现栈与队列"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">使用链表实现栈与队列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LinkedListStack"><span class="post-toc-number">1.5.0.1.</span> <span class="post-toc-text">LinkedListStack</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LinkedListQueue"><span class="post-toc-number">1.5.0.2.</span> <span class="post-toc-text">LinkedListQueue</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-链表定义"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1 链表定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-在链表头部添加元素"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2 在链表头部添加元素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-在链表中间添加元素"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3 在链表中间添加元素</span></a></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数据结构之——链表"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据结构之——链表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表与数组"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">链表与数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用虚拟头节点"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用虚拟头节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表的增删改查"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">链表的增删改查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中添加元素"><span class="post-toc-number">1.3.0.1.</span> <span class="post-toc-text">向链表中添加元素</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中删除元素"><span class="post-toc-number">1.3.0.2.</span> <span class="post-toc-text">向链表中删除元素</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向链表中查询及修改元素"><span class="post-toc-number">1.3.0.3.</span> <span class="post-toc-text">向链表中查询及修改元素</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#链表的时间复杂度分析"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">链表的时间复杂度分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用链表实现栈与队列"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">使用链表实现栈与队列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LinkedListStack"><span class="post-toc-number">1.5.0.1.</span> <span class="post-toc-text">LinkedListStack</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LinkedListQueue"><span class="post-toc-number">1.5.0.2.</span> <span class="post-toc-text">LinkedListQueue</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-链表定义"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1 链表定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-在链表头部添加元素"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2 在链表头部添加元素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-在链表中间添加元素"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3 在链表中间添加元素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-使用虚拟头节点"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4 使用虚拟头节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-获得索引为index的位置的元素"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5 获得索引为index的位置的元素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-在链表中删除元素"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6 在链表中删除元素</span></a></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
