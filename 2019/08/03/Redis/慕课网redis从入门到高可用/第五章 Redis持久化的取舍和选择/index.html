@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>第5章 Redis持久化的取舍和选择 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Redis">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>第5章 Redis持久化的取舍和选择</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">第5章 Redis持久化的取舍和选择</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-03T06:17:24.911Z" itemprop="datePublished" class="page-time">
+  2019-08-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">第5章 Redis持久化的取舍和选择</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-03 14:17:24" datetime="2019-08-03T06:17:24.911Z"  itemprop="datePublished">2019-08-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="redis持久化的取舍和选择"><a href="#redis持久化的取舍和选择" class="headerlink" title="redis持久化的取舍和选择"></a>redis持久化的取舍和选择</h1><h2 id="持久化的作用"><a href="#持久化的作用" class="headerlink" title="持久化的作用"></a>持久化的作用</h2><h3 id="什么是持久化"><a href="#什么是持久化" class="headerlink" title="什么是持久化"></a>什么是持久化</h3><blockquote>
+<p>redis所有数据保存在内存中， 对数据的更新将异步地保存到磁盘上</p>
+</blockquote>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062124.png" title="image-20190803142122503" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062124.png" alt="image-20190803142122503"></a></p>
+<h3 id="持久化的实现方式"><a href="#持久化的实现方式" class="headerlink" title="持久化的实现方式"></a>持久化的实现方式</h3><ul>
+<li>快照<ul>
+<li>mysql dump</li>
+<li>redis RDB</li>
+</ul>
+</li>
+<li>写日志<ul>
+<li>mysql binlog</li>
+<li>hbase hLog</li>
+<li>redis AOF</li>
+</ul>
+</li>
+</ul>
+<h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><h3 id="什么是RDB"><a href="#什么是RDB" class="headerlink" title="什么是RDB"></a>什么是RDB</h3><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062139.png" title="image-20190803142137744" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062139.png" alt="image-20190803142137744"></a></p>
+<h3 id="触发机制-主要三种方式"><a href="#触发机制-主要三种方式" class="headerlink" title="触发机制-主要三种方式"></a>触发机制-主要三种方式</h3><ul>
+<li>save（同步）</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062148.png" title="image-20190803142147453" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062148.png" alt="image-20190803142147453"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 文件策略：如存在老的RDB文件，新替换老</span><br><span class="line">* 复杂度：O(N)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>bgsave(异步）</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062205.png" title="image-20190803142204499" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062205.png" alt="image-20190803142204499"></a></p>
+<ul>
+<li>自动配置</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062213.png" title="image-20190803142212414" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062213.png" alt="image-20190803142212414"></a></p>
+<p>**相关配置</p>
+<table>
+<thead>
+<tr>
+<th>配置参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>save</td>
+<td>900 1</td>
+</tr>
+<tr>
+<td>save</td>
+<td>300 10</td>
+</tr>
+<tr>
+<td>save</td>
+<td>60 10000</td>
+</tr>
+<tr>
+<td>dbfilename</td>
+<td>dump-${port}.rdb</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>/bigdishpath</td>
+</tr>
+<tr>
+<td>stop-writes-on-bgsav-error</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>rdbcompression</td>
+<td>yes</td>
+</tr>
+</tbody></table>
+<h3 id="save与bgsave"><a href="#save与bgsave" class="headerlink" title="save与bgsave"></a>save与bgsave</h3><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062221.png" title="image-20190803142219868" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062221.png" alt="image-20190803142219868"></a></p>
+<h3 id="触发机制-不容忽略的方式"><a href="#触发机制-不容忽略的方式" class="headerlink" title="触发机制-不容忽略的方式"></a>触发机制-不容忽略的方式</h3><p>其他的方式也会触发生成RDB文件</p>
+<ul>
+<li>全量复制</li>
+<li>debug reload</li>
+<li>shutdown</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>RDB是Redis内存到硬盘的快照，用于持久化</li>
+<li>save通常会阻塞Redis</li>
+<li>bgsave不会阻塞redis，但是会fork新进程</li>
+<li>save自动配置满足任一就会被执行</li>
+<li>有些触发机制不容忽视</li>
+</ul>
+<h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><h3 id="RDB现存问题"><a href="#RDB现存问题" class="headerlink" title="RDB现存问题"></a>RDB现存问题</h3><ul>
+<li>耗时，好性能</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062230.png" title="image-20190803142229318" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062230.png" alt="image-20190803142229318"></a></p>
+<ul>
+<li>不可控，丢失数据</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062239.png" title="image-20190803142237900" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062239.png" alt="image-20190803142237900"></a></p>
+<h3 id="什么是AOF"><a href="#什么是AOF" class="headerlink" title="什么是AOF"></a>什么是AOF</h3><ul>
+<li>创建</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062246.png" title="image-20190803142245289" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062246.png" alt="image-20190803142245289"></a></p>
+<ul>
+<li>恢复</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062254.png" title="image-20190803142253758" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062254.png" alt="image-20190803142253758"></a></p>
+<h3 id="AOF三种策略"><a href="#AOF三种策略" class="headerlink" title="AOF三种策略"></a>AOF三种策略</h3><ul>
+<li>always</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062303.png" title="image-20190803142302433" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062303.png" alt="image-20190803142302433"></a></p>
+<ul>
+<li>everysec</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062311.png" title="image-20190803142310226" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062311.png" alt="image-20190803142310226"></a>)</p>
+<ul>
+<li>no</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062319.png" title="image-20190803142318534" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062319.png" alt="image-20190803142318534"></a></p>
+<p><strong>三种策略比较</strong></p>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062325.png" title="image-20190803142324561" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062325.png" alt="image-20190803142324561"></a></p>
+<h3 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h3><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062334.png" title="image-20190803142332962" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062334.png" alt="image-20190803142332962"></a></p>
+<h4 id="AOF重写的作用"><a href="#AOF重写的作用" class="headerlink" title="AOF重写的作用"></a>AOF重写的作用</h4><ul>
+<li>减少硬盘占用量</li>
+<li>加速恢复速度</li>
+</ul>
+<h4 id="AOF重写实现的两种方式"><a href="#AOF重写实现的两种方式" class="headerlink" title="AOF重写实现的两种方式"></a>AOF重写实现的两种方式</h4><ul>
+<li>bgrewriteaof</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062350.png" title="image-20190803142348803" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062350.png" alt="image-20190803142348803"></a></p>
+<ul>
+<li>aof重写配置</li>
+</ul>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062400.png" title="image-20190803142358986" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062400.png" alt="image-20190803142358986"></a></p>
+<p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062408.png" title="image-20190803142406746" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062408.png" alt="image-20190803142406746"></a></p>
+<h4 id="AOF重写流程"><a href="#AOF重写流程" class="headerlink" title="AOF重写流程"></a>AOF重写流程</h4><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062424.png" title="image-20190803142423212" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062424.png" alt="image-20190803142423212"></a></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062433.png" title="image-20190803142432802" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062433.png" alt="image-20190803142432802"></a>1)</p>
+<h2 id="RDB与AOF的选择"><a href="#RDB与AOF的选择" class="headerlink" title="RDB与AOF的选择"></a>RDB与AOF的选择</h2><p><a rel=第5章 Redis持久化的取舍和选择 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062443.png" title="image-20190803142442207" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-062443.png" alt="image-20190803142442207"></a></p>
+<h3 id="RDB最佳策略"><a href="#RDB最佳策略" class="headerlink" title="RDB最佳策略"></a>RDB最佳策略</h3><ul>
+<li>关</li>
+<li>集中管理</li>
+<li>主从，从开</li>
+</ul>
+<h3 id="AOF最佳策略"><a href="#AOF最佳策略" class="headerlink" title="AOF最佳策略"></a>AOF最佳策略</h3><ul>
+<li>开，缓存和存储</li>
+<li>AOF重写集中管理</li>
+<li>everysec</li>
+</ul>
+<hr>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2019-08-03T06:24:54.518Z" itemprop="dateUpdated">2019-08-03 14:24:54</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/" target="_blank" rel="external">http://yoursite.com/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/&title=《第5章 Redis持久化的取舍和选择》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/&title=《第5章 Redis持久化的取舍和选择》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/03/数据结构算法/玩转数据结构慕课网/第4章 链表/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">第4章  最基础的动态数据结构：链表</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#redis持久化的取舍和选择"><span class="post-toc-number">1.</span> <span class="post-toc-text">redis持久化的取舍和选择</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#持久化的作用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">持久化的作用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是持久化"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">什么是持久化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#持久化的实现方式"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">持久化的实现方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RDB"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">RDB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是RDB"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">什么是RDB</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#触发机制-主要三种方式"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">触发机制-主要三种方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#save与bgsave"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">save与bgsave</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#触发机制-不容忽略的方式"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">触发机制-不容忽略的方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AOF"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">AOF</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RDB现存问题"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">RDB现存问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是AOF"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">什么是AOF</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AOF三种策略"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">AOF三种策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AOF重写"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">AOF重写</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AOF重写的作用"><span class="post-toc-number">1.3.4.1.</span> <span class="post-toc-text">AOF重写的作用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AOF重写实现的两种方式"><span class="post-toc-number">1.3.4.2.</span> <span class="post-toc-text">AOF重写实现的两种方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AOF重写流程"><span class="post-toc-number">1.3.4.3.</span> <span class="post-toc-text">AOF重写流程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置"><span class="post-toc-number">1.3.4.4.</span> <span class="post-toc-text">配置</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RDB与AOF的选择"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">RDB与AOF的选择</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RDB最佳策略"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">RDB最佳策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AOF最佳策略"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">AOF最佳策略</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/&title=《第5章 Redis持久化的取舍和选择》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/03/Redis/慕课网redis从入门到高可用/第五章 Redis持久化的取舍和选择/&title=《第5章 Redis持久化的取舍和选择》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD8klEQVR42u3ay27bQBAEQP3/TyvXADbJ7pkVogDFk2FIJLd8aM/j9Yqv94/r6jP33/r7M+/b6+qeP797/5vXJy4cOHDgwFEeNX/15KVzrA1BQnN/Chw4cODAcZYjP8zVje5/nzyxRdyHLg4cOHDg+AaOvHi7Z8rDMinGknfAgQMHDhzfyXH/ovch1zbsZqUjDhw4cOD4Bo78wfnLtQ27zbhoP+LCgQMHDhynOPKH/b8/f2S/AwcOHDhwxOGUB9IsSmftv9lIqTgdDhw4cOA4FBT5UKdt1Z36L2DWcGzPhQMHDhw49hxtTObrcflYq33ue3RFTDhw4MCB4yjHqWMkQdgu0t1/sv0jXb45Dhw4cOA4ypF/eT+yykM0T8DNPwE4cODAgeMURxKEeQy3A6dZO6+N6vbdcODAgQPHhmPW/tvH4f0986KxDfIHShw4cODAcYhjtnCQry/ki3dt8O/D9bJ4w4EDBw4cI46HMcy6rGrHUbN2ZD64St4WBw4cOHCc4jgVYO0hZ+OiNko/2CvFgQMHDhxBpuTHywuw2cJ3vnK3KQVx4MCBA8cpjvxGUfFTDopmI642hlsyHDhw4MCx4cgjsB3ezGI4v+esYHt4Lg4cOHDgWHNsxjz747Utv3bElQRwtNCAAwcOHDhKjlmY7YdSm9jOy7NVXYsDBw4cOBYceZhtYjL/+VSRlv9zgAMHDhw4TnHMWoHJNSul2mis23+zChUHDhw4cKw52kWBZNSU3z8v82bHLqpYHDhw4MBxqCGYxGq70NBG4yxQ2+U8HDhw4MBxiqNtwO3HUXvWTfPx4V8BHDhw4MCx5pg16dplgrylODv2pmj85ek4cODAgWPBkcdPHoftesGswGsJIlwcOHDgwLHmmL1E/kKb7+aFXz5SKgZUOHDgwIFjxDFbTcgDuA3C2SHbMjJqC+LAgQMHjgVH287LA+zT39qg//J0HDhw4MBxiCNfI5gtt7Wl1GbNol2niHqlOHDgwIFj9J4zmjwg82Zie9TZ5x/eGQcOHDhwjDja+Gk/swndd3zNCryHXikOHDhw4FhwtGObWcmXrDtsFiba2L6saHHgwIEDx4JjttbQHmlWXEWDotHSw+EtDxw4cODAcTF2youlvPCbxW0e7bOFibqixYEDBw4c2yRqplVl+deGcRu0m/vjwIEDB45THHm4zmrEzcBpVjTmQTusGnHgwIEDR9ksaxt8myWD9s8zLLryAg8HDhw4cHwlR1u8tU3JTaPwHwQtDhw4cOBYE8xafu0bznqf0X4HDhw4cOBYc2yWGGbNu3xA1TYi83uuxk44cODAgWO90LBZMsihZ0sJm3IOBw4cOHAc4vgDF8s+EAAM26sAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

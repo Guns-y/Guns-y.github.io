@@ -363,7 +363,7 @@
 <p><a href="https://segmentfault.com/a/1190000008205145" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008205145</a></p>
 </blockquote>
 <hr>
-<h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><h3 id="新的数据结构"><a href="#新的数据结构" class="headerlink" title="新的数据结构"></a>新的数据结构</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4e57b6f?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4e57b6f?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><h3 id="新的数据结构"><a href="#新的数据结构" class="headerlink" title="新的数据结构"></a>新的数据结构</h3><p><a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061519.png" title="image-20190803141517629" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061519.png" alt="image-20190803141517629"></a></p>
 <h3 id="API-2"><a href="#API-2" class="headerlink" title="API"></a>API</h3><table>
 <thead>
 <tr>
@@ -387,13 +387,13 @@
 <p><strong>练习</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6382&gt; pfadd puser1 &quot;u1&quot; &quot;u2&quot; &quot;u3&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; pfcount puser1</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6382&gt; pfadd puser2 &quot;u3&quot; &quot;u4&quot; &quot;u5&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6382&gt; pfmerge puser puser1 puser2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6382&gt; pfcount puser</span><br><span class="line">(integer) 5</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
-<h3 id="内存消耗"><a href="#内存消耗" class="headerlink" title="内存消耗"></a>内存消耗</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710dce935024?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710dce935024?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h3 id="内存消耗"><a href="#内存消耗" class="headerlink" title="内存消耗"></a>内存消耗</h3><p><a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061503.png" title="image-20190803141506383" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061503.png" alt="image-20190803141506383"></a></p>
 <h3 id="使用经验-1"><a href="#使用经验-1" class="headerlink" title="使用经验"></a>使用经验</h3><ul>
 <li>是否能容忍错误（错误率：0.81%）</li>
 <li>是否需要单条数据（没有办法取出）</li>
 </ul>
-<h2 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h2><h3 id="GEO是什么"><a href="#GEO是什么" class="headerlink" title="GEO是什么"></a>GEO是什么</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710dd301aea4?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710dd301aea4?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
-<h3 id="5个城市经纬度"><a href="#5个城市经纬度" class="headerlink" title="5个城市经纬度"></a>5个城市经纬度</h3><p><a rel=第三章 Redis瑞士军刀 href="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4db397f?imageView2/0/w/1280/h/960/ignore-error/1" title="paste image" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710db4db397f?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></a></p>
+<h2 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h2><h3 id="GEO是什么"><a href="#GEO是什么" class="headerlink" title="GEO是什么"></a>GEO是什么</h3><p> ![image-20190803141448122](../../../../../Users/apple/Library/Application Support/typora-user-images/image-20190803141448122.png)</p>
+<h3 id="5个城市经纬度"><a href="#5个城市经纬度" class="headerlink" title="5个城市经纬度"></a>5个城市经纬度</h3><p><a rel=第三章 Redis瑞士军刀 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061449.png" title="image-20190803141435412" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-03-061449.png" alt="image-20190803141435412"></a></p>
 <h3 id="API-3"><a href="#API-3" class="headerlink" title="API"></a>API</h3><table>
 <thead>
 <tr>
@@ -426,6 +426,7 @@
 <li>type geoKey = zset</li>
 <li>没有删除API：zrem key member</li>
 </ul>
+<hr>
 
         </div>
         
@@ -433,7 +434,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-02T13:44:22.899Z" itemprop="dateUpdated">2019-08-02 21:44:22</time>
+    最後更新時間：<time datetime="2019-08-03T06:15:40.579Z" itemprop="dateUpdated">2019-08-03 14:15:40</time>
 </span><br>
 
 
