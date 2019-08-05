@@ -211,14 +211,44 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            
+            <h1 id="Lettcode题解"><a href="#Lettcode题解" class="headerlink" title="Lettcode题解"></a>Lettcode题解</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>删除链表中等于给定值 <strong>val</strong> 的所有节点。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6</span><br><span class="line">输出: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://github.com/MisterBooo/LeetCodeAnimation/blob/master/notes/LeetCode第203号问题：移除链表元素.md" target="_blank" rel="noopener">https://github.com/MisterBooo/LeetCodeAnimation/blob/master/notes/LeetCode第203号问题：移除链表元素.md</a></p>
+</blockquote>
+<h2 id="不实用虚拟头节点"><a href="#不实用虚拟头节点" class="headerlink" title="不实用虚拟头节点"></a>不实用虚拟头节点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;<span class="comment">//val 是元素E e的意思</span></span><br><span class="line">    ListNode next;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListNode</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeElementes</span><span class="params">(ListNode head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head != <span class="keyword">null</span> &amp;&amp; head.val == val) &#123;</span><br><span class="line">            ListNode delNode = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">            delNode.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev = head;</span><br><span class="line">        <span class="keyword">while</span> (prev.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prev.next.val == val) &#123;</span><br><span class="line">                ListNode delNode = prev.next;</span><br><span class="line">                prev.next = delNode.next;</span><br><span class="line">                delNode.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                prev = prev.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=第5章 链表 递归 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-090904.png" title="image-20190805170902748" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-090904.png" alt="image-20190805170902748" title class></a>
+                <p>image-20190805170902748</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第5章 链表 递归 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-091350.png" title="image-20190805171348946" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-091350.png" alt="image-20190805171348946" title class></a>
+                <p>image-20190805171348946</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第5章 链表 递归 href="../../../../../Users/apple/Library/Application" title="Support/typora-user-images/image-20190805171433854.png" data-fancybox="images"><img src="../../../../../Users/apple/Library/Application" alt="image-20190805171433854" title="Support/typora-user-images/image-20190805171433854.png" class></a>
+                <p>Support/typora-user-images/image-20190805171433854.png</p>
+            </figure>
+
+<hr>
+<h2 id="使用虚拟头节点"><a href="#使用虚拟头节点" class="headerlink" title="使用虚拟头节点"></a>使用虚拟头节点</h2><figure class="image-box">
+                <a rel=第5章 链表 递归 href="../../../../../Users/apple/Library/Application" title="Support/typora-user-images/image-20190805172710694.png" data-fancybox="images"><img src="../../../../../Users/apple/Library/Application" alt="image-20190805172710694" title="Support/typora-user-images/image-20190805172710694.png" class></a>
+                <p>Support/typora-user-images/image-20190805172710694.png</p>
+            </figure>
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-08-03T08:56:49.759Z" itemprop="dateUpdated">2019-08-03 16:56:49</time>
+    Last updated: <time datetime="2019-08-05T09:27:17.384Z" itemprop="dateUpdated">2019-08-05 17:27:17</time>
 </span><br>
 
 
@@ -292,7 +322,7 @@
     <div class="prev">
       <a href="/2019/08/03/工具类🔧/CookileUtils/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">No title</h4>
+        <h4 class="title">[no title]</h4>
       </a>
     </div>
   
@@ -309,6 +339,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Lettcode题解"><span class="post-toc-number">1.</span> <span class="post-toc-text">Lettcode题解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目描述"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">题目描述</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#不实用虚拟头节点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">不实用虚拟头节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用虚拟头节点"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用虚拟头节点</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
