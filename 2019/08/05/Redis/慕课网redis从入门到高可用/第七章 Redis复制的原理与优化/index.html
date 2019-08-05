@@ -242,6 +242,176 @@
 
 <hr>
 <hr>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-123558.png" title="image-20190805203557445" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-123558.png" alt="image-20190805203557445"></a></p>
+<hr>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-123700.png" title="image-20190805203658640" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-123700.png" alt="image-20190805203658640" title class></a>
+                <p>image-20190805203658640</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-124032.png" title="image-20190805204030842" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-124032.png" alt="image-20190805204030842" title class></a>
+                <p>image-20190805204030842</p>
+            </figure>
+
+<h1 id="redis系列：主从复制"><a href="#redis系列：主从复制" class="headerlink" title="redis系列：主从复制"></a>redis系列：主从复制</h1><h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>这篇文章主要讲述Redis的主从复制功能。会依次从环境搭建、功能测试和原理分析几个方面进行介绍。</p>
+<h1 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2 准备工作"></a>2 准备工作</h1><p>服务器架构图如下</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131754.png" title="image-20190805211753888" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131754.png" alt="image-20190805211753888" title class></a>
+                <p>image-20190805211753888</p>
+            </figure>
+
+
+
+<p>启动主服务器101，使用<code>info replication</code>命令查看状态，可以看到role为master（也就是角色为主主服务器），connected_salaves的值为0（从服务器数量为0）</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131809.png" title="image-20190805211808251" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131809.png" alt="image-20190805211808251" title class></a>
+                <p>image-20190805211808251</p>
+            </figure>
+
+
+
+<p>接下来用修改配置文件的方式将102机器加入的主从复制当中</p>
+<p>然后再用命令的方式同样将103机器加入的主从复制当中。</p>
+<h2 id="2-1-用修改配置文件的方式将102机器加入到主从"><a href="#2-1-用修改配置文件的方式将102机器加入到主从" class="headerlink" title="2.1 用修改配置文件的方式将102机器加入到主从"></a>2.1 用修改配置文件的方式将102机器加入到主从</h2><p>ip地址为192.168.17.102的机器的Redis配置文件增加slaveof 192.168.17.101 6379<br>启动102的redis，状态如下</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131822.png" title="image-20190805211821924" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131822.png" alt="image-20190805211821924" title class></a>
+                <p>image-20190805211821924</p>
+            </figure>
+
+
+
+<p>可以看到role变为slave（角色为从服务器），master_host（主服务器IP地址）为192.168.17.101，master_port（主服务器端口）为6379。<br>此时101主服务器的主从状态如下,可以看到connected_salaves的值变为1，以及增加了一行slave0（从服务器的状态）</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131832.png" title="image-20190805211831926" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131832.png" alt="image-20190805211831926" title class></a>
+                <p>image-20190805211831926</p>
+            </figure>
+
+
+
+<h2 id="2-2-用命令的方式将103机器加入到主从"><a href="#2-2-用命令的方式将103机器加入到主从" class="headerlink" title="2.2 用命令的方式将103机器加入到主从"></a>2.2 用命令的方式将103机器加入到主从</h2><p>未执行slaveof命令的主从状态如下</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131843.png" title="image-20190805211841628" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131843.png" alt="image-20190805211841628" title class></a>
+                <p>image-20190805211841628</p>
+            </figure>
+
+
+
+<p>开始执行slaveof命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.103:6379&gt; slaveof 192.168.17.101 6379</span><br><span class="line">OK</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>再次查看状态，可以看到角色已经变成从服务器</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131853.png" title="image-20190805211852175" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131853.png" alt="image-20190805211852175"></a></p>
+<p>现在再来看看主服务器的状态，可以看到从服务器数量变成2，又多了一条从服务器的信息</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131904.png" title="image-20190805211904051" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131904.png" alt="image-20190805211904051"></a></p>
+<p>到这里主从环境就搭好了，现在来测试一波</p>
+<h2 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h2><p>现在主服务器101输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.101:6379&gt; set 101 101</span><br><span class="line">OK</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后在从服务器102上查看所有的键，发现有键101，接着设置键102</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.102:6379&gt; keys *</span><br><span class="line">1) &quot;101&quot;</span><br><span class="line">192.168.17.102:6379&gt; get 101</span><br><span class="line">&quot;101&quot;</span><br><span class="line">192.168.17.102:6379&gt; set 102 102</span><br><span class="line">(error) READONLY You can&apos;t write against a read only slave.</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>发现出现错误<code>(error) READONLY You can&#39;t write against a read only slave.</code> 后面在讲述出错原因</p>
+<p>现在在从服务器103上查看所有的键，发现也有<code>101</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.103:6379&gt; keys *</span><br><span class="line">1) &quot;101&quot;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>再向主服务器101输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.101:6379&gt; set ip ip</span><br><span class="line">OK</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后到从服务器103上查看所有的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.17.103:6379&gt; keys *</span><br><span class="line">1) &quot;101&quot;</span><br><span class="line">2) &quot;ip&quot;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>可以看到多了一个键，说明主服务的数据同步到了从服务器上，操作过程看下图</p>
+<p><a rel=第七章  Redis复制与优化 href="https://user-gold-cdn.xitu.io/2018/8/2/164f835be97005e3?imageslim" title="img" data-fancybox="images"><img src="https://user-gold-cdn.xitu.io/2018/8/2/164f835be97005e3?imageslim" alt="img"></a></p>
+<h2 id="2-4-其他"><a href="#2-4-其他" class="headerlink" title="2.4 其他"></a>2.4 其他</h2><h3 id="2-4-1-error-READONLY-You-can’t-write-against-a-read-only-slave"><a href="#2-4-1-error-READONLY-You-can’t-write-against-a-read-only-slave" class="headerlink" title="2.4.1 (error) READONLY You can’t write against a read only slave."></a>2.4.1 (error) READONLY You can’t write against a read only slave.</h3><p>出现错误<code>(error) READONLY You can&#39;t write against a read only slave.</code> 是因为 从节点默认是只读的，如需修改可以再配置文件中修改下面这个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slave-read-only yes</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-2-主服务器设置密码"><a href="#2-4-2-主服务器设置密码" class="headerlink" title="2.4.2 主服务器设置密码"></a>2.4.2 主服务器设置密码</h3><p>当主服务设置密码时，配置文件需要增加如需参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-实现原理"><a href="#3-实现原理" class="headerlink" title="3 实现原理"></a>3 实现原理</h1><p>当我在从服务器103上输入slaveof命令时，出现如下日志</p>
+<figure class="image-box">
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131927.png" title="image-20190805211926657" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131927.png" alt="image-20190805211926657" title class></a>
+                <p>image-20190805211926657</p>
+            </figure>
+
+
+
+<p>总的来说主从复制功能的详细步骤可以分为7个步骤：</p>
+<ol>
+<li>设置主服务器的地址和端口</li>
+<li>建立套接字连接</li>
+<li>发送PING命令</li>
+<li>身份验证</li>
+<li>发送端口信息</li>
+<li>同步</li>
+<li>命令传播</li>
+</ol>
+<p>接下来分别叙述每个步骤</p>
+<h2 id="3-1设置主服务器的地址和端口"><a href="#3-1设置主服务器的地址和端口" class="headerlink" title="3.1设置主服务器的地址和端口"></a>3.1设置主服务器的地址和端口</h2><p>主从复制的第一步就是设置主服务器的地址和端口，当输入slaveof命令或者在配置文件中配置信息时，从服务器会将主服务器的ip地址和端口号保存到服务器状态的属性里面。</p>
+<h2 id="3-2-建立套接字连接"><a href="#3-2-建立套接字连接" class="headerlink" title="3.2 建立套接字连接"></a>3.2 建立套接字连接</h2><p>在slaveof命令执行之后，从服务器会根据设置的ip和端口，向主服务器简历socket连接。</p>
+<h2 id="3-3-发送PING命令"><a href="#3-3-发送PING命令" class="headerlink" title="3.3 发送PING命令"></a>3.3 发送PING命令</h2><p>socket连接成功后，从服务器会发送一PING命令给主服务器。</p>
+<p>这时候PING命令可以检查socket的读写状态是否正常，还可以检查主服务器能否正常处理命令请求。</p>
+<p>从服务器在发送PING命令时可能遇上的情况如下图</p>
+<p><a rel=第七章  Redis复制与优化 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22483%22%20height=%22299%22%3E%3C/svg%3E" title="图片来自Redis设计与实现" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22483%22%20height=%22299%22%3E%3C/svg%3E" alt="图片来自Redis设计与实现"></a></p>
+<h2 id="3-4-身份验证"><a href="#3-4-身份验证" class="headerlink" title="3.4 身份验证"></a>3.4 身份验证</h2><p>从服务器收到主服务器的PONG回复后，会检查从服务器是否设置masterauth，设置则进行身份验证，未设置则跳过该步骤。从服务器在身份验证时可能遇上的情况如下</p>
+<p><a rel=第七章  Redis复制与优化 href="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22632%22%20height=%22560%22%3E%3C/svg%3E" title="图片来自Redis设计与实现" data-fancybox="images"><img src="data:image/svg+xml;utf8,%3C?xml%20version=%221.0%22?%3E%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20version=%221.1%22%20width=%22632%22%20height=%22560%22%3E%3C/svg%3E" alt="图片来自Redis设计与实现"></a></p>
+<h2 id="3-5-发送端口信息"><a href="#3-5-发送端口信息" class="headerlink" title="3.5 发送端口信息"></a>3.5 发送端口信息</h2><p>身份验证通过后，从服务器会向主服务器发送自己的监听端口号。主服务器收到之后会将端口号记录到从服务器对应的状态属性中。在主服务器调用<code>info replication</code>可以看到从服务器的port，如下</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131939.png" title="image-20190805211938131" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131939.png" alt="image-20190805211938131"></a></p>
+<h2 id="3-6-同步"><a href="#3-6-同步" class="headerlink" title="3.6 同步"></a>3.6 同步</h2><p>发送端口信息之后，从服务器会向主服务器发送PSYNC命令，执行同步操作，并将自己的数据库同步至主服务器数据库当前的状态。</p>
+<p>同步这块内容会在后面详细描述</p>
+<h2 id="3-7-命令传播"><a href="#3-7-命令传播" class="headerlink" title="3.7 命令传播"></a>3.7 命令传播</h2><p>当完成同步操作之后，主从服务器便会进入命令传播阶段。这时候主从服务器的数据是一致的，当主服务器有新的写命令时，会将改命令发送给从服务器，从服务器接收命令并执行便可以保证与主服务器的数据保持一致。<br>那么Redis是如何保证主从服务器一致处于连接状态以及命令是否丢失？<br>答：命令传播阶段，从服务器会利用心跳检测机制定时的向主服务发送消息。<br>从服务器发送的命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REPLCONF ACK &lt;replication_offset&gt;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>replication_offset表示从服务器当前的复制偏移量<br>接下来看看心跳机制</p>
+<h3 id="3-7-1-心跳检测机制"><a href="#3-7-1-心跳检测机制" class="headerlink" title="3.7.1 心跳检测机制"></a>3.7.1 心跳检测机制</h3><p>心跳检测机制的作用有三个：</p>
+<ol>
+<li>检查主从服务器的网络连接状态</li>
+<li>辅助实现min-slaves选项</li>
+<li>检测命令丢失</li>
+</ol>
+<h4 id="3-7-1-1-检查主从服务器的网络连接状态"><a href="#3-7-1-1-检查主从服务器的网络连接状态" class="headerlink" title="3.7.1.1 检查主从服务器的网络连接状态"></a>3.7.1.1 检查主从服务器的网络连接状态</h4><p>主服务器信息中可以看到所属的从服务器的连接信息，state表示从服务器状态，offset表示复制偏移量，lag表示延迟值（几秒之前有过心跳检测机制）</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131952.png" title="image-20190805211951647" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-131952.png" alt="image-20190805211951647"></a></p>
+<h4 id="3-7-1-2-辅助实现min-slaves选项"><a href="#3-7-1-2-辅助实现min-slaves选项" class="headerlink" title="3.7.1.2 辅助实现min-slaves选项"></a>3.7.1.2 辅助实现min-slaves选项</h4><p>Redis.conf配置文件中有下方两个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 未达到下面两个条件时，写操作就不会被执行</span><br><span class="line"># 最少包含的从服务器</span><br><span class="line"># min-slaves-to-write 3</span><br><span class="line"># 延迟值</span><br><span class="line"># min-slaves-max-lag 10</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果将两个参数的注释取消，那么如果从服务器的数量少于3个，或者三个从服务器的延迟（lag）大于等于10秒时，主服务器都会拒绝执行写命令。</p>
+<h4 id="3-7-1-3-检测命令丢失"><a href="#3-7-1-3-检测命令丢失" class="headerlink" title="3.7.1.3 检测命令丢失"></a>3.7.1.3 检测命令丢失</h4><p>在从服务器的连接信息中可以看到复制偏移量，如果此时主服务器的复制偏移量与从服务器的复制偏移量不一致时，主服务器会补发缺失的数据。</p>
+<h1 id="4-同步原理"><a href="#4-同步原理" class="headerlink" title="4 同步原理"></a>4 同步原理</h1><p>同步分为全量重同步和部分重同步。那么是什么决定采取全量重同步还是部分重同步操作？</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132005.png" title="image-20190805212004746" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132005.png" alt="image-20190805212004746"></a></p>
+<h2 id="4-1-全量重同步"><a href="#4-1-全量重同步" class="headerlink" title="4.1 全量重同步"></a>4.1 全量重同步</h2><p>全量重同步的步骤如下</p>
+<ol>
+<li>主节点收到从服务器的全量重同步请求时，主服务器便开始执行bgsave命令，同时用一个缓冲区记录从现在开始执行的所有写命令。</li>
+<li>当主服务器的bgsave命令执行完毕后，会将生成的RDB文件发送给从服务器。从服务器接收到RDB文件时，会将数据文件保存到硬盘，然后加载到内存中。</li>
+<li>主服务器将缓冲区所有缓存的命令发送到从服务器，从服务器接收并执行这些命令，将从服务器同步至主服务器相同的状态。</li>
+</ol>
+<h2 id="4-2-部分重同步"><a href="#4-2-部分重同步" class="headerlink" title="4.2 部分重同步"></a>4.2 部分重同步</h2><p>要想了解部分重同步的步骤，需要先了解部分重同步所需要的几个属性</p>
+<ol>
+<li>复制偏移量</li>
+<li>复制缓冲区</li>
+<li>运行ID</li>
+</ol>
+<h3 id="4-2-1-复制偏移量"><a href="#4-2-1-复制偏移量" class="headerlink" title="4.2.1 复制偏移量"></a>4.2.1 复制偏移量</h3><p>从主服务器的复制信息可以看到从服务器slave0和slave1都有一个参数offset，这个参数就是从服务器的复制偏移量。master_repl_offset这个参数就是主服务器的偏移量。如下图</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132016.png" title="image-20190805212015720" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132016.png" alt="image-20190805212015720"></a></p>
+<p>主服务器的复制偏移量保存向从服务器发送过的字节数据。<br>从服务器的复制偏移量保存着从主服务器接收的字节数据。<br>通过对比主服务器和从服务器的复制偏移量就可以知道命令是否丢失，丢失则补发复制偏移量相差的字节命令。<br>那么这些字节数据是存放在哪里的呢？</p>
+<h3 id="4-2-2-复制缓冲区"><a href="#4-2-2-复制缓冲区" class="headerlink" title="4.2.2 复制缓冲区"></a>4.2.2 复制缓冲区</h3><p>这些字节数据都是存放在主服务器的复制缓冲区里的。复制缓冲区是一个固定长度（fixed-size）先进先出（FIFO）的队列，默认大小为1MB。默认大小可以对下方的参数进行修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># repl-backlog-size 1mb</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>那么复制缓冲区的数据是什么时候加入进去的呢？</p>
+<p>答：在命令传播阶段，主节点除了将写命令发送给从节点，还会发送一份给复制积压缓冲区。</p>
+<p><a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132027.png" title="image-20190805212026304" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132027.png" alt="image-20190805212026304"></a></p>
+<p>复制缓冲区里面会保存着一部分最传播的写命令和每个字节相应的复制偏移量。</p>
+<p>由于复制缓冲区的大小是有限制的，所以保存的数据也是有限制的。如果从服务器与主服务器的复制偏移量相差的数据大于复制缓冲去存储的数据时，同样不会执行部分重同步。</p>
+<p>举个例子，主服务器的复制偏移量为20000、缓冲区能保存的数据只有5000，从服务器的复制偏移量为10000。这时从服务器与主服务器复制偏移量10000，而缓冲区只有5000，那么还是会执行全量重同步。如果相差的复制偏移量小于5000，才会执行部分重同步。</p>
+<h3 id="4-2-3-运行ID"><a href="#4-2-3-运行ID" class="headerlink" title="4.2.3 运行ID"></a>4.2.3 运行ID</h3><p>每个Redis服务器启动时，都会有自动生成自己的运行ID。<br>当从服务器对主服务器进行初次复制时，主服务器会发送自己的运行ID给从服务器。<br>当从服务器断线重连时，会将之前主服务器的运行ID发送给当前连接的主服务器。这时候会出现下面两种情况</p>
+<ol>
+<li>运行ID和主服务器一致，主服务器可以尝试执行部分重同步操作。</li>
+<li>运行ID和主服务器不一致，说明之前连接的主服务器与这次连接不同，开始执行全量重同步操作。</li>
+</ol>
+<h1 id="5-相关配置"><a href="#5-相关配置" class="headerlink" title="5 相关配置"></a>5 相关配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">################################# REPLICATION #################################</span><br><span class="line"></span><br><span class="line"># slaveof &lt;主服务器ip&gt; &lt;主服务器端口&gt;</span><br><span class="line"># slaveof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"></span><br><span class="line"># masterauth &lt;主服务器Redis密码&gt;</span><br><span class="line"># masterauth &lt;master-password&gt;</span><br><span class="line"></span><br><span class="line"># 当slave丢失master或者同步正在进行时，如果发生对slave的服务请求</span><br><span class="line"># yes则slave依然正常提供服务</span><br><span class="line"># no则slave返回client错误：&quot;SYNC with master in progress&quot;</span><br><span class="line">slave-serve-stale-data yes</span><br><span class="line"></span><br><span class="line"># 指定slave是否只读</span><br><span class="line">slave-read-only yes</span><br><span class="line"></span><br><span class="line"># 无硬盘复制功能</span><br><span class="line">repl-diskless-sync no</span><br><span class="line"></span><br><span class="line"># 无硬盘复制功能间隔时间</span><br><span class="line">repl-diskless-sync-delay 5</span><br><span class="line"></span><br><span class="line"># 从服务器发送PING命令给主服务器的周期</span><br><span class="line"># repl-ping-slave-period 10</span><br><span class="line"></span><br><span class="line"># 超时时间</span><br><span class="line"># repl-timeout 60</span><br><span class="line"></span><br><span class="line"># 是否禁用socket的NO_DELAY选项</span><br><span class="line">repl-disable-tcp-nodelay no</span><br><span class="line"></span><br><span class="line"># 设置主从复制容量大小，这个backlog 是一个用来在 slaves 被断开连接时存放 slave 数据的 buffer</span><br><span class="line"># repl-backlog-size 1mb</span><br><span class="line"></span><br><span class="line"># master 不再连接 slave时backlog的存活时间。</span><br><span class="line"># repl-backlog-ttl 3600</span><br><span class="line"></span><br><span class="line"># slave的优先级</span><br><span class="line">slave-priority 100</span><br><span class="line"></span><br><span class="line"># 未达到下面两个条件时，写操作就不会被执行</span><br><span class="line"># 最少包含的从服务器</span><br><span class="line"># min-slaves-to-write 3</span><br><span class="line"># 延迟值</span><br><span class="line"># min-slaves-max-lag 10</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>主从的配置文件：[<a href="https://github.com/rainbowda/learnWay/tree/master/learnRedis/replication，有需要可以下载。" target="_blank" rel="noopener">https://github.com/rainbowda/learnWay/tree/master/learnRedis/replication，有需要可以下载。</a></p>
+<p>Redis的主从复制功能就介绍到这里了。虽然说主从解决了读写分离，读数据的负载均衡，但是一旦某个节点出现故障，不能自动回复，主从切换等功能。所以就有了哨兵的功能。</p>
 <h1 id="深入学习Redis（3）：主从复制"><a href="#深入学习Redis（3）：主从复制" class="headerlink" title="深入学习Redis（3）：主从复制"></a><a href="https://www.cnblogs.com/kismetv/p/9236731.html" target="_blank" rel="noopener">深入学习Redis（3）：主从复制</a></h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面的两篇文章中，分别介绍了<a href="https://www.cnblogs.com/kismetv/p/8654978.html" target="_blank" rel="noopener">Redis的内存模型</a>和<a href="https://www.cnblogs.com/kismetv/p/9137897.html" target="_blank" rel="noopener">Redis的持久化</a>。</p>
 <p>在Redis的持久化中曾提到，Redis高可用的方案包括持久化、主从复制（及读写分离）、哨兵和集群。其中持久化侧重解决的是Redis数据的单机备份问题（从内存到硬盘的备份）；而主从复制则侧重解决数据的多机热备。此外，主从复制还可以实现负载均衡和故障恢复。</p>
 <p>这篇文章中，将详细介绍Redis主从复制的方方面面，包括：如何使用主从复制、主从复制的原理（重点是全量复制和部分复制、以及心跳机制）、实际应用中需要注意的问题（如数据不一致问题、复制超时问题、复制缓冲区溢出问题）、主从复制相关的配置（重点是repl-timeout、client-output-buffer-limit slave）等。</p>
@@ -299,21 +469,21 @@
 <p>上述3种方式是等效的，下面以客户端命令的方式为例，看一下当执行了slaveof后，Redis主节点和从节点的变化。</p>
 <h2 id="2-实例"><a href="#2-实例" class="headerlink" title="2. 实例"></a>2. 实例</h2><h3 id="准备工作：启动两个节点"><a href="#准备工作：启动两个节点" class="headerlink" title="准备工作：启动两个节点"></a>准备工作：启动两个节点</h3><p>方便起见，实验所使用的主从节点是在一台机器上的不同Redis实例，其中主节点监听6379端口，从节点监听6380端口；从节点监听的端口号可以在配置文件中修改：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011219164-269585034.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011219164-269585034.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132039.png" title="image-20190805212038956" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132039.png" alt="image-20190805212038956" title class></a>
+                <p>image-20190805212038956</p>
             </figure>
 
 <p>启动后可以看到：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011229205-1259881734.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011229205-1259881734.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132046.png" title="image-20190805212045985" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132046.png" alt="image-20190805212045985" title class></a>
+                <p>image-20190805212045985</p>
             </figure>
 
 <p>两个Redis节点启动后（分别称为6379节点和6380节点），默认都是主节点。</p>
 <h3 id="建立复制"><a href="#建立复制" class="headerlink" title="建立复制"></a>建立复制</h3><p>此时在6380节点执行slaveof命令，使之变为从节点：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011236215-1776355426.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011236215-1776355426.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132054.png" title="image-20190805212053324" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132054.png" alt="image-20190805212053324" title class></a>
+                <p>image-20190805212053324</p>
             </figure>
 
 <h3 id="观察效果"><a href="#观察效果" class="headerlink" title="观察效果"></a>观察效果</h3><p>下面验证一下，在主从复制建立后，主节点的数据会复制到从节点中。</p>
@@ -325,8 +495,8 @@
 
 <p>（2）然后在主节点中增加这个key：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011255637-1820178900.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011255637-1820178900.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132103.png" title="image-20190805212101976" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132103.png" alt="image-20190805212101976" title class></a>
+                <p>image-20190805212101976</p>
             </figure>
 
 <p>（3）此时在从节点中再次查询这个key，会发现主节点的操作已经同步至从节点：</p>
@@ -337,27 +507,27 @@
 
 <p>（4）然后在主节点删除这个key：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011309069-1397319420.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011309069-1397319420.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132109.png" title="image-20190805212109135" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132109.png" alt="image-20190805212109135" title class></a>
+                <p>image-20190805212109135</p>
             </figure>
 
 <p>（5）此时在从节点中再次查询这个key，会发现主节点的操作已经同步至从节点：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011318424-343599365.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011318424-343599365.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132116.png" title="image-20190805212116246" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132116.png" alt="image-20190805212116246" title class></a>
+                <p>image-20190805212116246</p>
             </figure>
 
 <h2 id="3-断开复制"><a href="#3-断开复制" class="headerlink" title="3. 断开复制"></a>3. 断开复制</h2><p>通过slaveof <masterip> <masterport>命令建立主从复制关系以后，可以通过slaveof no one断开。需要注意的是，从节点断开复制后，不会删除已有的数据，只是不再接受主节点新的数据变化。</masterport></masterip></p>
 <p>从节点执行slaveof no one后，打印日志如下所示；可以看出断开复制后，从节点又变回为主节点。</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011330683-644091604.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011330683-644091604.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132122.png" title="image-20190805212122087" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132122.png" alt="image-20190805212122087" title class></a>
+                <p>image-20190805212122087</p>
             </figure>
 
 <p>主节点打印日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011337649-815413808.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011337649-815413808.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132127.png" title="image-20190805212126798" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132127.png" alt="image-20190805212126798" title class></a>
+                <p>image-20190805212126798</p>
             </figure>
 
 <h1 id="三、主从复制的实现原理"><a href="#三、主从复制的实现原理" class="headerlink" title="三、主从复制的实现原理"></a>三、主从复制的实现原理</h1><p>上面一节中，介绍了如何操作可以建立主从关系；本小节将介绍主从复制的实现原理。</p>
@@ -367,8 +537,8 @@
 <p>需要注意的是，<strong>slaveof**</strong>是异步命令，从节点完成主节点ip<strong><strong>和port</strong></strong>的保存后，向发送slaveof<strong><strong>命令的客户端直接返回OK</strong></strong>，实际的复制操作在这之后才开始进行。**</p>
 <p>这个过程中，可以看到从节点打印日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011353199-43354413.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011353199-43354413.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132133.png" title="image-20190805212132686" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132133.png" alt="image-20190805212132686" title class></a>
+                <p>image-20190805212132686</p>
             </figure>
 
 <h3 id="步骤2：建立socket连接"><a href="#步骤2：建立socket连接" class="headerlink" title="步骤2：建立socket连接"></a>步骤2：建立socket连接</h3><p>从节点每秒1次调用复制定时函数replicationCron()，如果发现了有主节点可以连接，便会根据主节点的ip和port，创建socket连接。如果连接成功，则：</p>
@@ -376,8 +546,8 @@
 <p>主节点：接收到从节点的socket连接后（即accept之后），为该socket创建相应的客户端状态，<strong>并将从节点看做是连接到主节点的一个客户端，后面的步骤会以从节点向主节点发送命令请求的形式来进行。</strong></p>
 <p>这个过程中，从节点打印日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011400533-833761023.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011400533-833761023.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132138.png" title="image-20190805212137946" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132138.png" alt="image-20190805212137946" title class></a>
+                <p>image-20190805212137946</p>
             </figure>
 
 <h3 id="步骤3：发送ping命令"><a href="#步骤3：发送ping命令" class="headerlink" title="步骤3：发送ping命令"></a>步骤3：发送ping命令</h3><p>从节点成为主节点的客户端之后，发送ping命令进行首次请求，目的是：检查socket连接是否可用，以及主节点当前是否能够处理请求。</p>
@@ -387,8 +557,8 @@
 <p>（3）返回pong以外的结果：如果主节点返回其他结果，如正在处理超时运行的脚本，说明主节点当前无法处理命令，则从节点断开socket连接，并重连。</p>
 <p>在主节点返回pong情况下，从节点打印日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011408822-1702643515.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011408822-1702643515.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132143.png" title="image-20190805212143066" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132143.png" alt="image-20190805212143066" title class></a>
+                <p>image-20190805212143066</p>
             </figure>
 
 <h3 id="步骤4：身份验证"><a href="#步骤4：身份验证" class="headerlink" title="步骤4：身份验证"></a>步骤4：身份验证</h3><p>如果从节点中设置了masterauth选项，则从节点需要向主节点进行身份验证；没有设置该选项，则不需要验证。从节点进行身份验证是通过向主节点发送auth命令进行的，auth命令的参数即为配置文件中的masterauth的值。</p>
@@ -417,14 +587,14 @@
 <p>下面是执行全量复制时，主从节点打印的日志；可以看出日志内容与上述步骤是完全对应的。</p>
 <p>主节点的打印日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011456793-1960688528.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011456793-1960688528.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132153.png" title="image-20190805212150939" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132153.png" alt="image-20190805212150939" title class></a>
+                <p>image-20190805212150939</p>
             </figure>
 
 <p>从节点打印日志如下图所示：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011502796-1951938935.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011502796-1951938935.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132155.png" title="image-20190805212155008" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132155.png" alt="image-20190805212155008" title class></a>
+                <p>image-20190805212155008</p>
             </figure>
 
 <p>其中，有几点需要注意：从节点接收了来自主节点的89260个字节的数据；从节点在载入主节点的数据之前要先将老数据清除；从节点在同步完数据后，调用了bgrewriteaof。</p>
@@ -446,8 +616,8 @@
 </ul>
 <h3 id="（3）服务器运行ID-runid"><a href="#（3）服务器运行ID-runid" class="headerlink" title="（3）服务器运行ID(runid)"></a>（3）服务器运行ID(runid)</h3><p>每个Redis节点(无论主从)，在启动时都会自动生成一个随机ID(每次启动都不一样)，由40个随机的十六进制字符组成；runid用来唯一识别一个Redis节点。通过info Server命令，可以查看节点的runid：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011537662-712436367.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011537662-712436367.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132218.png" title="image-20190805212218251" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132218.png" alt="image-20190805212218251" title class></a>
+                <p>image-20190805212218251</p>
             </figure>
 
 <p>主从节点初次复制时，主节点将自己的runid发送给从节点，从节点将这个runid保存起来；当断线重连时，从节点会将这个runid发送给主节点；主节点根据runid判断能否进行部分复制：</p>
@@ -458,9 +628,9 @@
 <h2 id="3-psync命令的执行"><a href="#3-psync命令的执行" class="headerlink" title="3. psync命令的执行"></a>3. psync命令的执行</h2><p>在了解了复制偏移量、复制积压缓冲区、节点运行id之后，本节将介绍psync命令的参数和返回值，从而说明psync命令执行过程中，主从节点是如何确定使用全量复制还是部分复制的。</p>
 <p>psync命令的执行过程可以参见下图（图片来源：《Redis设计与实现》）：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011547892-692403928.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011547892-692403928.png" alt="img" title class></a>
-                <p>img</p>
-            </figure> 
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132213.png" title="imag![image-20190805212212118" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132213.png" alt="imag![image-20190805212212118" title class></a>
+                <p>imag![image-20190805212212118</p>
+            </figure>
 
 <p>（1）首先，从节点根据当前状态，决定如何调用psync命令：</p>
 <ul>
@@ -478,28 +648,28 @@
 <p>网络中断一段时间后，主节点和从节点都会发现失去了与对方的连接（关于主从节点对超时的判断机制，后面会有说明）；此后，从节点便开始执行对主节点的重连，由于此时网络还没有恢复，重连失败，从节点会一直尝试重连。</p>
 <p>主节点日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011609348-1802555230.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011609348-1802555230.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132229.png" title="image-20190805212228333" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132229.png" alt="image-20190805212228333" title class></a>
+                <p>image-20190805212228333</p>
             </figure>
 
 <p>从节点日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011615849-621207089.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011615849-621207089.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132225.png" title="image-20190805212224168" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132225.png" alt="image-20190805212224168" title class></a>
+                <p>image-20190805212224168</p>
             </figure>
 
 <p><strong>网络恢复</strong></p>
 <p>网络恢复后，从节点连接主节点成功，并请求进行部分复制，主节点接收请求后，二者进行部分复制以同步数据。</p>
 <p>主节点日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011623772-1032753515.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011623772-1032753515.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132239.png" title="image-20190805212238819" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132239.png" alt="image-20190805212238819" title class></a>
+                <p>image-20190805212238819</p>
             </figure>
 
 <p>从节点日志如下：</p>
 <figure class="image-box">
-                <a rel=第七章  Redis复制与优化 href="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011630326-1569443208.png" title="img" data-fancybox="images"><img src="https://images2018.cnblogs.com/blog/1174710/201806/1174710-20180628011630326-1569443208.png" alt="img" title class></a>
-                <p>img</p>
+                <a rel=第七章  Redis复制与优化 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132234.png" title="image-20190805212233961" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-132234.png" alt="image-20190805212233961" title class></a>
+                <p>image-20190805212233961</p>
             </figure>
 
 <h1 id="五、【命令传播阶段】心跳机制"><a href="#五、【命令传播阶段】心跳机制" class="headerlink" title="五、【命令传播阶段】心跳机制"></a>五、【命令传播阶段】心跳机制</h1><p>在命令传播阶段，除了发送写命令，主从节点还维持着心跳机制：PING和REPLCONF ACK。心跳机制对于主从复制的超时判断、数据安全等有作用。</p>
@@ -635,6 +805,9 @@
 <p>3、主从复制的原理：主从复制包括了连接建立阶段、数据同步阶段、命令传播阶段；其中数据同步阶段，有全量复制和部分复制两种数据同步方式；命令传播阶段，主从节点之间有PING和REPLCONF ACK命令互相进行心跳检测。</p>
 <p>4、应用中的问题：包括读写分离的问题（数据不一致问题、数据过期问题、故障切换问题等）、复制超时问题、复制中断问题等，然后总结了主从复制相关的配置，其中repl-timeout、client-output-buffer-limit slave等对解决Redis主从复制中出现的问题可能会有帮助。</p>
 <p>主从复制虽然解决或缓解了数据冗余、故障恢复、读负载均衡等问题，但其缺陷仍很明显：故障恢复无法自动化；写操作无法负载均衡；存储能力受到单机的限制；这些问题的解决，需要哨兵和集群的帮助，我将在后面的文章中介绍，欢迎关注。</p>
+<hr>
+<hr>
+<hr>
 
         </div>
         
@@ -642,7 +815,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-05T12:18:13.992Z" itemprop="dateUpdated">2019-08-05 20:18:13</time>
+    Last updated: <time datetime="2019-08-05T13:22:47.642Z" itemprop="dateUpdated">2019-08-05 21:22:47</time>
 </span><br>
 
 
@@ -716,7 +889,7 @@
     <div class="prev">
       <a href="/2019/08/05/Redis/慕课网redis从入门到高可用/第七章 Redis复制和优化/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">No title</h4>
+        <h4 class="title">[no title]</h4>
       </a>
     </div>
   
@@ -737,7 +910,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis主从复制"><span class="post-toc-number">1.</span> <span class="post-toc-text">Redis主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#两种方式"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">两种方式</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#深入学习Redis（3）：主从复制"><span class="post-toc-number">2.</span> <span class="post-toc-text">深入学习Redis（3）：主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系列文章"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">系列文章</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">目录</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、主从复制概述"><span class="post-toc-number">3.</span> <span class="post-toc-text">一、主从复制概述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、如何使用主从复制"><span class="post-toc-number">4.</span> <span class="post-toc-text">二、如何使用主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-建立复制"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1. 建立复制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-实例"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2. 实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作：启动两个节点"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">准备工作：启动两个节点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立复制"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">建立复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#观察效果"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">观察效果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-断开复制"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3. 断开复制</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、主从复制的实现原理"><span class="post-toc-number">5.</span> <span class="post-toc-text">三、主从复制的实现原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-连接建立阶段"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1. 连接建立阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤1：保存主节点信息"><span class="post-toc-number">5.1.1.</span> <span class="post-toc-text">步骤1：保存主节点信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤2：建立socket连接"><span class="post-toc-number">5.1.2.</span> <span class="post-toc-text">步骤2：建立socket连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤3：发送ping命令"><span class="post-toc-number">5.1.3.</span> <span class="post-toc-text">步骤3：发送ping命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤4：身份验证"><span class="post-toc-number">5.1.4.</span> <span class="post-toc-text">步骤4：身份验证</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤5：发送从节点端口信息"><span class="post-toc-number">5.1.5.</span> <span class="post-toc-text">步骤5：发送从节点端口信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-数据同步阶段"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2. 数据同步阶段</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-命令传播阶段"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3. 命令传播阶段</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、【数据同步阶段】全量复制和部分复制"><span class="post-toc-number">6.</span> <span class="post-toc-text">四、【数据同步阶段】全量复制和部分复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-全量复制"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">1. 全量复制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-部分复制"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">2. 部分复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）复制偏移量"><span class="post-toc-number">6.2.1.</span> <span class="post-toc-text">（1）复制偏移量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）复制积压缓冲区"><span class="post-toc-number">6.2.2.</span> <span class="post-toc-text">（2）复制积压缓冲区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）服务器运行ID-runid"><span class="post-toc-number">6.2.3.</span> <span class="post-toc-text">（3）服务器运行ID(runid)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-psync命令的执行"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">3. psync命令的执行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-部分复制演示"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">4. 部分复制演示</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、【命令传播阶段】心跳机制"><span class="post-toc-number">7.</span> <span class="post-toc-text">五、【命令传播阶段】心跳机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-主-gt-从：PING"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">1.主-&gt;从：PING</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-从-gt-主：REPLCONF-ACK"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">2. 从-&gt;主：REPLCONF ACK</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、应用中的问题"><span class="post-toc-number">8.</span> <span class="post-toc-text">六、应用中的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-读写分离及其中的问题"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">1. 读写分离及其中的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）延迟与不一致问题"><span class="post-toc-number">8.1.1.</span> <span class="post-toc-text">（1）延迟与不一致问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）数据过期问题"><span class="post-toc-number">8.1.2.</span> <span class="post-toc-text">（2）数据过期问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）故障切换问题"><span class="post-toc-number">8.1.3.</span> <span class="post-toc-text">（3）故障切换问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（4）总结"><span class="post-toc-number">8.1.4.</span> <span class="post-toc-text">（4）总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-复制超时问题"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">2. 复制超时问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-复制中断问题"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">3. 复制中断问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复制缓冲区溢出"><span class="post-toc-number">8.3.1.</span> <span class="post-toc-text">复制缓冲区溢出</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-各场景下复制的选择及优化技巧"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">4. 各场景下复制的选择及优化技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）第一次建立复制"><span class="post-toc-number">8.4.1.</span> <span class="post-toc-text">（1）第一次建立复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）主节点重启"><span class="post-toc-number">8.4.2.</span> <span class="post-toc-text">（2）主节点重启</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）从节点重启"><span class="post-toc-number">8.4.3.</span> <span class="post-toc-text">（3）从节点重启</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（4）网络中断"><span class="post-toc-number">8.4.4.</span> <span class="post-toc-text">（4）网络中断</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-复制相关的配置"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">5. 复制相关的配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）与主从节点都有关的配置"><span class="post-toc-number">8.5.1.</span> <span class="post-toc-text">（1）与主从节点都有关的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）主节点相关配置"><span class="post-toc-number">8.5.2.</span> <span class="post-toc-text">（2）主节点相关配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）从节点相关配置"><span class="post-toc-number">8.5.3.</span> <span class="post-toc-text">（3）从节点相关配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-单机内存大小限制"><span class="post-toc-number">8.6.</span> <span class="post-toc-text">6. 单机内存大小限制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-info-Replication"><span class="post-toc-number">8.7.</span> <span class="post-toc-text">7. info Replication</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、总结"><span class="post-toc-number">9.</span> <span class="post-toc-text">七、总结</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis主从复制"><span class="post-toc-number">1.</span> <span class="post-toc-text">Redis主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#两种方式"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">两种方式</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#redis系列：主从复制"><span class="post-toc-number">2.</span> <span class="post-toc-text">redis系列：主从复制</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-简介"><span class="post-toc-number">3.</span> <span class="post-toc-text">1 简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-准备工作"><span class="post-toc-number">4.</span> <span class="post-toc-text">2 准备工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-用修改配置文件的方式将102机器加入到主从"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">2.1 用修改配置文件的方式将102机器加入到主从</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-用命令的方式将103机器加入到主从"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2.2 用命令的方式将103机器加入到主从</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-测试"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">2.3 测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-4-其他"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">2.4 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-1-error-READONLY-You-can’t-write-against-a-read-only-slave"><span class="post-toc-number">4.4.1.</span> <span class="post-toc-text">2.4.1 (error) READONLY You can’t write against a read only slave.</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-2-主服务器设置密码"><span class="post-toc-number">4.4.2.</span> <span class="post-toc-text">2.4.2 主服务器设置密码</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-实现原理"><span class="post-toc-number">5.</span> <span class="post-toc-text">3 实现原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1设置主服务器的地址和端口"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">3.1设置主服务器的地址和端口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-建立套接字连接"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">3.2 建立套接字连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-发送PING命令"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3.3 发送PING命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-身份验证"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">3.4 身份验证</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5-发送端口信息"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">3.5 发送端口信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-同步"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">3.6 同步</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-命令传播"><span class="post-toc-number">5.7.</span> <span class="post-toc-text">3.7 命令传播</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-1-心跳检测机制"><span class="post-toc-number">5.7.1.</span> <span class="post-toc-text">3.7.1 心跳检测机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-7-1-1-检查主从服务器的网络连接状态"><span class="post-toc-number">5.7.1.1.</span> <span class="post-toc-text">3.7.1.1 检查主从服务器的网络连接状态</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-7-1-2-辅助实现min-slaves选项"><span class="post-toc-number">5.7.1.2.</span> <span class="post-toc-text">3.7.1.2 辅助实现min-slaves选项</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-7-1-3-检测命令丢失"><span class="post-toc-number">5.7.1.3.</span> <span class="post-toc-text">3.7.1.3 检测命令丢失</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-同步原理"><span class="post-toc-number">6.</span> <span class="post-toc-text">4 同步原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-全量重同步"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">4.1 全量重同步</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-部分重同步"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">4.2 部分重同步</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-1-复制偏移量"><span class="post-toc-number">6.2.1.</span> <span class="post-toc-text">4.2.1 复制偏移量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-2-复制缓冲区"><span class="post-toc-number">6.2.2.</span> <span class="post-toc-text">4.2.2 复制缓冲区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-3-运行ID"><span class="post-toc-number">6.2.3.</span> <span class="post-toc-text">4.2.3 运行ID</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-相关配置"><span class="post-toc-number">7.</span> <span class="post-toc-text">5 相关配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#结语"><span class="post-toc-number">8.</span> <span class="post-toc-text">结语</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#深入学习Redis（3）：主从复制"><span class="post-toc-number">9.</span> <span class="post-toc-text">深入学习Redis（3）：主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系列文章"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">系列文章</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">目录</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、主从复制概述"><span class="post-toc-number">10.</span> <span class="post-toc-text">一、主从复制概述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、如何使用主从复制"><span class="post-toc-number">11.</span> <span class="post-toc-text">二、如何使用主从复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-建立复制"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">1. 建立复制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-实例"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">2. 实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作：启动两个节点"><span class="post-toc-number">11.2.1.</span> <span class="post-toc-text">准备工作：启动两个节点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立复制"><span class="post-toc-number">11.2.2.</span> <span class="post-toc-text">建立复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#观察效果"><span class="post-toc-number">11.2.3.</span> <span class="post-toc-text">观察效果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-断开复制"><span class="post-toc-number">11.3.</span> <span class="post-toc-text">3. 断开复制</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、主从复制的实现原理"><span class="post-toc-number">12.</span> <span class="post-toc-text">三、主从复制的实现原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-连接建立阶段"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">1. 连接建立阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤1：保存主节点信息"><span class="post-toc-number">12.1.1.</span> <span class="post-toc-text">步骤1：保存主节点信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤2：建立socket连接"><span class="post-toc-number">12.1.2.</span> <span class="post-toc-text">步骤2：建立socket连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤3：发送ping命令"><span class="post-toc-number">12.1.3.</span> <span class="post-toc-text">步骤3：发送ping命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤4：身份验证"><span class="post-toc-number">12.1.4.</span> <span class="post-toc-text">步骤4：身份验证</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#步骤5：发送从节点端口信息"><span class="post-toc-number">12.1.5.</span> <span class="post-toc-text">步骤5：发送从节点端口信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-数据同步阶段"><span class="post-toc-number">12.2.</span> <span class="post-toc-text">2. 数据同步阶段</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-命令传播阶段"><span class="post-toc-number">12.3.</span> <span class="post-toc-text">3. 命令传播阶段</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、【数据同步阶段】全量复制和部分复制"><span class="post-toc-number">13.</span> <span class="post-toc-text">四、【数据同步阶段】全量复制和部分复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-全量复制"><span class="post-toc-number">13.1.</span> <span class="post-toc-text">1. 全量复制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-部分复制"><span class="post-toc-number">13.2.</span> <span class="post-toc-text">2. 部分复制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）复制偏移量"><span class="post-toc-number">13.2.1.</span> <span class="post-toc-text">（1）复制偏移量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）复制积压缓冲区"><span class="post-toc-number">13.2.2.</span> <span class="post-toc-text">（2）复制积压缓冲区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）服务器运行ID-runid"><span class="post-toc-number">13.2.3.</span> <span class="post-toc-text">（3）服务器运行ID(runid)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-psync命令的执行"><span class="post-toc-number">13.3.</span> <span class="post-toc-text">3. psync命令的执行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-部分复制演示"><span class="post-toc-number">13.4.</span> <span class="post-toc-text">4. 部分复制演示</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、【命令传播阶段】心跳机制"><span class="post-toc-number">14.</span> <span class="post-toc-text">五、【命令传播阶段】心跳机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-主-gt-从：PING"><span class="post-toc-number">14.1.</span> <span class="post-toc-text">1.主-&gt;从：PING</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-从-gt-主：REPLCONF-ACK"><span class="post-toc-number">14.2.</span> <span class="post-toc-text">2. 从-&gt;主：REPLCONF ACK</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、应用中的问题"><span class="post-toc-number">15.</span> <span class="post-toc-text">六、应用中的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-读写分离及其中的问题"><span class="post-toc-number">15.1.</span> <span class="post-toc-text">1. 读写分离及其中的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）延迟与不一致问题"><span class="post-toc-number">15.1.1.</span> <span class="post-toc-text">（1）延迟与不一致问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）数据过期问题"><span class="post-toc-number">15.1.2.</span> <span class="post-toc-text">（2）数据过期问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）故障切换问题"><span class="post-toc-number">15.1.3.</span> <span class="post-toc-text">（3）故障切换问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（4）总结"><span class="post-toc-number">15.1.4.</span> <span class="post-toc-text">（4）总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-复制超时问题"><span class="post-toc-number">15.2.</span> <span class="post-toc-text">2. 复制超时问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-复制中断问题"><span class="post-toc-number">15.3.</span> <span class="post-toc-text">3. 复制中断问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复制缓冲区溢出"><span class="post-toc-number">15.3.1.</span> <span class="post-toc-text">复制缓冲区溢出</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-各场景下复制的选择及优化技巧"><span class="post-toc-number">15.4.</span> <span class="post-toc-text">4. 各场景下复制的选择及优化技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）第一次建立复制"><span class="post-toc-number">15.4.1.</span> <span class="post-toc-text">（1）第一次建立复制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）主节点重启"><span class="post-toc-number">15.4.2.</span> <span class="post-toc-text">（2）主节点重启</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）从节点重启"><span class="post-toc-number">15.4.3.</span> <span class="post-toc-text">（3）从节点重启</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（4）网络中断"><span class="post-toc-number">15.4.4.</span> <span class="post-toc-text">（4）网络中断</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-复制相关的配置"><span class="post-toc-number">15.5.</span> <span class="post-toc-text">5. 复制相关的配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（1）与主从节点都有关的配置"><span class="post-toc-number">15.5.1.</span> <span class="post-toc-text">（1）与主从节点都有关的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（2）主节点相关配置"><span class="post-toc-number">15.5.2.</span> <span class="post-toc-text">（2）主节点相关配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（3）从节点相关配置"><span class="post-toc-number">15.5.3.</span> <span class="post-toc-text">（3）从节点相关配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-单机内存大小限制"><span class="post-toc-number">15.6.</span> <span class="post-toc-text">6. 单机内存大小限制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-info-Replication"><span class="post-toc-number">15.7.</span> <span class="post-toc-text">7. info Replication</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、总结"><span class="post-toc-number">16.</span> <span class="post-toc-text">七、总结</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
