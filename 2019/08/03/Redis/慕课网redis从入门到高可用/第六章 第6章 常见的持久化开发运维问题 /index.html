@@ -215,14 +215,67 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            
+            <h1 id="Fork操作"><a href="#Fork操作" class="headerlink" title="Fork操作"></a>Fork操作</h1><figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-105907.png" title="image-20190805185905325" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-105907.png" alt="image-20190805185905325" title class></a>
+                <p>image-20190805185905325</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-105930.png" title="image-20190805185928870" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-105930.png" alt="image-20190805185928870" title class></a>
+                <p>image-20190805185928870</p>
+            </figure>
+
+<p>Redis 常见问题之-fork操作</p>
+<p>1、fork操作</p>
+<p>（1）同步操作</p>
+<pre><code>虽然fork同步操作是非常快的，但是如果需要同步的数据量过大，fork就会阻塞redis主进程。</code></pre><p>（2）与内存量息息相关</p>
+<pre><code>内存越大，fork同步数据耗时越长，当然也跟服务器有关，服务器有物理机，也有虚拟机。</code></pre><p>（3）info:latest_fork_usec</p>
+<pre><code>使用此命令可以查看持久化花费的时间，如果持久化时间过长，就会造成卡顿。
+
+例如：如果redis此时QPS上万，此时redis正在持久化，而且持久化时间比较长（1s或者10几秒），这个时候就会严重阻塞redis。</code></pre><p>2、改善fork</p>
+<p>（1）优先使用物理机或者高效的虚拟机支持fork操作</p>
+<p>（2）控制redis实际最大可用内存：maxmemory</p>
+<p>（3）合理配置linux内存分配策略：vm.overcommit_memory=1</p>
+<p>（4）降低fork频率：例如放宽AOF重写自动触发时机，减少不必要的全量复制。</p>
+<h1 id="子进程开销和优化"><a href="#子进程开销和优化" class="headerlink" title="子进程开销和优化"></a>子进程开销和优化</h1><figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110325.png" title="image-20190805190324426" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110325.png" alt="image-20190805190324426" title class></a>
+                <p>image-20190805190324426</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110407.png" title="image-20190805190406619" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110407.png" alt="image-20190805190406619" title class></a>
+                <p>image-20190805190406619</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110422.png" title="image-20190805190421457" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110422.png" alt="image-20190805190421457" title class></a>
+                <p>image-20190805190421457</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110429.png" title="image-20190805190428197" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110429.png" alt="image-20190805190428197" title class></a>
+                <p>image-20190805190428197</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110436.png" title="image-20190805190435012" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110436.png" alt="image-20190805190435012" title class></a>
+                <p>image-20190805190435012</p>
+            </figure>
+
+<h1 id="AOF追加阻塞"><a href="#AOF追加阻塞" class="headerlink" title="AOF追加阻塞"></a>AOF追加阻塞</h1><figure class="image-box">
+                <a rel=第六章 常见的持久化开发运维问题 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110506.png" title="image-20190805190504946" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-05-110506.png" alt="image-20190805190504946" title class></a>
+                <p>image-20190805190504946</p>
+            </figure>
+
+<hr>
+
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2019-08-03T07:42:01.315Z" itemprop="dateUpdated">2019-08-03 15:42:01</time>
+    最后更新时间：<time datetime="2019-08-05T11:05:10.740Z" itemprop="dateUpdated">2019-08-05 19:05:10</time>
 </span><br>
 
 
@@ -313,6 +366,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Fork操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fork操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#子进程开销和优化"><span class="post-toc-number">2.</span> <span class="post-toc-text">子进程开销和优化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AOF追加阻塞"><span class="post-toc-number">3.</span> <span class="post-toc-text">AOF追加阻塞</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
