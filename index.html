@@ -191,12 +191,12 @@
         <ul class="post-list">
         
             <li class="post-list-item fade">
-                <article id="post-Redis/慕课网redis从入门到高可用/第七章 Redis复制和优化"
+                <article id="post-Redis/慕课网redis从入门到高可用/第八章 RedisSentinel"
   class="article-card article-type-post" itemprop="blogPost">
   
         
 <div class="item-thumb">
-    <a class="thumb-link" href="/2019/08/05/Redis/慕课网redis从入门到高可用/第七章 Redis复制和优化/"></a>
+    <a class="thumb-link" href="/2019/08/06/Redis/慕课网redis从入门到高可用/第八章 RedisSentinel/"></a>
     <div class="thumb-hover">
         <span class="icon icon-eye"></span>
     </div>
@@ -206,7 +206,7 @@
 
   
     <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2019/08/05/Redis/慕课网redis从入门到高可用/第七章 Redis复制和优化/">No title</a>
+      <a class="post-title-link" href="/2019/08/06/Redis/慕课网redis从入门到高可用/第八章 RedisSentinel/">第八章 Redis 哨兵模式</a>
     </h3>
   
 
@@ -219,9 +219,11 @@
     
     
     <div class="post-meta">
-        <time class="post-time" title="2019-08-05 20:00:00" datetime="2019-08-05T12:00:00.461Z"  itemprop="datePublished">2019-08-05</time>
+        <time class="post-time" title="2019-08-06 07:04:18" datetime="2019-08-05T23:04:18.944Z"  itemprop="datePublished">2019-08-06</time>
 
         
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+
 
 
         
@@ -236,13 +238,23 @@
     <div class="post-content" id="post-content" itemprop="postContent">
     
     
-        
+        主从复制的问题
+当master节点发生故障时，需要手动进行故障转移
+写能力与存储能力受限，写能力和存储能力都依赖于master节点
+
+Redis Sentinel架构​    在主从复制的基础上，新增多个Redis Sentinel节点，这些Sentinel不存储任何的数据。这些Sentinel节点会完成Redis的故障判断并故障转移的处理，然后通知客户端。一套Redis Sentinel集...
     
-    <a href="/2019/08/05/Redis/慕课网redis从入门到高可用/第七章 Redis复制和优化/" class="post-more waves-effect waves-button">
+    <a href="/2019/08/06/Redis/慕课网redis从入门到高可用/第八章 RedisSentinel/" class="post-more waves-effect waves-button">
         more
     </a>
     </div>
 </article>
+
+<div class="post-footer">
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+</div>
 
 
             </li>

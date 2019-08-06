@@ -268,6 +268,51 @@
             </figure>
 
 <hr>
+<h1 id="fork操作"><a href="#fork操作" class="headerlink" title="fork操作"></a>fork操作</h1><ul>
+<li>fork操作是一个同步操作，若执行较慢会阻塞redis主线程</li>
+<li>执行时间与内存量相关：内存越大，耗时越长；虚拟机较慢，真机较快。</li>
+<li>查看fork执行时间，可做监控<ul>
+<li>info : latest_fork_usec    上一次执行fork的微秒数</li>
+</ul>
+</li>
+<li>优先使用物理机或者高效支持fork操作的虚拟化技术</li>
+<li>控制Redis实际最大可用内存</li>
+<li>合理配置Linux内存分配策略  vm.overcommit_memory = 1<ul>
+<li>默认这个值为0，在内存比较低的时候，会发生fork阻塞</li>
+</ul>
+</li>
+<li>降低fork频率：例如放宽AOF重写自动触发时机，不必要的全量复制</li>
+</ul>
+<h1 id="进程外开销"><a href="#进程外开销" class="headerlink" title="进程外开销"></a>进程外开销</h1><ul>
+<li>CPU开销<ul>
+<li>RDB和AOF都会生成文件，属于CPU密集型</li>
+<li>优化1：不做CPU绑定，不和CPU密集型的应用部署在同一台服务器上</li>
+<li>优化2：避免在单机多部署的场景大量发生AOF重写</li>
+</ul>
+</li>
+<li>内存<ul>
+<li>开销：fork内存开销，copy-on-write，子进程会共享父进程的物理内存页，当父进程执行写请求的时候会创建一个副本，此时会消耗内存。即父进程在大量写入的时候，子进程开销会比较大，创建副本。</li>
+<li>优化1：防止单机多部署的时候发生大量的重写</li>
+<li>优化2：echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled<ul>
+<li>Linux内核的2.6.38版本中增加以上配置，支持大的内存页的分配</li>
+<li>内存页分配越大，会提高创建副本页的大小，影响性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>硬盘<ul>
+<li>开销：RDB与AOF文件写入的场景，可以集合iostat、iotop进行分析</li>
+<li>优化1：不要和高硬盘负载服务部署在一起，例如存储服务、消息队列</li>
+<li>配置：no-appendfsync-on-rewrite = yes</li>
+<li>根据写入量决定磁盘类型：SSD</li>
+<li>单机多实例持久化目录可以考虑分盘以及做资源限制，例如cgroup</li>
+</ul>
+</li>
+</ul>
+<h1 id="AOF追加阻塞-1"><a href="#AOF追加阻塞-1" class="headerlink" title="AOF追加阻塞"></a>AOF追加阻塞</h1><p>​    Redis在执行fsync的时候，redis为了保证AOF文件安全性，会校验上次fsync的时间是否大于2秒。若超过2秒，会发生阻塞。</p>
+<p>​    可以通过Redis日志进行定位：Asynchronous AOF fsync is taking too long (disk is busy?)</p>
+<p>​    也可以通过info persistence命令进行查看：每发生一次，aof_delayed_fsync 会增1</p>
+<p>​    优化方法可以参考硬盘优化策略</p>
 
         </div>
         
@@ -275,7 +320,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-08-05T11:05:10.740Z" itemprop="dateUpdated">2019-08-05 19:05:10</time>
+    Last updated: <time datetime="2019-08-05T23:04:08.180Z" itemprop="dateUpdated">2019-08-06 07:04:08</time>
 </span><br>
 
 
@@ -370,7 +415,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Fork操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fork操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#子进程开销和优化"><span class="post-toc-number">2.</span> <span class="post-toc-text">子进程开销和优化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AOF追加阻塞"><span class="post-toc-number">3.</span> <span class="post-toc-text">AOF追加阻塞</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Fork操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fork操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#子进程开销和优化"><span class="post-toc-number">2.</span> <span class="post-toc-text">子进程开销和优化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AOF追加阻塞"><span class="post-toc-number">3.</span> <span class="post-toc-text">AOF追加阻塞</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#fork操作"><span class="post-toc-number">4.</span> <span class="post-toc-text">fork操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#进程外开销"><span class="post-toc-number">5.</span> <span class="post-toc-text">进程外开销</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AOF追加阻塞-1"><span class="post-toc-number">6.</span> <span class="post-toc-text">AOF追加阻塞</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
