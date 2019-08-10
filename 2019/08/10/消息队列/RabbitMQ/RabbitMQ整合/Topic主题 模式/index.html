@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>SpringBoot整合RabbitMQF  Topic主题模式 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="RabbitMQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>SpringBoot整合RabbitMQF  Topic主题模式</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot整合RabbitMQF  Topic主题模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-10T11:47:38.737Z" itemprop="datePublished" class="page-time">
+  2019-08-10
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">SpringBoot整合RabbitMQF  Topic主题模式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-10 19:47:38" datetime="2019-08-10T11:47:38.737Z"  itemprop="datePublished">2019-08-10</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <figure class="image-box">
+                <a rel=SpringBoot整合RabbitMQF  Topic主题模式 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-114819.png" title="image-20190810194819062" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-114819.png" alt="image-20190810194819062" title class></a>
+                <p>image-20190810194819062</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=SpringBoot整合RabbitMQF  Topic主题模式 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-114832.png" title="image-20190810194831797" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-114832.png" alt="image-20190810194831797" title class></a>
+                <p>image-20190810194831797</p>
+            </figure>
+
+<hr>
+<h4 id="1、新建RabbitMqTopicConfig配置类："><a href="#1、新建RabbitMqTopicConfig配置类：" class="headerlink" title="1、新建RabbitMqTopicConfig配置类："></a>1、新建RabbitMqTopicConfig配置类：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="comment">//只接一个topic</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> String message = <span class="string">"topic.message"</span>;</span><br><span class="line">    <span class="comment">//接收多个topic</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> String messages = <span class="string">"topic.messages"</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">//队列</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queueMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(RabbitMqTopicConfig.message);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queueMessages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(RabbitMqTopicConfig.messages);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 新建  TopicExchange</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">TopicExchange <span class="title">exchange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TopicExchange(<span class="string">"exchange"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//绑定交换机</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">Binding <span class="title">bindingExchangeMessage</span><span class="params">(Queue queueMessage, TopicExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder.bind(queueMessage).to(exchange).with(<span class="string">"topic.message"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line">     <span class="comment">//绑定交换机  以topic.#为路由 queueMessages就是方法名</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">Binding <span class="title">bindingExchangeMessages</span><span class="params">(Queue queueMessages, TopicExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里的#表示零个或多个词。</span></span><br><span class="line">        <span class="keyword">return</span> BindingBuilder.bind(queueMessages).to(exchange).with(<span class="string">"topic.#"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="在SendController添加发送消息方法："><a href="#在SendController添加发送消息方法：" class="headerlink" title="在SendController添加发送消息方法："></a>在SendController添加发送消息方法：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 交换机 </span></span><br><span class="line"><span class="comment">//路由key   </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.amqpTemplate.convertAndSend(<span class="string">"exchange"</span>, <span class="string">"topic.messages"</span>, context);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.amqpTemplate.convertAndSend(<span class="string">"exchange"</span>, <span class="string">"topic.message"</span>, context);</span><br></pre></td></tr></table></figure>
+
+<h2 id="接受放"><a href="#接受放" class="headerlink" title="接受放"></a>接受放</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RabbitListener</span>(queues = <span class="string">"topic.message"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicReceiver1</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RabbitHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RabbitListener</span>(queues = <span class="string">"topic.messages"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicReceiver2</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RabbitHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">，队列topic.message只能匹配topic.message的路由。而topic.messages匹配路由规则是topic.#，所以它可以匹配topic.开头的全部路由。而topic.#发送的消息也只能是topic.#的接受者才能接收</span><br></pre></td></tr></table></figure>
+
+<figure class="image-box">
+                <a rel=SpringBoot整合RabbitMQF  Topic主题模式 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-121548.png" title="image-20190810201547354" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-10-121548.png" alt="image-20190810201547354" title class></a>
+                <p>image-20190810201547354</p>
+            </figure>
+
+<hr>
+<hr>
+<hr>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2019-08-10T12:15:56.027Z" itemprop="dateUpdated">2019-08-10 20:15:56</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/" target="_blank" rel="external">http://yoursite.com/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/&title=《SpringBoot整合RabbitMQF  Topic主题模式》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/&title=《SpringBoot整合RabbitMQF  Topic主题模式》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/11/并发编程/慕课网java高并发/第八张 线程池/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">第8章  线程池</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Router路由模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot整合RabbitMQF  路由模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、新建RabbitMqTopicConfig配置类："><span class="post-toc-number">1.</span> <span class="post-toc-text">1、新建RabbitMqTopicConfig配置类：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#在SendController添加发送消息方法："><span class="post-toc-number">2.</span> <span class="post-toc-text">在SendController添加发送消息方法：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接受放"><span class="post-toc-number"></span> <span class="post-toc-text">接受放</span></a>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/&title=《SpringBoot整合RabbitMQF  Topic主题模式》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/10/消息队列/RabbitMQ/RabbitMQ整合/Topic主题 模式/&title=《SpringBoot整合RabbitMQF  Topic主题模式》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJElEQVR42u3awW7jUAgF0P7/T6fS7Eatkws4aoyPV1US2xw2FHhfX/H1+HcdffLz2+ovHz+u5L3J20cXNjY29kXYj6fXUehJcEd3Ta7nqUzuxcbGxt7KzgvP0YPyQpIk8XkqkxS8iA0bGxv7lux5Qcrfmzc/2NjY2Ni9ApYPnp4nq1qc/rhuY2NjY38wOxninFWEqoUtj+otszRsbGzsj2f3xkCf+fcb99vY2NjYH8meL1zzAz1JOXxftP+9ERsbG3sRex5EEuK8KM5/2QwRGxsb+yLsfKCfF5I8Nb1RVNKQFEZL2NjY2IvYSTtRbUXmq9ykLTltxoaNjY19cXZ1UZqnYz6uOusubGxs7E3s6uC+GnQV0CtU5edjY2Njr2b3Go9eUvKxVG/YhI2NjX03dv766ri/uiqeJCha+mJjY2PfjJ0/LknTqIWI52QvPsHGxsZexK4eqawelDn3wOUbV7/Y2NjYl2U/ilc+SKomtNdgVEdj2NjY2PvYk7bheejV8dBkPdxLNDY2NvYOdi/Qdz+hcFa0195gY2Njr2PPj+n0Quk1ITnyMCpsbGzsm7GrjUovrOqhnGqjUi5g2NjY2BdhVxe6vWKTBzHB91YL2NjY2DvY1dKVJKtKmiCrZRIbGxt7EztH9lqCc8dD1UL4onRhY2Njr2Dn/9BXW4hqq5CXzAkeGxsbex+7t9atDtzzRcK5q4XDpGNjY2MvYveWpvnBnWoBy4dWk1YKGxsbezc7LxvV4lEtRXmrUx1LYWNjY29lT5ay+UAnT2VvbVwdUWFjY2PfgV1dHiTjpElr0Xt7hMfGxsa+ODtf7p4VaLPMtHa1hRkVNjY29sXZ+fBoMjbKS9EkTdFd2NjY2Bdnz8dGvWVtkrLJiuLF07CxsbEXsecHZc49THPWXXlasbGxsXewk6LVW7Xm46rqQiI/0BP1XtjY2Ngr2NWi1Wskknc1t9NB6cXGxsbGrvKqR3yqBa/aaf3SimBjY2PfjD0ZLSXFL1/r5p+c0IpgY2NjX4Q9KRJJWcrbj3z033smNjY29j72JMQJLGlI8ian2hRhY2Njr2B/A7Ol6a21q6ANAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
