@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>SpringDataJPA onetomany | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="SpringDataJPA">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>SpringDataJPA onetomany</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">SpringDataJPA onetomany</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-30T09:51:11.370Z" itemprop="datePublished" class="page-time">
+  2019-08-30
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-SpringDataJPA Mybatis分页/onetomany"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">SpringDataJPA onetomany</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-30 17:51:11" datetime="2019-08-30T09:51:11.370Z"  itemprop="datePublished">2019-08-30</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="一对多查询"><a href="#一对多查询" class="headerlink" title="一对多查询"></a>一对多查询</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">回顾</span><br><span class="line">	i.springDatajpa，jpa规范，hibernate三者之间的关系</span><br><span class="line">		code  -- &gt; springDatajpa  --&gt; jpa规范的API --&gt; hibernate</span><br><span class="line">	ii.符合springDataJpa规范的dao层接口的编写规则</span><br><span class="line">		1.需要实现两个接口（JpaRepository，JapSpecificationExecutor）</span><br><span class="line">		2.提供响应的泛型</span><br><span class="line">	iii.运行过程</span><br><span class="line">		* 动态代理的方式：动态代理对象</span><br><span class="line">	iiii.查询</span><br><span class="line"></span><br><span class="line">第一 Specifications动态查询</span><br><span class="line"></span><br><span class="line">	JpaSpecificationExecutor 方法列表</span><br><span class="line">	</span><br><span class="line">		T findOne(Specification&lt;T&gt; spec);  //查询单个对象</span><br><span class="line"></span><br><span class="line">		List&lt;T&gt; findAll(Specification&lt;T&gt; spec);  //查询列表</span><br><span class="line"></span><br><span class="line">		//查询全部，分页</span><br><span class="line">		//pageable：分页参数</span><br><span class="line">		//返回值：分页pageBean（page：是springdatajpa提供的）</span><br><span class="line">		Page&lt;T&gt; findAll(Specification&lt;T&gt; spec, Pageable pageable);</span><br><span class="line"></span><br><span class="line">		//查询列表</span><br><span class="line">		//Sort：排序参数</span><br><span class="line">		List&lt;T&gt; findAll(Specification&lt;T&gt; spec, Sort sort);</span><br><span class="line"></span><br><span class="line">		long count(Specification&lt;T&gt; spec);//统计查询</span><br><span class="line">		</span><br><span class="line">	* Specification ：查询条件</span><br><span class="line">		自定义我们自己的Specification实现类</span><br><span class="line">			实现</span><br><span class="line">				//root：查询的根对象（查询的任何属性都可以从根对象中获取）</span><br><span class="line">				//CriteriaQuery：顶层查询对象，自定义查询方式（了解：一般不用）</span><br><span class="line">				//CriteriaBuilder：查询的构造器，封装了很多的查询条件</span><br><span class="line">				Predicate toPredicate(Root&lt;T&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb); //封装查询条件</span><br><span class="line">		</span><br><span class="line">第二 多表之间的关系和操作多表的操作步骤</span><br><span class="line"></span><br><span class="line">	表关系</span><br><span class="line">		一对一</span><br><span class="line">		一对多：</span><br><span class="line">			一的一方：主表</span><br><span class="line">			多的一方：从表</span><br><span class="line">			外键：需要再从表上新建一列作为外键，他的取值来源于主表的主键</span><br><span class="line">		多对多：</span><br><span class="line">			中间表：中间表中最少应该由两个字段组成，这两个字段做为外键指向两张表的主键，又组成了联合主键</span><br><span class="line"></span><br><span class="line">	讲师对学员：一对多关系</span><br><span class="line">			</span><br><span class="line">	实体类中的关系</span><br><span class="line">		包含关系：可以通过实体类中的包含关系描述表关系</span><br><span class="line">		继承关系</span><br><span class="line">	</span><br><span class="line">	分析步骤</span><br><span class="line">		1.明确表关系</span><br><span class="line">		2.确定表关系（描述 外键|中间表）</span><br><span class="line">		3.编写实体类，再实体类中描述表关系（包含关系）</span><br><span class="line">		4.配置映射关系</span><br><span class="line"></span><br><span class="line">第三 完成多表操作</span><br><span class="line"></span><br><span class="line">	i.一对多操作</span><br><span class="line">		案例：客户和联系人的案例（一对多关系）</span><br><span class="line">			客户：一家公司</span><br><span class="line">			联系人：这家公司的员工</span><br><span class="line">		</span><br><span class="line">			一个客户可以具有多个联系人</span><br><span class="line">			一个联系人从属于一家公司</span><br><span class="line">			</span><br><span class="line">		分析步骤</span><br><span class="line">			1.明确表关系</span><br><span class="line">				一对多关系</span><br><span class="line">			2.确定表关系（描述 外键|中间表）</span><br><span class="line">				主表：客户表</span><br><span class="line">				从表：联系人表</span><br><span class="line">					* 再从表上添加外键</span><br><span class="line">			3.编写实体类，再实体类中描述表关系（包含关系）</span><br><span class="line">				客户：再客户的实体类中包含一个联系人的集合</span><br><span class="line">				联系人：在联系人的实体类中包含一个客户的对象</span><br><span class="line">			4.配置映射关系</span><br><span class="line">				* 使用jpa注解配置一对多映射关系</span><br><span class="line">	</span><br><span class="line">		级联：</span><br><span class="line">			操作一个对象的同时操作他的关联对象</span><br><span class="line">			</span><br><span class="line">			级联操作：</span><br><span class="line">				1.需要区分操作主体</span><br><span class="line">				2.需要在操作主体的实体类上，添加级联属性（需要添加到多表映射关系的注解上）</span><br><span class="line">				3.cascade（配置级联）</span><br><span class="line">			</span><br><span class="line">			级联添加，</span><br><span class="line">				案例：当我保存一个客户的同时保存联系人</span><br><span class="line">			级联删除</span><br><span class="line">				案例：当我删除一个客户的同时删除此客户的所有联系人</span><br><span class="line">				</span><br><span class="line">	ii.多对多操作</span><br><span class="line">		案例：用户和角色（多对多关系）</span><br><span class="line">			用户：</span><br><span class="line">			角色：</span><br><span class="line">	</span><br><span class="line">		分析步骤</span><br><span class="line">			1.明确表关系</span><br><span class="line">				多对多关系</span><br><span class="line">			2.确定表关系（描述 外键|中间表）</span><br><span class="line">				中间间表</span><br><span class="line">			3.编写实体类，再实体类中描述表关系（包含关系）</span><br><span class="line">				用户：包含角色的集合</span><br><span class="line">				角色：包含用户的集合</span><br><span class="line">			4.配置映射关系</span><br><span class="line">			</span><br><span class="line">	iii.多表的查询</span><br><span class="line">		1.对象导航查询</span><br><span class="line">			查询一个对象的同时，通过此对象查询他的关联对象</span><br><span class="line">			</span><br><span class="line">			案例：客户和联系人</span><br><span class="line">			</span><br><span class="line">			从一方查询多方</span><br><span class="line">				* 默认：使用延迟加载（****）</span><br><span class="line">				</span><br><span class="line">			从多方查询一方</span><br><span class="line">				* 默认：使用立即加载</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*创建客户表*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cst_customer (</span><br><span class="line">  cust_id <span class="built_in">bigint</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'客户编号(主键)'</span>,</span><br><span class="line">  cust_name <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户名称(公司名称)'</span>,</span><br><span class="line">  cust_source <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户信息来源'</span>,</span><br><span class="line">  cust_industry <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户所属行业'</span>,</span><br><span class="line">  cust_level <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户级别'</span>,</span><br><span class="line">  cust_address <span class="built_in">varchar</span>(<span class="number">128</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户联系地址'</span>,</span><br><span class="line">  cust_phone <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户联系电话'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`cust_id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">94</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*创建联系人表*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cst_linkman (</span><br><span class="line">  lkm_id <span class="built_in">bigint</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'联系人编号(主键)'</span>,</span><br><span class="line">  lkm_name <span class="built_in">varchar</span>(<span class="number">16</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人姓名'</span>,</span><br><span class="line">  lkm_gender <span class="built_in">char</span>(<span class="number">1</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人性别'</span>,</span><br><span class="line">  lkm_phone <span class="built_in">varchar</span>(<span class="number">16</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人办公电话'</span>,</span><br><span class="line">  lkm_mobile <span class="built_in">varchar</span>(<span class="number">16</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人手机'</span>,</span><br><span class="line">  lkm_email <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人邮箱'</span>,</span><br><span class="line">  lkm_position <span class="built_in">varchar</span>(<span class="number">16</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人职位'</span>,</span><br><span class="line">  lkm_memo <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'联系人备注'</span>,</span><br><span class="line">  lkm_cust_id <span class="built_in">bigint</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'客户id(外键)'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`lkm_id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`FK_cst_linkman_lkm_cust_id`</span> (<span class="string">`lkm_cust_id`</span>),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`FK_cst_linkman_lkm_cust_id`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">`lkm_cust_id`</span>) <span class="keyword">REFERENCES</span> <span class="string">`cst_customer`</span> (<span class="string">`cust_id`</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">NO</span> <span class="keyword">ACTION</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">NO</span> <span class="keyword">ACTION</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">3</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="oneTOmany"><a href="#oneTOmany" class="headerlink" title="oneTOmany"></a>oneTOmany</h1><h3 id="Customer"><a href="#Customer" class="headerlink" title="Customer"></a>Customer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1.实体类和表的映射关系</span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Eitity</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Table</span></span></span><br><span class="line"><span class="comment"> * 2.类中属性和表中字段的映射关系</span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Id</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@GeneratedValue</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Column</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"cst_customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Long custId;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_address"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custAddress;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_industry"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custIndustry;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_level"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custLevel;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custName;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_phone"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custPhone;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_source"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custSource;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置客户和联系人之间的关系（一对多关系）</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用注解的形式配置多表关系</span></span><br><span class="line"><span class="comment">     *      1.声明关系</span></span><br><span class="line"><span class="comment">     *          <span class="doctag">@OneToMany</span> : 配置一对多关系</span></span><br><span class="line"><span class="comment">     *              targetEntity ：对方对象的字节码对象</span></span><br><span class="line"><span class="comment">     *      2.配置外键（中间表）</span></span><br><span class="line"><span class="comment">     *              <span class="doctag">@JoinColumn</span> : 配置外键</span></span><br><span class="line"><span class="comment">     *                  name：外键字段名称</span></span><br><span class="line"><span class="comment">     *                  referencedColumnName：参照的主表的主键字段名称</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  * 在客户实体类上（一的一方）添加了外键了配置，所以对于客户而言，也具备了维护外键的作用</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    @OneToMany(targetEntity = LinkMan.class)</span></span><br><span class="line"><span class="comment">//    @JoinColumn(name = "lkm_cust_id",referencedColumnName = "cust_id")</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 放弃外键维护权</span></span><br><span class="line"><span class="comment">     *      mappedBy：对方配置关系的属性名称\</span></span><br><span class="line"><span class="comment">     * cascade : 配置级联（可以配置到设置多表的映射关系的注解上）</span></span><br><span class="line"><span class="comment">     *      CascadeType.all         : 所有</span></span><br><span class="line"><span class="comment">     *                  MERGE       ：更新</span></span><br><span class="line"><span class="comment">     *                  PERSIST     ：保存</span></span><br><span class="line"><span class="comment">     *                  REMOVE      ：删除</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * fetch : 配置关联对象的加载方式</span></span><br><span class="line"><span class="comment">     *          EAGER   ：立即加载</span></span><br><span class="line"><span class="comment">     *          LAZY    ：延迟加载</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="meta">@OneToMany</span>(mappedBy = <span class="string">"customer"</span>,cascade = CascadeType.ALL)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Set&lt;LinkMan&gt; linkMans = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getCustId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> custId;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="LinkMan"><a href="#LinkMan" class="headerlink" title="LinkMan"></a>LinkMan</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"cst_linkman"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkMan</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Long lkmId; <span class="comment">//联系人编号(主键)</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmName;<span class="comment">//联系人姓名</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_gender"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmGender;<span class="comment">//联系人性别</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_phone"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmPhone;<span class="comment">//联系人办公电话</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_mobile"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmMobile;<span class="comment">//联系人手机</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_email"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmEmail;<span class="comment">//联系人邮箱</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_position"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmPosition;<span class="comment">//联系人职位</span></span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"lkm_memo"</span>)</span><br><span class="line">    <span class="keyword">private</span> String lkmMemo;<span class="comment">//联系人备注</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置联系人到客户的多对一关系</span></span><br><span class="line"><span class="comment">     *     使用注解的形式配置多对一关系</span></span><br><span class="line"><span class="comment">     *      1.配置表关系</span></span><br><span class="line"><span class="comment">     *          <span class="doctag">@ManyToOne</span> : 配置多对一关系</span></span><br><span class="line"><span class="comment">     *              targetEntity：对方的实体类字节码</span></span><br><span class="line"><span class="comment">     *      2.配置外键（中间表）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * * 配置外键的过程，配置到了多的一方，就会在多的一方维护外键</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ManyToOne</span>(targetEntity = Customer.class,fetch = FetchType.LAZY)</span><br><span class="line">    <span class="meta">@JoinColumn</span>(name = <span class="string">"lkm_cust_id"</span>,referencedColumnName = <span class="string">"cust_id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h3 id="applicatgionContext-xml"><a href="#applicatgionContext-xml" class="headerlink" title="applicatgionContext.xml"></a>applicatgionContext.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span> <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jpa</span>=<span class="string">"http://www.springframework.org/schema/data/jpa"</span> <span class="attr">xmlns:task</span>=<span class="string">"http://www.springframework.org/schema/task"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/data/jpa</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--spring 和 spring data jpa的配置--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 1.创建entityManagerFactory对象交给spring容器管理--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"entityManagerFactoty"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置的扫描的包（实体类所在的包） --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"packagesToScan"</span> <span class="attr">value</span>=<span class="string">"cn.itcast.domain"</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- jpa的实现厂家 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"persistenceProvider"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.hibernate.jpa.HibernatePersistenceProvider"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--jpa的供应商适配器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jpaVendorAdapter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--配置是否自动创建数据库表 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"generateDdl"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--指定数据库类型 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"database"</span> <span class="attr">value</span>=<span class="string">"MYSQL"</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库方言：支持的特有语法 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"databasePlatform"</span> <span class="attr">value</span>=<span class="string">"org.hibernate.dialect.MySQLDialect"</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--是否显示sql --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"showSql"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--jpa的方言 ：高级的特性 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jpaDialect"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.jpa.vendor.HibernateJpaDialect"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--注入jpa的配置信息</span></span><br><span class="line"><span class="comment">            加载jpa的基本配置信息和jpa实现方式（hibernate）的配置信息</span></span><br><span class="line"><span class="comment">            hibernate.hbm2ddl.auto : 自动创建数据库表</span></span><br><span class="line"><span class="comment">                create ： 每次都会重新创建数据库表</span></span><br><span class="line"><span class="comment">                update：有表不会重新创建，没有表会重新创建表</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jpaProperties"</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--2.创建数据库连接池 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"111111"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///jpa"</span> &gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--3.整合spring dataJpa--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jpa:repositories</span> <span class="attr">base-package</span>=<span class="string">"cn.itcast.dao"</span> <span class="attr">transaction-manager-ref</span>=<span class="string">"transactionManager"</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">entity-manager-factory-ref</span>=<span class="string">"entityManagerFactoty"</span> &gt;</span><span class="tag">&lt;/<span class="name">jpa:repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--4.配置事务管理器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.jpa.JpaTransactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"entityManagerFactory"</span> <span class="attr">ref</span>=<span class="string">"entityManagerFactoty"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 4.txAdvice--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"save*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"insert*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"update*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"delete*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"get*"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 5.aop--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pointcut"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.itcast.service.*.*(..))"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pointcut"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--5.声明式事务 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 6. 配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.itcast"</span> &gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(locations = <span class="string">"classpath:applicationContext.xml"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OneToManyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> CustomerDao customerDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LinkManDao linkManDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 保存一个客户，保存一个联系人</span></span><br><span class="line"><span class="comment">     *  效果：客户和联系人作为独立的数据保存到数据库中</span></span><br><span class="line"><span class="comment">     *      联系人的外键为空</span></span><br><span class="line"><span class="comment">     *  原因？</span></span><br><span class="line"><span class="comment">     *      实体类中没有配置关系</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//配置事务</span></span><br><span class="line">    <span class="meta">@Rollback</span>(<span class="keyword">false</span>) <span class="comment">//不自动回滚</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个客户，创建一个联系人</span></span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        customer.setCustName(<span class="string">"百度"</span>);</span><br><span class="line"></span><br><span class="line">        LinkMan linkMan = <span class="keyword">new</span> LinkMan();</span><br><span class="line">        linkMan.setLkmName(<span class="string">"小李"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 配置了客户到联系人的关系</span></span><br><span class="line"><span class="comment">         *      从客户的角度上：发送两条insert语句，发送一条更新语句更新数据库（更新外键）</span></span><br><span class="line"><span class="comment">         * 由于我们配置了客户到联系人的关系：客户可以对外键进行维护</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        customer.getLinkMans().add(linkMan);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        customerDao.save(customer);</span><br><span class="line">        linkManDao.save(linkMan);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//配置事务</span></span><br><span class="line">    <span class="meta">@Rollback</span>(<span class="keyword">false</span>) <span class="comment">//不自动回滚</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个客户，创建一个联系人</span></span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        customer.setCustName(<span class="string">"百度"</span>);</span><br><span class="line"></span><br><span class="line">        LinkMan linkMan = <span class="keyword">new</span> LinkMan();</span><br><span class="line">        linkMan.setLkmName(<span class="string">"小李"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 配置联系人到客户的关系（多对一）</span></span><br><span class="line"><span class="comment">         *    只发送了两条insert语句</span></span><br><span class="line"><span class="comment">         * 由于配置了联系人到客户的映射关系（多对一）</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        linkMan.setCustomer(customer);</span><br><span class="line"></span><br><span class="line">        customerDao.save(customer);</span><br><span class="line">        linkManDao.save(linkMan);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 会有一条多余的update语句</span></span><br><span class="line"><span class="comment">     *      * 由于一的一方可以维护外键：会发送update语句</span></span><br><span class="line"><span class="comment">     *      * 解决此问题：只需要在一的一方放弃维护权即可</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//配置事务</span></span><br><span class="line">    <span class="meta">@Rollback</span>(<span class="keyword">false</span>) <span class="comment">//不自动回滚</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个客户，创建一个联系人</span></span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        customer.setCustName(<span class="string">"百度"</span>);</span><br><span class="line"></span><br><span class="line">        LinkMan linkMan = <span class="keyword">new</span> LinkMan();</span><br><span class="line">        linkMan.setLkmName(<span class="string">"小李"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        linkMan.setCustomer(customer);<span class="comment">//由于配置了多的一方到一的一方的关联关系（当保存的时候，就已经对外键赋值）</span></span><br><span class="line">        customer.getLinkMans().add(linkMan);<span class="comment">//由于配置了一的一方到多的一方的关联关系（发送一条update语句）</span></span><br><span class="line"></span><br><span class="line">        customerDao.save(customer);</span><br><span class="line">        linkManDao.save(linkMan);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 级联添加：保存一个客户的同时，保存客户的所有联系人</span></span><br><span class="line"><span class="comment">     *      需要在操作主体的实体类上，配置casacde属性</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//配置事务</span></span><br><span class="line">    <span class="meta">@Rollback</span>(<span class="keyword">false</span>) <span class="comment">//不自动回滚</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCascadeAdd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        customer.setCustName(<span class="string">"百度1"</span>);</span><br><span class="line"></span><br><span class="line">        LinkMan linkMan = <span class="keyword">new</span> LinkMan();</span><br><span class="line">        linkMan.setLkmName(<span class="string">"小李1"</span>);</span><br><span class="line"></span><br><span class="line">        linkMan.setCustomer(customer);</span><br><span class="line">        customer.getLinkMans().add(linkMan);</span><br><span class="line"></span><br><span class="line">        customerDao.save(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 级联删除：</span></span><br><span class="line"><span class="comment">     *      删除1号客户的同时，删除1号客户的所有联系人</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">//配置事务</span></span><br><span class="line">    <span class="meta">@Rollback</span>(<span class="keyword">false</span>) <span class="comment">//不自动回滚</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCascadeRemove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.查询1号客户</span></span><br><span class="line">        Customer customer = customerDao.findOne(<span class="number">1l</span>);</span><br><span class="line">        <span class="comment">//2.删除1号客户</span></span><br><span class="line">        customerDao.delete(customer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-30T09:58:30.379Z" itemprop="dateUpdated">2019-08-30 17:58:30</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/30/SpringDataJPA Mybatis分页/onetomany/" target="_blank" rel="external">http://yoursite.com/2019/08/30/SpringDataJPA Mybatis分页/onetomany/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringDataJPA/">SpringDataJPA</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/30/SpringDataJPA Mybatis分页/onetomany/&title=《SpringDataJPA onetomany》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/30/SpringDataJPA Mybatis分页/onetomany/&title=《SpringDataJPA onetomany》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/30/SpringDataJPA Mybatis分页/manytoone/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringDataJPA  manyToOne多对多</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/27/Nginx/Nginx从入门到实践 @JSeon/第三章Nginx场景实践篇/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">第一章 Nginx 介绍</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一对多查询"><span class="post-toc-number">1.</span> <span class="post-toc-text">一对多查询</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#oneTOmany"><span class="post-toc-number">2.</span> <span class="post-toc-text">oneTOmany</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Customer"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">Customer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LinkMan"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">LinkMan</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#applicatgionContext-xml"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">applicatgionContext.xml</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/30/SpringDataJPA Mybatis分页/onetomany/&title=《SpringDataJPA onetomany》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/30/SpringDataJPA Mybatis分页/onetomany/&title=《SpringDataJPA onetomany》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqElEQVR42u3aQW7CQAwFUO5/abqt1Cb9tscli5cVIoH4BWnG2H694uP97bi/pvf66uzP47Vx4OHh4Q1Cv/q6/Jqr0O8fVhJ6NR48PDy8bV6+0F/dID+br+F5PJfv4+Hh4T2Gdx9QsvTn+HwjwcPDw3smr3qzQihBoo+Hh4f3HF6v0NArWNx/6mO1Fjw8PLyYl5cJnvN6pb+Hh4eHN+6qJwtur2E2KdEWosXDw8Nb4FXb9pMkOzmbb055nHh4eHgbvF4iW01w8zLHqbIIHh4e3gYvSXB7Da28cZUXfJu/GB4eHt5RXq8pldwyWe6r41nNFhoeHh7eAi9ZZJMFfT40kKfv+WaGh4eHd5ZXbU3lC/e8LJun1OX+Hh4eHt6Alyz6vY2k10KrFkGib8DDw8Nb5uVpbi8Rn28tecEXDw8Pb5tXXbh7AZWDm0eCh4eHt8CbDD/1ir/VJHsyXoCHh4e3x+sVDubJd7WI3Ev98fDw8E7x8oGAlTLBoL8ffRYPDw9vef3sNbGq20l+fbW1dhkhHh4e3hqvesscsz0u0BwdwMPDw2vxJmXZvJxaZfeOY78bHh4eXi07jQoKk3JDvsFU8dEfAzw8PLxDvL2xp2qZY17kxcPDw/ssbz4ikHxP/mjyoa6oSo2Hh4d3iFdtWeUPojrIdf9+chYPDw/vP3mT5TsJfTJ8UN6u8PDw8JZ5zcGmuBBcfXCv+YGHh4d3lPcuHr2NpNrmHyXQeHh4eMu8yeaRFFXngwLruyIeHh5eizdJdquN/F76Pirp4uHh4a3x8ttMirPJxnC4sIKHh4f3GF6STCeJeDJElV/5y/V4eHh4j+FVk+zeMEE1sS4/ezw8PLyFNlgSYm/IIG9uTc7i4eHhbfDyP/nVJHhSzqg22A7UMPDw8PD+Pr4Abv3uA/LE9fIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

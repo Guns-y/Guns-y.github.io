@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>计算机组成原理之组成篇 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="编程基础">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.3">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:1047629166@qq.com" title="1047629166@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>6</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/codefine" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>计算机组成原理之组成篇</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">计算机组成原理之组成篇</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-16T01:01:34.028Z" itemprop="datePublished" class="page-time">
+  2019-08-16
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-网络 组成原理 操作系统/计算机组成原理之组成篇"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">计算机组成原理之组成篇</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-16 09:01:34" datetime="2019-08-16T01:01:34.028Z"  itemprop="datePublished">2019-08-16</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="1-计算机的体系与结构"><a href="#1-计算机的体系与结构" class="headerlink" title="1 计算机的体系与结构"></a>1 计算机的体系与结构</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010618.png" title="image-20190816090618057" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010618.png" alt="image-20190816090618057" title class></a>
+                <p>image-20190816090618057</p>
+            </figure>
+
+ <figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010940.png" title="image-20190816090940044" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010940.png" alt="image-20190816090940044" title class></a>
+                <p>image-20190816090940044</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010959.png" title="image-20190816090959289" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-010959.png" alt="image-20190816090959289" title class></a>
+                <p>image-20190816090959289</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011010.png" title="image-20190816091008674" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011010.png" alt="image-20190816091008674" title class></a>
+                <p>image-20190816091008674</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011029.png" title="image-20190816091028427" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011029.png" alt="image-20190816091028427" title class></a>
+                <p>image-20190816091028427</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011106.png" title="image-20190816091106202" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011106.png" alt="image-20190816091106202" title class></a>
+                <p>image-20190816091106202</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011223.png" title="image-20190816091222259" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011223.png" alt="image-20190816091222259" title class></a>
+                <p>image-20190816091222259</p>
+            </figure>
+
+<hr>
+<h1 id="计算机的层次与编程语言"><a href="#计算机的层次与编程语言" class="headerlink" title="计算机的层次与编程语言"></a>计算机的层次与编程语言</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011424.png" title="image-20190816091423755" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011424.png" alt="image-20190816091423755" title class></a>
+                <p>image-20190816091423755</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011455.png" title="image-20190816091454464" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011455.png" alt="image-20190816091454464" title class></a>
+                <p>image-20190816091454464</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011651.png" title="image-20190816091650929" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011651.png" alt="image-20190816091650929" title class></a>
+                <p>image-20190816091650929</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011744.png" title="image-20190816091743504" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011744.png" alt="image-20190816091743504" title class></a>
+                <p>image-20190816091743504</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011900.png" title="image-20190816091859859" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011900.png" alt="image-20190816091859859" title class></a>
+                <p>image-20190816091859859</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011932.png" title="image-20190816091932590" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-011932.png" alt="image-20190816091932590" title class></a>
+                <p>image-20190816091932590</p>
+            </figure>
+
+<h1 id="计算机的速度单位"><a href="#计算机的速度单位" class="headerlink" title="计算机的速度单位"></a>计算机的速度单位</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012218.png" title="image-20190816092217981" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012218.png" alt="image-20190816092217981" title class></a>
+                <p>image-20190816092217981</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012610.png" title="image-20190816092609480" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012610.png" alt="image-20190816092609480" title class></a>
+                <p>image-20190816092609480</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012733.png" title="image-20190816092733083" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012733.png" alt="image-20190816092733083" title class></a>
+                <p>image-20190816092733083</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012841.png" title="image-20190816092841247" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012841.png" alt="image-20190816092841247" title class></a>
+                <p>image-20190816092841247</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012902.png" title="image-20190816092901832" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012902.png" alt="image-20190816092901832" title class></a>
+                <p>image-20190816092901832</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012913.png" title="image-20190816092913048" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012913.png" alt="image-20190816092913048" title class></a>
+                <p>image-20190816092913048</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012936.png" title="image-20190816092936177" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012936.png" alt="image-20190816092936177" title class></a>
+                <p>image-20190816092936177</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012947.png" title="image-20190816092947332" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-012947.png" alt="image-20190816092947332" title class></a>
+                <p>image-20190816092947332</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013026.png" title="image-20190816093025657" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013026.png" alt="image-20190816093025657" title class></a>
+                <p>image-20190816093025657</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013036.png" title="image-20190816093036102" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013036.png" alt="image-20190816093036102" title class></a>
+                <p>image-20190816093036102</p>
+            </figure>
+
+<h1 id="计算机的字符与编码集"><a href="#计算机的字符与编码集" class="headerlink" title="计算机的字符与编码集"></a>计算机的字符与编码集</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013153.png" title="image-20190816093152952" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013153.png" alt="image-20190816093152952" title class></a>
+                <p>image-20190816093152952</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013208.png" title="image-20190816093208052" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013208.png" alt="image-20190816093208052" title class></a>
+                <p>image-20190816093208052</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013309.png" title="image-20190816093309005" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013309.png" alt="image-20190816093309005" title class></a>
+                <p>image-20190816093309005</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013541.png" title="image-20190816093540612" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013541.png" alt="image-20190816093540612" title class></a>
+                <p>image-20190816093540612</p>
+            </figure>
+
+<h1 id="计算机的总线"><a href="#计算机的总线" class="headerlink" title="计算机的总线"></a>计算机的总线</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013639.png" title="image-20190816093639064" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013639.png" alt="image-20190816093639064" title class></a>
+                <p>image-20190816093639064</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013712.png" title="image-20190816093712240" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013712.png" alt="image-20190816093712240" title class></a>
+                <p>image-20190816093712240</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013833.png" title="image-20190816093832794" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013833.png" alt="image-20190816093832794" title class></a>
+                <p>image-20190816093832794</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013846.png" title="image-20190816093845806" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013846.png" alt="image-20190816093845806" title class></a>
+                <p>image-20190816093845806</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013856.png" title="image-20190816093856170" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013856.png" alt="image-20190816093856170" title class></a>
+                <p>image-20190816093856170</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013906.png" title="image-20190816093906070" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013906.png" alt="image-20190816093906070" title class></a>
+                <p>image-20190816093906070</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013916.png" title="image-20190816093915969" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013916.png" alt="image-20190816093915969" title class></a>
+                <p>image-20190816093915969</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013927.png" title="image-20190816093923164" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013927.png" alt="image-20190816093923164" title class></a>
+                <p>image-20190816093923164</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013931.png" title="image-20190816093930558" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013931.png" alt="image-20190816093930558" title class></a>
+                <p>image-20190816093930558</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013941.png" title="image-20190816093940643" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013941.png" alt="image-20190816093940643" title class></a>
+                <p>image-20190816093940643</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013953.png" title="image-20190816093953380" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-013953.png" alt="image-20190816093953380" title class></a>
+                <p>image-20190816093953380</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014035.png" title="image-20190816094023180" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014035.png" alt="image-20190816094023180" title class></a>
+                <p>image-20190816094023180</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014051.png" title="image-20190816094051058" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014051.png" alt="image-20190816094051058" title class></a>
+                <p>image-20190816094051058</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014146.png" title="image-20190816094145661" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014146.png" alt="image-20190816094145661" title class></a>
+                <p>image-20190816094145661</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014225.png" title="image-20190816094224516" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014225.png" alt="image-20190816094224516" title class></a>
+                <p>image-20190816094224516</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014230.png" title="image-20190816094229868" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014230.png" alt="image-20190816094229868" title class></a>
+                <p>image-20190816094229868</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014247.png" title="image-20190816094246969" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014247.png" alt="image-20190816094246969" title class></a>
+                <p>image-20190816094246969</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014318.png" title="image-20190816094317382" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-014318.png" alt="image-20190816094317382" title class></a>
+                <p>image-20190816094317382</p>
+            </figure>
+
+<h1 id="计算机的输入输出设备"><a href="#计算机的输入输出设备" class="headerlink" title="计算机的输入输出设备"></a>计算机的输入输出设备</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120155.png" title="image-20190816200154483" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120155.png" alt="image-20190816200154483" title class></a>
+                <p>image-20190816200154483</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120205.png" title="image-20190816200204328" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120205.png" alt="image-20190816200204328" title class></a>
+                <p>image-20190816200204328</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120217.png" title="image-20190816200216842" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120217.png" alt="image-20190816200216842" title class></a>
+                <p>image-20190816200216842</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120256.png" title="image-20190816200255919" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120256.png" alt="image-20190816200255919" title class></a>
+                <p>image-20190816200255919</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120303.png" title="image-20190816200303245" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120303.png" alt="image-20190816200303245" title class></a>
+                <p>image-20190816200303245</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120319.png" title="image-20190816200319228" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120319.png" alt="image-20190816200319228" title class></a>
+                <p>image-20190816200319228</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120352.png" title="image-20190816200351956" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120352.png" alt="image-20190816200351956" title class></a>
+                <p>image-20190816200351956</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120423.png" title="image-20190816200420591" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120423.png" alt="image-20190816200420591" title class></a>
+                <p>image-20190816200420591</p>
+            </figure>
+
+
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120438.png" title="image-20190816200437820" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120438.png" alt="image-20190816200437820" title class></a>
+                <p>image-20190816200437820</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120450.png" title="image-20190816200450304" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120450.png" alt="image-20190816200450304" title class></a>
+                <p>image-20190816200450304</p>
+            </figure>
+
+<h1 id="计算机存储器概览"><a href="#计算机存储器概览" class="headerlink" title="计算机存储器概览."></a>计算机存储器概览.</h1><p><a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120553.png" title="image-20190816200552427" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120553.png" alt="image-20190816200552427"></a></p>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120621.png" title="image-20190816200620598" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120621.png" alt="image-20190816200620598" title class></a>
+                <p>image-20190816200620598</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120734.png" title="image-20190816200733626" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120734.png" alt="image-20190816200733626" title class></a>
+                <p>image-20190816200733626</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120818.png" title="image-20190816200818072" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120818.png" alt="image-20190816200818072" title class></a>
+                <p>image-20190816200818072</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120832.png" title="image-20190816200832727" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120832.png" alt="image-20190816200832727" title class></a>
+                <p>image-20190816200832727</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120846.png" title="image-20190816200845650" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-120846.png" alt="image-20190816200845650" title class></a>
+                <p>image-20190816200845650</p>
+            </figure>
+
+<h1 id="计算机的主存储器与辅助存储器"><a href="#计算机的主存储器与辅助存储器" class="headerlink" title="计算机的主存储器与辅助存储器"></a>计算机的主存储器与辅助存储器</h1><p> <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121706.png" title="image-20190816201706089" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121706.png" alt="image-20190816201706089"></a> </p>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121727.png" title="image-20190816201726767" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121727.png" alt="image-20190816201726767" title class></a>
+                <p>image-20190816201726767</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121757.png" title="image-20190816201757306" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121757.png" alt="image-20190816201757306" title class></a>
+                <p>image-20190816201757306</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121829.png" title="image-20190816201829243" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121829.png" alt="image-20190816201829243" title class></a>
+                <p>image-20190816201829243</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121926.png" title="image-20190816201925218" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121926.png" alt="image-20190816201925218" title class></a>
+                <p>image-20190816201925218</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121934.png" title="image-20190816201933299" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121934.png" alt="image-20190816201933299" title class></a>
+                <p>image-20190816201933299</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121952.png" title="image-20190816201951917" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-121952.png" alt="image-20190816201951917" title class></a>
+                <p>image-20190816201951917</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122033.png" title="image-20190816202033035" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122033.png" alt="image-20190816202033035" title class></a>
+                <p>image-20190816202033035</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122126.png" title="image-20190816202125606" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122126.png" alt="image-20190816202125606" title class></a>
+                <p>image-20190816202125606</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122157.png" title="image-20190816202156970" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122157.png" alt="image-20190816202156970" title class></a>
+                <p>image-20190816202156970</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122317.png" title="image-20190816202316243" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-16-122317.png" alt="image-20190816202316243" title class></a>
+                <p>image-20190816202316243</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084242.png" title="image-20190818164241799" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084242.png" alt="image-20190818164241799" title class></a>
+                <p>image-20190818164241799</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084313.png" title="image-20190818164311865" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084313.png" alt="image-20190818164311865" title class></a>
+                <p>image-20190818164311865</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084337.png" title="image-20190818164336321" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084337.png" alt="image-20190818164336321" title class></a>
+                <p>image-20190818164336321</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084418.png" title="image-20190818164416598" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084418.png" alt="image-20190818164416598" title class></a>
+                <p>image-20190818164416598</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084429.png" title="image-20190818164428782" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084429.png" alt="image-20190818164428782" title class></a>
+                <p>image-20190818164428782</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084514.png" title="image-20190818164513800" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084514.png" alt="image-20190818164513800" title class></a>
+                <p>image-20190818164513800</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084525.png" title="image-20190818164524076" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084525.png" alt="image-20190818164524076" title class></a>
+                <p>image-20190818164524076</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084604.png" title="image-20190818164603461" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084604.png" alt="image-20190818164603461" title class></a>
+                <p>image-20190818164603461</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084629.png" title="image-20190818164629393" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084629.png" alt="image-20190818164629393" title class></a>
+                <p>image-20190818164629393</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084738.png" title="image-20190818164737370" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084738.png" alt="image-20190818164737370" title class></a>
+                <p>image-20190818164737370</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084810.png" title="image-20190818164809418" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084810.png" alt="image-20190818164809418" title class></a>
+                <p>image-20190818164809418</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084825.png" title="image-20190818164824078" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084825.png" alt="image-20190818164824078" title class></a>
+                <p>image-20190818164824078</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084908.png" title="image-20190818164907392" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084908.png" alt="image-20190818164907392" title class></a>
+                <p>image-20190818164907392</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084941.png" title="image-20190818164940056" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084941.png" alt="image-20190818164940056" title class></a>
+                <p>image-20190818164940056</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084959.png" title="image-20190818164958788" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-084959.png" alt="image-20190818164958788" title class></a>
+                <p>image-20190818164958788</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-085021.png" title="image-20190818165020999" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-18-085021.png" alt="image-20190818165020999" title class></a>
+                <p>image-20190818165020999</p>
+            </figure>
+
+<hr>
+<h1 id="计算机指令"><a href="#计算机指令" class="headerlink" title="计算机指令"></a>计算机指令</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064219.png" title="image-20190824144218887" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064219.png" alt="image-20190824144218887" title class></a>
+                <p>image-20190824144218887</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064300.png" title="image-20190824144300220" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064300.png" alt="image-20190824144300220" title class></a>
+                <p>image-20190824144300220</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064308.png" title="image-20190824144308262" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064308.png" alt="image-20190824144308262" title class></a>
+                <p>image-20190824144308262</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064320.png" title="image-20190824144319317" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064320.png" alt="image-20190824144319317" title class></a>
+                <p>image-20190824144319317</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064425.png" title="image-20190824144424619" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064425.png" alt="image-20190824144424619" title class></a>
+                <p>image-20190824144424619</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064444.png" title="image-20190824144444350" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064444.png" alt="image-20190824144444350" title class></a>
+                <p>image-20190824144444350</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064500.png" title="image-20190824144459521" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064500.png" alt="image-20190824144459521" title class></a>
+                <p>image-20190824144459521</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064541.png" title="image-20190824144540973" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064541.png" alt="image-20190824144540973" title class></a>
+                <p>image-20190824144540973</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064554.png" title="image-20190824144553506" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064554.png" alt="image-20190824144553506" title class></a>
+                <p>image-20190824144553506</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064602.png" title="image-20190824144600728" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064602.png" alt="image-20190824144600728" title class></a>
+                <p>image-20190824144600728</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064713.png" title="image-20190824144712651" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064713.png" alt="image-20190824144712651" title class></a>
+                <p>image-20190824144712651</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064753.png" title="image-20190824144753275" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064753.png" alt="image-20190824144753275" title class></a>
+                <p>image-20190824144753275</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064822.png" title="image-20190824144822328" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064822.png" alt="image-20190824144822328" title class></a>
+                <p>image-20190824144822328</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064850.png" title="image-20190824144849608" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064850.png" alt="image-20190824144849608" title class></a>
+                <p>image-20190824144849608</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064944.png" title="image-20190824144943368" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-064944.png" alt="image-20190824144943368" title class></a>
+                <p>image-20190824144943368</p>
+            </figure>
+
+
+
+<p> <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065326.png" title="image-20190824145325424" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065326.png" alt="image-20190824145325424"></a></p>
+<h1 id="计算机的控制器"><a href="#计算机的控制器" class="headerlink" title="计算机的控制器"></a>计算机的控制器</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065512.png" title="image-20190824145511131" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065512.png" alt="image-20190824145511131" title class></a>
+                <p>image-20190824145511131</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065524.png" title="image-20190824145523597" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065524.png" alt="image-20190824145523597" title class></a>
+                <p>image-20190824145523597</p>
+            </figure>
+
+<hr>
+<p> <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065636.png" title="image-20190824145636068" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065636.png" alt="image-20190824145636068"></a></p>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065659.png" title="image-20190824145657426" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065659.png" alt="image-20190824145657426" title class></a>
+                <p>image-20190824145657426</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065719.png" title="image-20190824145718078" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065719.png" alt="image-20190824145718078" title class></a>
+                <p>image-20190824145718078</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065815.png" title="image-20190824145814097" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065815.png" alt="image-20190824145814097" title class></a>
+                <p>image-20190824145814097</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065844.png" title="image-20190824145843546" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065844.png" alt="image-20190824145843546" title class></a>
+                <p>image-20190824145843546</p>
+            </figure>
+
+<h1 id="计算机的运算器"><a href="#计算机的运算器" class="headerlink" title="计算机的运算器"></a>计算机的运算器</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065943.png" title="image-20190824145942771" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-065943.png" alt="image-20190824145942771" title class></a>
+                <p>image-20190824145942771</p>
+            </figure>
+
+ <figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-071839.png" title="image-20190824151838268" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-071839.png" alt="image-20190824151838268" title class></a>
+                <p>image-20190824151838268</p>
+            </figure>
+
+ <figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-072237.png" title="image-20190824152236978" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-072237.png" alt="image-20190824152236978" title class></a>
+                <p>image-20190824152236978</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074617.png" title="image-20190824154616749" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074617.png" alt="image-20190824154616749" title class></a>
+                <p>image-20190824154616749</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074632.png" title="image-20190824154631656" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074632.png" alt="image-20190824154631656" title class></a>
+                <p>image-20190824154631656</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074642.png" title="image-20190824154642044" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074642.png" alt="image-20190824154642044" title class></a>
+                <p>image-20190824154642044</p>
+            </figure>
+
+<h1 id="计算机指令执行的过程"><a href="#计算机指令执行的过程" class="headerlink" title="计算机指令执行的过程"></a>计算机指令执行的过程</h1><figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074745.png" title="image-20190824154744957" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074745.png" alt="image-20190824154744957" title class></a>
+                <p>image-20190824154744957</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074805.png" title="image-20190824154804733" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074805.png" alt="image-20190824154804733" title class></a>
+                <p>image-20190824154804733</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074818.png" title="image-20190824154817214" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074818.png" alt="image-20190824154817214" title class></a>
+                <p>image-20190824154817214</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074922.png" title="image-20190824154922011" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074922.png" alt="image-20190824154922011" title class></a>
+                <p>image-20190824154922011</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074942.png" title="image-20190824154941301" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-074942.png" alt="image-20190824154941301" title class></a>
+                <p>image-20190824154941301</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075045.png" title="image-20190824155043644" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075045.png" alt="image-20190824155043644" title class></a>
+                <p>image-20190824155043644</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075141.png" title="image-20190824155140794" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075141.png" alt="image-20190824155140794" title class></a>
+                <p>image-20190824155140794</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075151.png" title="image-20190824155151383" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075151.png" alt="image-20190824155151383" title class></a>
+                <p>image-20190824155151383</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075203.png" title="image-20190824155202894" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075203.png" alt="image-20190824155202894" title class></a>
+                <p>image-20190824155202894</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=计算机组成原理之组成篇 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075248.png" title="image-20190824155248421" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-24-075248.png" alt="image-20190824155248421" title class></a>
+                <p>image-20190824155248421</p>
+            </figure>
+
+<hr>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-24T07:58:10.782Z" itemprop="dateUpdated">2019-08-24 15:58:10</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/" target="_blank" rel="external">http://yoursite.com/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程基础/">编程基础</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/&title=《计算机组成原理之组成篇》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/&title=《计算机组成原理之组成篇》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/16/Mysql/Mysql 面试指南/第一章/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Mysql面试指南 ----- MySQL版本类问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/15/面试/Google校招面试/第三章 数据库/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">慕课网Java校招面试 第三章 网络</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-计算机的体系与结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 计算机的体系与结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的层次与编程语言"><span class="post-toc-number">2.</span> <span class="post-toc-text">计算机的层次与编程语言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的速度单位"><span class="post-toc-number">3.</span> <span class="post-toc-text">计算机的速度单位</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的字符与编码集"><span class="post-toc-number">4.</span> <span class="post-toc-text">计算机的字符与编码集</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的总线"><span class="post-toc-number">5.</span> <span class="post-toc-text">计算机的总线</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的输入输出设备"><span class="post-toc-number">6.</span> <span class="post-toc-text">计算机的输入输出设备</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机存储器概览"><span class="post-toc-number">7.</span> <span class="post-toc-text">计算机存储器概览.</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的主存储器与辅助存储器"><span class="post-toc-number">8.</span> <span class="post-toc-text">计算机的主存储器与辅助存储器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机指令"><span class="post-toc-number">9.</span> <span class="post-toc-text">计算机指令</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的控制器"><span class="post-toc-number">10.</span> <span class="post-toc-text">计算机的控制器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机的运算器"><span class="post-toc-number">11.</span> <span class="post-toc-text">计算机的运算器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机指令执行的过程"><span class="post-toc-number">12.</span> <span class="post-toc-text">计算机指令执行的过程</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                John Doe &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/&title=《计算机组成原理之组成篇》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/16/网络 组成原理 操作系统/计算机组成原理之组成篇/&title=《计算机组成原理之组成篇》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLklEQVR42u3a0W7qMBAE0P7/T3NfK90CM2uQwnLyhNKQ+DhSF+/45yc+br+O/88/vv73Nckd7p3J7/myAxsbG/tD2LeHRzK4x9/Nh56cST4n48HGxsbex773H74ddAtoC2TyAh5bsLGxsbHb88ngzosfNjY2NnbCbktI3vqZPQsbGxsbu20qzUgzzGxC39JLw8bGxr48O09Fr//5Lfk2NjY29oXZt9Exi2bbISZtppkCGxsbexP7/Cd+1L45DnTz6S5eAzY2NvYKds44D1aL0lI+N29pYWNjY+9jJ0PM20xtIWwXEvkIk2KGjY2N/Q3sZBGSn5/9dbaAiSJebGxs7EXs/AvJ+dnSoi2QeZzw5InY2NjYi9jt5sXkAXlYO1vAtFs8h5t4sLGxsS/Pnv3oT+520r7PYcMgARsbG3s1O18AzBYq+aDbACN/OjY2NvYOdtKmf3eDfrhmikf1x2dsbGzsReyToc8K0qyRlLe6ntTq8zeGjY2NfTF224J/VXjQBr2zBtawi4aNjY39gewZ7+S7+YKkbvon0QI2Njb2IvZJ1NqS2iXKyfagelmCjY2NvZp9XqiS4jeLh+tylc8oNjY29geyZz/x3zG4Nng4aV1hY2Nj72An8WqyUSbPltspmG3ZefKesbGxsVewX9W+nzWYTiZidmBjY2NvZbdt/RN8EhXkkUD+Sv7It7GxsbFXsPP1SluoZsuGZCrbl3H36djY2NiL2G2ZmQ0lKS3JPWdPwcbGxv4edtvcPy8k+ZJjVlyLfBsbGxv7A9nnsHpe44bU42tOJh0bGxt7Ezt/cDsp+fVtvc0j5yctLWxsbOwV7Dy+fe1mzWT5cRIGR3kINjY29gp2fWncxJndM2kqvSpgxsbGxt7BvpVHO01tSFBvoIwLHjY2NvZW9guq3yiszcH59s28FYWNjY29j30eteabfvJnnS9+nuCxsbGx17FnkerjIjHDF0MvC/BwCyY2Njb2InY+rJMwoN5zNAo5sLGxsb+TPdvcMwtr28mtu2jY2NjY69gnjZtZiDuLCvIi98ZeGjY2NvbF2G1TJm8ntcUmWdK09zk6sLGxsa/O/gc6rGQXXzxHMAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.3"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.3"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.3"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.3"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
