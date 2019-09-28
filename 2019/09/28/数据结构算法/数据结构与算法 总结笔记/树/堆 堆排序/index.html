@@ -218,6 +218,105 @@
 
 <p>如上图：表示的是最小堆结构，形式上是一棵完全二叉树，实际存储在内存中的是一个数组，也就是对应下面的数组。树中每一个节点左边红色的值，代表它们在数组中的位置。</p>
 <h1 id="2-堆中节点的关系"><a href="#2-堆中节点的关系" class="headerlink" title="2 堆中节点的关系"></a>2 <strong>堆中节点的关系</strong></h1><h4 id="父节点与当前节点的下标对应关系为"><a href="#父节点与当前节点的下标对应关系为" class="headerlink" title="父节点与当前节点的下标对应关系为"></a>父节点与当前节点的下标对应关系为</h4><h3 id="当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><a href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent" class="headerlink" title="当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent"></a>当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</h3><h4 id="左孩子节点的下标为：2-i-1-Lchild"><a href="#左孩子节点的下标为：2-i-1-Lchild" class="headerlink" title="左孩子节点的下标为：2 * i+1= Lchild ,"></a>左孩子节点的下标为：2 * i+1= Lchild ,</h4><h4 id="右节点的下标为：2-i-2-Rchild"><a href="#右节点的下标为：2-i-2-Rchild" class="headerlink" title="右节点的下标为：2 * i+2= Rchild"></a>右节点的下标为：2 * i+2= Rchild</h4><h1 id="3-插入堆"><a href="#3-插入堆" class="headerlink" title="3 插入堆"></a>3 <strong>插入堆</strong></h1><p> <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081920.png" title="image-20190928161919409" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081920.png" alt="image-20190928161919409"></a></p>
+<h2 id="上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。"><a href="#上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。" class="headerlink" title="##上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。"></a>##<strong>上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。</strong></h2><h1 id="4-如何理解“堆”？"><a href="#4-如何理解“堆”？" class="headerlink" title="4 如何理解“堆”？"></a>4 如何理解“堆”？</h1><blockquote>
+<p>堆是一个完全二叉树；</p>
+</blockquote>
+<blockquote>
+<p>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值</p>
+</blockquote>
+<blockquote>
+<p>堆必须是一个完全二叉树。 完全二叉树 要求，除了最后一层，其他层的节点个数都是满的，</p>
+<p>最后一层的节点都靠左排列。</p>
+<p>堆中的每个节点的值必须大于等于（或者小于等于）其子树中每个节点的值。实际 上，我们还可以换一种说法，堆中每个节点的值都大于等于（或者小于等于）其左右子节点 的值。这两种表述是等价的。</p>
+</blockquote>
+<p>对于每个节点的值都大于等于子树中每个节点值的堆，我们叫作“大顶堆”。对于每个节点 的值都小于等于子树中每个节点值的堆，我们叫作“小顶堆”</p>
+<hr>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-113140.png" title="image-20190928193139887" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-113140.png" alt="image-20190928193139887" title class></a>
+                <p>image-20190928193139887</p>
+            </figure>
+
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121406.png" title="image-20190928201405866" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121406.png" alt="image-20190928201405866" title class></a>
+                <p>image-20190928201405866</p>
+            </figure>
+
+<hr>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121536.png" title="image-20190928201536282" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121536.png" alt="image-20190928201536282" title class></a>
+                <p>image-20190928201536282</p>
+            </figure>
+
+<hr>
+<h1 id="5-堆排序步骤图解说明"><a href="#5-堆排序步骤图解说明" class="headerlink" title="5 堆排序步骤图解说明"></a>5 堆排序步骤图解说明</h1><h4 id="要求：给你一个数组-4-6-8-5-9-要求使用堆排序法，将数组升序排序。"><a href="#要求：给你一个数组-4-6-8-5-9-要求使用堆排序法，将数组升序排序。" class="headerlink" title="要求：给你一个数组 {4,6,8,5,9} , 要求使用堆排序法，将数组升序排序。"></a>要求：给你一个数组 {4,6,8,5,9} , 要求使用堆排序法，将数组升序排序。</h4><h3 id="5-1-步骤一-构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆-。"><a href="#5-1-步骤一-构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆-。" class="headerlink" title="5.1 步骤一 构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)。"></a>5.1 步骤一 构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)。</h3><p>原始的数组 [4, 6, 8, 5, 9]</p>
+<ul>
+<li>1) .假设给定无序序列结构如下</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122156.png" title="image-20190928202156695" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122156.png" alt="image-20190928202156695" title class></a>
+                <p>image-20190928202156695</p>
+            </figure>
+
+<ul>
+<li>2）此时我们从最后一个非叶子结点开始（叶结点自然不用调整，第一个非叶子结点</li>
+</ul>
+<p>arr.length/2-1=5/2-1=1，也就是下面的 6 结点），从左至右，从下至上进行调整。</p>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122427.png" title="image-20190928202427532" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122427.png" alt="image-20190928202427532" title class></a>
+                <p>image-20190928202427532</p>
+            </figure>
+
+<ul>
+<li>3) .找到第二个非叶节点 4，由于[4,9,8]中 9 元素最大，4 和 9 交换</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122507.png" title="image-20190928202506928" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122507.png" alt="image-20190928202506928" title class></a>
+                <p>image-20190928202506928</p>
+            </figure>
+
+<ul>
+<li>4) 这时，交换导致了子根[4,5,6]结构混乱，继续调整，[4,5,6]中 6 最大，交换 4 和 6。</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122535.png" title="image-20190928202535123" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122535.png" alt="image-20190928202535123" title class></a>
+                <p>image-20190928202535123</p>
+            </figure>
+
+<p>此时，我们就将一个无序序列构造成了一个大顶堆。</p>
+<hr>
+<h3 id="5-2-步骤二-将堆顶元素与末尾元素进行交换，使末尾元素最大。"><a href="#5-2-步骤二-将堆顶元素与末尾元素进行交换，使末尾元素最大。" class="headerlink" title="5.2 步骤二  将堆顶元素与末尾元素进行交换，使末尾元素最大。"></a>5.2 步骤二  将堆顶元素与末尾元素进行交换，使末尾元素最大。</h3><h3 id="然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。"><a href="#然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。" class="headerlink" title="然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。"></a>然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。</h3><p>###如此反复进行交换、重建、交换。</p>
+<ul>
+<li><p>1) .将堆顶元素 9 和末尾元素 4 进行交换</p>
+<p><a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123010.png" title="image-20190928203009836" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123010.png" alt="image-20190928203009836"></a></p>
+</li>
+<li><p>2) .重新调整结构，使其继续满足堆定义</p>
+</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123036.png" title="image-20190928203036037" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123036.png" alt="image-20190928203036037" title class></a>
+                <p>image-20190928203036037</p>
+            </figure>
+
+<ul>
+<li>3) .再将堆顶元素 8 与末尾元素 5 进行交换，得到第二大元素 8.</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123110.png" title="image-20190928203109425" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123110.png" alt="image-20190928203109425" title class></a>
+                <p>image-20190928203109425</p>
+            </figure>
+
+<ul>
+<li>4) 后续过程，继续进行调整，交换，如此反复进行，最终使得整个序列有序</li>
+</ul>
+<figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123129.png" title="image-20190928203128499" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123129.png" alt="image-20190928203128499" title class></a>
+                <p>image-20190928203128499</p>
+            </figure>
+
+<h3 id="5-3再简单总结下堆排序的基本思路："><a href="#5-3再简单总结下堆排序的基本思路：" class="headerlink" title="5.3再简单总结下堆排序的基本思路："></a>5.3再简单总结下堆排序的基本思路：</h3><p>1).将无序序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;</p>
+<p>2).将堆顶元素与末尾元素交换，将最大元素”沉”到数组末端;</p>
+<p>3).重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，</p>
+<p>直到整个序列有序。</p>
 
         </div>
         
@@ -225,7 +324,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-09-28T08:19:26.058Z" itemprop="dateUpdated">2019-09-28 16:19:26</time>
+    Last updated: <time datetime="2019-09-28T12:32:23.891Z" itemprop="dateUpdated">2019-09-28 20:32:23</time>
 </span><br>
 
 
@@ -313,7 +412,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-堆的数据结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 堆的数据结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-堆中节点的关系"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 堆中节点的关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#父节点与当前节点的下标对应关系为"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">父节点与当前节点的下标对应关系为</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#左孩子节点的下标为：2-i-1-Lchild"><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">左孩子节点的下标为：2 * i+1= Lchild ,</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#右节点的下标为：2-i-2-Rchild"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">右节点的下标为：2 * i+2= Rchild</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-插入堆"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 插入堆</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-堆的数据结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 堆的数据结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-堆中节点的关系"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 堆中节点的关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#父节点与当前节点的下标对应关系为"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">父节点与当前节点的下标对应关系为</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#左孩子节点的下标为：2-i-1-Lchild"><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">左孩子节点的下标为：2 * i+1= Lchild ,</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#右节点的下标为：2-i-2-Rchild"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">右节点的下标为：2 * i+2= Rchild</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-插入堆"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 插入堆</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">##上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-如何理解“堆”？"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 如何理解“堆”？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-堆排序步骤图解说明"><span class="post-toc-number">5.</span> <span class="post-toc-text">5 堆排序步骤图解说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#要求：给你一个数组-4-6-8-5-9-要求使用堆排序法，将数组升序排序。"><span class="post-toc-number">5.0.0.1.</span> <span class="post-toc-text">要求：给你一个数组 {4,6,8,5,9} , 要求使用堆排序法，将数组升序排序。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-步骤一-构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆-。"><span class="post-toc-number">5.0.1.</span> <span class="post-toc-text">5.1 步骤一 构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-步骤二-将堆顶元素与末尾元素进行交换，使末尾元素最大。"><span class="post-toc-number">5.0.2.</span> <span class="post-toc-text">5.2 步骤二  将堆顶元素与末尾元素进行交换，使末尾元素最大。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。"><span class="post-toc-number">5.0.3.</span> <span class="post-toc-text">然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3再简单总结下堆排序的基本思路："><span class="post-toc-number">5.0.4.</span> <span class="post-toc-text">5.3再简单总结下堆排序的基本思路：</span></a></li></ol></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
