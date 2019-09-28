@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>关于Spring依赖注入的一些理解 | Hexo</title>
+    <title>堆 堆排序 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="Spring">
+    <meta name="keywords" content="数据结构与算法">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.3">
@@ -148,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>关于Spring依赖注入的一些理解</span>
+            <span>堆 堆排序</span>
             
         </div>
         
@@ -161,15 +161,13 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">关于Spring依赖注入的一些理解</h1>
+        <h1 class="title">堆 堆排序</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-12-31T11:57:10.742Z" itemprop="datePublished" class="page-time">
-  2018-12-31
+                <time datetime="2019-09-28T08:13:50.353Z" itemprop="datePublished" class="page-time">
+  2019-09-28
 </time>
 
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
 
             
         </h5>
@@ -194,16 +192,14 @@
 
 
 <div class="container body-wrap">
-    <article id="post-Spring/2.Spring依赖注入"
+    <article id="post-数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">关于Spring依赖注入的一些理解</h1>
+        <h1 class="post-card-title">堆 堆排序</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-12-31 19:57:10" datetime="2018-12-31T11:57:10.742Z"  itemprop="datePublished">2018-12-31</time>
+            <time class="post-time" title="2019-09-28 16:13:50" datetime="2019-09-28T08:13:50.353Z"  itemprop="datePublished">2019-09-28</time>
 
             
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
-
 
 
             
@@ -215,90 +211,26 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <blockquote>
-<p>问大家一个问题 Spring中注册的bean 在xml中配置<bean id="xxx" class="com.xxx.xxxx"> 我看写的程序中没有调用 xxx.getBean(“xxx”)。那在程序中是如何使用这个bean的呢</bean></p>
-</blockquote>
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025719.jpg" title="image-20181231195838700" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025719.jpg" alt="image-20181231195838700" title class></a>
-                <p>image-20181231195838700</p>
+            <h1 id="1-堆的数据结构"><a href="#1-堆的数据结构" class="headerlink" title="1 堆的数据结构"></a>1 <strong>堆的数据结构</strong></h1><figure class="image-box">
+                <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081510.png" title="20170504194503100.png" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081510.png" alt="20170504194503100.png" title class></a>
+                <p>20170504194503100.png</p>
             </figure>
 
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025720.jpg" title="image-20181231195850611" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025720.jpg" alt="image-20181231195850611" title class></a>
-                <p>image-20181231195850611</p>
-            </figure>
+<p>如上图：表示的是最小堆结构，形式上是一棵完全二叉树，实际存储在内存中的是一个数组，也就是对应下面的数组。树中每一个节点左边红色的值，代表它们在数组中的位置。</p>
+<h1 id="2-堆中节点的关系"><a href="#2-堆中节点的关系" class="headerlink" title="2 堆中节点的关系"></a>2 <strong>堆中节点的关系</strong></h1><h4 id="父节点与当前节点的下标对应关系为"><a href="#父节点与当前节点的下标对应关系为" class="headerlink" title="父节点与当前节点的下标对应关系为"></a>父节点与当前节点的下标对应关系为</h4><h3 id="当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><a href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent" class="headerlink" title="当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent"></a>当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</h3><h4 id="左孩子节点的下标为：2-i-1-Lchild"><a href="#左孩子节点的下标为：2-i-1-Lchild" class="headerlink" title="左孩子节点的下标为：2 * i+1= Lchild ,"></a>左孩子节点的下标为：2 * i+1= Lchild ,</h4><h4 id="右节点的下标为：2-i-2-Rchild"><a href="#右节点的下标为：2-i-2-Rchild" class="headerlink" title="右节点的下标为：2 * i+2= Rchild"></a>右节点的下标为：2 * i+2= Rchild</h4><h1 id="3-插入堆"><a href="#3-插入堆" class="headerlink" title="3 插入堆"></a>3 <strong>插入堆</strong></h1><p> <a rel=堆 堆排序 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081920.png" title="image-20190928161919409" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081920.png" alt="image-20190928161919409"></a></p>
 
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025721.jpg" title="image-20181231195857665" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025721.jpg" alt="image-20181231195857665" title class></a>
-                <p>image-20181231195857665</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025723.jpg" title="image-20181231195908137" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025723.jpg" alt="image-20181231195908137" title class></a>
-                <p>image-20181231195908137</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025726.jpg" title="image-20181231195923728" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025726.jpg" alt="image-20181231195923728" title class></a>
-                <p>image-20181231195923728</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025732.jpg" title="image-20181231200021653" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025732.jpg" alt="image-20181231200021653" title class></a>
-                <p>image-20181231200021653</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025734.jpg" title="image-20181231200031517" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025734.jpg" alt="image-20181231200031517" title class></a>
-                <p>image-20181231200031517</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025741.jpg" title="image-20181231200042180" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025741.jpg" alt="image-20181231200042180" title class></a>
-                <p>image-20181231200042180</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025743.jpg" title="image-20181231200055212" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025743.jpg" alt="image-20181231200055212" title class></a>
-                <p>image-20181231200055212</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025746.jpg" title="image-20181231200114736" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025746.jpg" alt="image-20181231200114736" title class></a>
-                <p>image-20181231200114736</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025747.jpg" title="image-20181231200210436" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025747.jpg" alt="image-20181231200210436" title class></a>
-                <p>image-20181231200210436</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025753.jpg" title="image-20181231200233053" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025753.jpg" alt="image-20181231200233053" title class></a>
-                <p>image-20181231200233053</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025805.jpg" title="image-20181231200426578" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025805.jpg" alt="image-20181231200426578" title class></a>
-                <p>image-20181231200426578</p>
-            </figure>
-
-<figure class="image-box">
-                <a rel=关于Spring依赖注入的一些理解 href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025812.jpg" title="image-20181231200846542" data-fancybox="images"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-025812.jpg" alt="image-20181231200846542" title class></a>
-                <p>image-20181231200846542</p>
-            </figure>
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-19T13:11:20.019Z" itemprop="dateUpdated">2019-06-19 21:11:20</time>
+    最后更新时间：<time datetime="2019-09-28T08:19:26.058Z" itemprop="dateUpdated">2019-09-28 16:19:26</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2018/12/31/Spring/2.Spring依赖注入/" target="_blank" rel="external">http://yoursite.com/2018/12/31/Spring/2.Spring依赖注入/</a>
+        转载注明出处，原文地址：<a href="/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/" target="_blank" rel="external">http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/</a>
         
     </div>
     <footer>
@@ -318,7 +250,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -327,7 +259,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/31/Spring/2.Spring依赖注入/&title=《关于Spring依赖注入的一些理解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/&title=《堆 堆排序》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -339,7 +271,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/31/Spring/2.Spring依赖注入/&title=《关于Spring依赖注入的一些理解》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/&title=《堆 堆排序》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -362,21 +294,14 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2019/01/01/Spring/6.@Autowird注解/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Spring Autpwired</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="next">
-      <a href="/2018/12/25/消息队列/RabbitMQ/RabbitMQ/Rabbit MQ千峰/" id="post-next" class="post-nav-link">
+      <a href="/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/顺序存储的二叉树/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">RabbitMQ 千峰教育笔记</h4>
+        <h4 class="title">顺序存储的二叉树</h4>
       </a>
     </div>
   
@@ -384,6 +309,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-堆的数据结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 堆的数据结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-堆中节点的关系"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 堆中节点的关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#父节点与当前节点的下标对应关系为"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">父节点与当前节点的下标对应关系为</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#左孩子节点的下标为：2-i-1-Lchild"><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">左孩子节点的下标为：2 * i+1= Lchild ,</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#右节点的下标为：2-i-2-Rchild"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">右节点的下标为：2 * i+2= Rchild</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-插入堆"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 插入堆</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
@@ -477,7 +410,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/31/Spring/2.Spring依赖注入/&title=《关于Spring依赖注入的一些理解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/&title=《堆 堆排序》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -489,7 +422,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/31/Spring/2.Spring依赖注入/&title=《关于Spring依赖注入的一些理解》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/树/堆 堆排序/&title=《堆 堆排序》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -501,7 +434,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aO3LDMAwFQN//0krrwpIfQDkzApeVJ5EprgsMPny94nW8rbO/v//3OFn5bq9fLAwMjMcyjsuVv+D6mXz/5Of48BYMDIwNGGcvXvmc75zs+eXMGBgYGEFSeH2g68CavxcDAwMjD7jV8LoefDEwMDCqoTP57nVbbaVth4GBsRsj77r//+efzDcwMDAexTiKa709lySO5VNhYGCMZuQBLh9t/qSVlhTGGBgYQxnV6w53lZ15aI5KVgwMjNGMPNgtNbmKw4bqQBQDA2MHRu8iRTU1zH/L6kACAwMDI7kSkT/TC75JSoqBgTGV0QugvYJ2/Qcq5LMYGBiDGHnqlqdxhYq5dZnjy6kwMDCGMvIkrIdJdqg2+E4zXAwMjHGMletfyXerjbxeAoqBgTGbkRe0SeOsWqzem1xiYGBMZeSt/LsudSX754X0h8EABgbGUEYv1PZGmL1nmvUuBgbGCEZSoN47NsjbeXkJjYGBsScjv0LRux5RDbX5iAIDA2Mqo1egVkn3Frenly0wMDBGM5IAt3JtIh8h5IG7MJ3AwMAYwcgDa2962Au4hfIVAwNjKOMornzomI8W8rFENMLEwMAYx+jNBHsv6xWuGBgYGElmlReiKyPMFTYGBsY+jPX+VfWg5YbaNQYDAwOjGDqrh+udCgMDA6OaGq5fuVhJXjEwMHZgJEVs4ZJWPkFdfhIDA2MHRjVRyxtk9x6id0UDAwPj4Yw/+928KuS+LlIAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3aS27jQAwFwNz/0h4gq1kk8nukA1jt0iqQBZnVWdD8fH3F1+P7uv70/+v6/vUbfvvG2ZtXFzY2NvZN2I/L67ewroPLQ5l9y/VhXVuwsbGxT2UnASWHlb8nwbT/jCQGbGxs7E9m56VCkuTyO8mhY2NjY2PP2NcJbNNmyp/HxsbGxs5/9LelRXIo+4bUn/fSsLGxsd+ePWviv+fffzjfxsbGxn5L9mN0tcmmKA+CtLRXYGNjY5/Evm4ezYqHpNGflDptVPUAGBsbG/s4dhLELI3tGZsGEzY2NvbZ7HYVJl+syQ9rlt7aYcAPFRg2Njb2Eezkg3axZjb0bZd1ZsUSNjY29qns2UvztNHOW2cD5jY2bGxs7DPYebGRFw+vfX4zAI4qMGxsbOybs9uHNolqc5SbNtaT2Qg2Njb2zdmzAW2+Opmnls2QuI4EGxsb+zj2ZjCQYGbNo/2gAhsbG/tz2EnQ+atnraV2YWizWoSNjY19EjsvMPKx62a5J2lj5R2yqHOGjY2NfXP2bCHmVe2nZISwL3t+eBIbGxv7OPb+p3+dM1+a9tqshI2NjX0eO08Js/SWg1+1mvnkmLCxsbEPYrcjgeTObAywHwAMkyU2Njb2zdltw2hWeMzWN9shQR4tNjY29nnstkE/Kwzy487LnjYRYmNjY5/H/otCImkD5YlzNujNP8XGxsa+O/tVqzazcmVz0G2Jgo2Njf3J7PYr86ZPvWozGl38ED82Njb2oey2cb+qe8pio13KeVIUYWNjYx/Hzpvy7QG1aWxDygcG2NjY2Cex83DbF+VFS17GzJ6PYsbGxsa+LTtv61+nollpMStU2niwsbGxz2bnTfa20bNp9M+O7zq24tSxsbGxb8V+lNdsAJwcYptK6xoLGxsb+1D2rGDYtPtf3NYfLfRgY2Njn8feh5V8WVuc5GlsmPywsbGxj2PPhrV5VmyHxO2xtuMHbGxs7E9mz0YCbbGxb2M9MWJjY2N/JLsdAOdpqW0w5UPiYlkHGxsb++bsNkm0CeNVo+KkbRS9ExsbG/sg9qY1095vAdcNqTYRrubb2NjY2O/I/gebDG3xU824AQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
