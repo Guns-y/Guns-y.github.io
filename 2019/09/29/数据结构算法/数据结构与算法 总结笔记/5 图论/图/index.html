@@ -7,7 +7,7 @@
 
 
 
-<title>Hexo</title>
+<title>图 | Hexo</title>
 
 
 
@@ -103,11 +103,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title"></h1>
+            <h1 class="post-title">图</h1>
             
                 <div class="post-meta">
                     
@@ -120,13 +182,24 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            <hr>
+            <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-15-131722.png" alt="image-20191015211722056"></p>
+<p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-15-131819.png" alt="image-20191015211818980"></p>
 <hr>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//存储顶点集合</span></span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;String&gt; vertexList;</span><br><span class="line">    <span class="comment">//存储图对应的邻接矩阵</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[][] edges;</span><br><span class="line">    <span class="comment">//表示边的数目</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> numOfEdges;</span><br><span class="line">    <span class="comment">//定义给数组 boolean[], 记录某个结点是否被访问</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] isVisited;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">8</span>;</span><br><span class="line">        String Vertexs[] = &#123;<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>&#125;;</span><br><span class="line">        <span class="comment">//创建图对象</span></span><br><span class="line">        Graph graph = <span class="keyword">new</span> Graph(n);</span><br><span class="line">        <span class="comment">//循环的添加顶点</span></span><br><span class="line">        <span class="keyword">for</span> (String vertex : Vertexs) &#123;</span><br><span class="line">            graph.insertVertex(vertex);</span><br><span class="line">        &#125;</span><br><span class="line">        graph.insertEdge(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        graph.insertEdge(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">        graph.insertEdge(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">        graph.insertEdge(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">        graph.insertEdge(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">        graph.insertEdge(<span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//显示一把邻结矩阵</span></span><br><span class="line">        graph.showGraph();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//初始化矩阵和 vertexList</span></span><br><span class="line">        edges = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        vertexList = <span class="keyword">new</span> ArrayList&lt;&gt;(n);</span><br><span class="line">        numOfEdges = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入结点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertVertex</span><span class="params">(String vertex)</span> </span>&#123;</span><br><span class="line">        vertexList.add(vertex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加边* *</span></span><br><span class="line">    <span class="comment">// @param v1 表示点的下标即使第几个顶点 "A"-"B" "A"-&gt;0 "B"-&gt;1</span></span><br><span class="line">    <span class="comment">// * @param v2 第二个顶点对应的下标</span></span><br><span class="line">    <span class="comment">// * @param weight 表示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertEdge</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        edges[v1][v2] = weight;</span><br><span class="line">        edges[v2][v1] = weight;</span><br><span class="line">        numOfEdges++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//显示图对应的矩阵</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showGraph</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] link : edges) &#123;</span><br><span class="line">            System.out.println(Arrays.toString(link));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="TOList-BFS-DFS"><a href="#TOList-BFS-DFS" class="headerlink" title="TOList BFS DFS"></a>TOList BFS DFS</h1><hr>
 
         </div>
 
@@ -164,6 +237,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/数据结构与算法/"># 数据结构与算法</a>
+                    
+                        
                 </span>
             </div>
             <div>
