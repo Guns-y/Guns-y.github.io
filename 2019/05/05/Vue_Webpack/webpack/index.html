@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>黑马程序员 web pack | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">黑马程序员 web pack</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 5, 2019&nbsp;&nbsp;16:20:40</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/webpack/">webpack</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-webpack的安装"><a href="#1-webpack的安装" class="headerlink" title="1. webpack的安装"></a>1. webpack的安装</h1><h3 id="1-先安装node-js"><a href="#1-先安装node-js" class="headerlink" title="1 先安装node.js"></a>1 先安装node.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">cd webpack-demo(在桌面上新建一个文件夹)</span><br><span class="line">npm init （在新建文件夹下）</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-06-025854.png" alt="image-20190506105853226"></p>
+<h3 id="2-全局安装webpack-（不推荐）"><a href="#2-全局安装webpack-（不推荐）" class="headerlink" title="2.全局安装webpack （不推荐）"></a>2.全局安装webpack （不推荐）</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-06-030009.png" alt="image-20190506110008403"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -g (g表示全局安装  用手机热点安装 防止被墙)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在项目内安装webpack-推荐"><a href="#3-在项目内安装webpack-推荐" class="headerlink" title="3 在项目内安装webpack(推荐)"></a>3 在项目内安装webpack(推荐)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd webpack-demo (在项目内安装)</span><br><span class="line">npm install webpack webpack-cli --save-d  (npm install webpack webpack-cli -D) 两者等价</span><br><span class="line">npm webpack -v (6.4.1)</span><br><span class="line">npx webpack -v  (4.30.0)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-06-030500.png" alt="image-20190506110459792"> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入到项目文件夹中</span><br><span class="line">npm install 命令可以将整个文件打包</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-06-031051.png" alt="image-20190506111049312"> </p>
+<hr>
+<h1 id="2-webpack打包项目"><a href="#2-webpack打包项目" class="headerlink" title="2 webpack打包项目"></a>2 webpack打包项目</h1><blockquote>
+<p>webpack main.js build.js (会报错)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 使用 npx webpack命令 会报错</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-10-115933.png" alt="image-20190510195931712"></p>
+</blockquote>
+<blockquote>
+<h3 id="添加配置文件-webpack-config-js"><a href="#添加配置文件-webpack-config-js" class="headerlink" title="添加配置文件 webpack.config.js"></a>添加配置文件 webpack.config.js</h3></blockquote>
+<ul>
+<li>bug </li>
+<li>![image-20190510200844289](../../../Users/apple/Library/Application Support/typora-user-images/image-20190510200844289.png) </li>
+<li></li>
+</ul>
+<h1 id="3webpack-配置文件的编写"><a href="#3webpack-配置文件的编写" class="headerlink" title="3webpack 配置文件的编写"></a>3webpack 配置文件的编写</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="4-webpack-dev-server"><a href="#4-webpack-dev-server" class="headerlink" title="4 webpack-dev-server"></a>4 webpack-dev-server</h1><p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-004539.png" alt="image-20190511083348342"></p>
+<hr>
+<p>使用 webpack-dev-server需要安装webpack、 webpack-dev-server和 html-webpack-plugin三个包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack@3.6.0 webpack-dev-server@2.9.1 html-webpack-plugin@2.30.1 --save-dev</span><br></pre></td></tr></table></figure>
+
+<p> 安装完成，会发现程序目录出现一个package.json文件 </p>
+<ul>
+<li>配置webpack-dev-server</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">在package.json中配置script</span><br><span class="line"></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">&quot;dev&quot;: &quot;webpack‐dev‐server ‐‐inline ‐‐hot ‐‐open ‐‐port 5008&quot;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">--inline：自动刷新</span><br><span class="line"></span><br><span class="line">--hot：热加载</span><br><span class="line"></span><br><span class="line">--port：指定端口</span><br><span class="line"></span><br><span class="line">--open：自动在默认浏览器打开</span><br><span class="line"></span><br><span class="line">--host：可以指定服务器的 ip，不指定则为127.0.0.1，如果对外发布则填写公网ip地址</span><br><span class="line"></span><br><span class="line">此时package.json的文件内容如下：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">&quot;dev&quot;: &quot;webpack‐dev‐server ‐‐inline ‐‐hot ‐‐open ‐‐port 5008&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">&quot;html‐webpack‐plugin&quot;: &quot;^2.30.1&quot;,</span><br><span class="line">&quot;webpack&quot;: &quot;^3.6.0&quot;,</span><br><span class="line">&quot;webpack‐dev‐server&quot;: &quot;^2.9.1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>配置webpack.config.js</p>
+<blockquote>
+<p> 在webpack.config.js中配置html-webpack-plugin插件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; var htmlwp = require('html‐webpack‐plugin');</span><br><span class="line">&gt; module.exports=&#123;</span><br><span class="line">&gt; entry:'./src/main.js', //指定打包的入口文件</span><br><span class="line">&gt; output:&#123;</span><br><span class="line">&gt; path : __dirname+'/dist', // 注意：__dirname表示webpack.config.js所在目录的绝对路径</span><br><span class="line">&gt; filename:'build.js' //输出文件</span><br><span class="line">&gt; &#125;,</span><br><span class="line">&gt; plugins:[</span><br><span class="line">&gt; new htmlwp(&#123;</span><br><span class="line">&gt; title: '首页', //生成的页面标题<span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">title</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">&gt; filename: 'index.html', //webpack‐dev‐server在内存中生成的文件名称，自动将build注入到这</span><br><span class="line">&gt; 个页面底部，才能实现自动刷新功能</span><br><span class="line">&gt; template: 'vue_02.html' //根据index1.html这个模板来生成(这个文件请程序员自己生成)</span><br><span class="line">&gt; &#125;)</span><br><span class="line">&gt; ]</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+</li>
+<li><p>配置模板文件</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将原来的vue_02.html作为模板文件，为了和内存中的index.html文件名区别，注意将vue_02.html中的script标签</span><br><span class="line">去掉</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>启动 项目</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-031601.png" alt="image-20190511111559369"></p>
+</li>
+</ul>
+<hr>
+<hr>
+<h1 id="5-CMS前端工程搭建"><a href="#5-CMS前端工程搭建" class="headerlink" title="5 CMS前端工程搭建"></a>5 CMS前端工程搭建</h1><ul>
+<li><p>Vue-cli脚手架的封装  ——xc-ui-pc-sysmanage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># install dependencies</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># serve with hot reload at localhost:8080</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># build for production with minification</span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"># build for production and view the bundle analyzer report</span><br><span class="line">npm run build --report</span><br><span class="line"></span><br><span class="line"># run unit tests</span><br><span class="line">npm run unit</span><br><span class="line"></span><br><span class="line"># run e2e tests</span><br><span class="line">npm run e2e</span><br><span class="line"></span><br><span class="line"># run all tests</span><br><span class="line">npm test</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⭐️⭐️</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-084648.png" alt="image-20190511164646016"> 删除node_mo dules 然后执行 npm install 此时会出现卡顿网慢。然后使用cnpm.  install 来生成 node_modules 然后。npm run dev</p>
+<p>要使用node-v =8.00</p>
+<p>Cpm run dev</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-085152.png" alt="image-20190511165150959"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-10-094446.png" alt="image-20190610174444798"></p>
+<h3 id="创建页面和定义路由"><a href="#创建页面和定义路由" class="headerlink" title="创建页面和定义路由"></a>创建页面和定义路由</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-090742.png" alt="image-20190511170741329"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;!--编写页面静态部分 即view部分--&gt;</span><br><span class="line">  Hello world</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="comment">// &lt;!--编写页面静态部分 即model vm部分--&gt;</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;!--编写页面样式 非必须--&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'@/module/home/page/home.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> page_list <span class="keyword">from</span> <span class="string">'@/module/cms/page/page_list.vue'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [&#123;</span><br><span class="line">  path: <span class="string">'/'</span>,</span><br><span class="line">  component: Home,</span><br><span class="line">  name: <span class="string">'CMS'</span>,<span class="comment">//菜单名称</span></span><br><span class="line">  hidden: <span class="literal">false</span>,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/cms/page/list'</span>,</span><br><span class="line">      name: <span class="string">'页面列表'</span>,</span><br><span class="line">      component: page_list,</span><br><span class="line">      hidden: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;<span class="comment">/*,</span></span><br><span class="line"><span class="comment">  &#123;</span></span><br><span class="line"><span class="comment">    path: '/login',</span></span><br><span class="line"><span class="comment">    component: Login,</span></span><br><span class="line"><span class="comment">    name: 'Login',</span></span><br><span class="line"><span class="comment">    hidden: true</span></span><br><span class="line"><span class="comment">  &#125;*/</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-091019.png" alt="image-20190511171017709"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-11-091041.png" alt="image-20190511171038907"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span>;</span><br><span class="line">Vue.use(Router);</span><br><span class="line"><span class="comment">// 定义路由配置</span></span><br><span class="line"><span class="keyword">let</span> routes = []</span><br><span class="line"><span class="keyword">let</span> concat = <span class="function">(<span class="params">router</span>) =&gt;</span> &#123;</span><br><span class="line">  routes = routes.concat(router)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// // 导入路由规则 base router 中导入路由规则</span></span><br><span class="line"><span class="keyword">import</span> HomeRouter <span class="keyword">from</span> <span class="string">'@/module/home/router'</span></span><br><span class="line"><span class="keyword">import</span> CmsRouter <span class="keyword">from</span> <span class="string">'@/module/cms/router'</span></span><br><span class="line"><span class="comment">// 合并路由规则</span></span><br><span class="line">concat(HomeRouter)</span><br><span class="line">concat(CmsRouter)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> routes;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tabel组建测试"><a href="#Tabel组建测试" class="headerlink" title="Tabel组建测试"></a>Tabel组建测试</h3><blockquote>
+<p><a href="https://element.eleme.cn/#/zh-CN" target="_blank" rel="noopener">https://element.eleme.cn/#/zh-CN</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;el-table</span><br><span class="line">      :data=<span class="string">"tableData"</span></span><br><span class="line">      stripe</span><br><span class="line">      style=<span class="string">"width: 100%"</span>&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop=<span class="string">"date"</span></span><br><span class="line">        label=<span class="string">"日期"</span></span><br><span class="line">        width=<span class="string">"180"</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">      &lt;el-table-column</span></span><br><span class="line"><span class="regexp">        prop="name"</span></span><br><span class="line"><span class="regexp">        label="姓名"</span></span><br><span class="line"><span class="regexp">        width="180"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop=<span class="string">"address"</span></span><br><span class="line">        label=<span class="string">"地址"</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>el-table&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt; &lt;!‐‐相当于编写html的内容‐‐&gt; &lt;el‐table :data="tableData" stripe style="width: 100%"&gt; &lt;el‐table‐column prop="date" label="日期" width="180"&gt; &lt;/el‐table‐column&gt; &lt;el‐table‐column prop="name" label="姓名" width="180"&gt; &lt;/el‐table‐column&gt; &lt;el‐table‐column prop="address" label="地址"&gt;</span><br><span class="line"></span><br><span class="line">&lt;/el‐table‐column&gt;</span><br><span class="line"></span><br><span class="line">&lt;/el‐table&gt; &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  // &lt;!--编写页面静态部分 即model vm部分--&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        tableData: [&#123;</span><br><span class="line">          date: '2016-05-02',</span><br><span class="line">          name: '王小虎',</span><br><span class="line">          address: '上海市普陀区金沙江路 1518 弄'</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          date: '2016-05-04',</span><br><span class="line">          name: '王小虎',</span><br><span class="line">          address: '上海市普陀区金沙江路 1517 弄'</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          date: '2016-05-01',</span><br><span class="line">          name: '王小虎',</span><br><span class="line">          address: '上海市普陀区金沙江路 1519 弄'</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          date: '2016-05-03',</span><br><span class="line">          name: '王小虎',</span><br><span class="line">          address: '上海市普陀区金沙江路 1516 弄'</span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--编写页面样式 非必须--&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!--编写页面静态部分，即view部分--&gt;</span><br><span class="line">    &lt;el-button type=&quot;primary&quot; size=&quot;small&quot; v-on:click=&quot;query&quot;&gt;查询&lt;/el-button&gt;</span><br><span class="line">    &lt;el-table</span><br><span class="line">      :data=&quot;list&quot;</span><br><span class="line">      stripe</span><br><span class="line">      style=&quot;width: 100%&quot;&gt;</span><br><span class="line">      &lt;el-table-column type=&quot;index&quot; width=&quot;60&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      &lt;el-table-column prop=&quot;pageName&quot; label=&quot;页面名称&quot; width=&quot;120&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      &lt;el-table-column prop=&quot;pageAliase&quot; label=&quot;别名&quot; width=&quot;120&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      &lt;el-table-column prop=&quot;pageType&quot; label=&quot;页面类型&quot; width=&quot;150&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      &lt;el-table-column prop=&quot;pageWebPath&quot; label=&quot;访问路径&quot; width=&quot;250&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      &lt;el-table-column prop=&quot;pagePhysicalPath&quot; label=&quot;物理路径&quot; width=&quot;250&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">      &lt;el-table-column prop=&quot;pageCreateTime&quot; label=&quot;创建时间&quot; width=&quot;180&quot;&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">    &lt;/el-table&gt;</span><br><span class="line">    &lt;el-pagination</span><br><span class="line">      layout=&quot;prev, pager, next&quot;</span><br><span class="line">      :total=&quot;total&quot;</span><br><span class="line">      :page-size=&quot;params.size&quot;</span><br><span class="line">      :current-page=&quot;params.page&quot;</span><br><span class="line">      v-on:current-change=&quot;changePage&quot;</span><br><span class="line">      style=&quot;float:right&quot;&gt;</span><br><span class="line">    &lt;/el-pagination&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        list: [</span><br><span class="line">          &#123;</span><br><span class="line">            &quot;siteId&quot;: &quot;5a751fab6abb5044e0d19ea1&quot;,</span><br><span class="line">            &quot;pageId&quot;: &quot;5a754adf6abb500ad05688d9&quot;,</span><br><span class="line">            &quot;pageName&quot;: &quot;index.html&quot;,</span><br><span class="line">            &quot;pageAliase&quot;: &quot;首页&quot;,</span><br><span class="line">            &quot;pageWebPath&quot;: &quot;/index.html&quot;,</span><br><span class="line">            &quot;pageParameter&quot;: null,</span><br><span class="line">            &quot;pagePhysicalPath&quot;: &quot;F:\\develop\\xc_portal_static\\&quot;,</span><br><span class="line">            &quot;pageType&quot;: &quot;0&quot;,</span><br><span class="line">            &quot;pageTemplate&quot;: null,</span><br><span class="line">            &quot;pageHtml&quot;: null,</span><br><span class="line">            &quot;pageStatus&quot;: null,</span><br><span class="line">            &quot;pageCreateTime&quot;: &quot;2018-02-03T05:37:53.256+0000&quot;,</span><br><span class="line">            &quot;templateId&quot;: &quot;5a962b52b00ffc514038faf7&quot;,</span><br><span class="line">            &quot;pageParams&quot;: null,</span><br><span class="line">            &quot;htmlFileId&quot;: &quot;5a7c1c54d019f14d90a1fb23&quot;,</span><br><span class="line">            &quot;dataUrl&quot;: null</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            &quot;siteId&quot;: &quot;5a751fab6abb5044e0d19ea1&quot;,</span><br><span class="line">            &quot;pageId&quot;: &quot;5a795ac7dd573c04508f3a56&quot;,</span><br><span class="line">            &quot;pageName&quot;: &quot;index_banner.html&quot;,</span><br><span class="line">            &quot;pageAliase&quot;: &quot;轮播图&quot;,</span><br><span class="line">            &quot;pageWebPath&quot;: &quot;/include/index_banner.html&quot;,</span><br><span class="line">            &quot;pageParameter&quot;: null,</span><br><span class="line">            &quot;pagePhysicalPath&quot;: &quot;F:\\develop\\xc_portal_static\\include\\&quot;,</span><br><span class="line">            &quot;pageType&quot;: &quot;0&quot;,</span><br><span class="line">            &quot;pageTemplate&quot;: null,</span><br><span class="line">            &quot;pageHtml&quot;: null,</span><br><span class="line">            &quot;pageStatus&quot;: null,</span><br><span class="line">            &quot;pageCreateTime&quot;: &quot;2018-02-06T07:34:21.255+0000&quot;,</span><br><span class="line">            &quot;templateId&quot;: &quot;5a962bf8b00ffc514038fafa&quot;,</span><br><span class="line">            &quot;pageParams&quot;: null,</span><br><span class="line">            &quot;htmlFileId&quot;: &quot;5a795bbcdd573c04508f3a59&quot;,</span><br><span class="line">            &quot;dataUrl&quot;: null</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分页查询-使用"><a href="#分页查询-使用" class="headerlink" title="分页查询 使用"></a>分页查询 使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-pagination</span><br><span class="line">     :page-size=<span class="string">"params.page"</span></span><br><span class="line">     :pager-count=<span class="string">"params.size"</span></span><br><span class="line">     layout=<span class="string">"prev, pager, next"</span></span><br><span class="line">     :total=<span class="string">"total"</span></span><br><span class="line">     style=<span class="string">"float:right"</span></span><br><span class="line">     @current-change=<span class="string">"changePage"</span></span><br><span class="line">   &gt;</span><br><span class="line">   &lt;<span class="regexp">/el-pagination&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  // &lt;!--编写页面静态部分 即model vm部分--&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        total: 1000,</span><br><span class="line">        params: &#123;</span><br><span class="line">          page: 20,</span><br><span class="line">          size: 11</span><br><span class="line">        &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">      query: function () &#123;</span><br><span class="line">        alert(&quot;qq&quot;)</span><br><span class="line">      &#125;,</span><br><span class="line">      changePage: function () &#123;</span><br><span class="line">        //调用Query方法 this表示当前实栗对象</span><br><span class="line">        this.query();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-12-223246.png" alt="image-20190513063245332"></p>
+<hr>
+<h3 id="Api-调用"><a href="#Api-调用" class="headerlink" title="Api 调用"></a>Api 调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'es6-promise'</span>).polyfill()</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span> <span class="comment">//跨域</span></span><br><span class="line">axios.defaults.timeout = <span class="number">10000</span></span><br><span class="line">axios.defaults.headers.post[<span class="string">'Content-Type'</span>] = <span class="string">'application/x-www=form-urlencoded'</span></span><br><span class="line"><span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'../../common/utils'</span></span><br><span class="line"><span class="keyword">if</span>(utils.getJwt())&#123;</span><br><span class="line">  axios.defaults.headers[<span class="string">'Authorization'</span>] = <span class="string">'Bearer '</span>+utils.getJwt()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//axios.defaults.headers['Authorization'] = ''</span></span><br><span class="line"><span class="comment">// 请求之前拦截</span></span><br><span class="line"><span class="comment">/*axios.interceptors.request.use(config =&gt; &#123;</span></span><br><span class="line"><span class="comment">  // 判断token</span></span><br><span class="line"><span class="comment">  //if (localStorage.token) &#123;</span></span><br><span class="line"><span class="comment">    config.headers.Authorization = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjEwODA4ODYsInVzZXJfbmFtZSI6IjEyMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwianRpIjoiYTNiM2RiYjgtODJkYS00YWI2LWIwZjEtMWMyZDI5ZjM3MjExIiwiY2xpZW50X2lkIjoibWFuYWdlciIsInNjb3BlIjpbIm1hbmFnZXIiXX0.YivH7foaYfSJs9nPBR40TbJ7T0sGXBGaZV2g8Ivktiatdv0Sjkl4PbS3tsjSBtbyqLekYDLoWSojiDLyvgMy5qskeRLefVk4FYpEMzpxfb5JtaxoIRH0o-Re1MC2quq-J7kxRKAL1DUEmr-_GEEmB8zswYJNwYn3vZK0FMQlbsIty4LCfgIwXfH9XnPcUhojUUIBRUDT2W3s8j-qZQ-iKk1y2kesrXloiOtPEL5CljmlOyZ3GED_HNude5b41TqCQyv2VS1baE9DEPo-P0Hb33rSCMILk3rZg-hO7zuDMGfbGWKMQRgY6Fb2uUtqokYa5aLtXyEwW67FKAi2mK2cPA'</span></span><br><span class="line"><span class="comment">  //&#125;</span></span><br><span class="line"><span class="comment">  return config</span></span><br><span class="line"><span class="comment">&#125;,error =&gt;&#123;</span></span><br><span class="line"><span class="comment">  alert("参数错误", 'fail')</span></span><br><span class="line"><span class="comment">  return Promise.reject(error)</span></span><br><span class="line"><span class="comment">&#125;)*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">//get请求</span></span><br><span class="line">  requestGet (url, params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.get(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//get请求不带参数</span></span><br><span class="line">  requestQuickGet (url) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.get(url).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//post请求</span></span><br><span class="line">  requestPost (url, params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.post(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//post请求</span></span><br><span class="line">  requestPostForm (url, params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.post(url, params, &#123;</span><br><span class="line">        headers: &#123;</span><br><span class="line">          <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)<span class="comment">//注意res是axios封装的对象，res.data才是服务端返回的信息</span></span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//put请求</span></span><br><span class="line">  requestPut (url, params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.put(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//delete请求</span></span><br><span class="line">  requestDelete (url, params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      axios.delete(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'./../../../base/api/public'</span></span><br><span class="line"><span class="keyword">import</span> querystring <span class="keyword">from</span> <span class="string">'querystring'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sysConfig = <span class="built_in">require</span>(<span class="string">'@/../config/sysConfig'</span>)</span><br><span class="line"><span class="keyword">let</span> apiUrl = sysConfig.xcApiUrlPre;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义方法请求 服务端的页面查询接口</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> page_list = <span class="function">(<span class="params">page, size, params</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//请求 服务端的页面查询接口</span></span><br><span class="line">  <span class="keyword">return</span> http.requestQuickGet(apiUrl+<span class="string">'/cms/page/list/'</span>+page+<span class="string">'/'</span>+size);</span><br><span class="line">  <span class="comment">// return http.requestGet("apiUrl+'/cms/page/list/'+page+'/'+size);</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">import</span> * <span class="keyword">as</span> cmsApi <span class="keyword">from</span> <span class="string">'../api/cms'</span></span><br><span class="line">  <span class="comment">// &lt;!--编写页面静态部分 即model vm部分--&gt;</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        total: <span class="number">1000</span>,</span><br><span class="line">        params: &#123;</span><br><span class="line">          page: <span class="number">20</span>,</span><br><span class="line">          size: <span class="number">11</span></span><br><span class="line">        &#125;,</span><br><span class="line">        list: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      query: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//调用服务端的接口 cms.js 调用</span></span><br><span class="line">        cmsApi.page_list(<span class="keyword">this</span>.params.page, <span class="keyword">this</span>.params.size).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.list = res.queryResult.list;</span><br><span class="line">          <span class="keyword">this</span>.total = res.queryResult.total;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      &lt;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Api跨域问题"><a href="#Api跨域问题" class="headerlink" title="Api跨域问题"></a>Api跨域问题</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-14-014805.png" alt="image-20190514094803403"></p>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="comment">// Template version: 1.2.4</span></span><br><span class="line"><span class="comment">// see http://vuejs-templates.github.io/webpack for documentation.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">var</span> proxyConfig = <span class="built_in">require</span>(<span class="string">'./proxyConfig'</span>)</span><br><span class="line"><span class="keyword">let</span> sysConfig = <span class="built_in">require</span>(<span class="string">'./sysConfig'</span>)</span><br><span class="line"><span class="keyword">let</span> xcApiUrl = sysConfig.xcApiUrl</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  dev: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Paths</span></span><br><span class="line">    assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">    assetsPublicPath: <span class="string">'/'</span>,</span><br><span class="line">    <span class="comment">//proxyTable: proxyConfig.proxyList,</span></span><br><span class="line">    proxyTable: &#123;</span><br><span class="line">      <span class="string">'/banner'</span>: &#123;</span><br><span class="line">        <span class="comment">// target: 'http://localhost:3000/mock/11'</span></span><br><span class="line">        target: <span class="string">'http://127.0.0.1:7777'</span></span><br><span class="line"></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//http://localhost:8080/cms/page/list/1/11</span></span><br><span class="line">      <span class="string">'/api/cms'</span>: &#123;</span><br><span class="line">        target: <span class="string">'http://localhost:8080'</span>,</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//target: 'http://127.0.0.1:50201'</span></span><br><span class="line"></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sysConfig = &#123;</span><br><span class="line">    xcApiUrlPre: <span class="string">'/api'</span>,</span><br><span class="line">    xcApiUrl: <span class="string">'http://api.xuecheng.com/'</span>,</span><br><span class="line">    imgUrl:<span class="string">'http://img.xuecheng.com/'</span>,</span><br><span class="line">    videoUrl:<span class="string">'http://video.xuecheng.com/'</span>,</span><br><span class="line">    openAuthenticate:<span class="literal">true</span>,</span><br><span class="line">    openAuthorize:<span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = sysConfig</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="分页查询-钩子函数"><a href="#分页查询-钩子函数" class="headerlink" title="分页查询 钩子函数"></a>分页查询 钩子函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">import</span> * <span class="keyword">as</span> cmsApi <span class="keyword">from</span> <span class="string">'../api/cms'</span></span><br><span class="line">  <span class="comment">// &lt;!--编写页面静态部分 即model vm部分--&gt;</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        total: <span class="number">1000</span>,</span><br><span class="line">        params: &#123;</span><br><span class="line">          page: <span class="number">1</span>,</span><br><span class="line">          size: <span class="number">11</span></span><br><span class="line">        &#125;,</span><br><span class="line">        list: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      query: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//调用服务端的接口 cms.js 调用</span></span><br><span class="line">        cmsApi.page_list(<span class="keyword">this</span>.params.page, <span class="keyword">this</span>.params.size).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">this</span>.list = res.queryResult.list;</span><br><span class="line">          <span class="keyword">this</span>.total = res.queryResult.total;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      changePage: <span class="function"><span class="keyword">function</span> (<span class="params">page</span>) </span>&#123;</span><br><span class="line">        alert(page);</span><br><span class="line">        <span class="keyword">this</span>.params.page = page;</span><br><span class="line">        <span class="keyword">this</span>.query();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//钩子函数</span></span><br><span class="line">    mounted() &#123;</span><br><span class="line">      <span class="keyword">this</span>.query();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-14-093414.png" alt="image-20190514173413017"></p>
+<hr>
+<p>###</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/05/05/Vue_Webpack/webpack/">http://yoursite.com/2019/05/05/Vue_Webpack/webpack/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/webpack/"># webpack</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/05/22/其他/Freemark/">Freemark</a>
+            
+            
+            <a class="next" rel="next" href="/2019/04/28/ELasticseach/Elsearch慕课网/">Elasticsearch</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>第4章 安全发布对象 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第4章 安全发布对象</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 11, 2018&nbsp;&nbsp;10:13:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/并发/">并发</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="4-1-安全发布对象-发布与逸出"><a href="#4-1-安全发布对象-发布与逸出" class="headerlink" title="4-1 安全发布对象-发布与逸出"></a>4-1 安全发布对象-发布与逸出</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-233315.png" alt="image-20190802073314325"></p>
+<h5 id="发布对象"><a href="#发布对象" class="headerlink" title="发布对象"></a>发布对象</h5><p>使一个对象能够被当前范围之外的代码所使用。<br>在我们的日常开发中，我们经常要发布一些对象，比如通过类的非私有方法返回对象的引用，或者通过公有静态变量发布对象。</p>
+<h5 id="对象逸出"><a href="#对象逸出" class="headerlink" title="对象逸出"></a>对象逸出</h5><p>一种错误的发布。当一个对象还没有构造完成时，就使它被其他线程所见。</p>
+<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><h5 id="不安全发布对象"><a href="#不安全发布对象" class="headerlink" title="不安全发布对象"></a>不安全发布对象</h5><p>public class UnsafePublish {</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String[] states = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类的非私有方法，返回私有对象的引用</span></span><br><span class="line"><span class="keyword">public</span> String[] getStates() &#123;</span><br><span class="line">    <span class="keyword">return</span> states;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    UnsafePublish unsafePublish = <span class="keyword">new</span> UnsafePublish();</span><br><span class="line">    log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line"></span><br><span class="line">    unsafePublish.getStates()[<span class="number">0</span>] = <span class="string">"d"</span>;</span><br><span class="line">    log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p> 分析：</p>
+<ul>
+<li>这个代码通过public访问级别发布了类的域，在类的任何外部的线程都可以访问这些域</li>
+<li>我们无法保证其他线程会不会修改这个域，从而使私有域内的值错误（上述代码中就对私有域进行了修改）</li>
+</ul>
+<hr>
+<h5 id="对象逸出-1"><a href="#对象逸出-1" class="headerlink" title="对象逸出"></a>对象逸出</h5><p>public class Escape {</p>
+<pre><code>private Integer thisCanBeEscape = 0;
+
+public Escape () {
+    new InnerClass();
+    thisCanBeEscape = null;
+}
+
+//内部类构造方法调用外部类的私有域
+private class InnerClass {
+
+    public InnerClass() {
+        log.info(&quot;{}&quot;, Escape.this.thisCanBeEscape);
+    }
+}
+
+public static void main(String[] args) {
+    new Escape();
+}
+}</code></pre><p> 分析：</p>
+<p>这个内部类的实例里面包含了对封装实例的私有域对象的引用，在对象没有被正确构造完成之前就会被发布，有可能有不安全的因素在里面，会导致this引用在构造期间溢出的错误。<br>上述代码在函数构造过程中启动了一个线程。无论是隐式的启动还是显式的启动，都会造成这个this引用的溢出。新线程总会在所属对象构造完毕之前就已经看到它了。<br>因此要在构造函数中创建线程，那么不要启动它，而是应该采用一个专有的start或者初始化的方法统一启动线程<br>这里其实我们可以采用工厂方法和私有构造函数来完成对象创建和监听器的注册等等，这样才可以避免错误<br>——————————————————————————————————————————————————-<br>如果不正确的发布对象会导致两种错误：<br>（1）发布线程意外的任何线程都可以看到被发布对象的过期的值 </p>
+<p>（ 2）线程看到的被发布线程的引用是最新的，然而被发布对象的状态却是过期的</p>
+<p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-233721.png" alt="image-20190802073720423"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-01-233745.png" alt="image-20190802073743762"></p>
+<hr>
+<h2 id="4-2-安全发布对象-四种方法"><a href="#4-2-安全发布对象-四种方法" class="headerlink" title="4-2 安全发布对象-四种方法"></a>4-2 安全发布对象-四种方法</h2><p>![image-20190802073846857](../../../../../Users/apple/Library/Application Support/typora-user-images/image-20190802073846857.png)</p>
+<h4 id="四种方法概述"><a href="#四种方法概述" class="headerlink" title="四种方法概述"></a>四种方法概述</h4><ul>
+<li>在静态初始化函数中初始化一个函数的引用</li>
+<li>将对象的引用保存到volatile类型域AtomicReference对象中</li>
+<li>将对象的引用保存到某个正确构造对象的final类型域中（后续再进行补充！ ）</li>
+<li>将对象的引用保存到一个由锁保存的域中</li>
+</ul>
+<blockquote>
+<p><strong>通过在Spring框架中构造线程安全且只被初始化一次的不同单例(Singleton)进行演示。</strong></p>
+</blockquote>
+<h5 id="懒汉模式：（单例实例在第一次使用时进行创建）"><a href="#懒汉模式：（单例实例在第一次使用时进行创建）" class="headerlink" title="懒汉模式：（单例实例在第一次使用时进行创建）"></a>懒汉模式：（单例实例在<strong>第一次使用时进行创建</strong>）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单例对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonExample1 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 静态的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample1 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonExample1();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析一下：</strong></p>
+<ol>
+<li>单线程时使用没问题。</li>
+<li>多线程时，当多个线程同时判断到instance == null，那么该多个线程都会创建一个实例，即非线程安全，因此该方法无法保证实例只被初始化一次。</li>
+</ol>
+<h5 id="饿汉模式：（单例实例在类装载时进行创建）"><a href="#饿汉模式：（单例实例在类装载时进行创建）" class="headerlink" title="饿汉模式：（单例实例在类装载时进行创建）"></a>饿汉模式：（单例实例在类装载时进行创建）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单例对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonExample2 instance = <span class="keyword">new</span> SingletonExample2();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 静态的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample2 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析一下：</strong></p>
+<ol>
+<li>该方式为线程安全。</li>
+<li>不足：如果单例类的构造方法中有较多的处理逻辑，导致类加载慢，可能会引起性能问题。</li>
+<li>由于是饿汉模式，如果只声明了该类但实际不调用该类，即造成系统资源的浪费。</li>
+</ol>
+<h5 id="改造的懒汉模式-1：synchronized标识工厂方法"><a href="#改造的懒汉模式-1：synchronized标识工厂方法" class="headerlink" title="改造的懒汉模式-1：synchronized标识工厂方法"></a>改造的懒汉模式-1：synchronized标识工厂方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="meta">@NotRecommend</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单例对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonExample3 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 静态的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingletonExample3 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonExample3();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析一下：</strong></p>
+<ol>
+<li>是线程安全的。</li>
+<li>通过给工厂方法添加synchronized关键字实现。</li>
+<li>不推荐使用：通过阻塞线程-&gt;牺牲性能，达到线程安全目的。</li>
+</ol>
+<h5 id="改造的懒汉模式-2：（双重同步锁单例模式）"><a href="#改造的懒汉模式-2：（双重同步锁单例模式）" class="headerlink" title="改造的懒汉模式-2：（双重同步锁单例模式）"></a>改造的懒汉模式-2：（双重同步锁单例模式）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample4</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// JVM和cpu优化，发生了指令重排</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1、memory = allocate() 分配对象的内存空间</span></span><br><span class="line">    <span class="comment">// 3、instance = memory 设置instance指向刚分配的内存</span></span><br><span class="line">    <span class="comment">// 2、ctorInstance() 初始化对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单例对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonExample4 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 静态的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample4 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123; <span class="comment">// 双重检测机制        // B</span></span><br><span class="line">            <span class="keyword">synchronized</span> (SingletonExample4.class) &#123; <span class="comment">// 同步锁</span></span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> SingletonExample4(); <span class="comment">// A - 3</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析一下：</strong></p>
+<ol>
+<li><strong>非线程安全</strong>。</li>
+<li>将synchronized标识下沉到方法的实现中</li>
+<li>外层instance == null和方法实现中的synchronized标识共同保证只有一个线程进行初始化。</li>
+<li>内层的instance == null为防止上一时刻中可能存在的线程进行了初始化。</li>
+</ol>
+<h5 id="非线程安全分析："><a href="#非线程安全分析：" class="headerlink" title="非线程安全分析："></a>非线程安全分析：</h5><p>当执行实例初始化instance = new SingletonExample4()时，CPU内部过程为：</p>
+<ol>
+<li>memory = allocate() -&gt; 分配对象的内存空间；</li>
+<li>ctorInstance() -&gt; 初始化对象；</li>
+<li>instance = memory -&gt; 设置instance指向刚分配的内存。</li>
+</ol>
+<p><strong>但是</strong>！！<br>在<code>多线程环境</code>中，由于<strong>JVM和CPU优化</strong>，会发生指令重排，CPU内部顺序为：（其中的1、2、3是指令间的原始顺序）</p>
+<ol>
+<li>memory = allocate() -&gt; 分配对象的内存空间；</li>
+<li>instance = memory -&gt; 设置instance指向刚分配的内存。</li>
+<li>ctorInstance() -&gt; 初始化对象；</li>
+</ol>
+<p>因此，此时的双重同步锁机制中产生了变化：</p>
+<p>若两个线程A和B，其中线程A执行到初始化<code>instance = new SingletonExample4()</code>，此时恰好正处于指令重排的<code>instance = memory</code> ，即设置<code>instance</code>指向刚分配的内存，同时线程B恰好处于外层的<code>instance == null</code>判断，发现此时内存中该<code>instance</code>指向的内存地址不为<code>nul</code>，则会直接<code>return instance</code>，但此时的<code>instance</code>只是分配了内存还未进行初始化，即产生错误！ 为<strong>非线程安全</strong>！！</p>
+<p>但是！！！！！<br>既然是内存中实例未完全初始化，怎么解决呢？？<br>想起来之前说过的<strong>volatile关键字</strong>的用法了没？？？<br>它通过加入<strong>内存屏障</strong>，限制JVM或CPU进行指令重排！！</p>
+<p>将该实例用volatile标识声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private volatile static SingletonExample5 instance = null;</span><br></pre></td></tr></table></figure>
+
+<p>此时，该.  双重同步锁单例模式.   就是线程安全的了！！</p>
+<hr>
+<h5 id="实例枚举模式："><a href="#实例枚举模式：" class="headerlink" title="实例枚举模式："></a>实例枚举模式：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample7</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample7</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample7 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Singleton.INSTANCE.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//枚举类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">enum</span> Singleton &#123;</span><br><span class="line">        INSTANCE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> SingletonExample7 singleton;</span><br><span class="line"></span><br><span class="line">        Singleton() &#123;</span><br><span class="line">            singleton = <span class="keyword">new</span> SingletonExample7();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SingletonExample7 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> singleton;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析一下：</strong></p>
+<ol>
+<li>枚举模式是最安全的！ 较推荐的写法！</li>
+<li>通过枚举类中指定一个单例<code>Singleton</code>的实例<code>INSTANCE</code>枚举实现。</li>
+<li>其中<code>Singleton(){xxxx}</code>域，是通过JVM保证这个方法在被调用前初始化，并绝对只调用一次。</li>
+<li>相比于懒汉模式，它的安全性更易保证；相比于饿汉模式，它是在实际调用时才进行初始化，并直接取到其值，不会有系统资源的占用浪费。</li>
+</ol>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-02-013556.png" alt="image-20190802093554075"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第四章 安全发布对象/">http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第四章 安全发布对象/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/并发/"># 并发</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/11/并发编程/慕课网java高并发/第一章 并发基础/">第1章 并发基础</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/11/Spring Boot/SpringBoot-Docker-小D课堂/">SpringBoot Docker 小D课堂</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

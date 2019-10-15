@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>第一章 Redis 初识 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第一章 Redis 初识</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 2, 2019&nbsp;&nbsp;10:46:52</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Redis/">Redis</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; redis-server</span><br><span class="line">&gt;  redis-cli      -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
+
+<p> 如果在启动的时候提示:Address already in use.意思你的6379端口被占用</p>
+<p>找到这个进程,使用命令   ps -ef | grep -i redis</p>
+<blockquote>
+<p><strong>启动客户端</strong></p>
+<ul>
+<li>默认启动<pre><code>使用命令redis-cli启动客户端，按照默认配置连接Redis（127.0.0.1:6379）。</code></pre></li>
+<li>指定地址和端口号<pre><code>使用命令 </code></pre></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli      -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis从入门到实践"><a href="#Redis从入门到实践" class="headerlink" title="Redis从入门到实践"></a>Redis从入门到实践</h1><p>花了一周左右，全面的学习redis的知识，并记录学习笔记] </p>
+<h3 id="盛赞redis"><a href="#盛赞redis" class="headerlink" title="盛赞redis"></a>盛赞redis</h3><ul>
+<li>高性能key-value服务器</li>
+<li>多种数据结构</li>
+<li>丰富的功能</li>
+<li>高可用的分布式支持</li>
+</ul>
+<h2 id="redis初识"><a href="#redis初识" class="headerlink" title="redis初识"></a>redis初识</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库</p>
+</blockquote>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>开源</li>
+<li>多种数据结构</li>
+<li>基于键值的存储服务系统</li>
+<li>高性能，功能服务</li>
+</ul>
+<h3 id="redis的前世今生"><a href="#redis的前世今生" class="headerlink" title="redis的前世今生"></a>redis的前世今生</h3><p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bc8da48?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<h2 id="谁在使用redis"><a href="#谁在使用redis" class="headerlink" title="谁在使用redis"></a>谁在使用redis</h2><ul>
+<li>github</li>
+<li>twitter</li>
+<li>微博</li>
+<li>Stack Overflow</li>
+<li>阿里巴巴</li>
+<li>百度</li>
+<li>美团</li>
+<li>搜狐</li>
+<li>……</li>
+</ul>
+<h2 id="redis特性目录"><a href="#redis特性目录" class="headerlink" title="redis特性目录"></a>redis特性目录</h2><ul>
+<li>速度快</li>
+<li>持久化</li>
+<li>多种数据结构</li>
+<li>支持多种编程语言</li>
+<li>功能丰富</li>
+<li>简单：代码短小精悍</li>
+<li>主从复制</li>
+<li>高可用、分布式</li>
+</ul>
+<h3 id="特性1：速度快"><a href="#特性1：速度快" class="headerlink" title="特性1：速度快"></a>特性1：速度快</h3><p>10w QPS</p>
+<p><strong>原因</strong></p>
+<ul>
+<li>数据存在内存</li>
+<li>c语言编写</li>
+<li>单线程编写</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0be1b44a?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bb18988?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<h3 id="特性2：持久化"><a href="#特性2：持久化" class="headerlink" title="特性2：持久化"></a>特性2：持久化</h3><ul>
+<li>redis所有的数据保存在内存中，对数据的更新将异步地保存到磁盘上</li>
+</ul>
+<h3 id="特性3：数据结构"><a href="#特性3：数据结构" class="headerlink" title="特性3：数据结构"></a>特性3：数据结构</h3><p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0cf21ee4?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<h3 id="特性4：多语言客户端"><a href="#特性4：多语言客户端" class="headerlink" title="特性4：多语言客户端"></a>特性4：多语言客户端</h3><ul>
+<li>java</li>
+<li>php</li>
+<li>python</li>
+<li>ruby</li>
+<li>lua</li>
+<li>nodejs</li>
+</ul>
+<h3 id="特性5：功能丰富"><a href="#特性5：功能丰富" class="headerlink" title="特性5：功能丰富"></a>特性5：功能丰富</h3><ul>
+<li>发布订阅</li>
+<li>lua脚本</li>
+<li>事务</li>
+<li>pipeline</li>
+</ul>
+<h3 id="特性6：简单"><a href="#特性6：简单" class="headerlink" title="特性6：简单"></a>特性6：简单</h3><ul>
+<li>23000行代码实现核心功能</li>
+<li>不依赖外部库</li>
+<li>单线程模型</li>
+</ul>
+<h3 id="特性7：复制"><a href="#特性7：复制" class="headerlink" title="特性7：复制"></a>特性7：复制</h3><p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0bf491e9?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<h3 id="特性8：-高可用"><a href="#特性8：-高可用" class="headerlink" title="特性8： 高可用"></a>特性8： 高可用</h3><ul>
+<li>redis-sentinel支持高可用</li>
+<li>分布式 redis-cluster支持分布式</li>
+</ul>
+<h2 id="redis典型使用场景"><a href="#redis典型使用场景" class="headerlink" title="redis典型使用场景"></a>redis典型使用场景</h2><ul>
+<li>缓存系统</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c0d0f0ece?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<ul>
+<li>计数器</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bdba35a?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<ul>
+<li>消息队列系统</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bb3fa29?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<ul>
+<li>排行榜</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/24/161c710c4bd9c7ee?imageView2/0/w/1280/h/960/ignore-error/1" alt="paste image"></p>
+<ul>
+<li>社交网络</li>
+<li>实时系统</li>
+</ul>
+<hr>
+<h1 id="Redis特性"><a href="#Redis特性" class="headerlink" title="Redis特性"></a>Redis特性</h1><h3 id="1-速度快"><a href="#1-速度快" class="headerlink" title="1.速度快"></a>1.速度快</h3><ul>
+<li>官方称可以达到10W的qps</li>
+<li>将数据存储在内存中</li>
+<li>由C语言编写</li>
+<li>线程模型为单线程</li>
+</ul>
+<h3 id="2-持久化"><a href="#2-持久化" class="headerlink" title="2.持久化"></a>2.持久化</h3><ul>
+<li>Redis将所有数据保持在内存中，并异步更新到磁盘上</li>
+</ul>
+<h3 id="3-支持多种数据结构"><a href="#3-支持多种数据结构" class="headerlink" title="3.支持多种数据结构"></a>3.支持多种数据结构</h3><ul>
+<li>String</li>
+<li>Hash</li>
+<li>List</li>
+<li>Set</li>
+<li>ZSet</li>
+<li>BitMap（位图）</li>
+<li>HyperLogLog（超小的内存唯一值计数器）</li>
+<li>GEO（地理信息定位）</li>
+</ul>
+<h3 id="4-支持多种编程语言"><a href="#4-支持多种编程语言" class="headerlink" title="4.支持多种编程语言"></a>4.支持多种编程语言</h3><ul>
+<li>Java</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Lua</li>
+<li>NodeJS</li>
+</ul>
+<h3 id="5-功能丰富"><a href="#5-功能丰富" class="headerlink" title="5.功能丰富"></a>5.功能丰富</h3><ul>
+<li>支持类MQ的发布订阅功能</li>
+<li>支持Lua脚本</li>
+<li>支持事务</li>
+<li>支持pipeline</li>
+</ul>
+<h3 id="6-非常简单"><a href="#6-非常简单" class="headerlink" title="6.非常简单"></a>6.非常简单</h3><ul>
+<li>Redis 3.0的单机核心代码只有2300行代码</li>
+<li>单线程模型</li>
+</ul>
+<h3 id="7-支持主从复制"><a href="#7-支持主从复制" class="headerlink" title="7.支持主从复制"></a>7.支持主从复制</h3><h3 id="8-高可用、分布式"><a href="#8-高可用、分布式" class="headerlink" title="8.高可用、分布式"></a>8.高可用、分布式</h3><ul>
+<li>在 V2.8 中支持Redis Sentinel</li>
+<li>在 V3.0 中支持Redis Cluster</li>
+</ul>
+<h3 id="reids三种启动方法"><a href="#reids三种启动方法" class="headerlink" title="reids三种启动方法"></a>reids三种启动方法</h3><ul>
+<li>最简启动(采用默认配置文件启动）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep redis</span><br><span class="line">复制代码</span><br><span class="line">redis-cli -h 127.0.0.1 -p 6379 ping </span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置文件启动 (将需要配置的参数写入文件）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server configPath</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态参数启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server --port 6380</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>三种启动方式比较</strong></p>
+<ul>
+<li>生产环境选择配置启动</li>
+<li>单机多实例配置文件可以用端口区分开</li>
+</ul>
+<h3 id="redis客户端连接"><a href="#redis客户端连接" class="headerlink" title="redis客户端连接"></a>redis客户端连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="redis客户端返回值"><a href="#redis客户端返回值" class="headerlink" title="redis客户端返回值"></a>redis客户端返回值</h3><table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>返回值说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>状态回复</td>
+<td>ping -&gt; pong</td>
+</tr>
+<tr>
+<td>错误回复</td>
+<td>hget hello field -&gt; (error) ERR wrong number of arguments for ‘hget’ command</td>
+</tr>
+<tr>
+<td>整数回复</td>
+<td>incr hello -&gt; (integer) 1</td>
+</tr>
+<tr>
+<td>字符串回复</td>
+<td>get hello -&gt; “1”</td>
+</tr>
+<tr>
+<td>多行字符串回复</td>
+<td>mget hello foo -&gt; 1) “1” 2) (nil)</td>
+</tr>
+</tbody></table>
+<h2 id="redis常用配置"><a href="#redis常用配置" class="headerlink" title="redis常用配置"></a>redis常用配置</h2><table>
+<thead>
+<tr>
+<th>配置名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>daemonize</td>
+<td>是否是守护进程（no/yes)</td>
+</tr>
+<tr>
+<td>port</td>
+<td>redis对外端口号</td>
+</tr>
+<tr>
+<td>logfile</td>
+<td>redis系统日志</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>redis工作目录</td>
+</tr>
+</tbody></table>
+<h2 id="redis安装启动（配置文件方式）"><a href="#redis安装启动（配置文件方式）" class="headerlink" title="redis安装启动（配置文件方式）"></a>redis安装启动（配置文件方式）</h2><p><strong>配置方式</strong></p>
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim redis-6382.conf</span><br><span class="line"></span><br><span class="line">port 6382</span><br><span class="line">daemonize yes</span><br><span class="line">logfile &quot;6382.log&quot;</span><br><span class="line">dir ./workdata/</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis-6382.conf </span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检查</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep -v redis-server | grep 6382 </span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>日志文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim workdata/6382.log</span><br><span class="line">复制</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis启动方式"><a href="#Redis启动方式" class="headerlink" title="Redis启动方式"></a>Redis启动方式</h1><h3 id="1-最简启动：使用默认配置"><a href="#1-最简启动：使用默认配置" class="headerlink" title="1.最简启动：使用默认配置"></a>1.最简启动：使用默认配置</h3><ul>
+<li>./redis-server</li>
+</ul>
+<h3 id="2-动态参数启动"><a href="#2-动态参数启动" class="headerlink" title="2.动态参数启动"></a>2.动态参数启动</h3><p>./redis-server –port 6379</p>
+<h3 id="3-指定配置文件启动"><a href="#3-指定配置文件启动" class="headerlink" title="3.指定配置文件启动"></a>3.指定配置文件启动</h3><p>./redis-server configPath</p>
+<p>生产环境推荐此方式：单机多实例配置</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="Redis基础常用配置"><a href="#Redis基础常用配置" class="headerlink" title="Redis基础常用配置"></a>Redis基础常用配置</h1><h3 id="1-daemonize"><a href="#1-daemonize" class="headerlink" title="1.daemonize"></a>1.daemonize</h3><p>​    是否是守护进程（yes/no)，设置为yes时，Redis会把启动日志输出到日志文件中</p>
+<h3 id="2-port"><a href="#2-port" class="headerlink" title="2.port"></a>2.port</h3><p>​    Redis端口号</p>
+<h3 id="3-logfile"><a href="#3-logfile" class="headerlink" title="3.logfile"></a>3.logfile</h3><p>​    log 输出到标准设备，logs 不写文件，输出到空设备，/deb/null </p>
+<h3 id="4-dir"><a href="#4-dir" class="headerlink" title="4.dir"></a>4.dir</h3><p>​    数据库存放路径</p>
+<h1 id="Redis数据结构与内部编码"><a href="#Redis数据结构与内部编码" class="headerlink" title="Redis数据结构与内部编码"></a>Redis数据结构与内部编码</h1><ul>
+<li>string    ：raw ， int ， embstr<ul>
+<li>int的范围相当于Java中的long，为8个字节长整型</li>
+<li>字符长度少于等于39个长度时为embstr</li>
+<li>字符长度超过39个长度时为raw，比起embstr，是不连续的</li>
+</ul>
+</li>
+<li>hash       ：hashtable（哈希表） ， ziplist（压缩列表）<ul>
+<li>hash-max-ziplist-entries 512</li>
+<li>hash-max-ziplist-value 64</li>
+<li>当hash结构的field数量小于等于512并且每个field与value的长度小于等于64时，hash会采用ziplist</li>
+</ul>
+</li>
+<li>list           ：linkedlist（双向循环链表） ， ziplist（压缩列表）<ul>
+<li>list-max-ziplist-entries 512</li>
+<li>list-max-ziplist-value 64</li>
+<li>当list结构的元素数量小于等于512并且每个item的长度小于等于64时，list会采用ziplist</li>
+</ul>
+</li>
+<li>set           ：hashtable（哈希表） ， intset（整数集合）<ul>
+<li>set-max-intset-entries 512</li>
+<li>当set结构的元素数量小于等于512时候，set将采用intset</li>
+</ul>
+</li>
+<li>zset         ：skiplist（跳跃列表） ， ziplist（压缩列表）<ul>
+<li>zset-max-ziplist-entries 512</li>
+<li>zset-max-ziplist-value 64</li>
+<li>当zset结构的元素数量小于等于512并且每个member的长度小于等于64时，zset会采用ziplist</li>
+</ul>
+</li>
+<li>当key的数量比较少时，Redis采取以时间换空间的策略</li>
+<li>当key的数量增多时，Redis采取以空间换时间的策略</li>
+<li>查看内部编码的方式 object encoding ${key}</li>
+<li>ziplist的特点<ul>
+<li>连续内存</li>
+<li>读写有指针位移，最坏O(n<sup>2</sup>)</li>
+<li>新增删除有内存重分配</li>
+</ul>
+</li>
+</ul>
+<h1 id="Redis单线程为什么速度还那么快"><a href="#Redis单线程为什么速度还那么快" class="headerlink" title="Redis单线程为什么速度还那么快"></a>Redis单线程为什么速度还那么快</h1><ul>
+<li>纯内存</li>
+<li>使用epoll创建非阻塞IO</li>
+<li>由于是单线程，因此避免了线程切换和竞态消耗</li>
+</ul>
+<h1 id="Redis单线程需要注意的点"><a href="#Redis单线程需要注意的点" class="headerlink" title="Redis单线程需要注意的点"></a>Redis单线程需要注意的点</h1><ul>
+<li>一次只会运行一条命令</li>
+<li>拒绝长命令/慢命令<ul>
+<li>keys</li>
+<li>flushall</li>
+<li>flushdb</li>
+<li>slow lua script</li>
+<li>mutil/exec</li>
+<li>operate</li>
+</ul>
+</li>
+</ul>
+<h1 id="Redis配置生效方法"><a href="#Redis配置生效方法" class="headerlink" title="Redis配置生效方法"></a>Redis配置生效方法</h1><ul>
+<li>修改config配置文件，然后重启redis服务</li>
+<li>config set configName configValue  （前提需要当前配置支持动态配置）</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第一章 Redis初识/">http://yoursite.com/2019/08/02/Redis/慕课网redis从入门到高可用/第一章 Redis初识/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Redis/"># Redis</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/02/Redis/慕课网redis从入门到高可用/第二章 API的理解和使用 /">第二章 API理解与适用</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/01/JVM/性能监控与调优详解/第二章 JDK命令行工具/">第二章 基于JDK命令行工具的监控</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>FastDFS 分布式文件系统 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">FastDFS 分布式文件系统</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 27, 2019&nbsp;&nbsp;16:05:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/FastDFS/">FastDFS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-FastDFS简介、环境搭建与使用"><a href="#1-FastDFS简介、环境搭建与使用" class="headerlink" title="1.FastDFS简介、环境搭建与使用"></a>1.FastDFS简介、环境搭建与使用</h1><h1 id="先在192-168-0-106-中安装tracker"><a href="#先在192-168-0-106-中安装tracker" class="headerlink" title="先在192.168.0.106 中安装tracker"></a>先在192.168.0.106 中安装tracker</h1><p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190327163108464.png" alt="image-20190327163108464"></p>
+<hr>
+<h1 id="Fast安装步骤"><a href="#Fast安装步骤" class="headerlink" title="Fast安装步骤"></a>Fast安装步骤</h1><h3 id="1-安装gcc-c"><a href="#1-安装gcc-c" class="headerlink" title="1 安装gcc-c++"></a>1 安装gcc-c++</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装libevent"><a href="#2-安装libevent" class="headerlink" title="2 安装libevent"></a>2 安装libevent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 yum -y install libevent</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装libfastcommon"><a href="#3-安装libfastcommon" class="headerlink" title="3 安装libfastcommon"></a>3 安装libfastcommon</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">3 将 libfastcommonV1.0.7.tar.gz 拷贝至/usr/local/下</span><br><span class="line">   cd /usr/local</span><br><span class="line">    </span><br><span class="line">   tar -zxvf libfastcommonV1.0.7.tar.gz</span><br><span class="line"> </span><br><span class="line">   cd libfastcommon-1.0.7</span><br><span class="line"></span><br><span class="line">  	./make.sh</span><br><span class="line"></span><br><span class="line">		./make.sh install</span><br><span class="line">	</span><br><span class="line">注意：libfastcommon 安装好后会自动将库文件拷贝至/usr/lib64 下，由于 FastDFS 程 序引用 usr/lib 目录所以需要将/usr/lib64 下的库文件拷贝至/usr/lib 下。</span><br><span class="line">		</span><br><span class="line">		[root@localhost lib64]# cp libfastcommon.so /usr/lib</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-tracker-编译安装"><a href="#4-tracker-编译安装" class="headerlink" title="4 tracker 编译安装"></a>4 tracker 编译安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">将 FastDFS_v5.05.tar.gz 拷贝至/usr/local/下</span><br><span class="line"></span><br><span class="line">tar -zxvf FastDFS_v5.05.tar.gz</span><br><span class="line"></span><br><span class="line">cd FastDFS</span><br><span class="line"></span><br><span class="line">./make.sh  编译</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">./make.sh install  安装</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">安装成功后进入/etc/fdfs 目录：</span><br><span class="line">拷贝一份新的 tracker 配置文件：</span><br><span class="line"></span><br><span class="line">cp tracker.conf.sample tracker.conf</span><br><span class="line"></span><br><span class="line">修改 tracker.conf</span><br><span class="line"></span><br><span class="line">vi tracker.conf  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">base_path=/home/yuqing/FastDFS</span><br><span class="line"></span><br><span class="line">改为：</span><br><span class="line"></span><br><span class="line">base_path=/home/FastDFS</span><br><span class="line"></span><br><span class="line">配置 http 端口：</span><br><span class="line"></span><br><span class="line">http.server_port=80</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-12-133946.png" alt="image-20190612213945226"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-12-135007.png" alt="image-20190612213957276"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">⭐️ 启动Fast DFS </span><br><span class="line">&gt; /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</span><br><span class="line">⭐️⭐️⭐️ 注意 要cd /usr/local/FastDFS/conf 中执行上面的命令启动FastDFS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# cd /usr/local</span><br><span class="line">[root@localhost local]# cd FastDFS</span><br><span class="line">[root@localhost FastDFS]# ls</span><br><span class="line">client  COPYING-3_0.txt  init.d   php_client  stop.sh  tracker</span><br><span class="line">common  fastdfs.spec     INSTALL  README.md   storage</span><br><span class="line">conf    HISTORY          make.sh  restart.sh  test</span><br><span class="line">[root@localhost FastDFS]# cd conf</span><br><span class="line">[root@localhost conf]# /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart</span><br><span class="line">waiting for pid [21316] exit ...</span><br><span class="line">starting ...</span><br><span class="line">[root@localhost conf]#</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="启动Tracker"><a href="#启动Tracker" class="headerlink" title="启动Tracker"></a>启动Tracker</h3><p>![image-20190613142253204](../../../../Users/apple/Library/Application Support/typora-user-images/image-20190613142253204.png)</p>
+<h1 id="在ip-中安装storage"><a href="#在ip-中安装storage" class="headerlink" title="在ip 中安装storage"></a>在ip 中安装storage</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 yum -y install libevent</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">3 将 libfastcommonV1.0.7.tar.gz 拷贝至/usr/local/下</span><br><span class="line">   cd /usr/local</span><br><span class="line">    </span><br><span class="line">   tar -zxvf libfastcommonV1.0.7.tar.gz</span><br><span class="line"> </span><br><span class="line">   cd libfastcommon-1.0.7</span><br><span class="line"></span><br><span class="line">  	./make.sh</span><br><span class="line"></span><br><span class="line">		./make.sh install</span><br><span class="line">	</span><br><span class="line">注意：libfastcommon 安装好后会自动将库文件拷贝至/usr/lib64 下，由于 FastDFS 程 序引用 usr/lib 目录所以需要将/usr/lib64 下的库文件拷贝至/usr/lib 下。</span><br><span class="line">		</span><br><span class="line">		[root@localhost lib64]# cp libfastcommon.so /usr/lib</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">安装成功后进入/etc/fdfs 目录：</span><br><span class="line"></span><br><span class="line">拷贝一份新的 storage 配置文件：</span><br><span class="line"></span><br><span class="line">cp storage.conf.sample storage.conf</span><br><span class="line"></span><br><span class="line">修改 storage.conf</span><br><span class="line"></span><br><span class="line">vi storage.conf</span><br><span class="line"></span><br><span class="line">group_name=group1</span><br><span class="line"></span><br><span class="line">base_path=/home/yuqing/FastDFS 改为：base_path=/home/ fastdfs  </span><br><span class="line">store_path0=/home/yuqing/FastDFS</span><br><span class="line"></span><br><span class="line">改为：store_path0=/home/fastdfs/fdfs_storage</span><br><span class="line"></span><br><span class="line">#如果有多个挂载磁盘则定义多个 store_path，如下</span><br><span class="line"></span><br><span class="line">#store_path1=.....</span><br><span class="line"></span><br><span class="line">#store_path2=...... tracker_server=192.168.101.3:22122</span><br><span class="line"></span><br><span class="line">#如果有多个则配置多个 tracker</span><br><span class="line"></span><br><span class="line">tracker_server=<span class="number">192.168</span>.101.4:<span class="number">22122</span></span><br><span class="line"></span><br><span class="line">#配置 http 端口</span><br><span class="line"></span><br><span class="line">http.server_port=<span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="详情安装见学成在线参考文档PDF-和软件"><a href="#详情安装见学成在线参考文档PDF-和软件" class="headerlink" title="详情安装见学成在线参考文档PDF 和软件"></a>详情安装见学成在线参考文档PDF 和软件</h1><h1 id="测试上传下载文件"><a href="#测试上传下载文件" class="headerlink" title="测试上传下载文件"></a>测试上传下载文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;net.oschina.zcx7878&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;fastdfs-client-java&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;1.27.0.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xuecheng.test.fastdfs;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.csource.common.MyException;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.csource.fastdfs.*;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: apple</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2019-06-13 12:25</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(classes = TestFastDFS.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFastDFS</span> </span>&#123;</span><br><span class="line">    <span class="comment">//上传文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpload</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载fastdfs-client.properties配置文件</span></span><br><span class="line">            ClientGlobal.initByProperties(<span class="string">"config/fastdfs-client.properties"</span>);</span><br><span class="line">            <span class="comment">//定义TrackerClient，用于请求TrackerServer</span></span><br><span class="line">            TrackerClient trackerClient = <span class="keyword">new</span> TrackerClient();</span><br><span class="line">            <span class="comment">//连接tracker</span></span><br><span class="line">            TrackerServer trackerServer = trackerClient.getConnection();</span><br><span class="line">            <span class="comment">//获取Stroage</span></span><br><span class="line">            StorageServer storeStorage = trackerClient.getStoreStorage(trackerServer);</span><br><span class="line">            <span class="comment">//创建stroageClient</span></span><br><span class="line">            StorageClient1 storageClient1 = <span class="keyword">new</span> StorageClient1(trackerServer, storeStorage);</span><br><span class="line">            <span class="comment">//向stroage服务器上传文件</span></span><br><span class="line">            <span class="comment">//本地文件的路径</span></span><br><span class="line">            String filePath = <span class="string">"/Users/apple/Desktop/log.png"</span>;</span><br><span class="line">            <span class="comment">//上传成功后拿到文件Id</span></span><br><span class="line">            String fileId = storageClient1.upload_file1(filePath, <span class="string">"png"</span>, <span class="keyword">null</span>);</span><br><span class="line">            System.out.println(fileId);</span><br><span class="line">            System.out.println(fileId+<span class="string">"___________________-"</span>);</span><br><span class="line">            <span class="comment">//group1/M00/00/01/wKhlQVuhU3eADb4pAAAawU0ID2Q159.png</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//下载文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDownload</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载fastdfs-client.properties配置文件</span></span><br><span class="line">            ClientGlobal.initByProperties(<span class="string">"config/fastdfs-client.properties"</span>);</span><br><span class="line">            <span class="comment">//定义TrackerClient，用于请求TrackerServer</span></span><br><span class="line">            TrackerClient trackerClient = <span class="keyword">new</span> TrackerClient();</span><br><span class="line">            <span class="comment">//连接tracker</span></span><br><span class="line">            TrackerServer trackerServer = trackerClient.getConnection();</span><br><span class="line">            <span class="comment">//获取Stroage</span></span><br><span class="line">            StorageServer storeStorage = trackerClient.getStoreStorage(trackerServer);</span><br><span class="line">            <span class="comment">//创建stroageClient</span></span><br><span class="line">            StorageClient1 storageClient1 = <span class="keyword">new</span> StorageClient1(trackerServer,storeStorage);</span><br><span class="line">            <span class="comment">//下载文件</span></span><br><span class="line">            <span class="comment">//文件id</span></span><br><span class="line">            String fileId = <span class="string">"group1/M00/00/00/wKgAa10DPEuAE3I_AAAqyWT9QGs879.png"</span>;</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = storageClient1.download_file1(fileId);</span><br><span class="line">            <span class="comment">//使用输出流保存文件</span></span><br><span class="line">            FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"/Users/apple/Desktop/logg.png"</span>));</span><br><span class="line">            fileOutputStream.write(bytes);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/03/27/FastDFS/FastDFS/">http://yoursite.com/2019/03/27/FastDFS/FastDFS/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/FastDFS/"># FastDFS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/03/30/Activiti6.0/Activiti6.0/">Activiti6.0 学习</a>
+            
+            
+            <a class="next" rel="next" href="/2019/03/21/Nginx/Nginx 慕课网 /">Nginx 基础知识讲解</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

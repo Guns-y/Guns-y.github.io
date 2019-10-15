@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Freemark | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Freemark</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 22, 2019&nbsp;&nbsp;16:53:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Freemark/">Freemark</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-061858.png" alt="image-20190523141856765"></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"></span><br><span class="line">port: 8088 #服务端口</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line"></span><br><span class="line">application:</span><br><span class="line"></span><br><span class="line">name: test‐freemarker #指定服务名 freemarker:</span><br><span class="line"></span><br><span class="line">cache: false #关闭模板缓存，方便测试 settings:</span><br><span class="line"></span><br><span class="line">template_update_delay: 0 #检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便 进行模板测试</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-062450.png" alt="image-20190523142449438"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;artifactId&gt;test-freemarker&lt;/artifactId&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt; &lt;artifactId&gt;okhttp&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.commons&lt;/groupId&gt; &lt;artifactId&gt;commons-io&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="List-指令"><a href="#List-指令" class="headerlink" title="List 指令"></a>List 指令</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-062759.png" alt="image-20190523142758059"></p>
+<h3 id="Map指令"><a href="#Map指令" class="headerlink" title="Map指令"></a>Map指令</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-062830.png" alt="image-20190523142828848"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-062850.png" alt="image-20190523142848840"></p>
+<h3 id="IF指令"><a href="#IF指令" class="headerlink" title="IF指令"></a>IF指令</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-062908.png" alt="image-20190523142906848"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-05-23-063513.png" alt="image-20190523143158954"></p>
+<h1 id="2-使用模板文件静态化"><a href="#2-使用模板文件静态化" class="headerlink" title="2 使用模板文件静态化"></a>2 使用模板文件静态化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FreemarkerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//基于模板生成静态化文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGenerateHtml</span><span class="params">()</span> <span class="keyword">throws</span> IOException, TemplateException </span>&#123;</span><br><span class="line">        <span class="comment">//创建配置类</span></span><br><span class="line">        Configuration configuration=<span class="keyword">new</span> Configuration(Configuration.getVersion());</span><br><span class="line">        String classpath = <span class="keyword">this</span>.getClass().getResource(<span class="string">"/"</span>).getPath();</span><br><span class="line">        <span class="comment">//设置模板路径</span></span><br><span class="line">        configuration.setDirectoryForTemplateLoading(<span class="keyword">new</span> File(classpath + <span class="string">"/templates/"</span>));</span><br><span class="line">        <span class="comment">//设置字符集</span></span><br><span class="line">        configuration.setDefaultEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">        <span class="comment">//加载模板</span></span><br><span class="line">        Template template = configuration.getTemplate(<span class="string">"test1.ftl"</span>);</span><br><span class="line">        <span class="comment">//数据模型</span></span><br><span class="line">        Map map = getMap();</span><br><span class="line">        <span class="comment">//静态化</span></span><br><span class="line">        String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);</span><br><span class="line">        <span class="comment">//静态化内容</span></span><br><span class="line">        System.out.println(content);</span><br><span class="line">        InputStream inputStream = IOUtils.toInputStream(content);</span><br><span class="line">        <span class="comment">//输出文件</span></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"d:/test1.html"</span>));</span><br><span class="line">        <span class="keyword">int</span> copy = IOUtils.copy(inputStream, fileOutputStream);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        <span class="comment">//数据模型</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Map <span class="title">getMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"name"</span>,<span class="string">"黑马程序员"</span>);</span><br><span class="line">        Student stu1 = <span class="keyword">new</span> Student();</span><br><span class="line">        stu1.setName(<span class="string">"小明"</span>);</span><br><span class="line">        stu1.setAge(<span class="number">18</span>);</span><br><span class="line">        stu1.setMondy(<span class="number">1000.86f</span>);</span><br><span class="line">        stu1.setBirthday(<span class="keyword">new</span> Date());</span><br><span class="line">        Student stu2 = <span class="keyword">new</span> Student();</span><br><span class="line">        stu2.setName(<span class="string">"小红"</span>);</span><br><span class="line">        stu2.setMondy(<span class="number">200.1f</span>);</span><br><span class="line">        stu2.setAge(<span class="number">19</span>);</span><br><span class="line"><span class="comment">//        stu2.setBirthday(new Date());</span></span><br><span class="line">        List&lt;Student&gt; friends = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        friends.add(stu1);</span><br><span class="line">        stu2.setFriends(friends);</span><br><span class="line">        stu2.setBestFriend(stu1);</span><br><span class="line">        List&lt;Student&gt; stus = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        stus.add(stu1);</span><br><span class="line">        stus.add(stu2);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stus"</span>,stus);</span><br><span class="line">        <span class="comment">//准备map数据</span></span><br><span class="line">        HashMap&lt;String,Student&gt; stuMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        stuMap.put(<span class="string">"stu1"</span>,stu1);</span><br><span class="line">        stuMap.put(<span class="string">"stu2"</span>,stu2);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stu1"</span>,stu1);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stuMap"</span>,stuMap);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="⭐️基于模板字符串生成静态化文件"><a href="#⭐️基于模板字符串生成静态化文件" class="headerlink" title="⭐️基于模板字符串生成静态化文件"></a>⭐️基于模板字符串生成静态化文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGenerateHtmlByString</span><span class="params">()</span> <span class="keyword">throws</span> IOException, TemplateException </span>&#123;</span><br><span class="line">        <span class="comment">//创建配置类</span></span><br><span class="line">        Configuration configuration=<span class="keyword">new</span> Configuration(Configuration.getVersion());</span><br><span class="line">        <span class="comment">//获取模板内容</span></span><br><span class="line">        <span class="comment">//模板内容，这里测试时使用简单的字符串作为模板</span></span><br><span class="line">        String templateString=<span class="string">""</span> +</span><br><span class="line">                <span class="string">"&lt;html&gt;\n"</span> +</span><br><span class="line">                <span class="string">"    &lt;head&gt;&lt;/head&gt;\n"</span> +</span><br><span class="line">                <span class="string">"    &lt;body&gt;\n"</span> +</span><br><span class="line">                <span class="string">"    名称：$&#123;name&#125;\n"</span> +</span><br><span class="line">                <span class="string">"    &lt;/body&gt;\n"</span> +</span><br><span class="line">                <span class="string">"&lt;/html&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//加载模板</span></span><br><span class="line">        <span class="comment">//模板加载器</span></span><br><span class="line">        StringTemplateLoader stringTemplateLoader = <span class="keyword">new</span> StringTemplateLoader();</span><br><span class="line">        stringTemplateLoader.putTemplate(<span class="string">"template"</span>,templateString);</span><br><span class="line">        configuration.setTemplateLoader(stringTemplateLoader);</span><br><span class="line">        Template template = configuration.getTemplate(<span class="string">"template"</span>,<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//数据模型</span></span><br><span class="line">        Map map = getMap();</span><br><span class="line">        <span class="comment">//静态化</span></span><br><span class="line">        String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);</span><br><span class="line">        <span class="comment">//静态化内容</span></span><br><span class="line">        System.out.println(content);</span><br><span class="line">        InputStream inputStream = IOUtils.toInputStream(content);</span><br><span class="line">        <span class="comment">//输出文件</span></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"d:/test1.html"</span>));</span><br><span class="line">        IOUtils.copy(inputStream, fileOutputStream);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//数据模型</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Map <span class="title">getMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"name"</span>,<span class="string">"黑马程序员"</span>);</span><br><span class="line">        Student stu1 = <span class="keyword">new</span> Student();</span><br><span class="line">        stu1.setName(<span class="string">"小明"</span>);</span><br><span class="line">        stu1.setAge(<span class="number">18</span>);</span><br><span class="line">        stu1.setMondy(<span class="number">1000.86f</span>);</span><br><span class="line">        stu1.setBirthday(<span class="keyword">new</span> Date());</span><br><span class="line">        Student stu2 = <span class="keyword">new</span> Student();</span><br><span class="line">        stu2.setName(<span class="string">"小红"</span>);</span><br><span class="line">        stu2.setMondy(<span class="number">200.1f</span>);</span><br><span class="line">        stu2.setAge(<span class="number">19</span>);</span><br><span class="line"><span class="comment">//        stu2.setBirthday(new Date());</span></span><br><span class="line">        List&lt;Student&gt; friends = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        friends.add(stu1);</span><br><span class="line">        stu2.setFriends(friends);</span><br><span class="line">        stu2.setBestFriend(stu1);</span><br><span class="line">        List&lt;Student&gt; stus = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        stus.add(stu1);</span><br><span class="line">        stus.add(stu2);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stus"</span>,stus);</span><br><span class="line">        <span class="comment">//准备map数据</span></span><br><span class="line">        HashMap&lt;String,Student&gt; stuMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        stuMap.put(<span class="string">"stu1"</span>,stu1);</span><br><span class="line">        stuMap.put(<span class="string">"stu2"</span>,stu2);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stu1"</span>,stu1);</span><br><span class="line">        <span class="comment">//向数据模型放数据</span></span><br><span class="line">        map.put(<span class="string">"stuMap"</span>,stuMap);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/05/22/其他/Freemark/">http://yoursite.com/2019/05/22/其他/Freemark/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Freemark/"># Freemark</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/05/24/其他/Intellij/">Intellij Idea 使用技巧</a>
+            
+            
+            <a class="next" rel="next" href="/2019/05/05/Vue_Webpack/webpack/">黑马程序员 web pack</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

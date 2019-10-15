@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>JVM问题诊断快速入门 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">JVM问题诊断快速入门</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 4, 2019&nbsp;&nbsp;20:01:18</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/JVM/">JVM</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>JVM 全称为 Java Virtual Machine，翻译为中文 “Java 虚拟机”。本文中的JVM主要指 Oracle 公司的 HotSpot<br>VM, 版本是 Java8(JDK8、JDK1.8 是同样的版本)。如今关于 JVM 的文章、书籍有很多。 有基础的，也有深入的。</p>
+<p>本文主要介绍各种简单工具的使用，穿插一些基本的知识点。 目的是为了让初学者快速上手，先实现入门。入门的意思，按我的理解就是：<br>会描述问题，知道怎么去搜索，怎么去找路子深入学习。</p>
+<h3 id="1-环境准备与相关设置"><a href="#1-环境准备与相关设置" class="headerlink" title="1. 环境准备与相关设置"></a>1. 环境准备与相关设置</h3><h3 id="1-1-安装JDK，以及设置环境变量"><a href="#1-1-安装JDK，以及设置环境变量" class="headerlink" title="1.1 安装JDK，以及设置环境变量."></a>1.1 安装JDK，以及设置环境变量.</h3><p>JDK 通常是从 <a href="https://www.oracle.com/" target="_blank" rel="noopener">Oracle官网</a>下载， 打开页面翻到底部，找 <code>Java for
+Developers</code>, 下载对应的 x64 版本即可。</p>
+<blockquote>
+<p>现在流行将下载链接放到页面底部，很多工具都这样。当前推荐下载 JDK8。 今后 JDK11 可能成为主流版本，因为 Java11 是 LTS<br>长期支持版本，但可能还需要一些时间才会普及，而且两个版本的结构不太兼容。</p>
+</blockquote>
+<p>有的操作系统提供了自动安装工具，直接使用也可以，比如 yum, brew, apt 等等。这部分比较基础，有问题直接搜索即可。</p>
+<p>安装完成后，Java 环境一般来说就可以使用了。 验证的脚本命令为:</p>
+<p>​<br>​    java -version</p>
+<p>如果找不到命令，需要设置环境变量： <code>JAVA_HOME</code> 和 <code>PATH</code> 。</p>
+<blockquote>
+<p><code>JAVA_HOME</code> 环境变量表示 JDK 的安装目录，通过修改 <code>JAVA_HOME</code> ，可以快速切换 JDK 版本 。很多工具依赖此环境变量。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>另外, 建议不要设置 <code>CLASS_PATH</code> 环境变量，新手没必要设置，容易造成一些困扰。</p>
+</blockquote>
+<p>Windows系统, 系统属性 - 高级 - 设置系统环境变量。 如果没权限也可以设置用户环境变量。</p>
+<p>Linux 和 MacOSX 系统, 需要配置脚本。 例如:</p>
+<blockquote>
+<p>$ <code>cat ~/.bash_profile</code></p>
+</blockquote>
+<p>​<br>​    # JAVA ENV<br>​    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home<br>​    export PATH=$PATH:$JAVA_HOME/bin</p>
+<p>让环境配置立即生效:</p>
+<blockquote>
+<p>$ <code>source ~/.bash_profile</code></p>
+</blockquote>
+<p>查看环境变量:</p>
+<p>​<br>​    echo $PATH<br>​    echo $JAVA_HOME</p>
+<p>一般来说，<code>.bash_profile</code> 之类的脚本只用于设置环境变量。 不设置随机器自启动的程序。</p>
+<p>如果不知道自动安装/别人安装的JDK在哪个目录怎么办?</p>
+<blockquote>
+<p>最简单/最麻烦的查询方式是询问相关人员。</p>
+</blockquote>
+<p>查找的方式很多，比如，可以使用 <code>which</code>， <code>whereis</code>， <code>ls -l</code> 跟踪软连接, 或者 <code>find</code><br>命令全局查找(可能需要sudo权限), 例如:</p>
+<p>​<br>​    jps -v<br>​    whereis javac<br>​    ls -l /usr/bin/javac<br>​    find / -name javac</p>
+<p>找到满足 <code>$JAVA_HOME/bin/javac</code> 的路径即可。</p>
+<p>WIndows系统，安装在哪就是哪，通过任务管理器也可以查看某个程序的路径，注意 <code>JAVA_HOME</code> 不可能是<br><code>C:/Windows/System32</code> 目录。</p>
+<h3 id="1-2-其他准备工作"><a href="#1-2-其他准备工作" class="headerlink" title="1.2 其他准备工作"></a>1.2 其他准备工作</h3><p>按照官方文档的说法，在诊断问题之前，可以做这些准备：</p>
+<ul>
+<li>取消 core 文件限制</li>
+</ul>
+<p>操作系统提供限制可使用资源量的方式，这些限制可能会影响 Java应用程序，如果限制太低，系统可能无法生成完整的 Java<br>转储文件。解除限制方式：<code>ulimit -c unlimited</code></p>
+<ul>
+<li>开启自动内存Dump选项</li>
+</ul>
+<p>增加启动参数 <code>-XX:+HeapDumpOnOutOfMemoryError</code>, 在内存溢出时自动转储，下文会进行介绍。</p>
+<ul>
+<li>可以生成 JFR 记录</li>
+</ul>
+<p>这是 JDK 内置工具 jmc 提供的功能，Oracle 试图用 jmc 来取代<br>JVisualVM。而且在商业环境使用JFR需要付费授权，我认为这是个鸡肋功能，如果想学习也可以试试。</p>
+<ul>
+<li>开启 GC 日志</li>
+</ul>
+<p>这是标配。比如设置 <code>-verbose:gc</code> 等选项，请参考下文。</p>
+<ul>
+<li>确定JVM版本以及启动参数</li>
+</ul>
+<p>有多种手段获取, 最简单的是 <code>java -version</code>，但某些环境下有多个JDK版本，请参考下文。</p>
+<ul>
+<li>允许 JMX 监控信息</li>
+</ul>
+<p>JMX支持远程监控，通过设置属性来启用，请参考下文。</p>
+<h3 id="2-常用性能指标介绍"><a href="#2-常用性能指标介绍" class="headerlink" title="2. 常用性能指标介绍"></a>2. 常用性能指标介绍</h3><blockquote>
+<p>没有量化就没有改进，所以我们需要先了解和度量性能指标。</p>
+</blockquote>
+<p>JVM诊断是要诊断些什么呢?</p>
+<ol>
+<li>程序BUG: 程序问题必须是优先解决的，要保证正确性。例如死锁等等, 当然，JVM层面的排查只是辅助手段，更多的还是分析业务代码和逻辑确定Java程序哪里有问题。</li>
+<li>系统性能问题: 比如借助监控和日志，判断资源层面有没有问题? JVM层面有没有问题?</li>
+</ol>
+<p>进行JVM问题诊断的目的有：</p>
+<ul>
+<li>排查程序运行中出现的问题</li>
+<li>优化性能</li>
+</ul>
+<p>计算机系统中,性能相关的资源主要分为这几类:</p>
+<ul>
+<li>CPU</li>
+<li>内存</li>
+<li>IO: 存储+网络</li>
+</ul>
+<p>性能优化中常见的套路：</p>
+<p>一般先排查基础资源是否成为瓶颈。看资源够不够，只要成本允许，加配置可能是最快速的解决方案，还可能是最划算，最有效的解决方案。</p>
+<p>与JVM有关的系统资源，主要是 <code>CPU</code> 和 <code>内存</code> 这两部分。 如果发生资源告警/不足, 就需要评估系统容量，分析原因。</p>
+<blockquote>
+<p>至于 GPU 、主板、芯片组之类的资源则不太好衡量，通用计算系统很少涉及。</p>
+</blockquote>
+<p>一般衡量系统性能的维度有3个:</p>
+<ul>
+<li>延迟(Latency)： 一般衡量的是响应时间(Response Time)，比如95线，99线，最大响应时间等。</li>
+<li>吞吐量(Throughput)： 一般的衡量每秒处理的事务数(TPS)。</li>
+<li>系统容量(Capacity)： 也叫做设计容量，可以理解为硬件配置，成本约束。</li>
+</ul>
+<p>这3个维度互相关联，相互制约。只要系统架构允许，增加硬件配置一般都能提升性能指标。</p>
+<p>性能指标还可分为两类:</p>
+<ul>
+<li><strong>业务需求指标</strong> ：如吞吐量(QPS、TPS)、响应时间(RT)、并发数、业务成功率等。</li>
+<li><strong>资源约束指标</strong> ：如CPU、内存、I/O等资源的消耗情况。</li>
+</ul>
+<blockquote>
+<p>详情可参考: <a href="https://www.jianshu.com/p/62cf2690e6eb" target="_blank" rel="noopener">性能测试中服务器关键性能指标浅析</a></p>
+</blockquote>
+<p>每类系统关注的重点还不一样。 批处理/流处理 系统更关注吞吐量,<br>延迟可以适当放宽。一般来说大部分系统的硬件资源不会太差，但也不是无限的。高可用Web系统，既关注高并发情况下的系统响应时间，也关注吞吐量。</p>
+<blockquote>
+<p><strong>例如</strong> ： “配置2核4GB的节点，每秒响应200个请求，95%线是20ms，最大响应时间40ms。” 从中可以解读出基本的性能信息:<br>响应时间(RS&lt;40ms), 吞吐量(200TPS), 系统配置信息(2C4G)。 隐含的条件可能是 “并发请求数不超过200 “。</p>
+</blockquote>
+<p>我们可采用的方式:</p>
+<ul>
+<li>本地/远程调试, 下文将简单介绍JDWP与远程调试</li>
+<li>状态监控</li>
+<li>性能分析: CPU使用情况/内存分配分析</li>
+<li>内存分析: Dump分析/GC日志分析</li>
+<li>JVM启动参数调整</li>
+</ul>
+<h3 id="怎样才算入门"><a href="#怎样才算入门" class="headerlink" title="怎样才算入门?"></a>怎样才算入门?</h3><ul>
+<li><p>掌握基本的JVM基础知识, 内存划分, 常用参数配置</p>
+</li>
+<li><p>会使用工具, 看懂日志，监控, 判断各种指标是否正常</p>
+</li>
+<li><p>会搜索问题，能大致确定是什么问题，搜索/咨询解决方案, 或者自己搞定</p>
+</li>
+</ul>
+<p>不入门就是”门外汉”，门外汉就是只知道这里有一个庞然大物，云里雾里，不了解里面有什么, 需要注意些什么。</p>
+<p>只要工具用好了，获取到相关的状态信息，并能简单分析，那么JVM诊断这个技能就算是入门了，</p>
+<p>本文从如何各类易于上手的工具作为切入点，讲解如何对JVM进行问题诊断， 通过监控和分析，判断是不是JVM层面的问题。</p>
+<blockquote>
+<p>实际上，用好 JVisulVM和相关的各种配置，JVM诊断就算是入门了。</p>
+</blockquote>
+<h3 id="3-JVM基础知识和启动参数"><a href="#3-JVM基础知识和启动参数" class="headerlink" title="3. JVM基础知识和启动参数"></a>3. JVM基础知识和启动参数</h3><p>Java体系中有很多规范， 其中最基本的是 <a href="https://docs.oracle.com/javase/specs/index.html" target="_blank" rel="noopener"><code>Java语言规范</code> 和<br><code>Java虚拟机规范</code></a></p>
+<blockquote>
+<p>各个领域的神级人物，一般都通读和掌握相关规范。</p>
+</blockquote>
+<h3 id="3-1-JVM背景知识"><a href="#3-1-JVM背景知识" class="headerlink" title="3.1 JVM背景知识"></a>3.1 JVM背景知识</h3><p>JVM是Java程序的底层执行环境，主要用C++语言开发，如果想深入探索JVM，那么就需要掌握一定的C++语言知识，至少也应该看得懂C++代码。</p>
+<p>JVM的操作对象是class文件，而不是java源码。</p>
+<p>看起来很难的样子。 就像很多神书一样，讲JVM开篇就讲怎么编译JVM。讲JMM一来就引入CPU寄存器怎么同步。</p>
+<p>当然，不需要很深的技术栈，也是可以排查JVM问题的。</p>
+<blockquote>
+<p>题外话：目前，最多的Java虚拟机实例位于 Android 设备中，绝大部分的Linux系统也运行在 Android 设备上。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>在前些年，由于存储的限制，软件安装包的大小很受关注。Java安装包分为 2 种类型： JDK 是完全版安装包， JRE是阉割版安装包。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>如今Java语言的主要应用领域是企业环境，所以 Oracle 在 JRE 的基础上，增加一部分 JDK 内置的工具，组合成 Server JRE<br>版，但实际上这增加了选择的复杂度，有点鸡肋。实际使用时直接安装 JDK 即可。</p>
+</blockquote>
+<p>先来看看需要具备哪些基础知识，有相关基础的读者大致过一眼即可。</p>
+<h3 id="3-2-JVM-内存结构"><a href="#3-2-JVM-内存结构" class="headerlink" title="3.2 JVM 内存结构"></a>3.2 JVM 内存结构</h3><p>根据对 JVM 内存划分的理解，制作了几张逻辑概念图。大家可以参考一下。</p>
+<p>先看看栈内存(Stack)的大体结构：</p>
+<p><img src="https://images.gitbook.cn/630f6f80-a7a1-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>每启动一个线程，JVM 就会在栈空间栈分配对应的 <strong>线程栈</strong> , 比如 1MB 的空间（<code>-Xss1m</code>）。</p>
+<p>线程栈也叫做 Java 方法栈。 如果使用了 JNI 方法，则会分配一个单独的本地方法栈(Native Stack).</p>
+<p>线程执行过程中，一般会有多个方法组成调用栈(Stack Trace), 比如A调用B，B调用C。。。每执行到一个方法，就会创建对应的 <strong>栈帧</strong><br>(Frame).</p>
+<p><img src="https://images.gitbook.cn/82b08310-a7a1-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>栈帧只是一个逻辑上的概念，具体的大小，在一个方法编写完成后基本上就能确定。</p>
+<p>比如返回值需要有一个空间存放吧，每个局部变量都需要对应的地址空间，此外还有操作数栈，以及方法指针(标识这个栈帧对应的是哪个类的哪个方法,指向常量池中的字符串常量）。</p>
+<p>Java 程序除了栈内存之外，最主要内存区域就是堆内存了。</p>
+<p><img src="https://images.gitbook.cn/95bd86b0-a7a1-11e9-9ef3-6da8876c17f4" alt="enter image description
+here"></p>
+<p>堆内存是所有线程共用的内存空间，理论上大家都可以访问里面的内容。</p>
+<p>但 JVM 的具体实现一般会有各种优化。</p>
+<p>比如将逻辑上的 Java 堆，划分为堆(Heap)和非堆(Non-Heap)两个部分. 这种划分的依据在于，我们编写的 Java 代码，基本上只能使用<br>Heap 这部分空间，发生内存分配和回收的主要区域也在这部分，所以有一种说法，这里的 Heap 也叫 GC 管理的堆(GC Heap)。</p>
+<p>GC 理论中有一个重要的思想，叫做分代。 经过研究发现，程序中分配的对象，要么用过就扔，要么就能存活很久很久。</p>
+<p>JVM 将 Heap 内存分为年轻代（Young generation）和老年代（Old generation，也叫 Tenured）两部分。</p>
+<p>年轻代还划分为3个内存池，新生代(Eden space)和存活区(Survivor space), 存活区在大部分 GC 算法中有2个(S0,<br>S1)，S0和S1总有一个是空的,但一般较小，也不浪费多少空间。</p>
+<p>具体实现对新生代还有优化，那就是 TLAB(Thread Local Allocation Buffer),<br>给每个线程先划定一小片空间，你创建的对象先在这里分配，满了再换。这能极大降低并发资源锁定的开销。</p>
+<p>Non-Heap 本质上还是 Heap，只是一般不归 GC 管理，里面划分为3个内存池。</p>
+<ul>
+<li>Metaspace, 以前叫持久代（永久代，Permanent generation）, Java8 换了个名字叫 Metaspace. Java8 将方法区移动到了Meta区里面，而方法又是class的一部分。。。和CCS交叉了?</li>
+<li>CCS，Compressed Class Space, 存放 class 信息的，和 Metaspace 有交叉。</li>
+<li>Code Cache，存放 JIT 编译器编译后的本地机器代码。</li>
+</ul>
+<p>JVM 的内存结构大致如此。</p>
+<p>还可以参考 <a href="http://lovestblog.cn/blog/2016/10/29/metaspace/" target="_blank" rel="noopener">Metaspace 解密</a></p>
+<h3 id="3-3-JVM-启动参数"><a href="#3-3-JVM-启动参数" class="headerlink" title="3.3 JVM 启动参数"></a>3.3 JVM 启动参数</h3><p>启动 Java 程序的格式为:</p>
+<p>​<br>​    java [options] classname [args]<br>​<br>    java [options] -jar filename [args]</p>
+<p>其中:</p>
+<ul>
+<li><code>[options]</code> 部分称为 “JVM 选项”,对应 IDE 中的 VM options, 可用 <code>jps -v</code> 查看。</li>
+<li><code>[args]</code> 部分是指 “传给 main 函数的参数”, 对应IDE中的 Program arguments, 可用 <code>jps -m</code> 查看。</li>
+</ul>
+<p>Java 和 JDK 内置的工具，指定参数时都是一个 <code>-</code>，不管是长参数还是短参数。</p>
+<p>有时候，JVM 启动参数和Java程序启动参数，并没必要严格区分，大致知道都是一个概念即可。</p>
+<p>JVM 的启动参数, 从形式上可以简单分为：</p>
+<p><code>-???</code> 标准选项，java 中各种参数都是一个横线 <code>-</code> 开头, 很少有两个横线 <code>--</code>; <code>-X</code> 非标准选项， 基本都是传给JVM的。<br><code>-XX:</code> 高级扩展选项, 专门用于控制JVM的行为。</p>
+<ul>
+<li><code>-XX:+-Flags</code> 形式, <code>+-</code> 是对布尔值进行开关。</li>
+<li><code>-XX:key=value</code> 形式, 指定某个选项的值。</li>
+</ul>
+<h4 id="3-3-1-设置系统属性"><a href="#3-3-1-设置系统属性" class="headerlink" title="3.3.1 设置系统属性"></a>3.3.1 设置系统属性</h4><p>使用 <code>-Dproperty=value</code> 这种形式。</p>
+<p>例如指定随机数熵源(Entropy Source), 示例:</p>
+<p>​<br>​    JAVA_OPTS=”-Djava.security.egd=file:/dev/./urandom”</p>
+<h4 id="3-3-2-agent-相关的选项"><a href="#3-3-2-agent-相关的选项" class="headerlink" title="3.3.2 agent 相关的选项:"></a>3.3.2 agent 相关的选项:</h4><p>agent是JVM中的一项黑科技, 可以通过无侵入方式来做很多事情，比如注入AOP代码，执行统计等等，权限非常大。</p>
+<p>设置 agent 的语法如下:</p>
+<ul>
+<li><code>-agentlib:libname[=options]</code> 启用native方式的agent, 参考 <code>LD_LIBRARY_PATH</code> 路径。</li>
+<li><code>-agentpath:pathname[=options]</code> 启用native方式的agent</li>
+<li><code>-javaagent:jarpath[=options]</code> 启用外部的agent库, 比如 <code>pinpoint.jar</code> 等等。</li>
+<li><code>-Xnoagent</code> 则是禁用所有 agent。</li>
+</ul>
+<p>示例, 开启CPU使用时间抽样分析:</p>
+<p>​<br>​    JAVA_OPTS=”-agentlib:hprof=cpu=samples,file=cpu.samples.log”</p>
+<p>hprof是JDK内置的一个性能分析器。<code>cpu=samples</code> 会抽样在各个方法消耗的时间占比, Java进程退出后会将分析结果输出到文件。</p>
+<h4 id="3-3-3-JVM运行模式"><a href="#3-3-3-JVM运行模式" class="headerlink" title="3.3.3 JVM运行模式:"></a>3.3.3 JVM运行模式:</h4><p><code>-server</code> 指定服务器模式, 64位 JDK 只支持该选项，是否设置都是这个值。</p>
+<p>JDK1.7 之前 x86.32 位的默认值是 <code>-client</code> 选项, 主要原因是以前 JIT 编译器占内存，可能还有点慢。</p>
+<p>示例:</p>
+<p>​<br>​    JAVA_OPTS=”-server”</p>
+<h4 id="3-3-4-设置堆内存"><a href="#3-3-4-设置堆内存" class="headerlink" title="3.3.4 设置堆内存"></a>3.3.4 设置堆内存</h4><p>JVM总内存=堆+栈+非堆+堆外内存。。。</p>
+<p>参数:</p>
+<ul>
+<li><code>-Xmx</code>, 指定最大堆内存。 如 <code>-Xmx4g</code>. 这只是指定了 Heap 部分的最大值为4g。</li>
+<li><code>-Xms</code>, 指定堆内存空间的起始值。 如 <code>-Xms4g</code>。 并不是操作系统实际分配的初始值，而是 GC 先规划好，用到才分配。 专用服务器上让 <code>-Xms</code>和<code>-Xmx</code>一致，GC 日志会比较好看，不然刚启动可能就有好几个FullGCC。 据说不一致时，堆内存扩容会有性能抖动。</li>
+<li><code>-Xmn</code>, 等价于 <code>-XX:NewSize</code>, 使用 G1 垃圾收集器 <strong>不应该</strong> 设置该选项，在某些业务场景下可以设置。官方建议设置为 <code>-Xmx</code> 的 <code>1/2 ~ 1/4</code>.</li>
+<li><code>-XX:MaxPermSize=size</code>, 这是 JDK1.7 之前使用的。Java8默认允许的Meta空间无限大。</li>
+<li><code>-XX:MaxMetaspaceSize=size</code>, Java8 默认不限制 Meta 空间, 一般不允许设置该选项。</li>
+</ul>
+<p>示例:</p>
+<p>​<br>​    JAVA_OPTS=”-Xms28g -Xmx28g”</p>
+<h4 id="3-3-5-设置栈内存"><a href="#3-3-5-设置栈内存" class="headerlink" title="3.3.5 设置栈内存"></a>3.3.5 设置栈内存</h4><ul>
+<li><code>-Xss</code>，设置每个线程栈的字节数。 例如 <code>-Xss1m</code> 指定线程栈为 1MB。</li>
+<li><code>-XX:ThreadStackSize=1m</code>, 和 <code>-Xss1m</code> 等价</li>
+</ul>
+<p>示例:</p>
+<p>​<br>​    JAVA_OPTS=”-Xss1m”</p>
+<h4 id="3-3-6-GC-日志相关"><a href="#3-3-6-GC-日志相关" class="headerlink" title="3.3.6 GC 日志相关"></a>3.3.6 GC 日志相关</h4><ul>
+<li><code>-verbose:gc</code> 参数</li>
+</ul>
+<p>和其他 GC 参数组合使用, 在 GC 日志中输出详细的 GC 信息。 包括每次 GC<br>前后各个内存池的大小，堆内存的大小，提升到老年代的大小，以及消耗的时间。</p>
+<p>此参数支持在运行过程中动态开关。比如使用 jcmd, jinfo， 以及使用JMX技术的其他客户端。</p>
+<ul>
+<li><code>-XX:+PrintGCDetails</code> 和 <code>-XX:+PrintGCTimeStamps</code>, 打印 GC 细节与发生时间。参考 GC 部分。</li>
+</ul>
+<p>示例:</p>
+<p>​<br>​    export JAVA_OPTS=”-Xms28g -Xmx28g -Xss1m <br>​    -verbosegc -XX:+UseG1GC -XX:MaxGCPauseMillis=200 <br>​    -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/“</p>
+<h4 id="3-3-7-指定垃圾收集器"><a href="#3-3-7-指定垃圾收集器" class="headerlink" title="3.3.7 指定垃圾收集器"></a>3.3.7 指定垃圾收集器</h4><p>指定具体的垃圾收集器。</p>
+<ul>
+<li><code>-XX:+UseG1GC</code></li>
+<li><code>-XX:+UseConcMarkSweepGC</code></li>
+<li><code>-XX:+UseSerialGC</code></li>
+<li><code>-XX:+UseParallelGC</code></li>
+</ul>
+<h4 id="3-3-8-特殊情况执行脚本"><a href="#3-3-8-特殊情况执行脚本" class="headerlink" title="3.3.8 特殊情况执行脚本"></a>3.3.8 特殊情况执行脚本</h4><ul>
+<li><code>-XX:+-HeapDumpOnOutOfMemoryError</code> 选项, 当 <code>OutOfMemoryError</code> 产生，即内存溢出(堆内存或持久代)时，自动Dump堆内存。 因为在运行时并没有什么开销, 所以在生产机器上是可以使用的。 示例用法: <code>java -XX:+HeapDumpOnOutOfMemoryError -Xmx256m ConsumeHeap</code></li>
+</ul>
+<pre><code>java.lang.OutOfMemoryError: Java heap space
+Dumping heap to java_pid2262.hprof ...
+......</code></pre><ul>
+<li><p><code>-XX:HeapDumpPath</code> 选项, 与<code>HeapDumpOnOutOfMemoryError</code>搭配使用, 指定内存溢出时 Dump 文件的目录。 如果没有指定则默认为启动 Java 程序的工作目录。 示例用法: <code>java -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/ ConsumeHeap</code> 自动 Dump 的 hprof 文件会存储到 <code>/usr/local/</code> 目录下。</p>
+</li>
+<li><p><code>-XX:OnError</code> 选项, 发生致命错误时（fatal error）执行的脚本。 例如, 写一个脚本来记录出错时间, 执行一些命令, 或者 curl 一下某个在线报警的 url. 示例用法: <code>java -XX:OnError=&quot;gdb - %p&quot; MyApp</code> 可以发现有一个 <code>%p</code> 的格式化字符串，表示进程PID。</p>
+</li>
+<li><p><code>-XX:OnOutOfMemoryError</code> 选项, 抛出 OutOfMemoryError 错误时执行的脚本。</p>
+</li>
+<li><p><code>-XX:ErrorFile=filename</code> 选项, 致命错误的日志文件名,绝对路径或者相对路径。</p>
+</li>
+</ul>
+<h3 id="4-JDK-内置工具介绍和使用示例"><a href="#4-JDK-内置工具介绍和使用示例" class="headerlink" title="4. JDK 内置工具介绍和使用示例"></a>4. JDK 内置工具介绍和使用示例</h3><p>本节介绍 JDK 内置的各种工具, 包括</p>
+<ul>
+<li>命令行工具</li>
+<li>GUI 工具</li>
+<li>服务端工具</li>
+</ul>
+<p>很多情况下，JVM 运行环境中并没有趁手的工具， 这时候可以先用命令行工具快速查看JVM实例的基本情况。</p>
+<blockquote>
+<p>MacOSX，Windows 系统的某些账户权限不够，有些工具可能会报错/失败，假如出问题了请排除这个因素。</p>
+</blockquote>
+<p>下面先介绍命令行工具。</p>
+<h3 id="4-1-jps-工具简介"><a href="#4-1-jps-工具简介" class="headerlink" title="4.1 jps 工具简介"></a>4.1 <code>jps</code> 工具简介</h3><p>我们知道，操作系统提供一个工具叫做 <code>ps</code>, 用于显示进程状态(process status)。</p>
+<p>Java也提供了类似的命令行工具，叫做 <code>jps</code>, 用于展示java进程信息(列表)。</p>
+<p>需要注意的是, jps展示的是当前用户可看见的 Java 进程，如果看不见可能需要 <code>sudo</code>， <code>su</code> 之类的命令辅助。</p>
+<p>查看帮助信息:</p>
+<blockquote>
+<p>$ <code>jps -help</code></p>
+</blockquote>
+<p>​<br>​    usage: jps [-help]<br>​           jps [-q] [-mlvV] [<hostid>]<br>​    Definitions:<br>​        <hostid>:      <hostname>[:<port>]</port></hostname></hostid></hostid></p>
+<p>可以看到， 这些参数分为了多个组， <code>-help</code>，<code>-q</code>，<code>-mlvV</code>， 同一组可以共用一个 <code>-</code>。</p>
+<p>常用的参数是小写的 <code>-v</code>, 显示传递给JVM的启动参数.</p>
+<blockquote>
+<p>$ <code>jps -v</code></p>
+</blockquote>
+<p>​<br>​    15883 Jps -Dapplication.home=/usr/local/jdk1.8.0_74 -Xms8m<br>​    6446 Jstatd -Dapplication.home=/usr/local/jdk1.8.0_74 -Xms8m<br>​            -Djava.security.policy=/etc/java/jstatd.all.policy<br>​    32383 Bootstrap -Xmx4096m -XX:+UseG1GC -verbose:gc<br>​            -XX:+PrintGCDateStamps -XX:+PrintGCDetails<br>​            -Xloggc:/xxx-tomcat/logs/gc.log<br>​            -Dcatalina.base=/xxx-tomcat -Dcatalina.home=/data/tomcat</p>
+<p>看看输出的内容，其中最重要的信息是前面的进程ID(PID),</p>
+<p>其他参数不太常用:</p>
+<ul>
+<li><p><code>-q</code> 只显示进程号。</p>
+</li>
+<li><p><code>-m</code> 显示传给 main 方法的参数信息</p>
+</li>
+<li><p><code>-l</code> 显示启动 class 的完整类名, 或者启动 jar 的完整路径</p>
+</li>
+<li><p><code>-V</code> 大写的V，这个参数有问题, 相当于没传一样。官方说的跟 <code>-q</code> 差不多。</p>
+</li>
+<li><p><code>&lt;hostid&gt;</code> 部分是远程主机的标识符，需要远程主机启动 <code>jstatd</code> 服务器支持。</p>
+</li>
+</ul>
+<p>可以看到, 格式为 <code>&lt;hostname&gt;[:&lt;port&gt;]</code>, 不能用IP, 示例: <code>jps -v sample.com:1099</code>。</p>
+<p>知道JVM进程的PID之后，就可以使用其他工具来进行诊断了。</p>
+<h3 id="4-2-jstat-工具简介"><a href="#4-2-jstat-工具简介" class="headerlink" title="4.2 jstat 工具简介"></a>4.2 <code>jstat</code> 工具简介</h3><p><code>jstat</code> 用来监控JVM内置的各种统计信息，主要是内存和GC相关的信息。</p>
+<p>查看 <code>jstat</code> 的帮助信息, 大致如下:</p>
+<blockquote>
+<p>$ <code>jstat -help</code></p>
+</blockquote>
+<p>​<br>​    Usage: jstat -help|-options<br>​           jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]<br>​<br>    Definitions:<br>      <option>      可用的选项, 查看详情请使用 -options<br>      <vmid>        虚拟机标识符. 格式: <lvmid>[@<hostname>[:<port>]]<br>      <lines>       标题行间隔的频率.<br>      <interval>    采样周期, <n>[“ms”|”s”], 默认单位是毫秒 “ms”.<br>      <count>       采用总次数.<br>      -J<flag>      传给jstat底层JVM的 <flag> 参数.</flag></flag></count></n></interval></lines></port></hostname></lvmid></vmid></option></count></interval></vmid></lines></option></p>
+<p>再来看看 <code>&lt;option&gt;</code> 部分支持哪些选项:</p>
+<blockquote>
+<p>$ <code>jstat -options</code></p>
+</blockquote>
+<p>​<br>​    -class<br>​    -compiler<br>​    -gc<br>​    -gccapacity<br>​    -gccause<br>​    -gcmetacapacity<br>​    -gcnew<br>​    -gcnewcapacity<br>​    -gcold<br>​    -gcoldcapacity<br>​    -gcutil<br>​    -printcompilation</p>
+<p>简单说明这些选项, 不感兴趣可以跳着读。</p>
+<ul>
+<li><code>-class</code> 类加载(Class loader)信息统计.</li>
+<li><code>-compiler</code> JIT即时编译器相关的统计信息。</li>
+<li><code>-gc</code> GC相关的堆内存信息. 用法: <code>jstat -gc -h 10 -t 864 1s 20</code></li>
+<li><code>-gccapacity</code> 各个内存池分代空间的容量。</li>
+<li><code>-gccause</code> 看上次GC, 本次GC（如果正在GC中）的原因, 其他输出和 <code>-gcutil</code> 选项一致。</li>
+<li><code>-gcnew</code> 年轻代的统计信息. （New = Young = Eden + S0 + S1）</li>
+<li><code>-gcnewcapacity</code> 年轻代空间大小统计.</li>
+<li><code>-gcold</code> 老年代和元数据区的行为统计。</li>
+<li><code>-gcoldcapacity</code> old空间大小统计.</li>
+<li><code>-gcmetacapacity</code> meta区大小统计.</li>
+<li><code>-gcutil</code> GC相关区域的使用率(utilization)统计。</li>
+<li><code>-printcompilation</code> 打印JVM编译统计信息。</li>
+</ul>
+<p>实例:</p>
+<p>​<br>​    jstat -gcutil -t 864</p>
+<p><code>-gcutil</code> 选项是统计GC相关区域的使用率(utilization), 结果如下:</p>
+<table>
+<thead>
+<tr>
+<th>Timestamp</th>
+<th>S0</th>
+<th>S1</th>
+<th>E</th>
+<th>O</th>
+<th>M</th>
+<th>CCS</th>
+<th>YGC</th>
+<th>YGCT</th>
+<th>FGC</th>
+<th>FGCT</th>
+<th>GCT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>14251645.5</td>
+<td>0.00</td>
+<td>13.50</td>
+<td>55.05</td>
+<td>71.91</td>
+<td>83.84</td>
+<td>69.52</td>
+<td>113767</td>
+<td>206.036</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.122</td>
+<td>206.158</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>-t</code> 选项的位置是固定的，不能在前也不能在后。 可以看出是用于显示时间戳，即 JVM 启动到现在的秒数。</p>
+<p>简单分析一下:</p>
+<ul>
+<li><code>Timestamp</code> 列：JVM 启动了1425万秒，大约164天。</li>
+<li><code>S0</code> 就是 0 号存活区的百分比使用率。 0% 很正常, 因为 S0 和 S1 随时有一个是空的。</li>
+<li><code>S1</code> 就是1号存活区的百分比使用率。</li>
+<li><code>E</code> 就是 Eden 区，新生代的百分比使用率。</li>
+<li><code>O</code> 就是 Old 区, 老年代。百分比使用率。</li>
+<li><code>M</code> 就是 Meta 区, 元数据区百分比使用率。</li>
+<li><code>CCS</code>, 压缩 class 空间(Compressed class space)的百分比使用率。</li>
+<li><code>YGC</code> (Young GC), 年轻代 GC 的次数。11 万多次, 不算少。</li>
+<li><code>YGCT</code> 年轻代 GC 消耗的总时间。206 秒, 占总运行时间的万分之一不到，基本上可忽略。</li>
+<li><code>FGC</code> FullGC 的次数,可以看到只发生了4次，问题应该不大。</li>
+<li><code>FGCT</code> FullGC 的总时间, 0.122秒，平均每次30ms左右,大部分系统应该能承受。</li>
+<li><code>GCT</code> 所有GC加起来消耗的总时间, 即<code>YGCT</code>+<code>FGCT</code>。</li>
+</ul>
+<p>可以看到, <code>-gcutil</code> 这个选项出来的信息不太好用, 统计的结果是百分比，不太直观。</p>
+<p>再看看, <code>-gc</code> 选项, GC相关的堆内存信息.</p>
+<p>​<br>​    jstat -gc -t 864 1s<br>​    jstat -gc -t 864 1s 3<br>​    jstat -gc -t -h 10 864 1s 15</p>
+<p>其中的 <code>1s</code> 占了 <code>&lt;interval&gt;</code> 这个槽位, 表示每1秒输出一次信息。</p>
+<p><code>1s 3</code> 的意思是每秒输出1次，最多3次。</p>
+<p>如果只指定刷新周期, 不指定 <code>&lt;count&gt;</code> 部分, 则会一直持续输出。 退出输出按 <code>CTRL+C</code>即可。</p>
+<p><code>-h 10</code> 的意思是每10行输出一次表头。</p>
+<p>结果大致如下:</p>
+<p>Timestamp | S0C | S1C | S0U | S1U | EC | EU | OC | OU | MC | MU | YGC | YGCT |<br>FGC | FGCT<br>—|—|—|—|—|—|—|—|—|—|—|—|—|—|—<br>14254245.3 | 1152.0 | 1152.0 | 145.6 | 0.0 | 9600.0 | 2312.8 | 11848.0 |<br>8527.3 | 31616.0 | 26528.6 | 113788 | 206.082 | 4 | 0.122<br>14254246.3 | 1152.0 | 1152.0 | 145.6 | 0.0 | 9600.0 | 2313.1 | 11848.0 |<br>8527.3 | 31616.0 | 26528.6 | 113788 | 206.082 | 4 | 0.122<br>14254247.3 | 1152.0 | 1152.0 | 145.6 | 0.0 | 9600.0 | 2313.4 | 11848.0 |<br>8527.3 | 31616.0 | 26528.6 | 113788 | 206.082 | 4 | 0.122  </p>
+<p>上面的结果是精简过的, 为了排版去掉了 <code>GCT</code>，<code>CCSC</code>，<code>CCSU</code> 这三列。 看到这些单词可以试着猜一下意思, 详细的解读如下:</p>
+<ul>
+<li><code>Timestamp</code> 列: JVM 启动了1425万秒,大约164天。</li>
+<li><code>S0C</code>: 0 号存活区的当前容量(capacity), 单位 kB.</li>
+<li><code>S1C</code>: 1 号存活区的当前容量, 单位 kB.</li>
+<li><code>S0U</code>: 0 号存活区的使用量(utilization), 单位 kB.</li>
+<li><code>S1U</code>: 1 号存活区的使用量, 单位 kB.</li>
+<li><code>EC</code>: Eden 区，新生代的当前容量, 单位 kB.</li>
+<li><code>EU</code>: Eden 区，新生代的使用量, 单位 kB.</li>
+<li><code>OC</code>: Old 区, 老年代的当前容量, 单位 kB.</li>
+<li><code>OU</code>: Old 区, 老年代的使用量, 单位 kB. （!需要关注）</li>
+<li><code>MC</code>: 元数据区的容量, 单位 kB.</li>
+<li><code>MU</code>: 元数据区的使用量, 单位 kB.</li>
+<li><code>CCSC</code>: 压缩的 class 空间容量, 单位 kB.</li>
+<li><code>CCSU</code>: 压缩的 class 空间使用量, 单位 kB.</li>
+<li><code>YGC</code>: 年轻代 GC 的次数。</li>
+<li><code>YGCT</code>: 年轻代 GC 消耗的总时间。 （!重点关注）</li>
+<li><code>FGC</code>: Full GC 的次数</li>
+<li><code>FGCT</code>: Full GC 消耗的时间. （!重点关注）</li>
+<li><code>GCT</code>: 垃圾收集消耗的总时间。</li>
+</ul>
+<p>最重要的信息是 GC 的次数和总消耗时间，其次是老年代的使用量。</p>
+<p>在没有其他监控工具的情况下， jstat 可以简单查看各个内存池和GC的信息，可用于判别是否是GC问题或者内存溢出。</p>
+<h3 id="4-3-jmap-工具"><a href="#4-3-jmap-工具" class="headerlink" title="4.3 jmap 工具"></a>4.3 <code>jmap</code> 工具</h3><p>面试最常问的就是 <code>jmap</code> 工具了。</p>
+<p><code>jmap</code> 主要用来 dump 堆内存。当然也支持输出统计信息。</p>
+<blockquote>
+<p>官方推荐使用 JDK8 自带的 <code>jcmd</code> 工具来取代 <code>jmap</code>， 但是 jmap 深入人心，jcmd 可能暂时取代不了。</p>
+</blockquote>
+<p>查看 jmap 帮助信息:</p>
+<blockquote>
+<p>$ <code>jmap -help</code></p>
+</blockquote>
+<p>​<br>​    Usage:<br>​        jmap [option] <pid><br>​            (连接到本地进程)<br>​        jmap [option] &lt;executable <core><br>​            (连接到 core file)<br>​        jmap [option] [server_id@]<remote-ip-hostname><br>​            (连接到远程 debug 服务)<br>​<br>    where <option> is one of:<br>        <none>               等同于 Solaris 的 pmap 命令<br>        -heap                打印Java堆内存汇总信息<br>        -histo[:live]        打印Java堆内存对象的直方图统计信息;<br>                             如果指定了 “live” 选项则只统计存活对象,强制触发一次GC<br>        -clstats             打印class loader 统计信息<br>        -finalizerinfo       打印等待 finalization 的对象信息<br>        -dump:<dump-options> 将堆内存dump为 hprof 二进制格式<br>                             支持的 dump-options:<br>                               live         只dump存活对象; 不指定则导出全部.<br>                               format=b     二进制格式(binary format)<br>                               file=<file>  导出文件的路径<br>                             示例: jmap -dump:live,format=b,file=heap.bin <pid><br>        -F                   强制导出. 若jmap被hang住不响应, 可断开后使用此选项。<br>                             其中 “live” 选项不支持强制导出.<br>        -h | -help           to print this help message<br>        -J<flag>             to pass <flag> directly to the runtime system</flag></flag></pid></file></dump-options></none></option></remote-ip-hostname></core></pid></p>
+<p>常用选项就3个:</p>
+<ul>
+<li><code>-heap</code> 打印堆内存（/内存池）的配置和使用信息。</li>
+<li><code>-histo</code> 看哪些类占用的空间最多, 直方图</li>
+<li><code>-dump:format=b,file=xxxx.hprof</code> Dump堆内存。</li>
+</ul>
+<p>示例:</p>
+<p>看堆内存统计信息。</p>
+<blockquote>
+<p>$ <code>jmap -heap 4524</code></p>
+</blockquote>
+<p>输出信息:</p>
+<p>​<br>​    Attaching to process ID 4524, please wait…<br>​    Debugger attached successfully.<br>​    Server compiler detected.<br>​    JVM version is 25.65-b01<br>​<br>    using thread-local object allocation.<br>    Parallel GC with 4 thread(s)</p>
+<pre><code>Heap Configuration:
+   MinHeapFreeRatio         = 0
+   MaxHeapFreeRatio         = 100
+   MaxHeapSize              = 2069889024 (1974.0MB)
+   NewSize                  = 42991616 (41.0MB)
+   MaxNewSize               = 689963008 (658.0MB)
+   OldSize                  = 87031808 (83.0MB)
+   NewRatio                 = 2
+   SurvivorRatio            = 8
+   MetaspaceSize            = 21807104 (20.796875MB)
+   CompressedClassSpaceSize = 1073741824 (1024.0MB)
+   MaxMetaspaceSize         = 17592186044415 MB
+   G1HeapRegionSize         = 0 (0.0MB)
+
+Heap Usage:
+PS Young Generation
+Eden Space:
+   capacity = 24117248 (23.0MB)
+   used     = 11005760 (10.49591064453125MB)
+   free     = 13111488 (12.50408935546875MB)
+   45.63439410665761% used
+From Space:
+   capacity = 1048576 (1.0MB)
+   used     = 65536 (0.0625MB)
+   free     = 983040 (0.9375MB)
+   6.25% used
+To Space:
+   capacity = 1048576 (1.0MB)
+   used     = 0 (0.0MB)
+   free     = 1048576 (1.0MB)
+   0.0% used
+PS Old Generation
+   capacity = 87031808 (83.0MB)
+   used     = 22912000 (21.8505859375MB)
+   free     = 64119808 (61.1494140625MB)
+   26.32600715361446% used
+
+12800 interned Strings occupying 1800664 bytes.</code></pre><p>可以看到堆内存和内存池的相关信息。</p>
+<p>当然，这些信息有多种方式可以得到，比如 JMX。</p>
+<p>看看直方图</p>
+<blockquote>
+<p>$ <code>jmap -histo 4524</code></p>
+</blockquote>
+<p>结果为:</p>
+<p>​<br>​     num     #instances         #bytes  class name<br>​    ———————————————-<br>​       1:         52214       11236072  [C<br>​       2:        126872        5074880  java.util.TreeMap$Entry<br>​       3:          5102        5041568  [B<br>​       4:         17354        2310576  [I<br>​       5:         45258        1086192  java.lang.String<br>​    ……</p>
+<p>简单分析, 其中 <code>[C</code> 占用了11MB内存，没占用什么空间。</p>
+<blockquote>
+<p><code>[C</code> 表示 <code>chat[]</code>, <code>[B</code> 表示 <code>byte[]</code>, <code>[I</code> 表示 <code>int[]</code>, 其他类似。这种基础数据类型很难分析出什么问题。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>Java中的大对象, 巨无霸对象，一般都是长度很大的数组。</p>
+</blockquote>
+<p>Dump堆内存:</p>
+<p>​<br>​    cd $CATALINA_BASE<br>​    jmap -dump:format=b,file=3826.hprof 3826</p>
+<p>导出完成后, dump文件大约和堆内存一样大。 可以想办法压缩并传输。</p>
+<p>分析 hprof 文件可以使用 jhat 或者 <a href="https://www.eclipse.org/mat/" target="_blank" rel="noopener">mat</a> 工具。</p>
+<h3 id="4-4-jcmd工具"><a href="#4-4-jcmd工具" class="headerlink" title="4.4 jcmd工具"></a>4.4 <code>jcmd</code>工具</h3><blockquote>
+<p>诊断工具</p>
+</blockquote>
+<p>jcmd 是 JDK8 推出的一款本地诊断工具，只支持连接本机上同一个用户空间下的 JVM 进程。</p>
+<p>查看帮助:</p>
+<blockquote>
+<p>$ <code>jcmd -help</code></p>
+</blockquote>
+<p>​<br>​    Usage: jcmd &lt;pid | main class&gt; &lt;command …|PerfCounter.print|-f file&gt;<br>​       or: jcmd -l<br>​       or: jcmd -h<br>​<br>      command 必须是指定JVM可用的有效 jcmd 命令.<br>      可以使用 “help” 命令查看该 JVM 支持哪些命令.<br>      如果指定 pid 部分的值为 0, 则会将 commands 发送给所有可见的 Java 进程.<br>      指定 main class 则用来匹配启动类。可以部分匹配。（适用同一个类启动多实例）.<br>      If no options are given, lists Java processes (same as -p).     </p>
+<pre><code>PerfCounter.print 命令可以展示该进程暴露的各种计数器
+-f  从文件读取可执行命令                  
+-l  列出(list)本机上可见的 JVM 进程                     
+-h  this help                           </code></pre><p>查看进程信息:</p>
+<p>​<br>​    jcmd<br>​    jcmd -l<br>​    jps -lm<br>​<br>    11155 org.jetbrains.idea.maven.server.RemoteMavenServer</p>
+<p>这几个命令的结果差不多。可以看到其中有一个 PID 为 11155 的进程。</p>
+<p>下面看看可以用这个 PID 做什么。</p>
+<p>给这个进程发一个 help 指令:</p>
+<p>​<br>​    jcmd 11155 help<br>​    jcmd RemoteMavenServer help</p>
+<p>pid 和 main-class 输出信息是一样的:</p>
+<p>​<br>​    11155:<br>​    The following commands are available:<br>​    VM.native_memory<br>​    ManagementAgent.stop<br>​    ManagementAgent.start_local<br>​    ManagementAgent.start<br>​    GC.rotate_log<br>​    Thread.print<br>​    GC.class_stats<br>​    GC.class_histogram<br>​    GC.heap_dump<br>​    GC.run_finalization<br>​    GC.run<br>​    VM.uptime<br>​    VM.flags<br>​    VM.system_properties<br>​    VM.command_line<br>​    VM.version<br>​    help</p>
+<p>可以试试这些命令。查看VM相关的信息 :</p>
+<p>​<br>​    # JVM实例运行时间<br>​    jcmd 11155 VM.uptime<br>​    9307.052 s<br>​<br>    #JVM 版本号<br>    jcmd 11155 VM.version<br>    OpenJDK 64-Bit Server VM version 25.76-b162<br>    JDK 8.0_76<br><br>    # JVM 实际生效的配置参数<br>    jcmd 11155 VM.flags<br>    11155:<br>    -XX:CICompilerCount=4 -XX:InitialHeapSize=268435456<br>    -XX:MaxHeapSize=536870912 -XX:MaxNewSize=178782208<br>    -XX:MinHeapDeltaBytes=524288 -XX:NewSize=89128960<br>    -XX:OldSize=179306496 -XX:+UseCompressedClassPointers<br>    -XX:+UseCompressedOops -XX:+UseParallelGC<br><br>    # 查看命令行参数<br>    jcmd 11155 VM.command_line<br>    VM Arguments:<br>    jvm_args: -Xmx512m -Dfile.encoding=UTF-8<br>    java_command: org.jetbrains.idea.maven.server.RemoteMavenServer<br>    java_class_path (initial): …(xxx省略)…<br>    Launcher Type: SUN_STANDARD<br><br>    # 系统属性<br>    jcmd 11155 VM.system_properties<br>    …<br>    java.runtime.name=OpenJDK Runtime Environment<br>    java.vm.version=25.76-b162<br>    java.vm.vendor=Oracle Corporation<br>    user.country=CN</p>
+<p>GC 相关的命令,</p>
+<p>统计每个类的实例占用字节数。</p>
+<blockquote>
+<p>$ <code>jcmd 11155 GC.class_histogram</code></p>
+</blockquote>
+<p>​<br>​     num     #instances         #bytes  class name<br>​    ———————————————-<br>​       1:         11613        1420944  [C<br>​       2:          3224         356840  java.lang.Class<br>​       3:           797         300360  [B<br>​       4:         11555         277320  java.lang.String<br>​       5:          1551         193872  [I<br>​       6:          2252         149424  [Ljava.lang.Object;</p>
+<p>Dump堆内存：</p>
+<blockquote>
+<p>$<code>jcmd 11155 help GC.heap_dump</code></p>
+</blockquote>
+<p>​<br>​    Syntax : GC.heap_dump [options] <filename><br>​    Arguments: filename :  Name of the dump file (STRING, no default value)<br>​    Options:  -all=true 或者 -all=false (默认)<br>​<br>    # 两者效果差不多; jcmd 需要指定绝对路径； jmap不能指定绝对路径<br>    jcmd 11155 GC.heap_dump -all=true ~/11155-by-jcmd.hprof<br>    jmap -dump:file=./11155-by-jmap.hprof 11155</filename></p>
+<p>jcmd 坑的地方在于, 必须指定绝对路径, 否则导出的 hprof 文件就以 JVM 所在的目录计算。(： 因为是发命令交给 jvm 执行的。)</p>
+<p>其他命令用法类似，必要时请参考官方文档。</p>
+<h3 id="4-5-jstack-工具"><a href="#4-5-jstack-工具" class="headerlink" title="4.5 jstack 工具"></a>4.5 <code>jstack</code> 工具</h3><blockquote>
+<p>命令行工具、诊断工具</p>
+</blockquote>
+<p><code>jstack</code> 工具可以打印出 Java 线程的调用栈信息(stack trace)。</p>
+<p>一般用来查看存在哪些线程，诊断是否存在死锁等。</p>
+<p>这时候就看出来给线程(池)命名的必要性了，【开发不规范，整个项目都是坑】，具体可参考阿里巴巴的 Java 开发规范。</p>
+<p>看看帮助信息:</p>
+<blockquote>
+<p>$<code>jstack -help</code></p>
+</blockquote>
+<p>​<br>​    Usage:<br>​        jstack [-l] <pid><br>​            (to connect to running process)<br>​        jstack -F [-m] [-l] <pid><br>​            (to connect to a hung process)<br>​        jstack [-m] [-l] <executable> <core><br>​            (to connect to a core file)<br>​        jstack [-m] [-l] [server_id@]<remote server ip or hostname><br>​            (to connect to a remote debug server)<br>​<br>    Options:<br>        -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)<br>        -m  to print both java and native frames (mixed mode)<br>        -l  long listing. Prints additional information about locks<br>        -h or -help to print this help message</pid></remote></core></executable></pid></pid></p>
+<p>选项说明:</p>
+<ul>
+<li><code>-F</code> 强制执行 thread dump. 可在 Java 进程卡死(hung 住)时使用, 此选项可能需要系统权限。</li>
+<li><code>-m</code> 混合模式(mixed mode)，将 Java帧和 native 帧一起输出, 此选项可能需要系统权限。</li>
+<li><code>-l</code> 长列表模式，将线程相关的 locks 信息一起输出，比如持有的锁，等待的锁。</li>
+</ul>
+<p>常用的选项是 <code>-l</code>, 示例用法。</p>
+<p>​<br>​    jstack 4524<br>​    jstack -l 4524</p>
+<p>死锁的原因一般是锁定多个资源的顺序出了问题【交叉依赖】， 网上示例代码很多，比如搜索 <code>Java 死锁 示例</code>。</p>
+<h3 id="4-6-jinfo-工具"><a href="#4-6-jinfo-工具" class="headerlink" title="4.6 jinfo 工具"></a>4.6 <code>jinfo</code> 工具</h3><blockquote>
+<p>诊断工具</p>
+</blockquote>
+<p><code>jinfo</code> 用来查看具体生效的配置信息，以及系统属性。 还支持动态增加一部分参数。</p>
+<p>看看帮助信息:</p>
+<blockquote>
+<p>$ <code>jinfo -help</code></p>
+</blockquote>
+<p>​<br>​    Usage:<br>​        jinfo [option] <pid><br>​            (to connect to running process)<br>​        jinfo [option] &lt;executable <core><br>​            (to connect to a core file)<br>​        jinfo [option] [server_id@]<remote-ip-hostname><br>​            (to connect to remote debug server)<br>​<br>    where <option> is one of:<br>        -flag <name>         to print the value of the named VM flag<br>        -flag [+|-]<name>    to enable or disable the named VM flag<br>        -flag <name>=<value> to set the named VM flag to the given value<br>        -flags               to print VM flags<br>        -sysprops            to print Java system properties<br>        <no option>          to print both of the above<br>        -h | -help           to print this help message</no></value></name></name></name></option></remote-ip-hostname></core></pid></p>
+<p>使用示例：</p>
+<p>​<br>​    jinfo 4524<br>​    jinfo -flags 4524</p>
+<p>不加参数过滤，则打印所有信息。</p>
+<p><code>jinfo</code>在Windows上比较稳定。</p>
+<p>笔者在Mac和Linux系统上使用一直报错，在MacOSX系统上弹出安全警告而被拦截，在Linux上可能是jinfo 版本和目标JVM版本不一致的原因。</p>
+<p>​<br>​    Error attaching to process:<br>​      sun.jvm.hotspot.runtime.VMVersionMismatchException:<br>​        Supported versions are 25.74-b02. Target VM is 25.66-b17</p>
+<p>而这些性能诊断工具官方并不提供技术支持，所以如果碰到报错信息，请不要着急，可以试试其他工具。不行就换 JDK 版本。</p>
+<h3 id="4-7-jvisualvm-图形界面监控工具"><a href="#4-7-jvisualvm-图形界面监控工具" class="headerlink" title="4.7 jvisualvm 图形界面监控工具"></a>4.7 <code>jvisualvm</code> 图形界面监控工具</h3><p>GUI 图形界面工具, 主要是3款: jconsole, jvisualvm, jmc。</p>
+<p>其中, jconsole 比较古老，在此不进行介绍。</p>
+<p>JVisualVM 启动后的界面大致如下:</p>
+<p><img src="https://images.gitbook.cn/6b8d6580-a7a2-11e9-9ef3-6da8876c17f4" alt="enter image description
+here"></p>
+<p>在其中可以看到本地的 JVM 实例。</p>
+<p>通过 JVisualVM 连接到某个 JVM 以后, “概述”页签显示的基本信息如下图所示:</p>
+<p><img src="https://images.gitbook.cn/837b7ec0-a7a2-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>可以看到，其中有 PID，启动参数，系统属性等信息。</p>
+<p>切换到”监视”页签：</p>
+<p><img src="https://images.gitbook.cn/a85edac0-a7a2-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>可以看到整体的运行情况。 比如 CPU，堆内存，类，线程等信息。还可以执行一些操作，比如“强制执行垃圾回收”，“堆 Dump”等。</p>
+<p>“线程”页签则展示了JVM中的线程列表。 再一次看出在程序中对线程（池）命名的好处。</p>
+<p><img src="https://images.gitbook.cn/b83655e0-a7a2-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>JVisualVM 强大的功能在于插件。</p>
+<p>JDK8需要安装较高版本(如Java SE 8u211)，才能安装/更新jvisualvm的插件。</p>
+<p><img src="https://images.gitbook.cn/cd022080-a7a2-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>JVisualVM安装MBeans插件的步骤: 通过 工具(T) – 插件(G) – 可用插件 – 勾选具体的插件 – 安装 – 下一步 – 等待安装完成。</p>
+<p><img src="https://images.gitbook.cn/e30bc250-a7a2-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>常用的插件是 VisualGC 和 MBeans。</p>
+<p>如果看不到可用插件，请安装最新版本，或者下载插件到本地安装。</p>
+<p>请排除网络问题，或者检查更新，重新启动试试。</p>
+<p><img src="https://images.gitbook.cn/0c5118e0-a7a3-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>安装完成后, 重新连接某个JVM, 即可看到新安装的插件。</p>
+<p>切换到 VisualGC 页签:</p>
+<p><img src="https://images.gitbook.cn/19e3d420-a7a3-11e9-9ef3-6da8876c17f4" alt="enter image description
+here"></p>
+<p>在其中可以看到各个内存池的使用情况，以及类加载时间，GC 总次数，总消耗时间等信息。 比起命令行工具要简单得多。</p>
+<p>切换到 MBeans 标签:</p>
+<p><img src="https://images.gitbook.cn/35e66430-a7a3-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>一般不怎么关注 MBean ，但 MBean 对于理解 GC 的原理倒是挺有用的。</p>
+<p>主要看 <code>java.lang</code> 包下面的 MBean。比如内存池, 或者垃圾收集器等。</p>
+<p>从图中可以看到 Metaspace 内存池的 Type 是 <code>NON_HEAP</code>。</p>
+<p>当然，还可以看垃圾收集器(GarbageCollector)。</p>
+<p>对所有的垃圾收集器, 通过 JMX API 获取的信息包括:</p>
+<ul>
+<li><strong>CollectionCount</strong> : 垃圾收集器执行的 GC 总次数,</li>
+<li><strong>CollectionTime</strong> : 收集器运行时间的累计。这个值等于所有 GC 事件持续时间的总和,</li>
+<li><strong>LastGcInfo</strong> : 最近一次 GC 事件的详细信息。包括 GC事件的持续时间(duration), 开始时间(startTime) 和 结束时间(endTime), 以及各个内存池在最近一次 GC 之前和之后的使用情况,</li>
+<li><strong>MemoryPoolNames</strong> : 各个内存池的名称,</li>
+<li><strong>Name</strong> : 垃圾收集器的名称</li>
+<li><strong>ObjectName</strong> : 由 JMX 规范定义的 MBean 的名字,,</li>
+<li><strong>Valid</strong> : 此收集器是否有效。本人只见过 “<code>true</code>“的情况 (^_^)</li>
+</ul>
+<p>根据经验, 这些信息对分析 GC 性能来说,不能得出什么结论. 只有编写程序, 获取 GC 相关的 JMX 信息来进行统计和分析。</p>
+<p>下面看怎么执行远程实时监控。</p>
+<p><img src="https://images.gitbook.cn/49bb24a0-a7a3-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>如上图所示，从文件菜单中, 我们可以选择“添加远程主机”，以及“添加JMX连接”。</p>
+<p>比如 “添加 JMX 连接”， 填上 IP 和端口号之后，勾选“不要求SSL连接”，点击“确定”按钮即可。</p>
+<p>关于目标 JVM 怎么启动JMX支持，请参考下面的 JMX 小节。</p>
+<p>远程主机则需要 jstatd 的支持。请参考 jstatd 部分。</p>
+<h3 id="4-8-jmc-图形界面客户端"><a href="#4-8-jmc-图形界面客户端" class="headerlink" title="4.8 jmc 图形界面客户端"></a>4.8 <code>jmc</code> 图形界面客户端</h3><p>jmc 和 jvisualvm 功能类似。</p>
+<p>Oracle 试图用 jmc 来取代 JVisualVM，但 jmc 和 jinfo<br>一样，都需要比较高的权限（去操纵其他JVM进程），可能会被操作系统的安全限制拦截。在商业环境使用JFR需要付费获取授权。</p>
+<p>启动后的界面如下:</p>
+<p><img src="https://images.gitbook.cn/58e5e500-a7a3-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>jmc 界面确实漂亮了很多，有些客户肯定喜欢。</p>
+<p>但 jmc 不只是一个监控工具，要求的权限很多，有些权限不够的管理员账户可能出一些问题。</p>
+<p>大致使用和 JVisualVM 差不多。点击下方的页签切换即可。</p>
+<h3 id="4-9-jstatd服务端工具"><a href="#4-9-jstatd服务端工具" class="headerlink" title="4.9 jstatd服务端工具"></a>4.9 jstatd服务端工具</h3><p>jstatd 是一款强大的服务端支持工具。</p>
+<p>但因为涉及暴露一些服务器信息，所以需要配置安全策略文件。</p>
+<blockquote>
+<p>$ <code>cat /etc/java/jstatd.all.policy</code></p>
+</blockquote>
+<p>​<br>​    grant codebase “file:${java.home}/../lib/tools.jar” {<br>​       permission java.security.AllPermission;<br>​    };</p>
+<p>后台启动 jstatd的命令:</p>
+<p>​<br>​    jstatd -J-Djava.security.policy=jstatd.all.policy<br>​      -J-Djava.rmi.server.hostname=198.11.188.188 &amp;</p>
+<p>其中 198.11.188.188 是公网 IP，如果没有公网，那么就是内网 IP。</p>
+<p>然后使用 jvisualvm, 或者 jconsole 连接远程服务器。 其中IP为 198.11.188.188，端口号是默认的 <code>1099</code>.<br>当然,端口号可以通过参数自定义。</p>
+<p>说明: 客户端与服务器的 JVM 大版本号必须一致或者兼容。</p>
+<p>CPU 图形没有显示 ,原因是 jstatd 不监控单个实例的 CPU。 可以启用对应 JVM 的 JMX 监控, 具体请参考 JMX 一节。</p>
+<h3 id="4-10-更多工具"><a href="#4-10-更多工具" class="headerlink" title="4.10 更多工具"></a>4.10 更多工具</h3><p>JDK还自带了其他工具， 比如 <code>jsadebugd</code> 可以在服务端主机上，开启RMI Server。 <code>jhat</code><br>可用于解析hprof内存Dump文件等。</p>
+<p>在此不进行介绍，有兴趣可以搜索看看。</p>
+<h3 id="5-JDWP-简介"><a href="#5-JDWP-简介" class="headerlink" title="5. JDWP 简介"></a>5. JDWP 简介</h3><p>Java 平台调试体系（Java Platform Debugger<br>Architecture，JPDA），由三个相对独立的层次共同组成。这三个层次由低到高分别是 Java 虚拟机工具接口（JVMTI），Java<br>调试线协议（JDWP）以及 Java 调试接口（JDI）。</p>
+<blockquote>
+<p>详细介绍请参考或搜索: [JPDA 体系概览](<a href="https://www.ibm.com/developerworks/cn/java/j-lo-" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/java/j-lo-</a><br>jpda1/index.html)</p>
+</blockquote>
+<p>JDWP 是 Java Debug Wire Protocol 的缩写，翻译为 “Java调试线协议”，它定义了调试器（debugger）和被调试的<br>Java 虚拟机（target vm）之间的通信协议。</p>
+<h3 id="5-1-服务端-JVM-配置"><a href="#5-1-服务端-JVM-配置" class="headerlink" title="5.1 服务端 JVM 配置"></a>5.1 服务端 JVM 配置</h3><p>本节主要讲解如何在 JVM 中启用 JDWP，以供远程调试。</p>
+<p>假设主启动类是 <code>com.xxx.Test</code>。</p>
+<p>在 Windows 机器上:</p>
+<p>​<br>​    java -Xdebug -Xrunjdwp:transport=dt_shmem,address=debug,server=y,suspend=y com.xxx.Test</p>
+<p>在Solaris 或 Linux操作系统上:</p>
+<p>​<br>​    java -Xdebug -Xrunjdwp:transport=dt_socket,address=8888,server=y,suspend=y com.xxx.Test</p>
+<p>其实, <code>-Xdebug</code> 这个选项什么用都没有，官方说是为了历史兼容性, 避免报错才没有删除。</p>
+<p>通过这些启动参数, Test 类将运行在调试模式下, 并等待调试器连接到JVM的调试地址: 在 Windows 上是 debug，在 Oracle<br>Solaris 或 Linux 操作系统上是 8888 端口。</p>
+<blockquote>
+<p>如果细心观察的话, 会发现 Idea 中 Debug 模式启动的程序，自动设置了类似的启动选项。</p>
+</blockquote>
+<h3 id="5-2-jdb"><a href="#5-2-jdb" class="headerlink" title="5.2 jdb"></a>5.2 jdb</h3><p>启用了 jdwp 之后, 可以使用各种客户端来进行调试/远程调试。</p>
+<p>比如 jdb 调试本地 JVM:</p>
+<p>​<br>​    jdb -attach ‘debug’<br>​    jdb -attach 8888</p>
+<p>当 jdb 初始化并连接到 Test 之后, 就可以进行 Java 代码级(Java-level)的调试。</p>
+<h3 id="5-3-idea-中使用远程调试"><a href="#5-3-idea-中使用远程调试" class="headerlink" title="5.3 idea 中使用远程调试"></a>5.3 idea 中使用远程调试</h3><p>下面介绍 Idea 中怎样使用远程调试。</p>
+<p>和常规的 Debug 配置类似, 进入编辑:</p>
+<p><img src="https://images.gitbook.cn/8e0aefa0-a7a3-11e9-9ef3-6da8876c17f4" alt="enter image description
+here"></p>
+<p>添加 Remote(不是 Tomcat 下面的那个 Remote Server):</p>
+<p><img src="https://images.gitbook.cn/99157960-a7a3-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>然后配置端口号, 比如：8888。</p>
+<p><img src="https://images.gitbook.cn/a6e95c50-a7a3-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>然后应用。</p>
+<p>点击debug的那个按钮即可启动远程调试，连上之后就和调试本地程序一样了。当然,记得加断点或者条件断点。</p>
+<p><strong>注意</strong> : 远程调试时, 需要保证服务端JVM中运行的代码和本地完全一致，否则可能会有莫名其妙的问题。</p>
+<p>细心的同学可能已经发现, Idea 给出了远程 JVM 的启动参数, 建议使用 agentlib 的方式::</p>
+<p>​<br>​    -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8888</p>
+<p>如果知道这个技巧, 就不用了特殊记忆了。需要的时候找一找即可。</p>
+<p>远程调试在测试环境追踪某些问题的时候特别有用。可以保持开启。</p>
+<h3 id="6-JMX-与相关工具"><a href="#6-JMX-与相关工具" class="headerlink" title="6. JMX 与相关工具"></a>6. JMX 与相关工具</h3><p>在 Java SE 5 之前，虽然 JVM 提供了一些底层的API，比如 JVMPI 和 JVMTI ，但这些API是面向 C 语言的，需要通过 JNI<br>等方式才能调用，要监控JVM 和系统资源非常不方便。</p>
+<p>Java SE 5 版本中引入了 JMX 技术（Java Management Extensions， Java<br>管理扩展），用来暴露一些相关信息，甚至支持远程动态设置某些参数。</p>
+<p>JMX 让 JDK 中开发自检测程序成为可能，也提供了大量轻量级的检测 JVM 和运行中对象 / 线程的方式，从而提高了 Java 语言自己的管理监测能力。</p>
+<p>如果你是框架开发者，或者连接池的开发者，还可以注册MBean到JVM，随着其他 JMX 的 Bean<br>一起暴露出去，比如某些监控信息，此处不讲解，可以上网搜索。</p>
+<p>客户端使用 JMX 大约支持两种方式：</p>
+<ul>
+<li>程序代码手动获取 MXBean。</li>
+<li>通过网络远程获取 MBean。</li>
+</ul>
+<p>从 JVM 运行时获取 GC 行为数据, 最简单的办法是使用标准 JMX API 接口. JMX 是获取 JVM 内部运行时状态信息 的标准API.<br>可以编写程序代码, 通过 JMX API 来访问本程序所在的 JVM，也可以通过JMX客户端执行(远程)访问。</p>
+<h3 id="6-1-程序中获取-JMX-信息"><a href="#6-1-程序中获取-JMX-信息" class="headerlink" title="6.1 程序中获取 JMX 信息"></a>6.1 程序中获取 JMX 信息</h3><p>相关的 MXBean 类位于 <code>rt.jar</code> 文件的 <code>java.lang.management</code> 包中，JDK 中默认就提供了。</p>
+<p>代码获取 JVM 相关的 MXBean 信息：</p>
+<p>​<br>​    // import java.lang.management.*<br>​    // 1. 操作系统信息<br>​    OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();<br>​    // 2. 运行时<br>​    RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();<br>​    // 3.1 JVM内存信息<br>​    MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();<br>​    // 3.2 JVM内存池-列表<br>​    List<memorypoolmxbean> memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();<br>​    // 3.3 内存管理器-列表<br>​    List<memorymanagermxbean> memoryManagerMXBeans = ManagementFactory.getMemoryManagerMXBeans();<br>​    // 4. class加载统计信息<br>​    ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();<br>​    // 5. 编译统计信息<br>​    CompilationMXBean compilationMXBean = ManagementFactory.getCompilationMXBean();<br>​    // 6. 线程<br>​    ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();<br>​    // 7.GC<br>​    List<garbagecollectormxbean> garbageCollectorMXBeans<br>​        = ManagementFactory.getGarbageCollectorMXBeans();</garbagecollectormxbean></memorymanagermxbean></memorypoolmxbean></p>
+<p>取得这些MXBean之后，就可以获取对应的Java运行时信息，可以定时上报给某个系统，那么一个简单的监控就创建了。</p>
+<p>当然，这么简单的事情，肯定有现成的轮子啦。比如 Spring Boot Actuator, 以及后面介绍的Micrometer等。 各种监控服务提供的<br>Agent-lib 中也会采集对应的数据。</p>
+<h3 id="6-2-JMX-远程连接"><a href="#6-2-JMX-远程连接" class="headerlink" title="6.2 JMX 远程连接"></a>6.2 JMX 远程连接</h3><p>最常见的 JMX客户端是 JConsole 和 JVisualVM (可以安装各种插件,十分强大)。两个工具都是标准 JDK 的一部分，而且很容易使用。<br>如果使用的是 JDK7u40 及更高版本，还可以使用另一个工具: Java Mission Control(jmc，大致翻译为 Java 控制中心)。</p>
+<p>监控本地的 JVM 并不需要额外配置，如果是远程监控，还可以在服务端部署 jstatd 工具暴露部分信息给 JMX 客户端。</p>
+<p>所有 JMX客户端都是独立的程序,可以连接到目标 JVM 上。目标 JVM 可以在本机, 也可能是远端JVM。</p>
+<p>想要支持 JMX 客户端连接服务端 JVM 实例，则 Java 启动脚本中需要加上相关的配置参数，示例如下：</p>
+<p>​<br>​    -Dcom.sun.management.jmxremote<br>​    -Dcom.sun.management.jmxremote.port=10990<br>​    -Dcom.sun.management.jmxremote.ssl=false<br>​    -Dcom.sun.management.jmxremote.authenticate=false</p>
+<p>如果服务器具有多张网卡(多个IP)，由于安全限制，必须明确指定 hostname， 一般是IP。</p>
+<p>​<br>​    -Djava.rmi.server.hostname=47.57.227.67</p>
+<p>这样启动之后，JMX 客户端(如 JVisualVM)就可以通过 <code>&lt;IP:端口&gt;</code> 连接。(参考 JVisualVM 的示例)。</p>
+<p>如这里对应的就类似于： <code>47.57.227.67:10990</code></p>
+<blockquote>
+<p>如果想要远程查看 VisualGC，则服务端需要开启 jstatd 来支持, jvisualvm 先连 jstatd<br>远程主机，接着在远程主机上点右键添加 jmx 连接。</p>
+</blockquote>
+<p>关于 JVisualVM 的使用，请参考前面的小节。</p>
+<h3 id="7-GC-日志解读与分析"><a href="#7-GC-日志解读与分析" class="headerlink" title="7. GC 日志解读与分析"></a>7. GC 日志解读与分析</h3><blockquote>
+<p>GC 基础，GC 性能调优，以及OutOfMemoryError，可参考铁锚的 CSDN 专栏: <a href="https://blog.csdn.net/renfufei/column/info/14851" target="_blank" rel="noopener">GC<br>性能优化</a></p>
+</blockquote>
+<p>因为 GC 日志模块内置于JVM中, 所以日志中包含了对GC活动最全面的描述。 这就是事实上的标准, 可作为GC性能评估和优化的最真实数据来源。</p>
+<p>GC 日志一般输出到文件之中, 是纯 text 格式的, 当然也可以打印到控制台。有多个可以控制 GC 日志的 JVM<br>参数。例如,可以打印每次GC的持续时间, 以及程序暂停时间(<code>-XX:+PrintGCApplicationStoppedTime</code>),<br>还有GC清理了多少引用类型(<code>-XX:+PrintReferenceGC</code>)。</p>
+<p>通过日志内容也可以得到 GC 相关的信息。</p>
+<p>要打印 GC 日志, 需要在启动脚本中指定类似的启动参数:</p>
+<p>​<br>​    -verbose:gc<br>​    -XX:+PrintGCDetails<br>​    -XX:+PrintGCDateStamps<br>​    -XX:+PrintGCTimeStamps<br>​    -Xloggc:<filename></filename></p>
+<p>各个垃圾收集器的日志可能有一些差异，但只要了解大致的套路之后，即使有差异也不会很大。</p>
+<h3 id="7-1-示例1"><a href="#7-1-示例1" class="headerlink" title="7.1 示例1"></a>7.1 示例1</h3><p>指定 GC 日志相关的启动选项，输出的 GC 日志就类似于下面这种格式(为了显示方便，已手工折行):</p>
+<p>​<br>​    2019-07-14T14:45:37.987+0800: 151.126:<br>​      [GC (Allocation Failure) 151.126:<br>​        [DefNew: 629119K-&gt;69888K(629120K), 0.0584157 secs]<br>​        1619346K-&gt;1273247K(2027264K), 0.0585007 secs]<br>​      [Times: user=0.06 sys=0.00, real=0.06 secs]<br>​<br>    2019-07-14T14:45:59.690+0800: 172.829:<br>      [GC (Allocation Failure) 172.829:<br>        [DefNew: 629120K-&gt;629120K(629120K), 0.0000372 secs]<br>        172.829: [Tenured: 1203359K-&gt;755802K(1398144K), 0.1855567 secs]<br>        1832479K-&gt;755802K(2027264K),<br>        [Metaspace: 6741K-&gt;6741K(1056768K)], 0.1856954 secs]<br>      [Times: user=0.18 sys=0.00, real=0.18 secs]</p>
+<p>上面的 GC 日志暴露了 JVM 中的一些信息。事实上，这个日志片段中发生了 2 次垃圾收集事件(Garbage Collection<br>events)。其中一次清理的是年轻代(Young generation), 而第二次处理的是整个堆内存。</p>
+<p>下面我们来看，如何解读第一次 GC 事件，发生在年轻代中的小型GC(Minor GC):</p>
+<ol>
+<li><code>2019-07-14T14:45:37.987+0800</code> – GC 事件(GC event)开始的时间点.</li>
+<li><code>151.126</code> – GC 时间的开始时间,相对于JVM的启动时间,单位是秒(Measured in seconds).</li>
+<li><code>GC</code> – 用来区分(distinguish)是 Minor GC 还是 Full GC 的标志(Flag). 这里的 <code>GC</code> 表明本次发生的是 Minor GC.</li>
+<li><code>Allocation Failure</code> – 引起垃圾回收的原因. 本次 GC 是因为年轻代中没有任何合适的区域能够存放需要分配的数据结构而触发的.</li>
+<li><code>DefNew</code> – 使用的垃圾收集器的名字. <code>DefNew</code> 这个名字代表的是: 单线程(single-threaded), 采用标记复制(mark-copy)算法的, 使整个JVM暂停运行(stop-the-world)的年轻代(Young generation) 垃圾收集器(garbage collector).</li>
+<li><code>629119K-&gt;69888K</code> – 在本次垃圾收集之前和之后的年轻代内存使用情况(Usage).</li>
+<li><code>(629120K)</code> – 年轻代的总的大小(Total size).</li>
+<li><code>1619346K-&gt;1273247K</code> – 在本次垃圾收集之前和之后整个堆内存的使用情况(Total used heap).</li>
+<li><code>(2027264K)</code> – 总的可用的堆内存(Total available heap).</li>
+<li><code>0.0585007 secs</code> – GC事件的持续时间(Duration),单位是秒.</li>
+<li><code>[Times: user=0.06 sys=0.00, real=0.06 secs]</code> – GC事件的持续时间,通过多种分类来进行衡量:</li>
+</ol>
+<ul>
+<li><strong>user</strong> – 此次垃圾回收, 各个垃圾收集线程消耗的总CPU时间(Total CPU time).</li>
+<li><strong>sys</strong> – 操作系统调用(OS call) 以及等待系统事件的时间(waiting for system event)</li>
+<li><strong>real</strong> – 应用程序暂停的时间(Clock time). 由于串行垃圾收集器(Serial Garbage Collector)使用单个线程, 所以 real time 等于 user + sys 的和.</li>
+</ul>
+<p>通过上面的分析, 可以计算出在垃圾收集期间，JVM 中的内存使用情况。在垃圾收集之前, 堆内存总的使用了 <strong>1.54G</strong><br>(1,619,346K)。其中, 年轻代使用了 <strong>614M</strong> (629,119k)。也就可以推算出老年代使用的内存为: <strong>967M</strong><br>(990,227K)。</p>
+<p><code>-&gt;</code> 右边的数据中蕴含了更重要的信息, 年轻代的内存使用量，在垃圾回收后下降了 <strong>546M</strong> (559,231k), 但总的堆内存使用(total<br>heap usage)只减少了 <strong>337M</strong> (346,099k). 通过这一点可以算出, 有 <strong>208M</strong> (213,132K)<br>的年轻代对象被提升到老年代(Old)中。</p>
+<p>不知道各位同学有没有注意到一些套路。 GC日志中展示的内存数值，一般都是使用量和总大小，猜一猜就知道各个部分的含义了。</p>
+<p>第二次 GC 的日志，各位同学可以自己分析一下。</p>
+<h3 id="7-2-示例2"><a href="#7-2-示例2" class="headerlink" title="7.2 示例2"></a>7.2 示例2</h3><p>再来看一个 ParallelGC 输出的日志示例:</p>
+<p>​<br>​    2019-07-14T14:46:28.829+0800: 200.659:<br>​      [Full GC (Ergonomics)<br>​        [PSYoungGen: 64000K-&gt;63999K(74240K)]<br>​        [ParOldGen: 169318K-&gt;169318K(169472K)] 233318K-&gt;233317K(243712K),<br>​        [Metaspace: 20427K-&gt;20427K(1067008K)],<br>​      0.1538778 secs]<br>​      [Times: user=0.42 sys=0.00, real=0.16 secs]</p>
+<p>分析以上日志内容, 可以得知:</p>
+<ul>
+<li>这部分日志截取自JVM启动后200秒左右。</li>
+<li>日志片段中显示, 发生了 Full GC。</li>
+<li>这次暂停事件的总持续时间是 <code>160毫秒</code>。</li>
+<li>在GC完成之后, 几乎所有的老年代空间依然被占用(<code>169318K-&gt;169318K(169472K)</code>)。</li>
+</ul>
+<p>通过日志信息可以确定, 该应用的 GC 情况非常糟糕。而GC的结果是, 老年代空间仍然被占满.</p>
+<p>从此示例可以看出, GC日志对监控 GC 行为和 JVM 是否处于健康状态非常有效。</p>
+<p>一般情况下, 查看 GC 日志就可以快速确定以下症状:</p>
+<ul>
+<li>GC 开销太大。如果 GC 暂停的总时间很长, 就会损害系统的吞吐量。不同的系统允许不同比例的 GC 开销, 但一般认为, 正常范围在 <code>10%</code> 以内。</li>
+<li>极个别的 GC 事件暂停时间过长。当某次 GC 暂停时间太长, 就会影响系统的延迟指标. 如果延迟指标规定交易必须在 <code>1,000 ms</code>内完成, 那就不能容忍任何超过 <code>1000毫秒</code>的 GC 暂停。</li>
+<li>老年代的使用量超过限制。如果老年代空间在 Full GC 之后仍然接近全满, 那么 GC 就成为了性能瓶颈, 可能是内存太小, 也可能是存在内存泄漏。这种症状会让 GC 的开销暴增。</li>
+</ul>
+<h4 id="7-3-GCViewer-工具"><a href="#7-3-GCViewer-工具" class="headerlink" title="7.3 GCViewer 工具"></a>7.3 GCViewer 工具</h4><p>可以看到,GC日志中的信息非常详细。但除了这些简单的小程序, 生产系统一般都会生成大量的GC日志, 纯靠人工是很难阅读和进行解析的。</p>
+<p>我们可以自己编写解析器, 来将庞大的 GC 日志解析为直观易读的图形信息。 但很多时候自己写程序也不是个好办法，因为各种 GC 算法的复杂性,<br>导致日志信息格式互相之间不太兼容。那么神器来了: <a href="https://github.com/chewiebug/GCViewer" target="_blank" rel="noopener">GCViewer</a>。</p>
+<p>GCViewer 是一款开源的 GC 日志分析工具。GitHub项目主页对各项指标进行了完整的描述. 下面我们介绍最常用的一些指标。</p>
+<p>gcviewer 本身是一个jar文件，使用的命令大致如下:</p>
+<p>​<br>​    java -jar gcviewer_1.3.4.jar gc.log</p>
+<p>大致会看到类似下面的图形界面:</p>
+<p><img src="https://images.gitbook.cn/1c8f0180-a7a4-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>上图中, Chart 区域是对GC事件的图形化展示。包括各个内存池的大小和 GC 事件。上图中, 只有两个可视化指标: 蓝色线条表示堆内存的使用情况,<br>黑色的 Bar 则表示每次 GC 暂停时间的长短。</p>
+<p>从图中可以看到, 内存使用量增长很快。一分钟左右就达到了堆内存的最大值. 堆内存几乎全部被消耗, 不能顺利分配新对象, 并引发频繁的 Full GC 事件.<br>这说明程序可能存在内存泄露, 或者启动时指定的内存空间不足。</p>
+<p>从图中还可以看到 GC暂停的频率和持续时间。<code>30秒</code>之后, GC几乎不间断地运行,最长的暂停时间超过<code>1.4秒</code>。</p>
+<p>在右边有三个选项卡。“ <strong><code>Summary</code></strong> (摘要)” 中比较有用的是 “<code>Throughput</code>”(吞吐量百分比) 和 “<code>Number of
+GC pauses</code>”(GC暂停的次数), 以及“<code>Number of full GC pauses</code>”(Full GC 暂停的次数).<br>吞吐量显示了有效工作的时间比例, 剩下的部分就是GC的消耗。</p>
+<p>以上示例中的吞吐量为 <strong><code>6.28%</code></strong> 。这意味着有 <strong><code>93.72%</code></strong> 的CPU时间用在了GC上面. 很明显系统所面临的情况很糟糕 ——<br>宝贵的CPU时间没有用于执行实际工作, 而是在试图清理垃圾。</p>
+<p>下一个有意思的地方是“ <strong>Pause</strong> ”(暂停)选项卡:</p>
+<p><img src="https://images.gitbook.cn/2f575b00-a7a4-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>“<code>Pause</code>” 展示了GC暂停的总时间,平均值,最小值和最大值, 并且将 total 与minor/major 暂停分开统计。如果要优化程序的延迟指标,<br>这些统计可以很快判断出暂停时间是否过长。另外, 我们可以得出明确的信息: 累计暂停时间为 <code>634.59 秒</code>, GC暂停的总次数为 <code>3,938 次</code>,<br>这在<code>11分钟/660秒</code>的总运行时间里那不是一般的高。</p>
+<p>更详细的GC暂停汇总信息, 请查看主界面中的 “ <strong>Event details</strong> ” 标签:</p>
+<p><img src="https://images.gitbook.cn/45d71730-a7a4-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>从“ <strong>Event details</strong> ” 标签中, 可以看到日志中所有重要的GC事件汇总: <code>普通GC停顿</code> 和 <code>Full GC 停顿次数</code>,<br>以及<code>并发执行数</code>, <code>非 stop-the-world 事件</code>等。此示例中, 可以看到一个明显的地方, Full GC 暂停严重影响了吞吐量和延迟,<br>依据是: <code>3,928 次 Full GC</code>, 暂停了<code>634秒</code>。</p>
+<p>可以看到, GCViewer 能用图形界面快速展现异常的GC行为。一般来说, 图像化信息能迅速揭示以下症状:</p>
+<ul>
+<li>低吞吐量。当应用的吞吐量下降到不能容忍的地步时, 有用工作的总时间就大量减少. 具体有多大的 “容忍度”(tolerable) 取决于具体场景。按照经验, 低于 90% 的有效时间就值得警惕了, 可能需要好好优化下GC。</li>
+<li>单次GC的暂停时间过长。只要有一次GC停顿时间过长,就会影响程序的延迟指标. 例如, 延迟需求规定必须在 1000 ms以内完成交易, 那就不能容忍任何一次GC暂停超过1000毫秒。</li>
+<li>堆内存使用率过高。如果老年代空间在 Full GC 之后仍然接近全满, 程序性能就会大幅降低, 可能是资源不足或者内存泄漏。这种症状会对吞吐量产生严重影响。</li>
+</ul>
+<p>业界良心 —— 图形化展示的GC日志信息绝对是我们重磅推荐的。不用去阅读冗长而又复杂的GC日志,通过容易理解的图形, 也可以得到同样的信息。</p>
+<h3 id="8-内存-dump-和内存分析工具介绍"><a href="#8-内存-dump-和内存分析工具介绍" class="headerlink" title="8. 内存 dump 和内存分析工具介绍"></a>8. 内存 dump 和内存分析工具介绍</h3><p>内存 Dump 分为2种方式： 主动 Dump 和被动 Dump。</p>
+<p>主动 Dump 的工具包括: <code>jcmd</code>, <code>jmap</code>, <code>JVisualVM</code>等等。具体使用请参考相关工具部分。</p>
+<p>被动 Dump 主要是: hprof， 以及 <code>-XX:+HeapDumpOnOutOfMemoryError</code> 等参数。</p>
+<p>常用的分析工具有:</p>
+<ul>
+<li><p>jhat jhat用来支持分析dump文件, 是一个HTTP/HTML服务器，能将dump文件生成在线的HTML文件，通过浏览器查看，一般很少使用。</p>
+</li>
+<li><p>MAT 分析JVM的 Dump文件, 最好用的工具是 <code>mat</code>, 全称是 <code>Eclipse Memory Analyzer</code> Tools。 优势在于, 可以从 GC root 进行对象引用分析, 计算各个 root 所引用的对象有多少, 比较容易定位内存泄露。 MAT是一款独立的产品, 100MB不到, 可以从官方下载。 下载地址: <a href="https://www.eclipse.org/mat/" target="_blank" rel="noopener">https://www.eclipse.org/mat/</a></p>
+</li>
+</ul>
+<h3 id="MAT-使用示例"><a href="#MAT-使用示例" class="headerlink" title="MAT 使用示例"></a>MAT 使用示例</h3><p>现象描述: 系统进行慢SQL优化调整之后上线。 在测试环境没有发现什么问题。但运行一段时间之后发现CPU跑满, 查看GC日志</p>
+<p>查看本机的Java进程:</p>
+<p>​<br>​    jps -v</p>
+<p>假设jps查看到的pid为3826。</p>
+<p>Dump内存:</p>
+<p>​<br>​    jmap -dump:format=b,file=3826.hprof 3826</p>
+<p>导出完成后, dump文件大约是3个G。所以需要修改MAT的配置参数，太小了不行，但也不一定要设置得非常大。</p>
+<p>在MAT安装目录下。</p>
+<blockquote>
+<p>MemoryAnalyzer.ini</p>
+</blockquote>
+<p>默认的内存配置是 1024MB, 分析3GB的dump文件可能会报错。</p>
+<p>​<br>​    -vmargs<br>​    -Xmx1024m</p>
+<p>根据Dump文件的大小, 适当增加最大堆内存设置, 要求是4MB的倍数, 例如:</p>
+<p>​<br>​    -vmargs<br>​    -Xmx4g</p>
+<p>双击打开 MemoryAnalyzer.exe</p>
+<p>选择菜单 File –&gt; Open File… 选择对应的 dump 文件。</p>
+<p>选择 Leak Suspects Report 并确定, 分析内存泄露方面的报告。</p>
+<p><img src="https://images.gitbook.cn/72c9e560-a7a4-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>然后等待, 分析完成后, 汇总信息如下:</p>
+<p><img src="https://images.gitbook.cn/0eeb60e0-a7a5-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>占用内存最大的问题根源1:</p>
+<p><img src="https://images.gitbook.cn/19d12490-a7a5-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>占用内存最大的问题根源2:</p>
+<p><img src="https://images.gitbook.cn/2331a7d0-a7a5-11e9-b3d5-bf57e35df593" alt="enter image description
+here"></p>
+<p>占用内存最大的问题根源3:</p>
+<p>![![](08_04_mat_leak_problem3.png)。](<a href="https://images.gitbook.cn/2e3d1bf0-a7a5-11e9-87ea-" target="_blank" rel="noopener">https://images.gitbook.cn/2e3d1bf0-a7a5-11e9-87ea-</a><br>cf9b4defc0d8)</p>
+<p>可以看到, 总的内存占用才2GB左右。问题根源1和根源2, 每个占用 800MB, 问题很可能就在他们身上。 当然, 根源3也有一定的参考价值,<br>表明这时候有很多JDBC操作。</p>
+<p>查看问题根源1。 其说明信息如下:</p>
+<p>​<br>​    The thread org.apache.tomcat.util.threads.TaskThread<br>​      @ 0x6c4276718 http-nio-8086-exec-8<br>​    keeps local variables with total size 826,745,896 (37.61%) bytes.<br>​<br>    The memory is accumulated in one instance of<br>    “org.apache.tomcat.util.threads.TaskThread”<br>    loaded by “java.net.URLClassLoader @ 0x6c0015a40”.<br>    The stacktrace of this Thread is available. See stacktrace.</p>
+<pre><code>Keywords
+java.net.URLClassLoader @ 0x6c0015a40
+org.apache.tomcat.util.threads.TaskThread</code></pre><p>大致解读一下, 这是一个(运行中的)线程, 构造类是 <code>org.apache.tomcat.util.threads.TaskThread</code>, 持有了 大约<br><code>826MB</code> 的对象, 占比为 <code>37.61%</code>。</p>
+<blockquote>
+<p>所有运行中的线程(栈)都是GC-Root。</p>
+</blockquote>
+<p>点开 <code>See stacktrace.</code> 链接, 查看导出时的线程调用栈。</p>
+<p>节选如下:</p>
+<p>​<br>​    Thread Stack<br>​<br>    http-nio-8086-exec-8<br>      …<br>      at org.mybatis.spring.SqlSessionTemplate.selectOne<br>      at com.sun.proxy.$Proxy195.countVOBy(Lcom/<strong><strong>/domain/vo/home/residents/ResidentsInfomationVO;)I (Unknown Source)<br>      at com.</strong></strong>.bi.home.service.residents.impl.ResidentsInfomationServiceImpl.countVOBy(….)Ljava/lang/Integer; (ResidentsInfomationServiceImpl.java:164)<br>      at com.<strong><strong>.bi.home.service.residents.impl.ResidentsInfomationServiceImpl.selectAllVOByPage(….)Ljava/util/Map; (ResidentsInfomationServiceImpl.java:267)<br>      at com.</strong></strong>.web.controller.personFocusGroups.DocPersonFocusGroupsController.loadPersonFocusGroups(….)Lcom/****/domain/vo/JSONMessage; (DocPersonFocusGroupsController.java:183)<br>      at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run()V (TaskThread.java:61)<br>      at java.lang.Thread.run()V (Thread.java:745)</p>
+<p>其中比较关键的信息, 就是找到我们自己的 package, 如:<br><code>com.****.....ResidentsInfomationServiceImpl.selectAllVOByPage</code> 。</p>
+<p>并且其中给出了Java源文件所对应的行号。</p>
+<p>分析问题根源2, 结果和根源1基本上是一样的。</p>
+<p>当然, 还可以分析这个根源下持有的各个类的对象数量。</p>
+<p>点击根源1说明信息下面的 <code>Details »</code> 链接, 进入详情页面。</p>
+<p>查看其中的 “Accumulated Objects in Dominator Tree”</p>
+<p><img src="https://images.gitbook.cn/71de3060-a7a5-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>可以看到占用内存最多的是2个 ArrayList 对象。</p>
+<p>鼠标左键点击第一个 ArrayList 对象, 在弹出的菜单中选择 “Show objects by class” –&gt; “by outgoing<br>references”。</p>
+<p><img src="https://images.gitbook.cn/826f1070-a7a5-11e9-94bc-5d01cd67de1c" alt="enter image description
+here"></p>
+<p>打开 class_references 标签页。</p>
+<p><img src="https://images.gitbook.cn/8b30bba0-a7a5-11e9-87ea-cf9b4defc0d8" alt="enter image description
+here"></p>
+<p>展开后发现 PO 类对象有 113 万个。加载的确实有点多。直接占用170MB内存(每个对象约150字节。)</p>
+<p>事实上，这是将批处理任务，放到实时的请求中进行计算，导致的问题。</p>
+<p>MAT还提供了其他信息, 都可以点开看看, 以增加了解。 碰到不懂的就上网搜索。</p>
+<h3 id="9-面临复杂问题时可选的高级工具"><a href="#9-面临复杂问题时可选的高级工具" class="headerlink" title="9. 面临复杂问题时可选的高级工具"></a>9. 面临复杂问题时可选的高级工具</h3><h3 id="OOM-Killer"><a href="#OOM-Killer" class="headerlink" title="OOM Killer"></a>OOM Killer</h3><p>内存溢出(Out of Memory,OOM), 是指计算机的所有可用内存(包括交换空间, swap space), 都被使用满了。</p>
+<p>这种情况下, 默认配置会导致系统报警, 并停止正常运行. 当然, 将 /proc/sys/vm/panic <em>on</em> oom 参数设置为 0,<br>则告诉系统内核, 如果系统发生内存溢出, 就可以调用 oom_killer(OOM终结者)功能, 来杀掉最胖的那头进程(rogue processes,<br>流氓进程), 这样系统又可以继续工作了。</p>
+<p>假如物理内存不足, Linux 会找出一头比较壮的进程来杀掉。查看OOM终结者日志:</p>
+<p>Linux系统的OOM终结者, Out of memory killer。</p>
+<p>​<br>​    sudo cat /var/log/messages | grep killer -A 2 -B 2</p>
+<h3 id="BTrace"><a href="#BTrace" class="headerlink" title="BTrace"></a>BTrace</h3><p>BTrace是基于Java语言的一个安全的、可提供动态追踪服务的工具。</p>
+<p>BTrace基于ASM、Java Attach<br>Api、Instruments开发，为用户提供了很多注解。依靠这些注解，我们可以编写BTrace脚本（简单的Java代码）达到我们想要的效果(只读监控)，而不必深陷于ASM对字节码的操作中不可自拔。</p>
+<p>细心的同学可能已经发现，在介绍 JVisualVM 的插件时, 截图中有相关的插件 “BTrace Workbench”。<br>安装插件之后，在对应的JVM实例上点右键，很容易就进入操作界面了。</p>
+<p>BTrace 提供了很多示例，简单的监控照着改一改就行。</p>
+<blockquote>
+<p>可参考: [Java动态追踪技术探究](<a href="https://tech.meituan.com/2019/02/28/java-dynamic-" target="_blank" rel="noopener">https://tech.meituan.com/2019/02/28/java-dynamic-</a><br>trace.html)</p>
+</blockquote>
+<h3 id="Arthas"><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h3><p>Arthas（阿尔萨斯）是Alibaba开源的Java诊断工具，深受开发者喜爱。</p>
+<p>当你遇到以下类似问题而束手无策时，<code>Arthas</code>可以帮助你解决：</p>
+<ol>
+<li>这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？</li>
+<li>我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？</li>
+<li>遇到问题无法在线上 debug，难道只能通过加日志再重新发布吗？</li>
+<li>线上遇到某个用户的数据处理有问题，但线上同样无法 debug，线下无法重现！</li>
+<li>是否有一个全局视角来查看系统的运行状况？</li>
+<li>有什么办法可以监控到JVM的实时运行状态？</li>
+</ol>
+<p><code>Arthas</code>支持JDK 6+，支持Linux/Mac/Winodws，采用命令行交互模式，同时提供丰富的 <code>Tab</code><br>自动补全功能，进一步方便进行问题的定位和诊断。</p>
+<blockquote>
+<p><code>Arthas</code>官方网站提供了在线的命令行模拟器，跟着执行一遍很容易了解相关的功能。</p>
+</blockquote>
+<h3 id="10-应对容器时代面临的挑战"><a href="#10-应对容器时代面临的挑战" class="headerlink" title="10. 应对容器时代面临的挑战"></a>10. 应对容器时代面临的挑战</h3><p>在如今的时代，容器的使用越来越普及，成为很多大规模集群的基石。<br>在容器环境下，要直接进行调试并不容易【当然可能性还是有的】。我们更多的是进行应用性能指标的采集和监控，并构建预警机制。而这需要架构师、开发、测试、运维人员的协作。<br>但监控领域的工具, 又多又杂, 而且在持续发展和迭代中。</p>
+<p>最早期的监控,<br>只在系统发布时检查服务器相关的参数，并将这些参数用作系统运行状况的指标。而监控服务器的健康状况，与用户体验之间紧密相关，悲剧在于那些年代发生的问题比实际检测到的要多很多。</p>
+<p>随着时间推移，日志管理、预警、遥测以及系统报告领域持续发力。其中有很多有效的措施, 诸如安全事件, 有效警报, 记录资源使用量等等,<br>但前提是我们需要有一个清晰的策略，进行用户访问链路跟踪. 比如 Zabbix, Nagios, 以及 Prometheus 等工具在生产环境中被广泛使用。</p>
+<p>性能问题的关键是人, 也就是我们的用户。但已有的这些工具并没有实现真正的用户体验监控。仅仅使用这些软件也不能缓解性能问题, 我们还需要采取各种措施,<br>在勇敢和专注下不懈地努力。</p>
+<p>Web系统的问题诊断和性能调优，是一件意义重大的事情。需要严格把控，也需要付出很多精力。当然, 成功实施这些工作对企业的回报也是巨大的!</p>
+<p>Spring是Java领域事实上的标准，SpringBoot提供了一款应用指标收集器: Micrometer，官方文档连接:<br><a href="https://micrometer.io/docs" target="_blank" rel="noopener">https://micrometer.io/docs</a></p>
+<ul>
+<li>支持直接将数据上报给 Elasticsearch, Datadog, InfluxData等各种流行的监控系统。</li>
+<li>自动采集最大延迟，平均延迟，95%线，吞吐量，内存使用量等指标。</li>
+</ul>
+<p>此外，在小规模集群中，我们还可以使用Pinpoint 、Skywalking等开源APM工具。</p>
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ol>
+<li><p>官方troubleshoot指南: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html</a></p>
+</li>
+<li><p>JDK辅助工具参考文档 : <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/index.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/tools/unix/index.html</a></p>
+</li>
+<li><p>HotSpot VM选项: <a href="https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</a></p>
+</li>
+<li><p>JMX 配置指南: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html</a></p>
+</li>
+<li><p>GC性能优化系列: <a href="https://renfufei.blog.csdn.net/column/info/14851/" target="_blank" rel="noopener">https://renfufei.blog.csdn.net/column/info/14851/</a></p>
+</li>
+<li><p>GC调优指南: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/</a></p>
+</li>
+<li><p>延迟(Latency): <a href="https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/" target="_blank" rel="noopener">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/</a></p>
+</li>
+<li><p>CAPACITY TUNING: <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/performance_tuning_guide/s-memory-captun" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/performance_tuning_guide/s-memory-captun</a></p>
+</li>
+<li><p>JVMInternals : <a href="http://blog.jamesdbloom.com/JVMInternals.html" target="_blank" rel="noopener">http://blog.jamesdbloom.com/JVMInternals.html</a></p>
+</li>
+<li><p>JDWP 协议及实现: <a href="https://www.ibm.com/developerworks/cn/java/j-lo-jpda3/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/java/j-lo-jpda3/</a></p>
+</li>
+</ol>
+<hr>
+<p><strong>作者简介</strong></p>
+<p>任富飞，火币集团研发中心架构师，具有8年软件设计和开发经验，3年Java系统调优经验。技术文章翻译爱好者，热爱各种开源技术，对JVM和Java体系有较深入的理解，熟悉互联网领域常用的各种调优方法和技巧。</p>
+<hr>
+<p>本文首发于 GitChat，未经授权不得转载，转载需与 GitChat 联系。</p>
+<h2 id="更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！"><a href="#更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！" class="headerlink" title="更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！"></a>更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！</h2><h1 id="本资源由微信公众号：光明顶一号，提供支持"><a href="#本资源由微信公众号：光明顶一号，提供支持" class="headerlink" title="本资源由微信公众号：光明顶一号，提供支持"></a>本资源由微信公众号：光明顶一号，提供支持</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/04/JVM/JVM问题诊断快速入门/">http://yoursite.com/2019/09/04/JVM/JVM问题诊断快速入门/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/JVM/"># JVM</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/12/JVM/JVM常见面试题指南/">JVM常见面试题</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/04/MongoDB/超高性价比的MongoDB零基础快速入门实战教程/">超高性价比的 MongoDB 快速入门教程</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

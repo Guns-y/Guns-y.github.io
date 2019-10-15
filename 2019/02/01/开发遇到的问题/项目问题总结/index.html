@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>项目开发常见问题总结 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">项目开发常见问题总结</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 1, 2019&nbsp;&nbsp;11:32:04</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-ResponseBody"><a href="#1-ResponseBody" class="headerlink" title="1. @ResponseBody"></a>1. @ResponseBody</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022955.jpg" alt="屏幕快照 2019-02-01 上午11.25.22"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22958.jpg" alt="image-20190201113400805"></p>
+<hr>
+<ol start="2">
+<li>在你的controller层对应的方法返回html路径及名称时，在前面多加了一个/ 。</li>
+</ol>
+<p>例如return “/index”，正式这个/导致报错的，解决：去掉返回前面的/即可，例如return “/index” 。</p>
+<ol start="3">
+<li>在使用springboot的过程中，如果使用thymeleaf作为模板文件，则要求HTML格式必须为严格的html5格式，必须有结束标签，否则会报错。</li>
+</ol>
+<p>解决办法如下：</p>
+<p>在application.yml中添加以下配置</p>
+<p>spring.thymeleaf.content-type: text/html<br>spring.thymeleaf.cache: false<br>spring.thymeleaf.mode: LEGACYHTML5</p>
+<p>再在pom.xml 添加以下依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">&lt;groupId&gt;net.sourceforge.nekohtml&lt;/groupId&gt; </span><br><span class="line">&lt;artifactId&gt;nekohtml&lt;/artifactId&gt; </span><br><span class="line">&lt;version&gt;1.9.22&lt;/version&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>资源文件的路径被修改，如果你其他的请求都正常返回则可忽略这条。</li>
+</ol>
+<p>解决：在pom.xml文件的<build></build>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;resource&gt;</span><br><span class="line"> &lt;directory&gt;src/main/resources&lt;/directory&gt;</span><br><span class="line">&lt;/resource&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-ResponseBody注解-然后返回JSON格式。后端是无法查看的-要通过前端Google检查元素查看？"><a href="#添加-ResponseBody注解-然后返回JSON格式。后端是无法查看的-要通过前端Google检查元素查看？" class="headerlink" title="添加@ResponseBody注解 然后返回JSON格式。后端是无法查看的 要通过前端Google检查元素查看？"></a>添加@ResponseBody注解 然后返回JSON格式。后端是无法查看的 要通过前端Google检查元素查看？</h2><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022959.jpg" alt="image-20190201113602438"></p>
+<hr>
+<h3 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h3><h1 id="2-Redis-远程服务器-liux-腾讯云"><a href="#2-Redis-远程服务器-liux-腾讯云" class="headerlink" title="2 Redis 远程服务器 liux 腾讯云"></a>2 Redis 远程服务器 liux 腾讯云</h1><blockquote>
+<p> <a href="https://www.cnblogs.com/KKSJS/p/9622815.html" target="_blank" rel="noopener">https://www.cnblogs.com/KKSJS/p/9622815.html</a></p>
+</blockquote>
+<h1 id="阿里云部署Redis服务器远程连接问题"><a href="#阿里云部署Redis服务器远程连接问题" class="headerlink" title="阿里云部署Redis服务器远程连接问题"></a><a href="https://www.cnblogs.com/KKSJS/p/9622815.html" target="_blank" rel="noopener">阿里云部署Redis服务器远程连接问题</a></h1><p>昨天在阿里云免费领了一个月的云服务器，就着最近学的SpringBoot，准备做一个SpringBoot与Redis的整合。</p>
+<p>因为以前用的Redis都是安装在本地的，使用过程中没遇到什么大问题，可是一旦部署到真实的云服务器上就出现了一大堆问题，且听我慢慢道来。</p>
+<p>在安装Redis前，云服务器实例是完全纯净的。首先执行下面的命令下载并安装redis：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//下载</span><br><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz</span><br><span class="line">//解压</span><br><span class="line">tar xzf redis-4.0.9.tar.gz</span><br><span class="line">//进入解压后的目录</span><br><span class="line">cd redis-4.0.9</span><br><span class="line">//安装到当前目录</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>如果make失败，一般是系统中还未安装gcc造成的，因为Redis是用C语言写成的，所以需要先通过<code>yum install gcc</code>安装C语言环境。</p>
+<p>安装Redis后，先别慌着启动，因为Redis对远程连接要求比较苛刻，具体到以下几点：</p>
+<p>Redis服务默认只让本机访问，因为现在Redis是在人家阿里云的服务器上，所以需要修改成让外网也能访问。主要是修改Redis的默认配置文件reidis.conf。</p>
+<ul>
+<li>注释掉bind 127.0.0.1这一行，这样可以使所有的ip访问redis</li>
+<li>修改 protected-mode，值改为no，生产环境下要改为yes</li>
+<li>为了Redis的安全，需要把#requirepass foobared去掉注释，foobared改为自己的密码，例如可以改为requirepass 123456</li>
+</ul>
+<p>经过以上几步后，理论上就可以通过外网访问到云服务器上的Redis了。如果现在去启动Redis的服务端，会发现Redis只能是前台启动，在这里可以通过修改redis.conf里的daemonize为yes让redis开启后台启动。</p>
+<p>因为redis采用的是单进程多线程的模式。当redis.conf中选项daemonize设置成yes时，代表开启守护进程模式。在该模式下，redis会在后台运行，并将进程pid号写入至redis.conf选项pidfile设置的文件中，此时redis将一直运行，除非手动kill该进程。</p>
+<p>在修改完配置文件后，我们进入redis-4.0.9的scr目录，执行以下命令启动Redis的服务端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./redis-server ../redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>这样Redis就在云服务器上以后台的方式启动了，接下来我在本地快速搭建了一个SpringBoot整合Redis的案例。在application.properties添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#设置redis主机ip</span><br><span class="line">spring.redis.host= #你的云服务器IP地址</span><br><span class="line">#连接redis服务的密码</span><br><span class="line">spring.redis.password= #刚刚在redis.conf中设置的密码</span><br></pre></td></tr></table></figure>
+
+<p>添加controller如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class TestRedis &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private StringRedisTemplate strTplRedis;</span><br><span class="line">    @GetMapping(&quot;/testredis&quot;)</span><br><span class="line">    public String testRedis()&#123;</span><br><span class="line">        strTplRedis.opsForValue().set(&quot;testkey&quot;, &quot;testvalue&quot;);</span><br><span class="line">        strTplRedis.opsForValue().get(&quot;testkey&quot;);</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时我们启动项目后，访问localhost:8080/testredis，出现如下错误：<br><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023001.png" alt="这里写图片描述"></p>
+<p>这里问题就来了，显示无法连接到Redis，此时配置文件里面该改到的都已经改了，后来我又想到应该是防火墙的问题，因为redis的端口是<code>6379</code>，服务器默认是不开启这个端口的，所以我执行下面命令关闭了防火墙：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service iptables stop</span><br></pre></td></tr></table></figure>
+
+<p>重新访问url，发现还是报同样的错……</p>
+<p>于是去请教大神，经过大神的一顿排查，最后告诉我应该是我服务器的安全组规则的问题。</p>
+<p>原来，新建的阿里云服务器实例，是默认不让外网访问的，一个实例属于一个安全组，这个安全组里一开始有阿里云为我们定义的规则，默认是不开放任何tcp端口的，具体的可以查看官方的介绍：<a href="https://help.aliyun.com/document_detail/25471.html" target="_blank" rel="noopener">添加安全组规则</a>。</p>
+<p>在修改好安全组规则后，再访问页面url，页面显示success，这下总算是将数据存进去了，使用Redis的桌面客户端也能远程连接到Redis，显示Redis里面的数据如下：<br><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023003.png" alt="这里写图片描述"></p>
+<p>回头看来，远程连接Redis的坑基本上是被我踩完了……</p>
+<hr>
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190205173607771.png" alt="image-20190205173607771"></p>
+<hr>
+<h1 id="3-加入maven依赖-CodeC-MessageToByteEncoder"><a href="#3-加入maven依赖-CodeC-MessageToByteEncoder" class="headerlink" title="3  加入maven依赖 CodeC/MessageToByteEncoder"></a>3  加入maven依赖 CodeC/MessageToByteEncoder</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023004.jpg" alt="屏幕快照 2019-02-05 下午4.06.15"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/02/01/开发遇到的问题/项目问题总结/">http://yoursite.com/2019/02/01/开发遇到的问题/项目问题总结/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/问题/"># 问题</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/02/03/代码snip/snip1/登陆模块的设计/">登陆模块的设计</a>
+            
+            
+            <a class="next" rel="next" href="/2019/01/31/技术栈/Redis集成SpringBoot封装utils/RedisUtils/">Redis+SPringBoot Utils</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

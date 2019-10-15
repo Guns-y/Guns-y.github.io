@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Redis 尚硅谷 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Redis 尚硅谷</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 16, 2019&nbsp;&nbsp;10:52:44</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Redis/">Redis</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-下载-⏬"><a href="#1-下载-⏬" class="headerlink" title="1 下载 ⏬"></a>1 下载 ⏬</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022509.jpg" alt="image-20190116111234768"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022510.jpg" alt="image-20190116111434390"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022512.jpg" alt="image-20190116111450969"></p>
+<hr>
+<blockquote>
+<p><a href="https://redis.io/download" target="_blank" rel="noopener">https://redis.io/download</a> 官网下载地址  </p>
+</blockquote>
+<h1 id="2-使用-HelloWord"><a href="#2-使用-HelloWord" class="headerlink" title="2 使用 HelloWord"></a>2 使用 HelloWord</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022513.jpg" alt="image-20190116111957381"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022514.jpg" alt="image-20190116112204011"><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022516.jpg" alt="image-20190116114039280"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022517.jpg" alt="image-20190116114058920"></p>
+<ul>
+<li><p>先cd 到redis （root）下面</p>
+</li>
+<li><p>然后ls 找到src 然后./redis-server</p>
+</li>
+<li><p>然后新开一个终端 然后ls 找到src ./redis-cli</p>
+</li>
+</ul>
+<hr>
+<h1 id="3-Redis-启动后杂项基础知识"><a href="#3-Redis-启动后杂项基础知识" class="headerlink" title="3 Redis_启动后杂项基础知识"></a>3 Redis_启动后杂项基础知识</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022520.jpg" alt="image-20190116115107235"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022522.jpg" alt="image-20190116115253074"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022523.jpg" alt="image-20190116115323933"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022524.jpg" alt="image-20190116154035177"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022526.jpg" alt="image-20190116154100829"></p>
+<hr>
+<h1 id="4-Redis的五大数据类型"><a href="#4-Redis的五大数据类型" class="headerlink" title="4 Redis的五大数据类型"></a>4 Redis的五大数据类型</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022527.jpg" alt="image-20190116154237555"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022528.jpg" alt="image-20190116154308276"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022529.jpg" alt="image-20190116154439211"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022533.jpg" alt="image-20190116154513266"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022538.jpg" alt="image-20190116154602073"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022539.jpg" alt="image-20190116154721676"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022547.jpg" alt="image-20190116154742190"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022549.jpg" alt="image-20190116154800486"></p>
+<hr>
+<h1 id="5-Redis-键-key"><a href="#5-Redis-键-key" class="headerlink" title="5.Redis 键 key"></a>5.Redis 键 key</h1><h4 id="1-keys-：列出所有key"><a href="#1-keys-：列出所有key" class="headerlink" title="1.keys * ：列出所有key"></a>1.keys * ：列出所有key</h4><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022552.jpg" alt="image-20190116155216250"></p>
+<hr>
+<h4 id="2-exists-key的名字-判断某个key是否存在"><a href="#2-exists-key的名字-判断某个key是否存在" class="headerlink" title="2.exists key的名字 判断某个key是否存在"></a>2.exists key的名字 判断某个key是否存在</h4><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022555.jpg" alt="image-20190116155311903"></p>
+<h4 id="3-move-key-db-—-gt-当前库就没有了-被移除了"><a href="#3-move-key-db-—-gt-当前库就没有了-被移除了" class="headerlink" title="3. move key db —&gt;当前库就没有了 被移除了"></a>3. move key db —&gt;当前库就没有了 被移除了</h4><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022556.jpg" alt="image-20190116155455537"></p>
+<h4 id="4-expire-key-秒钟-为给定的key设置过期时间"><a href="#4-expire-key-秒钟-为给定的key设置过期时间" class="headerlink" title="4.expire key 秒钟 为给定的key设置过期时间"></a>4.expire key 秒钟 为给定的key设置过期时间</h4><h4 id="5-ttl-key-查看还有多少秒过期-1表示永不过期-2表示已过期"><a href="#5-ttl-key-查看还有多少秒过期-1表示永不过期-2表示已过期" class="headerlink" title="5.ttl key 查看还有多少秒过期 -1表示永不过期 -2表示已过期"></a>5.ttl key 查看还有多少秒过期 -1表示永不过期 -2表示已过期</h4><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022559.jpg" alt="image-20190116155802870"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022601.jpg" alt="image-20190116155823825"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022602.jpg" alt="image-20190116155952844"></p>
+<hr>
+<h1 id="6-Redis-String-单值单value"><a href="#6-Redis-String-单值单value" class="headerlink" title="6.Redis String 单值单value"></a>6.Redis String 单值单value</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022605.jpg" alt="image-20190116160811577"></p>
+<hr>
+<ul>
+<li><p>1.get/set/del/append/strlen</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022606.jpg" alt="image-20190116161025420"></p>
+</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022607.jpg" alt="image-20190116161052479"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022608.jpg" alt="image-20190116161132427"></p>
+<ul>
+<li>Incr/decr/incrby/decrby一定是要数字才能加减</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022611.jpg" alt="image-20190116161310886"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022612.jpg" alt="image-20190116161343569"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022613.jpg" alt="image-20190116161412366"></p>
+<hr>
+<ul>
+<li><p>Get range/setrange</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022615.jpg" alt="image-20190116161950947"></p>
+</li>
+</ul>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022616.jpg" alt="image-20190116200156360"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022617.jpg" alt="image-20190116200517636"></p>
+<ul>
+<li>setex键秒值/setnx</li>
+<li><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022619.jpg" alt="image-20190116200832450"></li>
+</ul>
+<hr>
+<h1 id="7-Redis-List-单值-多value"><a href="#7-Redis-List-单值-多value" class="headerlink" title="7 Redis -List 单值 多value"></a>7 Redis -List 单值 多value</h1><h3 id="LPUSH-RPUSHLRANGE"><a href="#LPUSH-RPUSHLRANGE" class="headerlink" title="LPUSH  RPUSHLRANGE"></a>LPUSH  RPUSHLRANGE</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022621.jpg" alt="image-20190116201303513"></p>
+<hr>
+<h3 id="LPOP-RPOP-取出栈顶元素"><a href="#LPOP-RPOP-取出栈顶元素" class="headerlink" title="LPOP RPOP 取出栈顶元素"></a>LPOP RPOP 取出栈顶元素</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22622.jpg" alt="image-20190116201523442"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022624.jpg" alt="image-20190116201551927"></p>
+<hr>
+<h3 id="lindex-按照索引获得元素-从上到下"><a href="#lindex-按照索引获得元素-从上到下" class="headerlink" title="lindex 按照索引获得元素 从上到下"></a>lindex 按照索引获得元素 从上到下</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022626.jpg" alt="image-20190116201731640"></p>
+<h3 id="llen-长度"><a href="#llen-长度" class="headerlink" title="llen 长度"></a>llen 长度</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022628.jpg" alt="image-20190116201756475"></p>
+<h3 id="lrem-key-删除N-个value"><a href="#lrem-key-删除N-个value" class="headerlink" title="lrem key 删除N 个value"></a>lrem key 删除N 个value</h3><ul>
+<li>删除2个 value=3的value</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022630.jpg" alt="image-20190116202931671"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022631.jpg" alt="image-20190116203059587"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22634.jpg" alt="image-20190116203354259"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022635.jpg" alt="image-20190116203402324"></p>
+<hr>
+<h1 id="8-Redis-set"><a href="#8-Redis-set" class="headerlink" title="8 Redis set"></a>8 Redis set</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022637.jpg" alt="image-20190116203520701"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22640.jpg" alt="image-20190116203836420"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022641.jpg" alt="image-20190116203948536"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022643.jpg" alt="image-20190116204239791"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022645.jpg" alt="image-20190116204308411"></p>
+<hr>
+<h1 id="9-Redis-Hash-重要-KV模式不变-但v是一个箭值对"><a href="#9-Redis-Hash-重要-KV模式不变-但v是一个箭值对" class="headerlink" title="9 Redis Hash 重要 KV模式不变 但v是一个箭值对"></a>9 Redis Hash 重要 KV模式不变 但v是一个箭值对</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022648.jpg" alt="image-20190116204442952"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022651.jpg" alt="image-20190116204758775"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022654.jpg" alt="image-20190116204839458"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022655.jpg" alt="image-20190116204917053"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022657.jpg" alt="image-20190116204927008"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022702.jpg" alt="image-20190116205009589"></p>
+<hr>
+<h1 id="10-Redis-Zset"><a href="#10-Redis-Zset" class="headerlink" title="10 Redis Zset"></a>10 Redis Zset</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022703.jpg" alt="image-20190116205214252"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022709.jpg" alt="image-20190116205239386"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022711.jpg" alt="image-20190116205302393"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22713.jpg" alt="image-20190116205339082"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022715.jpg" alt="image-20190116205447826"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022716.jpg" alt="image-20190116205557684"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022717.jpg" alt="image-20190116205619026"></p>
+<hr>
+<h1 id="11-Redis-配置文件介绍"><a href="#11-Redis-配置文件介绍" class="headerlink" title="11 Redis 配置文件介绍"></a>11 Redis 配置文件介绍</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022719.jpg" alt="image-20190116210024374"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022720.jpg" alt="image-20190117194135627"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022722.jpg" alt="image-20190117194234408"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022725.jpg" alt="image-20190117194349576"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022726.jpg" alt="image-20190117194528288"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022727.jpg" alt="image-20190117194833312"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022729.jpg" alt="image-20190117195424684"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022730.jpg" alt="image-20190117195838745"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022732.jpg" alt="image-20190117200617046"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22734.jpg" alt="image-20190117200652874"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022735.jpg" alt="image-20190117200707166"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022737.jpg" alt="image-20190117200747717"></p>
+<hr>
+<h1 id="12-Redis-持久化之RDB"><a href="#12-Redis-持久化之RDB" class="headerlink" title="12 Redis_持久化之RDB"></a>12 Redis_持久化之RDB</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022738.jpg" alt="image-20190117200918379"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022739.jpg" alt="image-20190117201020252"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022740.jpg" alt="image-20190117201127978"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022743.jpg" alt="image-20190117201359160"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022745.jpg" alt="image-20190117201431930"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022746.jpg" alt="image-20190117201445718"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022749.jpg" alt="image-20190117203105198"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022750.jpg" alt="image-20190117203121255"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22753.jpg" alt="image-20190117203406354"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022754.jpg" alt="image-20190117203424936"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022756.jpg" alt="image-20190117203739302"></p>
+<h1 id="13-Redis-持久化-之AOF"><a href="#13-Redis-持久化-之AOF" class="headerlink" title="13 Redis 持久化 之AOF"></a>13 Redis 持久化 之AOF</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022759.jpg" alt="image-20190117204137676"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022801.jpg" alt="image-20190118081214272"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022803.jpg" alt="image-20190118081644380"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022805.jpg" alt="image-20190118081938838"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022808.jpg" alt="image-20190118081954064"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022811.jpg" alt="image-20190118082323870"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022813.jpg" alt="image-20190118082348786"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022815.jpg" alt="image-20190118082532077"></p>
+<h1 id="14-Redis事务"><a href="#14-Redis事务" class="headerlink" title="14 Redis事务"></a>14 Redis事务</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022819.jpg" alt="image-20190118082749458"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022823.jpg" alt="image-20190118082856665"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022826.jpg" alt="image-20190118083003968"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022827.jpg" alt="image-20190118083016653"></p>
+<p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022829.jpg" alt="image-20190118091922542"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022830.jpg" alt="image-20190118092440818"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022833.jpg" alt="image-20190118092452243"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022834.jpg" alt="image-20190118092959426"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22837.jpg" alt="image-20190118093033367"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022838.jpg" alt="image-20190118093047656"></p>
+<h1 id="15-Redies-消息订阅"><a href="#15-Redies-消息订阅" class="headerlink" title="15 Redies 消息订阅"></a>15 Redies 消息订阅</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22841.jpg" alt="image-20190118093426294"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022842.jpg" alt="image-20190118093442795"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022844.jpg" alt="image-20190118093507127"></p>
+<h1 id="16-Redis主从复制。读写分离-哨兵模式"><a href="#16-Redis主从复制。读写分离-哨兵模式" class="headerlink" title="16 Redis主从复制。读写分离 哨兵模式"></a>16 Redis主从复制。读写分离 哨兵模式</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022846.jpg" alt="image-20190118093743009"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022847.jpg" alt="image-20190118093801019"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22849.jpg" alt="image-20190118093932566"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022849.jpg" alt="image-20190118093951222"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022851.jpg" alt="image-20190118095750517"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022852.jpg" alt="image-20190118100236645"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022853.jpg" alt="image-20190118100555581"></p>
+<hr>
+<h1 id="17-JRedis"><a href="#17-JRedis" class="headerlink" title="17 JRedis"></a>17 JRedis</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022854.jpg" alt="image-20190118102202543"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022857.jpg" alt="image-20190118102630941"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022858.jpg" alt="image-20190118102800375"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22901.jpg" alt="image-20190118102935092"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022903.jpg" alt="image-20190118155556204"></p>
+<hr>
+<ul>
+<li><p>JRedis Pool</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022904.jpg" alt="image-20190118160201315"></p>
+</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022906.jpg" alt="image-20190118160226469"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/01/16/Redis/Redis/Redis 尚硅谷/">http://yoursite.com/2019/01/16/Redis/Redis/Redis 尚硅谷/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Redis/"># Redis</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/01/18/项目实战/慕课网 Java从零到企业级电商项目实战/">实战电商项目</a>
+            
+            
+            <a class="next" rel="next" href="/2019/01/01/Spring/Spring IOC详解/">Spring IOC详解</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

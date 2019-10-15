@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>SpringDataJPA | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SpringDataJPA</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 19, 2019&nbsp;&nbsp;18:30:07</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="SpringDataJPA"><a href="#SpringDataJPA" class="headerlink" title="SpringDataJPA"></a>SpringDataJPA</h1><h3 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1.实体类和表的映射关系</span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Eitity</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Table</span></span></span><br><span class="line"><span class="comment"> * 2.类中属性和表中字段的映射关系</span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Id</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@GeneratedValue</span></span></span><br><span class="line"><span class="comment"> *      <span class="doctag">@Column</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"cst_customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Long custId;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_address"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custAddress;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_industry"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custIndustry;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_level"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custLevel;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custName;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_phone"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custPhone;</span><br><span class="line">    <span class="meta">@Column</span>(name=<span class="string">"cust_source"</span>)</span><br><span class="line">    <span class="keyword">private</span> String custSource;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.domain.Customer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaSpecificationExecutor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Modifying;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.Query;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 符合SpringDataJpa的dao层接口规范</span></span><br><span class="line"><span class="comment"> *      JpaRepository&lt;操作的实体类类型，实体类中主键属性的类型&gt;</span></span><br><span class="line"><span class="comment"> *          * 封装了基本CRUD操作</span></span><br><span class="line"><span class="comment"> *      JpaSpecificationExecutor&lt;操作的实体类类型&gt;</span></span><br><span class="line"><span class="comment"> *          * 封装了复杂查询（分页）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CustomerDao</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Customer</span>,<span class="title">Long</span>&gt; ,<span class="title">JpaSpecificationExecutor</span>&lt;<span class="title">Customer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 案例：根据客户名称查询客户</span></span><br><span class="line"><span class="comment">     *      使用jpql的形式查询</span></span><br><span class="line"><span class="comment">     *  jpql：from Customer where custName = ?</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  配置jpql语句，使用的<span class="doctag">@Query</span>注解</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Query</span>(value=<span class="string">"from Customer where custName = ?"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">findJpql</span><span class="params">(String custName)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 案例：根据客户名称和客户id查询客户</span></span><br><span class="line"><span class="comment">     *      jpql： from Customer where custName = ? and custId = ?</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  对于多个占位符参数</span></span><br><span class="line"><span class="comment">     *      赋值的时候，默认的情况下，占位符的位置需要和方法参数中的位置保持一致</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  可以指定占位符参数的位置</span></span><br><span class="line"><span class="comment">     *      ? 索引的方式，指定此占位的取值来源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Query</span>(value = <span class="string">"from Customer where custName = ?2 and custId = ?1"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">findCustNameAndId</span><span class="params">(Long id, String name)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用jpql完成更新操作</span></span><br><span class="line"><span class="comment">     *      案例 ： 根据id更新，客户的名称</span></span><br><span class="line"><span class="comment">     *          更新4号客户的名称，将名称改为“黑马程序员”</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  sql  ：update cst_customer set cust_name = ? where cust_id = ?</span></span><br><span class="line"><span class="comment">     *  jpql : update Customer set custName = ? where custId = ?</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@Query</span> : 代表的是进行查询</span></span><br><span class="line"><span class="comment">     *      * 声明此方法是用来进行更新操作</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@Modifying</span></span></span><br><span class="line"><span class="comment">     *      * 当前执行的是一个更新操作</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Query</span>(value = <span class="string">" update Customer set custName = ?2 where custId = ?1 "</span>)</span><br><span class="line">    <span class="meta">@Modifying</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateCustomer</span><span class="params">(<span class="keyword">long</span> custId, String custName)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用sql的形式查询：</span></span><br><span class="line"><span class="comment">     *     查询全部的客户</span></span><br><span class="line"><span class="comment">     *  sql ： select * from cst_customer;</span></span><br><span class="line"><span class="comment">     *  Query : 配置sql查询</span></span><br><span class="line"><span class="comment">     *      value ： sql语句</span></span><br><span class="line"><span class="comment">     *      nativeQuery ： 查询方式</span></span><br><span class="line"><span class="comment">     *          true ： sql查询</span></span><br><span class="line"><span class="comment">     *          false：jpql查询</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//@Query(value = " select * from cst_customer" ,nativeQuery = true)</span></span><br><span class="line">    <span class="meta">@Query</span>(value=<span class="string">"select * from cst_customer where cust_name like ?1"</span>,nativeQuery = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">public</span> List&lt;Object [] &gt; findSql(String name);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 方法名的约定：</span></span><br><span class="line"><span class="comment">     *      findBy : 查询</span></span><br><span class="line"><span class="comment">     *            对象中的属性名（首字母大写） ： 查询的条件</span></span><br><span class="line"><span class="comment">     *            CustName</span></span><br><span class="line"><span class="comment">     *            * 默认情况 ： 使用 等于的方式查询</span></span><br><span class="line"><span class="comment">     *                  特殊的查询方式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  findByCustName   --   根据客户名称查询</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *  再springdataJpa的运行阶段</span></span><br><span class="line"><span class="comment">     *          会根据方法名称进行解析  findBy    from  xxx(实体类)</span></span><br><span class="line"><span class="comment">     *                                      属性名称      where  custName =</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *      1.findBy  + 属性名称 （根据属性名称进行完成匹配的查询=）</span></span><br><span class="line"><span class="comment">     *      2.findBy  + 属性名称 + “查询方式（Like | isnull）”</span></span><br><span class="line"><span class="comment">     *          findByCustNameLike</span></span><br><span class="line"><span class="comment">     *      3.多条件查询</span></span><br><span class="line"><span class="comment">     *          findBy + 属性名 + “查询方式”   + “多条件的连接符（and|or）”  + 属性名 + “查询方式”</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">findByCustName</span><span class="params">(String custName)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Customer&gt; <span class="title">findByCustNameLike</span><span class="params">(String custName)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用客户名称模糊匹配和客户所属行业精准匹配的查询</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">findByCustNameLikeAndCustIndustry</span><span class="params">(String custName, String custIndustry)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.test;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.*;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(locations = <span class="string">"classpath:applicationContext.xml"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpecTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> CustomerDao customerDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据条件，查询单个对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSpec</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//匿名内部类</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 自定义查询条件</span></span><br><span class="line"><span class="comment">         *      1.实现Specification接口（提供泛型：查询的对象类型）</span></span><br><span class="line"><span class="comment">         *      2.实现toPredicate方法（构造查询条件）</span></span><br><span class="line"><span class="comment">         *      3.需要借助方法参数中的两个参数（</span></span><br><span class="line"><span class="comment">         *          root：获取需要查询的对象属性</span></span><br><span class="line"><span class="comment">         *          CriteriaBuilder：构造查询条件的，内部封装了很多的查询条件（模糊匹配，精准匹配）</span></span><br><span class="line"><span class="comment">         *       ）</span></span><br><span class="line"><span class="comment">         *  案例：根据客户名称查询，查询客户名为传智播客的客户</span></span><br><span class="line"><span class="comment">         *          查询条件</span></span><br><span class="line"><span class="comment">         *              1.查询方式</span></span><br><span class="line"><span class="comment">         *                  cb对象</span></span><br><span class="line"><span class="comment">         *              2.比较的属性名称</span></span><br><span class="line"><span class="comment">         *                  root对象</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Specification&lt;Customer&gt; spec = <span class="keyword">new</span> Specification&lt;Customer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Predicate <span class="title">toPredicate</span><span class="params">(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//1.获取比较的属性</span></span><br><span class="line">                Path&lt;Object&gt; custName = root.get(<span class="string">"custId"</span>);</span><br><span class="line">                <span class="comment">//2.构造查询条件  ：    select * from cst_customer where cust_name = '传智播客'</span></span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * 第一个参数：需要比较的属性（path对象）</span></span><br><span class="line"><span class="comment">                 * 第二个参数：当前需要比较的取值</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                Predicate predicate = cb.equal(custName, <span class="string">"传智播客"</span>);<span class="comment">//进行精准的匹配  （比较的属性，比较的属性的取值）</span></span><br><span class="line">                <span class="keyword">return</span> predicate;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Customer customer = customerDao.findOne(spec);</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 多条件查询</span></span><br><span class="line"><span class="comment">     *      案例：根据客户名（传智播客）和客户所属行业查询（it教育）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSpec1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  root:获取属性</span></span><br><span class="line"><span class="comment">         *      客户名</span></span><br><span class="line"><span class="comment">         *      所属行业</span></span><br><span class="line"><span class="comment">         *  cb：构造查询</span></span><br><span class="line"><span class="comment">         *      1.构造客户名的精准匹配查询</span></span><br><span class="line"><span class="comment">         *      2.构造所属行业的精准匹配查询</span></span><br><span class="line"><span class="comment">         *      3.将以上两个查询联系起来</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Specification&lt;Customer&gt; spec = <span class="keyword">new</span> Specification&lt;Customer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Predicate <span class="title">toPredicate</span><span class="params">(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb)</span> </span>&#123;</span><br><span class="line">                Path&lt;Object&gt; custName = root.get(<span class="string">"custName"</span>);<span class="comment">//客户名</span></span><br><span class="line">                Path&lt;Object&gt; custIndustry = root.get(<span class="string">"custIndustry"</span>);<span class="comment">//所属行业</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">//构造查询</span></span><br><span class="line">                <span class="comment">//1.构造客户名的精准匹配查询</span></span><br><span class="line">                Predicate p1 = cb.equal(custName, <span class="string">"传智播客"</span>);<span class="comment">//第一个参数，path（属性），第二个参数，属性的取值</span></span><br><span class="line">                <span class="comment">//2..构造所属行业的精准匹配查询</span></span><br><span class="line">                Predicate p2 = cb.equal(custIndustry, <span class="string">"it教育"</span>);</span><br><span class="line">                <span class="comment">//3.将多个查询条件组合到一起：组合（满足条件一并且满足条件二：与关系，满足条件一或满足条件二即可：或关系）</span></span><br><span class="line">                Predicate and = cb.and(p1, p2);<span class="comment">//以与的形式拼接多个查询条件</span></span><br><span class="line">                <span class="comment">// cb.or();//以或的形式拼接多个查询条件</span></span><br><span class="line">                <span class="keyword">return</span> and;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Customer customer = customerDao.findOne(spec);</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 案例：完成根据客户名称的模糊匹配，返回客户列表</span></span><br><span class="line"><span class="comment">     *      客户名称以 ’传智播客‘ 开头</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * equal ：直接的到path对象（属性），然后进行比较即可</span></span><br><span class="line"><span class="comment">     * gt，lt,ge,le,like : 得到path对象，根据path指定比较的参数类型，再去进行比较</span></span><br><span class="line"><span class="comment">     *      指定参数类型：path.as(类型的字节码对象)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSpec3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//构造查询条件</span></span><br><span class="line">        Specification&lt;Customer&gt; spec = <span class="keyword">new</span> Specification&lt;Customer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Predicate <span class="title">toPredicate</span><span class="params">(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//查询属性：客户名</span></span><br><span class="line">                Path&lt;Object&gt; custName = root.get(<span class="string">"custName"</span>);</span><br><span class="line">                <span class="comment">//查询方式：模糊匹配</span></span><br><span class="line">                Predicate like = cb.like(custName.as(String.class), <span class="string">"传智播客%"</span>);</span><br><span class="line">                <span class="keyword">return</span> like;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"><span class="comment">//        List&lt;Customer&gt; list = customerDao.findAll(spec);</span></span><br><span class="line"><span class="comment">//        for (Customer customer : list) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(customer);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        <span class="comment">//添加排序</span></span><br><span class="line">        <span class="comment">//创建排序对象,需要调用构造方法实例化sort对象</span></span><br><span class="line">        <span class="comment">//第一个参数：排序的顺序（倒序，正序）</span></span><br><span class="line">        <span class="comment">//   Sort.Direction.DESC:倒序</span></span><br><span class="line">        <span class="comment">//   Sort.Direction.ASC ： 升序</span></span><br><span class="line">        <span class="comment">//第二个参数：排序的属性名称</span></span><br><span class="line">        Sort sort = <span class="keyword">new</span> Sort(Sort.Direction.DESC,<span class="string">"custId"</span>);</span><br><span class="line">        List&lt;Customer&gt; list = customerDao.findAll(spec, sort);</span><br><span class="line">        <span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">            System.out.println(customer);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询</span></span><br><span class="line"><span class="comment">     *      Specification: 查询条件</span></span><br><span class="line"><span class="comment">     *      Pageable：分页参数</span></span><br><span class="line"><span class="comment">     *          分页参数：查询的页码，每页查询的条数</span></span><br><span class="line"><span class="comment">     *          findAll(Specification,Pageable)：带有条件的分页</span></span><br><span class="line"><span class="comment">     *          findAll(Pageable)：没有条件的分页</span></span><br><span class="line"><span class="comment">     *  返回：Page（springDataJpa为我们封装好的pageBean对象，数据列表，共条数）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSpec4</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Specification spec = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//PageRequest对象是Pageable接口的实现类</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 创建PageRequest的过程中，需要调用他的构造方法传入两个参数</span></span><br><span class="line"><span class="comment">         *      第一个参数：当前查询的页数（从0开始）</span></span><br><span class="line"><span class="comment">         *      第二个参数：每页查询的数量</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Pageable pageable = <span class="keyword">new</span> PageRequest(<span class="number">0</span>,<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//分页查询</span></span><br><span class="line">        Page&lt;Customer&gt; page = customerDao.findAll(<span class="keyword">null</span>, pageable);</span><br><span class="line">        System.out.println(page.getContent()); <span class="comment">//得到数据集合列表</span></span><br><span class="line">        System.out.println(page.getTotalElements());<span class="comment">//得到总条数</span></span><br><span class="line">        System.out.println(page.getTotalPages());<span class="comment">//得到总页数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/08/19/SpringDataJPA Mybatis分页/SpringDataJPA/">http://yoursite.com/2019/08/19/SpringDataJPA Mybatis分页/SpringDataJPA/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SprinDataJPA/"># SprinDataJPA</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/24/网络 组成原理 操作系统/计算机组成原理之计算篇/">计算机组成原理之计算篇</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/17/shiro/Shiro统一会话管理/">shirt SAAS 系统</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

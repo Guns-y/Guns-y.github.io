@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>堆 堆排序 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">堆 堆排序</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 28, 2019&nbsp;&nbsp;16:13:50</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-堆的数据结构"><a href="#1-堆的数据结构" class="headerlink" title="1 堆的数据结构"></a>1 <strong>堆的数据结构</strong></h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081510.png" alt="20170504194503100.png"></p>
+<p>如上图：表示的是最小堆结构，形式上是一棵完全二叉树，实际存储在内存中的是一个数组，也就是对应下面的数组。树中每一个节点左边红色的值，代表它们在数组中的位置。</p>
+<h1 id="2-堆中节点的关系"><a href="#2-堆中节点的关系" class="headerlink" title="2 堆中节点的关系"></a>2 <strong>堆中节点的关系</strong></h1><h4 id="父节点与当前节点的下标对应关系为"><a href="#父节点与当前节点的下标对应关系为" class="headerlink" title="父节点与当前节点的下标对应关系为"></a>父节点与当前节点的下标对应关系为</h4><h3 id="当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent"><a href="#当前节点下标为-i-则父节点的下标为（-i-1）-2-Parent" class="headerlink" title="当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent"></a>当前节点下标为 i 则父节点的下标为（ i - 1）/2 = Parent</h3><h4 id="左孩子节点的下标为：2-i-1-Lchild"><a href="#左孩子节点的下标为：2-i-1-Lchild" class="headerlink" title="左孩子节点的下标为：2 * i+1= Lchild ,"></a>左孩子节点的下标为：2 * i+1= Lchild ,</h4><h4 id="右节点的下标为：2-i-2-Rchild"><a href="#右节点的下标为：2-i-2-Rchild" class="headerlink" title="右节点的下标为：2 * i+2= Rchild"></a>右节点的下标为：2 * i+2= Rchild</h4><h1 id="3-插入堆"><a href="#3-插入堆" class="headerlink" title="3 插入堆"></a>3 <strong>插入堆</strong></h1><p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-081920.png" alt="image-20190928161919409"></p>
+<h2 id="上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。"><a href="#上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。" class="headerlink" title="##上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。"></a>##<strong>上面插入的过程总结一下：每一个插入的节点放在树的最后一个位置，与其父节点比较，如果比父节点小交换位置，继续与其父节点比较直到比父节点大，或者到了头节点位置停止比较。</strong></h2><h1 id="4-如何理解“堆”？"><a href="#4-如何理解“堆”？" class="headerlink" title="4 如何理解“堆”？"></a>4 如何理解“堆”？</h1><blockquote>
+<p>堆是一个完全二叉树；</p>
+</blockquote>
+<blockquote>
+<p>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值</p>
+</blockquote>
+<blockquote>
+<p>堆必须是一个完全二叉树。 完全二叉树 要求，除了最后一层，其他层的节点个数都是满的，</p>
+<p>最后一层的节点都靠左排列。</p>
+<p>堆中的每个节点的值必须大于等于（或者小于等于）其子树中每个节点的值。实际 上，我们还可以换一种说法，堆中每个节点的值都大于等于（或者小于等于）其左右子节点 的值。这两种表述是等价的。</p>
+</blockquote>
+<p>对于每个节点的值都大于等于子树中每个节点值的堆，我们叫作“大顶堆”。对于每个节点 的值都小于等于子树中每个节点值的堆，我们叫作“小顶堆”</p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-113140.png" alt="image-20190928193139887"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121406.png" alt="image-20190928201405866"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-121536.png" alt="image-20190928201536282"></p>
+<hr>
+<h1 id="5-堆排序步骤图解说明"><a href="#5-堆排序步骤图解说明" class="headerlink" title="5 堆排序步骤图解说明"></a>5 堆排序步骤图解说明</h1><h4 id="要求：给你一个数组-4-6-8-5-9-要求使用堆排序法，将数组升序排序。"><a href="#要求：给你一个数组-4-6-8-5-9-要求使用堆排序法，将数组升序排序。" class="headerlink" title="要求：给你一个数组 {4,6,8,5,9} , 要求使用堆排序法，将数组升序排序。"></a>要求：给你一个数组 {4,6,8,5,9} , 要求使用堆排序法，将数组升序排序。</h4><h3 id="5-1-步骤一-构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆-。"><a href="#5-1-步骤一-构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆-。" class="headerlink" title="5.1 步骤一 构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)。"></a>5.1 步骤一 构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)。</h3><p>原始的数组 [4, 6, 8, 5, 9]</p>
+<ul>
+<li>1) .假设给定无序序列结构如下</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122156.png" alt="image-20190928202156695"></p>
+<ul>
+<li>2）此时我们从最后一个非叶子结点开始（叶结点自然不用调整，第一个非叶子结点</li>
+</ul>
+<p>arr.length/2-1=5/2-1=1，也就是下面的 6 结点），从左至右，从下至上进行调整。</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122427.png" alt="image-20190928202427532"></p>
+<ul>
+<li>3) .找到第二个非叶节点 4，由于[4,9,8]中 9 元素最大，4 和 9 交换</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122507.png" alt="image-20190928202506928"></p>
+<ul>
+<li>4) 这时，交换导致了子根[4,5,6]结构混乱，继续调整，[4,5,6]中 6 最大，交换 4 和 6。</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-122535.png" alt="image-20190928202535123"></p>
+<p>此时，我们就将一个无序序列构造成了一个大顶堆。</p>
+<hr>
+<h3 id="5-2-步骤二-将堆顶元素与末尾元素进行交换，使末尾元素最大。"><a href="#5-2-步骤二-将堆顶元素与末尾元素进行交换，使末尾元素最大。" class="headerlink" title="5.2 步骤二  将堆顶元素与末尾元素进行交换，使末尾元素最大。"></a>5.2 步骤二  将堆顶元素与末尾元素进行交换，使末尾元素最大。</h3><h3 id="然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。"><a href="#然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。" class="headerlink" title="然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。"></a>然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素。</h3><p>###如此反复进行交换、重建、交换。</p>
+<ul>
+<li><p>1) .将堆顶元素 9 和末尾元素 4 进行交换</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123010.png" alt="image-20190928203009836"></p>
+</li>
+<li><p>2) .重新调整结构，使其继续满足堆定义</p>
+</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123036.png" alt="image-20190928203036037"></p>
+<ul>
+<li>3) .再将堆顶元素 8 与末尾元素 5 进行交换，得到第二大元素 8.</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123110.png" alt="image-20190928203109425"></p>
+<ul>
+<li>4) 后续过程，继续进行调整，交换，如此反复进行，最终使得整个序列有序</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-123129.png" alt="image-20190928203128499"></p>
+<h3 id="5-3再简单总结下堆排序的基本思路："><a href="#5-3再简单总结下堆排序的基本思路：" class="headerlink" title="5.3再简单总结下堆排序的基本思路："></a>5.3再简单总结下堆排序的基本思路：</h3><p>1).将无序序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;</p>
+<p>2).将堆顶元素与末尾元素交换，将最大元素”沉”到数组末端;</p>
+<p>3).重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，</p>
+<p>直到整个序列有序。</p>
+<h1 id="6-如何实现一个堆？"><a href="#6-如何实现一个堆？" class="headerlink" title="6  如何实现一个堆？"></a>6  如何实现一个堆？</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-125706.png" alt="image-20190928205706491"></p>
+<p>数组中下标为 i 的节点的左子节点，就是下标为 i ∗ 2 的节点，右子 i 节点就是下标为 i ∗ 2 + 1 的节点，父节点就是下标为 2 的节点。</p>
+<h1 id="7-如何基于堆实现排序？"><a href="#7-如何基于堆实现排序？" class="headerlink" title="7 如何基于堆实现排序？"></a>7 如何基于堆实现排序？</h1><p>O(n 2 ) 的冒泡排序、 插入排序、选择排序，有时间复杂度是 O(n log n) 的归并排序、快速排序，还有线性排序</p>
+<p>作堆排序。这种排序方法的时间复杂 度非常稳定，是 O(n log n) ，并且它还是原地排序算法。 我们可以把堆排序的过程大致分解成两个大的步骤，建堆和排序</p>
+<h3 id="1-建堆"><a href="#1-建堆" class="headerlink" title="1. 建堆"></a>1. 建堆</h3><p>我们首先将数组原地建成一个堆。所谓“原地”就是，不借助另一个数组，就在原数组上操 作。建堆的过程，有两种思路。</p>
+<blockquote>
+<p>是从后往前处理数组，并且每个数据都是从上往下堆化。因为叶子 节点往下堆化只能自己跟自己比较，所以我们直接从第一个非叶子节点开始，依次堆化就行 了。</p>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-28-130142.png" alt="image-20190928210141147"></p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapSort</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">9</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line">		heapSort(arr);</span><br><span class="line">		System.out.println(Arrays.toString(arr));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//开始位置是最后一个非叶子节点，即最后一个节点的父节点</span></span><br><span class="line">		<span class="keyword">int</span> start = (arr.length-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="comment">//调整为大顶堆</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&gt;=<span class="number">0</span>;i--) &#123;</span><br><span class="line">			maxHeap(arr, arr.length, i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//先把数组中的第0个和堆中的最后一个数交换位置，再把前面的处理为大顶堆</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--) &#123;</span><br><span class="line">			<span class="keyword">int</span> temp = arr[<span class="number">0</span>];</span><br><span class="line">			arr[<span class="number">0</span>]=arr[i];</span><br><span class="line">			arr[i]=temp;</span><br><span class="line">			maxHeap(arr, i, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// index 调整哪一个 </span></span><br><span class="line">	<span class="comment">// size：调整的大小</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxHeap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> size,<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//左子节点</span></span><br><span class="line">		<span class="keyword">int</span> leftNode = <span class="number">2</span>*index+<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//右子节点</span></span><br><span class="line">		<span class="keyword">int</span> rightNode = <span class="number">2</span>*index+<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> max = index;</span><br><span class="line">		<span class="comment">//和两个子节点分别对比，找出最大的节点</span></span><br><span class="line">		<span class="keyword">if</span>(leftNode&lt;size&amp;&amp;arr[leftNode]&gt;arr[max]) &#123;</span><br><span class="line">			max=leftNode;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(rightNode&lt;size&amp;&amp;arr[rightNode]&gt;arr[max]) &#123;</span><br><span class="line">			max=rightNode;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//交换位置</span></span><br><span class="line">		<span class="keyword">if</span>(max!=index) &#123;</span><br><span class="line">			<span class="keyword">int</span> temp=arr[index];</span><br><span class="line">			arr[index]=arr[max];</span><br><span class="line">			arr[max]=temp;</span><br><span class="line">			<span class="comment">//交换位置以后，可能会破坏之前排好的堆，所以，之前的排好的堆需要重新调整</span></span><br><span class="line">			maxHeap(arr, size, max);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-满二叉树-完全二叉树"><a href="#8-满二叉树-完全二叉树" class="headerlink" title="8 满二叉树 完全二叉树"></a>8 满二叉树 完全二叉树</h2><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-09-29-015054.png" alt="image-20190929095053549"></p>
+<h1 id="9-堆排序-代码实现"><a href="#9-堆排序-代码实现" class="headerlink" title="9 堆排序(代码实现)"></a>9 堆排序(代码实现)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.tree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//要求将数组进行升序排序</span></span><br><span class="line">		<span class="comment">//int arr[] = &#123;4, 6, 8, 5, 9&#125;;</span></span><br><span class="line">		<span class="comment">// 创建要给80000个的随机的数组</span></span><br><span class="line">		<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8000000</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8000000</span>; i++) &#123;</span><br><span class="line">			arr[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">8000000</span>); <span class="comment">// 生成一个[0, 8000000) 数</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"排序前"</span>);</span><br><span class="line">		Date data1 = <span class="keyword">new</span> Date();</span><br><span class="line">		SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">		String date1Str = simpleDateFormat.format(data1);</span><br><span class="line">		System.out.println(<span class="string">"排序前的时间是="</span> + date1Str);</span><br><span class="line">		</span><br><span class="line">		heapSort(arr);</span><br><span class="line">		</span><br><span class="line">		Date data2 = <span class="keyword">new</span> Date();</span><br><span class="line">		String date2Str = simpleDateFormat.format(data2);</span><br><span class="line">		System.out.println(<span class="string">"排序前的时间是="</span> + date2Str);</span><br><span class="line">		<span class="comment">//System.out.println("排序后=" + Arrays.toString(arr));</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//编写一个堆排序的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span> arr[])</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">		System.out.println(<span class="string">"堆排序!!"</span>);</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		//分步完成</span></span><br><span class="line"><span class="comment">//		adjustHeap(arr, 1, arr.length);</span></span><br><span class="line"><span class="comment">//		System.out.println("第一次" + Arrays.toString(arr)); // 4, 9, 8, 5, 6</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		adjustHeap(arr, 0, arr.length);</span></span><br><span class="line"><span class="comment">//		System.out.println("第2次" + Arrays.toString(arr)); // 9,6,8,5,4</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//完成我们最终代码</span></span><br><span class="line">		<span class="comment">//将无序序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = arr.length / <span class="number">2</span> -<span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">			adjustHeap(arr, i, arr.length);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 2).将堆顶元素与末尾元素交换，将最大元素"沉"到数组末端;</span></span><br><span class="line"><span class="comment">　　			3).重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，直到整个序列有序。</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = arr.length-<span class="number">1</span>;j &gt;<span class="number">0</span>; j--) &#123;</span><br><span class="line">			<span class="comment">//交换</span></span><br><span class="line">			temp = arr[j];</span><br><span class="line">			arr[j] = arr[<span class="number">0</span>];</span><br><span class="line">			arr[<span class="number">0</span>] = temp;</span><br><span class="line">			adjustHeap(arr, <span class="number">0</span>, j); </span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//System.out.println("数组=" + Arrays.toString(arr)); </span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//将一个数组(二叉树), 调整成一个大顶堆</span></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 功能： 完成 将 以 i 对应的非叶子结点的树调整成大顶堆</span></span><br><span class="line"><span class="comment">	 * 举例  int arr[] = &#123;4, 6, 8, 5, 9&#125;; =&gt; i = 1 =&gt; adjustHeap =&gt; 得到 &#123;4, 9, 8, 5, 6&#125;</span></span><br><span class="line"><span class="comment">	 * 如果我们再次调用  adjustHeap 传入的是 i = 0 =&gt; 得到 &#123;4, 9, 8, 5, 6&#125; =&gt; &#123;9,6,8,5, 4&#125;</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> arr 待调整的数组</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 表示非叶子结点在数组中索引</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> lenght 表示对多少个元素继续调整， length 是在逐渐的减少</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">adjustHeap</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> i, <span class="keyword">int</span> lenght)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> temp = arr[i];<span class="comment">//先取出当前元素的值，保存在临时变量</span></span><br><span class="line">		<span class="comment">//开始调整</span></span><br><span class="line">		<span class="comment">//说明</span></span><br><span class="line">		<span class="comment">//1. k = i * 2 + 1 k 是 i结点的左子结点</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = i * <span class="number">2</span> + <span class="number">1</span>; k &lt; lenght; k = k * <span class="number">2</span> + <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(k+<span class="number">1</span> &lt; lenght &amp;&amp; arr[k] &lt; arr[k+<span class="number">1</span>]) &#123; <span class="comment">//说明左子结点的值小于右子结点的值</span></span><br><span class="line">				k++; <span class="comment">// k 指向右子结点</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(arr[k] &gt; temp) &#123; <span class="comment">//如果子结点大于父结点</span></span><br><span class="line">				arr[i] = arr[k]; <span class="comment">//把较大的值赋给当前结点</span></span><br><span class="line">				i = k; <span class="comment">//!!! i 指向 k,继续循环比较</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;<span class="comment">//!</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当for 循环结束后，我们已经将以i 为父结点的树的最大值，放在了 最顶(局部)</span></span><br><span class="line">		arr[i] = temp;<span class="comment">//将temp值放到调整后的位置</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/MoreWindows/article/details/6709644" target="_blank" rel="noopener">https://blog.csdn.net/MoreWindows/article/details/6709644</a></p>
+<p><a href="https://blog.csdn.net/u013384984/article/details/79496052" target="_blank" rel="noopener">https://blog.csdn.net/u013384984/article/details/79496052</a> ⭐️</p>
+</blockquote>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/4 树/堆 堆排序/">http://yoursite.com/2019/09/28/数据结构算法/数据结构与算法 总结笔记/4 树/堆 堆排序/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/数据结构与算法/"># 数据结构与算法</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/29/数据结构算法/数据结构与算法 总结笔记/5 图论/图/"></a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/28/数据结构算法/数据结构与算法 总结笔记/4 树/顺序存储的二叉树/">顺序存储的二叉树</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>数据结构与算法校招面试 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">数据结构与算法校招面试</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2019&nbsp;&nbsp;16:39:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a href="/m/mazi/author/59eb0fc63b6aa74d1427e79e/question">向作者提问</a></p>
+<p>北京邮电大学本硕毕业，CSDN博客专家，CSDN学院讲师，擅长技术为Java后台开发。在2017暑期实习校园招聘中拿下了百度，京东，去哪儿，搜狐的实习生Offer；在当年的秋招中拿下了百度，小米，搜狐，瓜子二手车以及一点资讯的Offer，并且通过了易华录，中国电信云计算，数字认证等国企的面试。目前就职于小米，负责安全风控、登录取号、二次号判断等中间层服务开发。</p>
+<p><a href="/gitchat/activity/59eeec6502d4aa3199e78904">查看本场Chat</a></p>
+<p>本次Chat，主要从知名互联网公司在面试中喜欢提问的算法入手，给大家详细阐述讲解面试中的高频率算法题。涉及到的算法题主要包括：<br><strong>排序和查找、链表、二叉树、队列、堆栈、字符串以及数组</strong><br>等方面。如果你想在来年的校园招聘中拿下一线互联网的Offer，那么本次Chat将助你玩转算法面试~</p>
+<p>面试，是大家从学校走向社会的第一步。大型互联网公司的校园招聘，从形式上说，面试一般分为2-3轮技术面试+1轮HR面试。但是一些公司确实是没有HR面试的，直接就是三轮技术面。技术面试中，面试官一般会先就你所应聘的岗位进行相关知识的考察，也叫基础知识和业务逻辑面试。只要你回答的不是特别特别差，面试官通常会说：“<br><strong>咱们写个代码吧</strong> ”，这个时候就开始了算法面试。也就是说， <strong>一轮技术面试=基础知识和业务逻辑面试+算法面试</strong> 。</p>
+<p>那么算法面试重要还是基础知识和业务逻辑面试重要？大家可能会有这个疑惑，而我要说的是，如果真要对这两个进行排序，那么我会把算法面试放在优先级更高的位置。曾经问过百度的一位面试官，为什么你们面试都喜欢考算法？回答是：“首先，算法是一种通用的考察点，不管哪个技术岗都可以进行考察；其次，算法包含了太多的逻辑思维，可以考察应聘者思考问题的逻辑和解决问题的能力；最后，连这么有难度的算法题你都可以搞定，那么其他只需要看看写写用用就可以掌握的基础知识和相关技术框架还怕学不会吗？”所以说，我认为算法的重要性相当高。</p>
+<p>推荐几个不错的学习测试算法的工具吧。首先是 <strong>Leetcode</strong><br>，这是一个美国的在线编程网站,上面主要收集了各大IT公司的笔试面试题,对于应届毕业生找工作是一个不可多得的好帮手。Leetcode的主要特点就是按照难易将题目分为了easy、medium和hard三种，并且在leetcode上将题目进行了分类。在自己练习通过之后可以打开讨论区，看看别人是怎么思考解决该问题的。其次是<br><strong>牛客网</strong> ，这是一个专注于程序员的学习和成长的专业平台，集笔面试系统、课程教育、社群交流、招聘内推于一体。我们可以在在线编程模块进行算法题的练习。</p>
+<p>接下来我们正式开始常见算法题的介绍，主要内容包括以下七个小节：</p>
+<ul>
+<li><strong>排序和查找算法</strong></li>
+<li><strong>单链表</strong></li>
+<li><strong>二叉树</strong></li>
+<li><strong>队列和栈</strong></li>
+<li><strong>字符串</strong></li>
+<li><strong>数组</strong></li>
+<li><strong>其它算法</strong></li>
+</ul>
+<p><img src="http://images.gitbook.cn/7e3733a0-be1f-11e7-849f-fdf3270a301f" alt="enter image description
+here"></p>
+<h3 id="第一节：排序和查找算法"><a href="#第一节：排序和查找算法" class="headerlink" title="第一节：排序和查找算法"></a>第一节：排序和查找算法</h3><p>在排序中，90%的概率会考察快速排序算法，所以我们需要准备一个没有任何bug的快速排序算法。当面试官让我们写一个快排的时候，我们可以毫不犹豫的写出来。在一些简单的时候，面试官可能会要求你写一个二分查找算法。</p>
+<p><img src="http://images.gitbook.cn/bc32f810-be1f-11e7-acbf-5ddb5963849e" alt="enter image description
+here"></p>
+<p>快速排序：是一种分区交换排序算法。采用分治策略对两个子序列再分别进行快速排序，是一种递归算法。</p>
+<p>法描述：在数据序列中选择一个元素作为基准值，每趟从数据序列的两端开始交替进行，将小于基准值的元素交换到序列前端，将大于基准值的元素交换到序列后端，介于两者之间的位置则成为了基准值的最终位置。同时，序列被划分成两个子序列，再分别对两个子序列进行快速排序，直到子序列的长度为1，则完成排序。</p>
+<p>举例：假设要排序的数组是a[6],长度为7，首先任意选取一个数据（通常选用第一个数据）作为关键数据，然后将所有比它的数都放到它前面，所有比它大的数都放到它后面，这个过程称为一躺快速排序。一躺快速排序的算法是：</p>
+<ol>
+<li>设置两个变量i，j，排序开始的时候i=0；j=6；</li>
+<li>以第一个数组元素作为关键数据，赋值给key，即key=a[0]；</li>
+<li>从j开始向前搜索，即由后开始向前搜索（j–），找到第一个小于key的值，两者交换；</li>
+<li>从i开始向后搜索，即由前开始向后搜索（i++），找到第一个大于key的值，两者交换；</li>
+<li>重复第3、4步，直到i=j；此时将key赋值给a[i]；</li>
+</ol>
+<p>例如：待排序的数组a的值分别是：（初始关键数据key=49）</p>
+<p><img src="http://images.gitbook.cn/07827ec0-bd77-11e7-a4d0-01a65989f9d2" alt="enter image description
+here"></p>
+<p>此时完成了一趟循环，将49赋值给a[3]，数据分为三组，分别为{27,38,13}{49}{76,96,65}，利用递归，分别对第一组和第三组进行排序，则可得到一个有序序列，这就是快速排序算法。</p>
+<p>快速排序代码如下：</p>
+<p>​<br>​    public void sort(int a[], int low, int high){<br>​        int i=low;<br>​        int j=high;<br>​        int key=a[low];<br>​<br>        if (low &lt; high){<br>            while(i&lt;j){ // 此处的while循环结束，则完成了元素key的位置调整<br>                while(i&lt;j&amp;&amp;key&lt;=a[j]){<br>                    j–;<br>                }<br>                a[i]=a[j];<br>                while(i&lt;j&amp;&amp;key&gt;=a[i]){<br>                    i++;<br>                }<br>                a[j]=a[i];<br>                a[i]=key;  //此处不可遗漏<br>            }<br>            sort(a,low,i-1);<br>            sort(a,i+1,high);<br>        }<br>    }</p>
+<p><strong>二分查找又称折半查找</strong><br>，优点是比较次数少，查找速度快，平均性能好；其缺点是要求待查表为有序表，且插入删除困难。因此，折半查找方法适用于不经常变动而查找频繁的有序列表。</p>
+<p><strong>步骤：</strong><br>首先，假设表中元素是按升序排列，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置记录将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。</p>
+<p>算法前提：必须采用顺序存储结构；必须按关键字大小有序排列。</p>
+<p>实现方式：包含递归实现和非递归实现两种方式。二分查找的递归代码实现如下：</p>
+<p>​<br>​    private  int halfSearch(int[] a,int left,int right,int target) {<br>​         int mid=(left+right)/2;<br>​         int midValue=a[mid];<br>​         if(left&lt;=right){<br>​             if(midValue&gt;target){<br>​                 return halfSearch(a, left, mid-1, target);<br>​             }else if(midValue&lt;target) {<br>​                 return halfSearch(a, mid+1, right, target);<br>​             }else {<br>​                 return mid;<br>​             }<br>​        }<br>​        return -1;<br>​    }</p>
+<p>非递归实现代码如下：</p>
+<p>​<br>​    private  int halfSearch(int[] a,int target){<br>​        int i=0;<br>​        int j=a.length-1;<br>​        while(i&lt;=j){<br>​            int mid=(i+j)/2;<br>​            int midValue=a[mid];<br>​            if(midValue&gt;target){<br>​                j=mid-1;<br>​            }else if(midValue&lt;target){<br>​                i=mid+1;<br>​            }else {<br>​                return mid;<br>​            }<br>​        }<br>​        return -1;<br>​    }</p>
+<p>篇幅有限，更多排序查找算法，请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/74058248" target="_blank" rel="noopener">排序查找算法大总结</a></li>
+</ul>
+<h3 id="第二节-单链表相关算法"><a href="#第二节-单链表相关算法" class="headerlink" title="第二节 单链表相关算法"></a>第二节 单链表相关算法</h3><p>对链表的操作由于涉及到指针，所以链表是一种极其常见的算法考题。常见的链表题有：<br><strong>单链表反转、合并有序单链表、求单链表的中间节点、判断单链表相交或者有环、求出进入环的第一个节点、求单链表相交的第一个节点等。</strong></p>
+<p>我们首先给出单链表的定义：用代码实现。</p>
+<p>​<br>​    class Node{<br>​        int val;<br>​        Node next;<br>​        public Node(int val){<br>​             this.val=val;<br>​        }<br>​    }  </p>
+<p><img src="http://images.gitbook.cn/e014c290-be1f-11e7-9325-393cf0683e3a" alt="enter image description
+here"></p>
+<p><strong>单链表反转</strong> ：比如1→2→3→4→5，反转之后返回5→4→3→2→1</p>
+<p>步骤：</p>
+<ol>
+<li>从头到尾遍历原链表，每遍历一个结点</li>
+<li>将其摘下放在新链表的最前端。</li>
+<li>注意链表为空和只有一个结点的情况。</li>
+</ol>
+<p>代码实现如下：</p>
+<p>​<br>​    public static Node reverseNode(Node head){<br>​          // 如果链表为空或只有一个节点，无需反转，直接返回原链表表头<br>​          if(head == null || head.next == null)<br>​              return head;<br>​<br>          Node reHead = null;<br>          Node cur = head;<br>          while(cur!=null){<br>              Node reCur = cur;      // 用reCur保存住对要处理节点的引用<br>              cur = cur.next;        // cur更新到下一个节点<br>              reCur.next = reHead;   // 更新要处理节点的next引用<br>              reHead = reCur;        // reHead指向要处理节点的前一个节点<br>          }<br>          return reHead;<br>     }</p>
+<p><strong>合并有序的单链表</strong> ：给出两个分别有序的单链表，将其合并成一条新的有序单链表。<br>举例：1→3→5和2→4→6合并之后为1→2→3→4→5→6 <strong>步骤</strong><br>：首先，我们通过比较确定新链表的头节点，然后移动链表1或者链表2的头指针。然后通过递归来得到新的链表头结点的next 代码实现如下：</p>
+<p>​<br>​    public static Node mergeList(Node list1 , Node list2){<br>​        if(list1==null)<br>​            return list2;<br>​        if(list2==null)<br>​            return list1;<br>​        Node resultNode;<br>​        if(list1.val&lt;list2.val){ // 通过比较大小，得到新的节点<br>​            resultNode = list1;<br>​            list1 = list1.next;<br>​        }else{<br>​            resultNode = list2;<br>​            list2 = list2.next;<br>​        }<br>​        // 递归得到next<br>​        resultNode.next = mergeList(list1, list2);<br>​        return resultNode;<br>​    }</p>
+<p>篇幅有限，更多链表相关算法请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/60961792" target="_blank" rel="noopener">链表基础题大全（一）</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/61623370" target="_blank" rel="noopener">链表基础题大全（二）</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/72026734" target="_blank" rel="noopener">多种单链表反转面试题总结</a></li>
+</ul>
+<h3 id="第三节-二叉树相关算法"><a href="#第三节-二叉树相关算法" class="headerlink" title="第三节 二叉树相关算法"></a>第三节 二叉树相关算法</h3><p>二叉树相比单链表，会有更多的指针操作，如果面试官想进一步考察应聘者指针操作，那么二叉树无疑是理想的考题。二叉树常见的考题包括：分层遍历（宽度优先遍历.<br>前序遍历、中序遍历、后序遍历以及求二叉树中两个节点的最低公共祖先节点。</p>
+<p>我们首先定义二叉树这种数据结构，代码实现如下：</p>
+<p>​<br>​    class TreeNode {<br>​        int val;<br>​        TreeNode left;<br>​        TreeNode right;<br>​        public TreeNode(int val) {<br>​            this.val = val;<br>​        }<br>​    }</p>
+<p>面试中，对 <strong>分层遍历</strong> 二叉树考察最多。举例如下，针对如下所示的二叉树。</p>
+<p><img src="http://images.gitbook.cn/300ca060-bddf-11e7-849f-fdf3270a301f" alt="enter image description
+here"></p>
+<p><strong>其分层遍历（宽度优先遍历）序列为：1,2,3,4,5,6,7,8,9,10</strong><br>可以看出，这好像符合一种先进先出的规律，我先遍历到某个节点，就将其输出。想到用过队列Queue来实现分层遍历。</p>
+<p><strong>步骤：</strong> 队列初始化，将根节点压入队列。当队列不为空，进行如下操作：弹出一个节点，访问，若左子节点或右子节点不为空，将其压入队列 。</p>
+<p><strong>代码实现如下：</strong></p>
+<p>​<br>​    public static void levelTraversal(TreeNode root){<br>​        if(root==null)<br>​            return ;<br>​        LinkedList<treenode> queue = new LinkedList<treenode>();<br>​        queue.add(root);  // 队列初始化，将根节点加入队列<br>​        while(!queue.isEmpty()){<br>​            TreeNode cur = queue.remove();<br>​            System.out.print(cur.val+” “);<br>​            if(cur.left!=null)<br>​                queue.add(cur.left);<br>​            if(cur.right!=null)<br>​                queue.add(cur.right);<br>​        }<br>​    }</treenode></treenode></p>
+<p>说完了宽度优先遍历二叉树，我们再来一个 <strong>深度优先遍历二叉树</strong> ，也就是二叉树的 <strong>前序遍历</strong> 序列。</p>
+<p><img src="http://images.gitbook.cn/d70989e0-bde0-11e7-9325-393cf0683e3a" alt="enter image description
+here"></p>
+<p>这颗二叉树的前序遍历序列为：abdefgc。前序遍历中，遍历顺序为根左右，也就是左节点在右节点之前，我们考虑使用堆栈这种后进先出的数据结构来实现。</p>
+<p><strong>步骤：</strong> 使用一个辅助堆栈，初始时将根节点加入堆栈，当堆栈不为空时，弹出一个节点，分别将其不为空的右子节点和左子节点加入堆栈。 代码实现如下：</p>
+<p>​<br>​    public static void preorderTraversal(TreeNode root){<br>​        if(root==null)<br>​            return ;<br>​        Stack<treenode> stack = new Stack<treenode>(); // 辅助stack<br>​        stack.push(root);<br>​        while(!stack.isEmpty()){<br>​            TreeNode cur = stack.pop();  // 出栈栈顶元素<br>​            System.out.print(cur.val+” “);<br>​            // 关键点：要先压入右孩子，再压入左孩子，这样在出栈时会先打印左孩子再打印右孩子<br>​            if(cur.right!=null)<br>​                 stack.push(cur.right);<br>​            if(cur.left!=null)<br>​                 stack.push(cur.left);<br>​        }<br>​    }</treenode></treenode></p>
+<p>篇幅有限，更多关于二叉树的常考算法题，请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/62423610" target="_blank" rel="noopener">二叉树基础题（一）</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/62424798" target="_blank" rel="noopener">二叉树基础题（二）</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/77159954" target="_blank" rel="noopener">二叉树路径问题 Path SUM（①②③）</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/74612786" target="_blank" rel="noopener">树中两个节点的最低公共祖先节点</a></li>
+</ul>
+<h3 id="第四节-队列和堆栈相关算法"><a href="#第四节-队列和堆栈相关算法" class="headerlink" title="第四节 队列和堆栈相关算法"></a>第四节 队列和堆栈相关算法</h3><p>队列和堆栈通常在算法题的考察中会作为一种辅助的数据结构出现。分别利用其先进先出和后进先出的特性。</p>
+<p>但是，有时候会单纯的考察队列和堆栈的相关知识，常见的算法题包括：包含 <strong>min函数的堆栈</strong> 、两个栈实现队列以及自定义堆栈的实现等。</p>
+<p><img src="http://images.gitbook.cn/0d6456c0-be20-11e7-acbf-5ddb5963849e" alt="enter image description
+here"></p>
+<p><img src="http://images.gitbook.cn/2479ea50-be20-11e7-acbf-5ddb5963849e" alt="enter image description
+here"></p>
+<blockquote>
+<p><strong>题目：包含min函数的栈</strong></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。在该栈中，调用min、push和pop方法。要求的时间复杂度均为O(1)</p>
+</blockquote>
+<p>思路：题目要求我们的各个方法均为O(1)复杂度，则我们考虑增加辅助空间来实现，即增加一个专门用来存储min值的辅助栈。</p>
+<p>比如，data中依次入栈，5, 4, 3, 8, 10, 11, 12, 1。则辅助栈依次入栈， 5, 4, 3，no,no, no, no,<br>1。no代表此次不如栈。即，每次入栈的时候，如果入栈的元素比min中的栈顶元素小或等于则入栈，否则不入栈。</p>
+<p><strong>代码实现如下：</strong></p>
+<p>​<br>​    import java.util.Stack;<br>​    public class Main {<br>​<br>        Stack<integer> stack = new Stack&lt;&gt;();<br>        Stack<integer> minStack = new Stack&lt;&gt;();  </integer></integer></p>
+<p>​<br>​        public void push(int node) {<br>​            stack.push(node);<br>​            if(minStack.isEmpty()||minStack.peek()&gt;=node)<br>​                minStack.push(node);<br>​        }<br>​<br>    /**<br>     * 首先需要对stack执行出栈操作,<br>     * 判断minStack中是否需要出栈操作<br>     */<br>        public void pop() {<br>            stack.pop();<br>            if(stack.peek()==minStack.peek()){<br>                minStack.pop();<br>            }<br>        }  </p>
+<pre><code>    public int top() {  
+        return stack.peek();  
+    }  
+
+/** 
+ * 直接peek minStack 
+ * @return 
+ */  
+    public int min() {  
+        return minStack.peek();  
+    }  
+}</code></pre><p>该实现算法中，在push和pop操作中，均有判断，判断值相等一定要用peek方法而不是pop！！！切记切记，关键点。</p>
+<p>篇幅有限，更多关于队列和堆栈的常考算法题，请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/71927382" target="_blank" rel="noopener">用两个栈实现队列</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/70860378" target="_blank" rel="noopener">如何自定义实现堆栈？</a></li>
+</ul>
+<h3 id="第五节-字符串相关算法"><a href="#第五节-字符串相关算法" class="headerlink" title="第五节 字符串相关算法"></a>第五节 字符串相关算法</h3><p>字符串是一种非常常见的数据类型，我们应当对API中常用的函数进行一定的学习和了解。在字符串的考察中，比较经典的是<br><strong>自定义一个函数实现字符串转整数的功能</strong> ；加大难度之后，会考察以下常见的5种关于字符串中“最长”问题：</p>
+<ol>
+<li>最长公共子序列</li>
+<li>最长公共子串</li>
+<li>最长递增子序列</li>
+<li>最长公共前缀</li>
+<li>最长不含重复元素的子串</li>
+</ol>
+<p>来看自定义一个函数，实现字符串转换成整数。当面试官说出这个题时，他肯定会避免和你说太多，只说出了最简单的要求。如果你立马动笔刷刷刷的用了三分钟就说写好了。</p>
+<p><img src="http://images.gitbook.cn/d0b14e80-bde9-11e7-9325-393cf0683e3a" alt="enter image description
+here"></p>
+<p>那么，对不起，我敢以人格担保，你这轮面试绝对 <strong>死翘翘了</strong><br>。。。这道题看似简单，而且面试官也没有提醒你应该注意哪些。但是！！，这道题的目的就是为了考察你的 <strong>特殊情况处理</strong><br>能力，你能不能想到会有哪些特殊情况或者边界处理，这才是本题的重点。</p>
+<p><img src="http://images.gitbook.cn/3cec8560-bdea-11e7-849f-fdf3270a301f" alt="enter image description
+here"></p>
+<p>那么，遇到这道题，我们应该如何面对？我们要不慌不乱的和面试官亲切交谈，制定该函数的一些规则，即如何处理异常输入等，之后，再遍历数组，根据需求进行相应的异常处理哦~</p>
+<p>首先，我们应该要想到本题的一些特殊情况。</p>
+<p><strong>本题的特殊情况如下：</strong></p>
+<ol>
+<li>能够排除首部的空格，从第一个非空字符开始计算</li>
+<li>允许数字以正负号(+-)开头</li>
+<li>遇到非法字符便停止转换，返回当前已经转换的值，如果开头就是非 法字符则返回0</li>
+<li>在转换结果溢出时返回特定值，这里是最大/最小整数</li>
+</ol>
+<p>我们需要针对以上的特殊情况和面试官亲切交流，询问如果有特殊情况该如何处理。</p>
+<p>其次，我们要想到一些测试用例，根据测试用例来询问面试官输出是否应该为XX。</p>
+<p><strong>先来几组测试用例：</strong></p>
+<p>​<br>​    “    010”<br>​    “    +004500”<br>​    “  -001+2a42”<br>​    “   +0 123”<br>​    “-2147483648”<br>​    “2147483648”<br>​    “   - 321”<br>​    “      -11919730356x”<br>​    “9223372036854775809”</p>
+<p><strong>以上的测试用例对应的正确输出如下：</strong></p>
+<p>​<br>​    10<br>​    4500<br>​    -1<br>​    0<br>​    -2147483648<br>​    2147483647<br>​    0<br>​    -2147483648<br>​    2147483647</p>
+<p>如果你能想到这些特殊情况和测试用例，那么恭喜你，你已经成功了90%，面试官会从心底里开始欣赏你。</p>
+<p>最后，代码的编写（so easy）</p>
+<p><img src="http://images.gitbook.cn/4c6ee630-bdeb-11e7-849f-fdf3270a301f" alt="enter image description
+here"></p>
+<p>代码如下：</p>
+<p>​<br>​    public static int myAtoi(String str) {<br>​        if(str==null||str.length()==0)<br>​            return 0;<br>​        char[] array = str.toCharArray();<br>​        long result = 0;  // 要返回的结果result<br>​        int count = 0;  // 记录‘+’或者‘-’出现的次数<br>​        int num = 0;   // 判断空格出现的位置<br>​        int flag = 1; // 正数还是负数<br>​        for (int i = 0; i &lt; array.length; i++) {<br>​            Character c = array[i];<br>​            if(c&gt;=’0’&amp;&amp;c&lt;=’9’){<br>​                result = result<em>10+c-‘0’;<br>​                // 判断是否溢出<br>​                if(flag==1&amp;&amp;result&gt;Integer.MAX_VALUE){<br>​                    return Integer.MAX_VALUE;<br>​                }else if(flag==-1&amp;&amp;-result&lt;Integer.MIN_VALUE)<br>​                    return Integer.MIN_VALUE;<br>​                num++;<br>​            }else if(c==’ ‘&amp;&amp;num==0&amp;&amp;count==0)<br>​                continue;<br>​            else if(c==’+’&amp;&amp;count==0){<br>​                count = 1;<br>​            }<br>​            else if(c==’-‘&amp;&amp;count==0){<br>​                flag = -1;<br>​                count = 1;<br>​            }<br>​            else{<br>​                return (int) (flag</em>result);<br>​<br>            }<br>        }<br>        return (int) (flag*result);<br>    }  </p>
+<p>篇幅有限，更多字符串相关常考算法，请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/77725795" target="_blank" rel="noopener">5种关于字符串中“最长”问题的解法</a></li>
+</ul>
+<h3 id="第六节-数组相关算法"><a href="#第六节-数组相关算法" class="headerlink" title="第六节 数组相关算法"></a>第六节 数组相关算法</h3><p>数组也是一种极其常见的数据结构，在面试中和数组相关的算法题出现频率贼高。对数组的操作，一般会要求时间复杂度和空间复杂度。所以，最常用的方法就是设置两个指针，分别指向不同的位置，不断调整指针指向来实现O（N）时间复杂度内实现算法。常见的面试题有：<br><strong>拼接一个最大/小的数字、合并两个有序数组、调整数组顺序使奇数位于偶数前面、 查找多数元素、数组中的重复元素</strong></p>
+<blockquote>
+<p><strong>题目一：查找多数元素</strong></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>找出一个数组中占50%以上的元素，即寻找多数元素，并且多数元素是一定存在的假设。</p>
+</blockquote>
+<p><strong>思路1</strong> ：将数组排序，则中间的那个元素一定是多数元素</p>
+<p>​<br>​    public int majorityElement(int[] nums) {<br>​        Arrays.sort(nums);<br>​        return nums[nums.length/2];<br>​    }  </p>
+<p>该代码的时间复杂度为O（NlogN），面试官会问你能不能进行优化时间复杂度？</p>
+<p><strong>思路2</strong> ：利用HashMap来记录每个元素的出现次数</p>
+<p>​<br>​    public int majorityElement(int[] nums) {<br>​        HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();<br>​<br>        for (int i = 0; i &lt; nums.length; i++) {<br>            if(!map.containsKey(nums[i])){<br>                map.put(nums[i], 1);<br>            }else {<br>                int values = map.get(nums[i]);<br>                map.put(nums[i], ++values);<br>            }<br>        }<br>        int n = nums.length/2;<br>        Set<integer> keySet = map.keySet();<br>        Iterator<integer> iterator = keySet.iterator();<br>        while(iterator.hasNext()){<br>            int key = iterator.next();<br>            int value = map.get(key);<br>            if (value&gt;n) {<br>                return key;<br>            }<br>        }<br>        return 0;  </integer></integer></p>
+<pre><code>}  </code></pre><p>该代码的时间复杂度为O（N），空间复杂度为O（N）。面试官还不满意，问你能不能用O（N）+O（1）实现该算法？</p>
+<p><strong>思路3</strong> ： <strong>Moore voting algorithm–<br>每找出两个不同的element，就成对删除即count–，最终剩下的一定就是所求的。</strong></p>
+<p>​<br>​    public int majorityElement(int[] nums) {<br>​          int elem = 0;<br>​          int count = 0;<br>​          for(int i = 0; i &lt; nums.length; i++)  {<br>​             if(count == 0)  {<br>​                 elem = nums[i];<br>​                 count = 1;<br>​             }<br>​             else    {<br>​                 if(elem == nums[i])<br>​                     count++;<br>​                 else<br>​                     count–;<br>​             }<br>​<br>         }<br>         return elem;<br>    }  </p>
+<p>完美，这才是本题的正确最优解。</p>
+<p><img src="http://images.gitbook.cn/916b8ba0-bdee-11e7-9486-39f4852ad2ea" alt="enter image description
+here"></p>
+<blockquote>
+<p><strong>题目二：把数组排成最小的数</strong></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。</p>
+<p><strong>思路：</strong> 我们需要定义一种新的比较大小规则，数组根据这个规则可以排成一个最小的数字。</p>
+<p><strong>排序规则：</strong> 两个数字m和n，我们比较mn和nm的大小，来确定在新的比较规则下n和m的大小关系，来确定哪个应该排在前面</p>
+<p><strong>步骤：</strong> 将整型数组转换为String数组。在新的规则下对数组进行排序（本例使用了选择排序）。</p>
+<p>​<br>​    public String PrintMinNumber(int [] num) {<br>​        if(num==null||num.length==0)<br>​            return “”;<br>​        int len = num.length;<br>​        String[] str = new String[len];<br>​        for(int i = 0; i &lt; len; i++){<br>​            str[i] = String.valueOf(num[i]);<br>​        }<br>​        for (int i = 0; i &lt; str.length; i++) {<br>​            for (int j = i+1; j &lt; str.length; j++) {<br>​                if(compare(str[i], str[j])){<br>​                    String temp = str[j];<br>​                    str[j] = str[i];<br>​                    str[i] = temp;<br>​                }<br>​            }<br>​        }<br>​        StringBuilder sb = new StringBuilder();<br>​        for(int i = 0;i&lt;str.length;i++){<br>​            sb = sb.append(str[i]);<br>​        }<br>​        return sb.toString();<br>​<br>    }<br>    private boolean compare(String s1,String s2){<br>        int len = s1.length()+s2.length();<br>        String str1 = s1+s2;<br>        String str2 = s2+s1;<br>        for (int i = 0; i &lt; len; i++) {<br>            if(Integer.parseInt(str1.substring(i,i+1))&gt;Integer.parseInt(str2.substring(i,i+1)))<br>                return true;<br>            if(Integer.parseInt(str1.substring(i,i+1))&lt;Integer.parseInt(str2.substring(i,i+1)))<br>                return false;<br>        }<br>        return false;<br>    }</p>
+<p>篇幅有限，更多数组相关算法，请参考我的博客：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/74065254" target="_blank" rel="noopener">在排序数组中查找数字出现的次数</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/73609133" target="_blank" rel="noopener">数组中数字出现的次数</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/72594212" target="_blank" rel="noopener">调整数组顺序使奇数位于偶数前面</a></li>
+<li><a href="http://blog.csdn.net/qq_25827845/article/details/71429662" target="_blank" rel="noopener">数组中的重复元素</a></li>
+</ul>
+<h3 id="第七节-Others-Algorithm"><a href="#第七节-Others-Algorithm" class="headerlink" title="第七节 Others Algorithm"></a>第七节 Others Algorithm</h3><p>其它常见的算法题还有 <strong>青蛙跳台阶</strong> 问题。</p>
+<p><img src="http://images.gitbook.cn/e374d2f0-be1e-11e7-9325-393cf0683e3a" alt="enter image description
+here"></p>
+<blockquote>
+<p><strong>题目一：青蛙跳台阶问题</strong></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个n级台阶总共有多少种跳法？</p>
+</blockquote>
+<p>分析：当n = 1， 只有1中跳法；当n = 2时，有2种跳法；当n = 3 时，有3种跳法；当n = 4时，有5种跳法；当n =<br>5时，有8种跳法；…….规律类似于Fibonacci数列：</p>
+<p><img src="http://images.gitbook.cn/b0e5aae0-be1d-11e7-849f-fdf3270a301f" alt="enter image description
+here"></p>
+<p>递归实现的代码如下：</p>
+<p>​<br>​    public int Fibonacci(int n){<br>​        if(n&lt;=2)<br>​            return n;<br>​        return Fibonacci(n-1)+Fibonacci(n-2);<br>​    }  </p>
+<p>当我们写出递归代码时，面试官应该会建议我们对递归代码进行优化，因为递归代码中有太多的重复运算。所以，我们考虑使用使用变量保存住中间结果。 代码实现如下：</p>
+<p>​<br>​    public int jumpFloor(int number) {<br>​        if(number&lt;=2)<br>​            return number;<br>​        int jumpone=2; // 离所求的number的距离为1步的情况，有多少种跳法<br>​        int jumptwo=1; // 离所求的number的距离为2步的情况，有多少种跳法<br>​        int sum=0;<br>​        for(int i=3;i&lt;=number;i++){<br>​            sum=jumptwo+jumpone;<br>​            jumptwo=jumpone;<br>​            jumpone=sum;<br>​        }<br>​        return sum;<br>​    }  </p>
+<blockquote>
+<p><strong>题目二：青蛙变态跳台阶问题</strong></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+</blockquote>
+<p><strong>解题思路：</strong></p>
+<ul>
+<li>先跳到n-1级，再一步跳到n级，有f(n-1)种；</li>
+<li>先跳到n-2级，再一步跳到n级，有f(n-2)种；</li>
+<li>先跳到n-3级，再一步跳到n级，有f(n-3)种；</li>
+<li>。。。。。。</li>
+<li>先跳到第1级，再一步跳到n级，有f(1)种；</li>
+<li>所以：</li>
+<li>f(n)=f(n-1)+f(n-2)+f(n-3)+···+f(1)</li>
+<li>f(n-1)=f(n-2)+f(n-3)+···+f(1)</li>
+<li>推出f(n)=2*f(n-1) </li>
+</ul>
+<p>代码实现如下：</p>
+<p>​<br>​    public int jumpFloor2(int num) {<br>​        if(num&lt;=2)<br>​            return num;<br>​        int jumpone=2; // 前面一级台阶的总跳法数<br>​        int sum=0;<br>​        for(int i=3;i&lt;=num;i++){<br>​            sum = 2*jumpone;<br>​            jumpone = sum;<br>​        }<br>​        return sum;<br>​    } </p>
+<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>当各位同学读到此处时，你可能只是仅仅对文章内容进行了一次简单的浏览，还来不及细细消化品味文中算法的乐趣。诚然，这是一篇特别长的文章。因为，我的本意是将每一小节都写成一个单独的课时，这样方便读者阅读，不至于产生疲惫感。但是，我后来才知道，达人课才能那么写，普通的单场Chat就是一篇文章搞定。所以，我只能尽可能的精简篇幅，以使读者不至于阅读疲惫。</p>
+<p>本文中所述算法均为典型案例，也是我亲身经历过得面试算法题。文中链接中的算法题也是非常常见，希望大家可以熟练掌握，细细体会其中的奥妙。</p>
+<p>本次Chat结束之后，我会针对自己所应聘的Java后台开发方向，发布一场新的Chat，重点阐述Java开发岗在面试中都考察哪些方面的知识和技能，欢迎大家关注^_^</p>
+<p>注：以上算法题，仅仅是作者认为大家在面试前必须要牢牢掌握的高频率算法题。当你特别熟练的回答了之后，可能面试官会加大算法难度，想看看应聘者的极限在哪里^_^</p>
+<p>（作者水平有限，文中如有错误之处，烦请各位指出，我们一起进步。）</p>
+<hr>
+<p>本文首发于GitChat，未经授权不得转载，转载需与GitChat联系。</p>
+<p>161</p>
+<p><a href="/m/mazi/author/59eb0fc63b6aa74d1427e79e/question">向作者提问</a></p>
+<p>互动评论</p>
+<p><img src="https://images.gitbook.cn/7e637010-8cc6-11e9-b60e-19c95a6a735a?imageView2/1/w/200/h/200" alt></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/015ac060-d9a7-11e7-b13c-c32be776e5d0" alt></p>
+<p>幸福2 年前</p>
+<p>想退钱的冲动，大哥能不能自己先跑一下，第一个算法排序学习半天报索引超出异常，然后看到评论里更正了，直接复制再跑一遍还是报索引超出异常，这是有多自信！！！！！</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/be76abf0-302d-11e8-b98a-8d5185352c8e" alt></p>
+<p>杨文强（作者）2 年前</p>
+<p>作者水平有限，文中如有错误之处，烦请各位指出，我们一起进步</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/015ac060-d9a7-11e7-b13c-c32be776e5d0" alt></p>
+<p>幸福2 年前</p>
+<p>不好意思，自己调用错了，参数J应该length-1</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/5eae6f70-d58b-11e7-adba-9119e3f0586f" alt></p>
+<p>一纸凉生2 年前</p>
+<p>快速排序a[i]=key为什么不能省略啊 ,最后I和j相遇的值一定是Key吧</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/be76abf0-302d-11e8-b98a-8d5185352c8e" alt></p>
+<p>杨文强（作者）2 年前</p>
+<p>你好，那句话的含义是将基准值在本趟排序结束之后，放在其最终所处的位置。这样，i位置左边的都是小于基准值的，i右边的都是大于基准值的。后边继续递归，完成排序。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/cbfb20d0-c2c8-11e7-8a04-a984a69364fd" alt></p>
+<p>汉娜之眼2 年前</p>
+<p>你确定你的快速排序代码是正确的吗？麻烦再检查一下。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/be76abf0-302d-11e8-b98a-8d5185352c8e" alt></p>
+<p>杨文强（作者）2 年前</p>
+<p>感谢您的宝贵意见，是我疏忽了。递归结束条件应该写在前面。正确代码如下所示： public void quickSort(int[] num, int<br>left, int right) { if (num == null) return;<br>//如果左边大于右边，则return，这里是递归的终点，需要写在前面。 if (left &gt;= right) { return; } int i =<br>left; int j = right; int temp = num[i]; //此处开始进入遍历循环 while (i &lt; j) { //从右往左循环<br>while (i &lt; j &amp;&amp; num[j] &gt;= temp) {//如果num[j]大于temp值，则pass，比较下一个 j–; } num[i] =<br>num[j]; while (i &lt; j &amp;&amp; num[i] &lt;= temp) { i++; } num[j] = num[i]; num[i] =<br>temp; // 此处不可遗漏，将基准值插入到指定位置 } quickSort(num, left, i - 1); quickSort(num, i +<br>1, right); }</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/5772b5a0-b8bb-11e7-880e-85949e501e7c" alt></p>
+<p>代娅敏2 年前</p>
+<p>写的不错，感谢指点，希望继续加油</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p>查看更多</p>
+<h2 id="更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！"><a href="#更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！" class="headerlink" title="更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！"></a>更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！</h2><h1 id="本资源由微信公众号：光明顶一号，提供支持"><a href="#本资源由微信公众号：光明顶一号，提供支持" class="headerlink" title="本资源由微信公众号：光明顶一号，提供支持"></a>本资源由微信公众号：光明顶一号，提供支持</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/24/数据结构算法/知名互联网公司校招中常见的算法题/">http://yoursite.com/2019/09/24/数据结构算法/知名互联网公司校招中常见的算法题/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/数据结构与算法/"># 数据结构与算法</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/28/Vue_Webpack/给后端程序员看的Vue快速入门教程/">后端程序员看的Vue快速入门</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/24/项目实战 面试/">项目实战1 秒杀项目 诺鱼</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

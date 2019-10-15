@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>SpringBoot Docker 小D课堂 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SpringBoot Docker 小D课堂</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 11, 2018&nbsp;&nbsp;10:13:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SpringBoot/">SpringBoot</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="构建SpringBoot-应用docker镜像"><a href="#构建SpringBoot-应用docker镜像" class="headerlink" title="构建SpringBoot 应用docker镜像"></a>构建SpringBoot 应用docker镜像</h1><h4 id="1-第1课-高级篇幅之构建SpringBoot应用docker镜像上集"><a href="#1-第1课-高级篇幅之构建SpringBoot应用docker镜像上集" class="headerlink" title="1.第1课 高级篇幅之构建SpringBoot应用docker镜像上集"></a>1.第1课 高级篇幅之构建SpringBoot应用docker镜像上集</h4><blockquote>
+<p> 官方文档：<a href="https://spring.io/guides/gs/spring-boot-docker/" target="_blank" rel="noopener">https://spring.io/guides/gs/spring-boot-docker/</a></p>
+<h2 id="1、步骤：maven里面添加配置pom-xml"><a href="#1、步骤：maven里面添加配置pom-xml" class="headerlink" title="1、步骤：maven里面添加配置pom.xml"></a>1、步骤：maven里面添加配置pom.xml</h2></blockquote>
+<pre><code>简介:使用Docker的maven插件，构建springboot应用
+ &lt;!--在maven最上面的申明的地方--properties--&gt;
+     &lt;properties&gt;
+       &lt;docker.image.prefix&gt;xdclass&lt;/docker.image.prefix&gt;
+    &lt;/properties&gt;
+
+    &lt;build&gt;
+    &lt;!--项目打包的名称--&gt;
+        &lt;finalName&gt;docker-demo&lt;/finalName&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;com.spotify&lt;/groupId&gt;
+                &lt;artifactId&gt;dockerfile-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;1.3.6&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;repository&gt;${docker.image.prefix}/${project.artifactId}&lt;/repository&gt;
+                    &lt;buildArgs&gt;
+                        &lt;JAR_FILE&gt;target/${project.build.finalName}.jar&lt;/JAR_FILE&gt;
+                    &lt;/buildArgs&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+    配置讲解
+    Spotify 的 docker-maven-plugin 插件是用maven插件方式构建docker镜像的。
+    ${project.build.finalName} 产出物名称，缺省为${project.artifactId}-${project.version}</code></pre><p>⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️</p>
+<blockquote>
+<p> <a href="https://blog.csdn.net/TMaskBoy/article/details/82562413" target="_blank" rel="noopener">https://blog.csdn.net/TMaskBoy/article/details/82562413</a></p>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-021717.jpg" alt="image-20181111112653319"></p>
+<h1 id="高能预警"><a href="#高能预警" class="headerlink" title="高能预警"></a>高能预警</h1><ul>
+<li><p>No plugin found for prefix ‘docker’ in the current project and in the plugin groups<br>在Maven的配置文件 conf/settings.xml中添加com.spotify</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;pluginGroups&gt;  </span><br><span class="line">    &lt;pluginGroup&gt;com.spotify&lt;/pluginGroup&gt;  </span><br><span class="line">&lt;/pluginGroups&gt;</span><br><span class="line"></span><br><span class="line">注意setting配置文件在maven的仓库里面找不到 重新更新idea中maven的插件 然后 更换.m2中conf中setting.xml的内容</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>#详细错误如下：om.spotify.docker.client.shaded.com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.spotify.docker.client.messages.RegistryAuth: no String-argument constructor/factory method to deserialize from String value (‘swarm’)  </p>
+<p>起初pom.xml中docker-maven-plugin的版本是1.0.0，使用mvn package docker:build -e构建Image出现如上异常。<br>百般搜索无果，后来看其他的Spring Boot构建Docker镜像有用的是0.4.3，遂修改之。 </p>
+<ol start="2">
+<li>解决办法</li>
+</ol>
+<hr>
+<h1 id="将小D课堂里面的插件"><a href="#将小D课堂里面的插件" class="headerlink" title="将小D课堂里面的插件"></a>将小D课堂里面的插件</h1></li>
+</ul>
+<pre><code> &lt;groupId&gt;com.spotify&lt;/groupId&gt;
+&lt;artifactId&gt;dockerfile-maven-plugin&lt;/artifactId&gt;
+&lt;version&gt;1.3.6&lt;/version&gt;</code></pre><h1 id="改为⭐️⭐️"><a href="#改为⭐️⭐️" class="headerlink" title="改为⭐️⭐️"></a>改为⭐️⭐️</h1>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;com.spotify&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt; ⭐️ //这边不是dockerfile-maven-plugin了而是docker-maven-plugin</span><br><span class="line">&lt;version&gt;0.4.13&lt;/version&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>   ⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ </p>
+<h3 id="第2课-高级篇幅之构建SpringBoot应用docker镜像下集"><a href="#第2课-高级篇幅之构建SpringBoot应用docker镜像下集" class="headerlink" title="第2课 高级篇幅之构建SpringBoot应用docker镜像下集"></a>第2课 高级篇幅之构建SpringBoot应用docker镜像下集</h3><blockquote>
+<h4 id="步骤1创建Dockerfile-默认是根目录，（可以修改为src-main-docker-Dockerfile-如果修则需要制定路径）"><a href="#步骤1创建Dockerfile-默认是根目录，（可以修改为src-main-docker-Dockerfile-如果修则需要制定路径）" class="headerlink" title="步骤1创建Dockerfile,默认是根目录，（可以修改为src/main/docker/Dockerfile,如果修则需要制定路径）"></a>步骤1创建Dockerfile,默认是根目录，（可以修改为src/main/docker/Dockerfile,如果修则需要制定路径）</h4></blockquote>
+<pre><code>简介:打包SpringCloud镜像并上传私有仓库并部署
+1、 什么是Dockerfile : 由一系列命令和参数构成的脚本，这些命令应用于基础镜像, 最终创建一个新的镜       像
+实战
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+
+
+参数讲解：
+FROM &lt;image&gt;:&lt;tag&gt; 需要一个基础镜像，可以是公共的或者是私有的， 后续构建会基于此镜像，如果同一个Dockerfile中建立多个镜像时，可以使用多个FROM指令
+
+VOLUME  配置一个具有持久化功能的目录，主机 /var/lib/docker 目录下创建了一个临时文件，并链接到容   器的/tmp。改步骤是可选的，如果涉及到文件系统的应用就很有必要了。/tmp目录用来持久化到 Docker 数据 文件夹，因为 Spring Boot 使用的内嵌 Tomcat 容器默认使用/tmp作为工作目录 
+
+ARG  设置编译镜像时加入的参数， ENV 是设置容器的环境变量
+COPY : 只支持将本地文件复制到容器 ,还有个ADD更强大但复杂点
+ENTRYPOINT 容器启动时执行的命令
+EXPOSE 8080 暴露镜像端口</code></pre><h3 id="第3课构建镜像"><a href="#第3课构建镜像" class="headerlink" title="第3课构建镜像"></a>第3课构建镜像</h3><pre><code>2、构建镜像
+        mvn install dockerfile:build
+        打标签
+        docker tag a1b9fc71720d registry.cn-shenzhen.aliyuncs.com/xdclass/xdclass_images:docker-demo-v201808
+        推送到镜像仓库
+        docker push registry.cn-shenzhen.aliyuncs.com/xdclass/xdclass_images:docker-demo-v201808
+
+        应用服务器拉取镜像
+        docker pull registry.cn-shenzhen.aliyuncs.com/xdclass/xdclass_images:docker-demo-v201808
+
+
+        docker run -d --name xdclass_docker_demo1 -p 8099:8080  a1b9fc71720d
+
+        3、查看启动日志 docker logs -f  containerid</code></pre><h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><h2 id="1-mvn-install-dockerfile-build。不知道为什么终端没有用idea中终端却有用-😄哈哈"><a href="#1-mvn-install-dockerfile-build。不知道为什么终端没有用idea中终端却有用-😄哈哈" class="headerlink" title="1.mvn install dockerfile:build。不知道为什么终端没有用idea中终端却有用 😄哈哈"></a>1.mvn install dockerfile:build。不知道为什么终端没有用idea中终端却有用 😄哈哈</h2><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-021718.jpg" alt="image-20181111130637806"></p>
+<h2 id="2-docker-images"><a href="#2-docker-images" class="headerlink" title="2.docker images"></a>2.docker images</h2><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-021720.jpg" alt="image-20181111130706064"></p>
+<blockquote>
+<p>没有名字镜像？？注意在idea中测试的话就要用idea 不要随变改成终端</p>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-021721.jpg" alt="image-20181111131256001"></p>
+<h2 id="3-docker-run-d-–name-demo-p-8080-8080-8ef42611e3b0"><a href="#3-docker-run-d-–name-demo-p-8080-8080-8ef42611e3b0" class="headerlink" title="3.docker  run -d –name demo -p 8080:8080  8ef42611e3b0"></a>3.docker  run -d –name demo -p 8080:8080  8ef42611e3b0</h2><blockquote>
+<p>备注：运行镜像 –name 指定名字 -d 后台运行 8ef42611e3b0：刚刚构建的image的ID </p>
+<p>name 不会用就别用</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-021722.jpg" alt="image-20181111133053363"></p>
+</blockquote>
+<h3 id="4-docker-ps"><a href="#4-docker-ps" class="headerlink" title="4.docker ps"></a>4.docker ps</h3><blockquote>
+<p>查看一下镜像的进程</p>
+</blockquote>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxv1qm8xnmj30xs02g3zi.jpg" alt="image-20181111133138180"></p>
+<p>？？？没有程序。测试一下</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/11/Spring Boot/SpringBoot-Docker-小D课堂/">http://yoursite.com/2018/11/11/Spring Boot/SpringBoot-Docker-小D课堂/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/11/并发编程/慕课网java高并发/第四章 安全发布对象/">第4章 安全发布对象</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/11/并发编程/慕课网java高并发/第二章项目准备/">第2章 项目准备</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

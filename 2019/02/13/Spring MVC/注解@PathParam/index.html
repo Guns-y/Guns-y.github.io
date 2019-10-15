@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>PathVariabl和@RequestParam用法与区别 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">PathVariabl和@RequestParam用法与区别</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 13, 2019&nbsp;&nbsp;11:48:11</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="【1】params"><a href="#【1】params" class="headerlink" title="【1】params"></a>【1】params</h1><p>params： 指定request中必须包含某些参数值是，才让该方法处理。</p>
+<pre><code>@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = { &quot;username&quot;,&quot;age!=10&quot; })
+public String testParamsAndHeaders() {
+    System.out.println(&quot;testParamsAndHeaders&quot;);
+    return SUCCESS;
+}</code></pre><h3 id="params-只是判断url-或者-form-data-中的参数是否复合params的定义，并不会直接绑定数据到方法的参数中！"><a href="#params-只是判断url-或者-form-data-中的参数是否复合params的定义，并不会直接绑定数据到方法的参数中！" class="headerlink" title="params 只是判断url 或者 form data 中的参数是否复合params的定义，并不会直接绑定数据到方法的参数中！"></a>params 只是判断url 或者 form data 中的参数是否复合params的定义，并不会直接绑定数据到方法的参数中！</h3><h1 id="2-PathVariabl"><a href="#2-PathVariabl" class="headerlink" title="2 @PathVariabl"></a>2 @PathVariabl</h1><p>绑定路径中的占位符参数到方法参数变量中；只能绑定路径中的占位符参数，且路径中必须有参数。无论是 GET 或者POST 只要 URL中有参数即可！实例如下：GET<br>Request URL:<a href="http://localhost:8080/SpringMVC-1/springmvc/testPathVariable/1" target="_blank" rel="noopener">http://localhost:8080/SpringMVC-1/springmvc/testPathVariable/1</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;springmvc/testPathVariable/1&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;username&quot; value=&quot;&quot;/&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;&quot;/&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;sex&quot; value=&quot;&quot;/&gt;</span><br><span class="line">	&lt;input type=&quot;submit&quot; value=&quot;submit&quot;/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 【注意】如果URL中无参数，将会出错；如果URL有参数，但是没有使用@PathVariabl该注解，那么URL的参数不会默认与方法参数绑定！方法里的参数会默认绑定表单里面对应的参数！</p>
+<p>后台code</p>
+<h2 id="如果参数名与占位符一致，则可直接使用-PathVariable；如果不一致，则在-PathVariable-括号内绑定占位符。"><a href="#如果参数名与占位符一致，则可直接使用-PathVariable；如果不一致，则在-PathVariable-括号内绑定占位符。" class="headerlink" title="如果参数名与占位符一致，则可直接使用@PathVariable；如果不一致，则在@PathVariable( )括号内绑定占位符。"></a>如果参数名与占位符一致，则可直接使用@PathVariable；如果不一致，则在@PathVariable( )括号内绑定占位符。</h2><pre><code>@RequestMapping(&quot;/testPathVariable/{id}&quot;)
+public String testPathVariable(@PathVariable(&quot;id&quot;) Integer id2) {
+    System.out.println(&quot;testPathVariable: &quot; + id2);
+    return SUCCESS;
+}</code></pre><hr>
+<p>【3】@RequestParam<br>该注解相关属性如下：</p>
+<p>value：参数key，可以不写，默认为””；</p>
+<p>name：和value作用一样；</p>
+<p>required：默认值为true，可以不写；</p>
+<p>获取URL或者 form data 中的参数</p>
+<p>前台请求实例如下：</p>
+<p>GET</p>
+<a href="springmvc/testRequestParam?userName=tom&age=11&sex=boy">
+1
+POST
+
+<pre><code>&lt;form action=&quot;springmvc/testRequestParam&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;userName&quot; value=&quot;&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;sex&quot; value=&quot;&quot;/&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;submit&quot;/&gt;
+&lt;/form&gt;</code></pre><p>注意 ：</p>
+<p>GET中的参数形式为：username=tom&amp;age=11&amp;sex=boy</p>
+<p>POST中的参数形式为：以键值对形式保存在form data</p>
+<p>后台代码示例：</p>
+<pre><code>@RequestMapping(value=&quot;/regist&quot;,produces=&quot;application/json;charset=utf-8&quot;)
+@ResponseBody
+public String regist(SysUser sysUser , @RequestParam(required=true,name=&quot;sex&quot;) String sex){
+    String userName = sysUser.getUserName();
+    String age = sysUser.getAge();
+    //...
+    return &quot;regist success&quot;;
+}</code></pre><p> 总得来说，均是键值对形式，与@PathVariabl中的占位符形式不同！！！</p>
+<p>#@RequestParam注解</p>
+<p><strong>@RequestParam</strong>注解比较简单，它用于将请求参数区数据映射到功能处理方法的参数上，自SpringMVC4.2之后，@RequestParam注解内部有4个参数：</p>
+<ul>
+<li>String name</li>
+<li>String value</li>
+<li>boolean required</li>
+<li>String defaultValue</li>
+</ul>
+<p>1.name与value属性，其中name和value分别是URL参数的名称，即二者没区别，我个人比较喜欢用name，因为在HTML的表单中我们都是用name属性来设置URL参数名称的，所以在注解上也使用name这个属性的话，会更直观一些。示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.zero01.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"test.do"</span>)</span><br><span class="line">    <span class="comment">// 指定将username参数的值传递到该方法的name参数上</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>)</span> String name) </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"user.do"</span>)</span><br><span class="line">    <span class="comment">// 指定将username参数的值传递到该方法的user参数上，alias参数的值则传递到该方法的a参数上</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userAndAlias</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>)</span>String user, @<span class="title">RequestParam</span><span class="params">(name = <span class="string">"alias"</span>)</span>String a) </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.required属性，该属性用于指定某个参数是否是必须的，默认值为true，表示请求中一定要有相应的参数，否则将报404错误码，示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.zero01.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"test.do"</span>)</span><br><span class="line">    <span class="comment">// 指定username参数是必须的，如果url上没有的话就会报错</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>, required = <span class="keyword">true</span>)</span> String name) </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"user.do"</span>)</span><br><span class="line">    <span class="comment">// 指定username与alias参数不是必须的，即便url上没有也不会报错</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userAndAlias</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>, required = <span class="keyword">false</span>)</span> String user, @<span class="title">RequestParam</span><span class="params">(name = <span class="string">"alias"</span>, required = <span class="keyword">false</span>)</span> String a) </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.defaultValue属性，该属性用于指定参数的默认值，表示如果请求中没有同名参数时的默认值，默认值可以是SpEL表达式，如“#{systemProperties[‘java.vm.version’]}”。示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.zero01.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"test.do"</span>)</span><br><span class="line">    <span class="comment">// url上没有username参数时，给它设置一个默认值为nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>, defaultValue = <span class="string">"nothing"</span>)</span> String name) </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"user.do"</span>)</span><br><span class="line">    <span class="comment">// url上没有username以及alias参数时，给它设置一个默认值为nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userAndAlias</span><span class="params">(@RequestParam(name = <span class="string">"username"</span>, defaultValue = <span class="string">"nothing"</span>)</span> String user, @<span class="title">RequestParam</span><span class="params">(name = <span class="string">"alias"</span>, defaultValue = <span class="string">"nothing"</span>)</span> String a) </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</a>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/02/13/Spring MVC/注解@PathParam/">http://yoursite.com/2019/02/13/Spring MVC/注解@PathParam/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SpringMVC/"># SpringMVC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/02/19/Spring/注解开发/">Spring注解</a>
+            
+            
+            <a class="next" rel="next" href="/2019/02/12/项目实战/大众点评慕课网实战项目/">慕课网 前后端分离 开发大众点评项目</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

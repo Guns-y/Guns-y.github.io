@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Freemarker | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Freemarker</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 18, 2019&nbsp;&nbsp;10:42:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Freemarker/">Freemarker</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Freemarker教程"><a href="#Freemarker教程" class="headerlink" title="Freemarker教程"></a>Freemarker教程</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/sell/order"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SellerController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderServiceImpl orderService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//订单列表 （page 从第几页开始  size 一页多少数据）</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/list"</span>)</span><br><span class="line"><span class="comment">//  SpringDataJPA   原因page从0开始不是从1开始</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">list</span><span class="params">(@RequestParam(value = <span class="string">"page"</span>, defaultValue = <span class="string">"0"</span>)</span> Integer page, @<span class="title">RequestParam</span><span class="params">(value = <span class="string">"size"</span>, defaultValue = <span class="string">"4"</span>)</span> Integer size, Map&lt;String, Object&gt; map) </span>&#123;</span><br><span class="line">        PageRequest of = PageRequest.of(page, size);</span><br><span class="line">        Page&lt;OrderDTO&gt; orderDTOPage = orderService.findListAll(of);</span><br><span class="line"><span class="comment">//        当前页 page</span></span><br><span class="line">        map.put(<span class="string">"currentpage"</span>, page);</span><br><span class="line">        map.put(<span class="string">"orderDTOPage"</span>, orderDTOPage);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"order/list"</span>, map);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-md-12 column"</span>&gt;</span><br><span class="line">            &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"pagination"</span> pull-right&gt;</span><br><span class="line">                &lt;#--  上一页--&gt;</span><br><span class="line">                &lt;#if currentpage lte 1&gt;</span><br><span class="line">                    &lt;li&gt;&lt;a class="disabled" href="#"&gt;上一页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                &lt;#else&gt;</span><br><span class="line">                    &lt;li&gt;</span><br><span class="line">                        &lt;a href=<span class="string">"/sell/order/list?page=$&#123;currentpage-1&#125;&amp;size=5"</span><span class="string">"&gt;Prev&lt;/a&gt;</span></span><br><span class="line"><span class="string">                    &lt;/li&gt;</span></span><br><span class="line"><span class="string">                &lt;/#if&gt;</span></span><br><span class="line"><span class="string">                &lt;#--当前页--&gt;</span></span><br><span class="line"><span class="string">                &lt;#--  int total= orderDTOPage.getTotalPages()    返回的是一个数字--&gt;</span></span><br><span class="line"><span class="string">                &lt;#--从数字0到 total     --&gt;</span></span><br><span class="line"><span class="string">                &lt;#list 1..orderDTOPage.getTotalPages() as index&gt;</span></span><br><span class="line"><span class="string">                    &lt;li&gt;</span></span><br><span class="line"><span class="string">                &lt;#-- 如果是当前页page 则变灰 否则显示页      --&gt;</span></span><br><span class="line"><span class="string">                    &lt;#if currentpage==index&gt;</span></span><br><span class="line"><span class="string">                        &lt;li class="</span>disabled<span class="string">"&gt;</span></span><br><span class="line">                            &lt;a class="disabled" href="#"&gt;$&#123;index&#125;&lt;/a&gt;</span><br><span class="line">                        &lt;/li&gt;</span><br><span class="line">                    &lt;#-- http://localhost:8080/sell/order/list?page=1&amp;size=10--&gt;</span><br><span class="line">                    &lt;#else&gt;</span><br><span class="line">                        &lt;li&gt;&lt;a href="/sell/order/list?page=$&#123;index&#125;&amp;size=5"&gt;$&#123;index&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                    &lt;/#if&gt;</span><br><span class="line">                &lt;/#list&gt;</span><br><span class="line"></span><br><span class="line">                &lt;#--下一页--&gt;</span><br><span class="line">                &lt;#if currentpage  gte orderDTOPage.getTotalPages()&gt;</span><br><span class="line">                    &lt;li&gt;&lt;a class="disabled" href="#"&gt;下一页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                &lt;#else&gt;</span><br><span class="line">                    &lt;li&gt;</span><br><span class="line">                        &lt;a href="/sell/order/list?page=$&#123;currentpage+1&#125;&amp;size=5"&gt;Next &lt;/a&gt;</span><br><span class="line">                    &lt;/li&gt;</span><br><span class="line">                &lt;/#if&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p><a href="http://docs.freemarker.cn" target="_blank" rel="noopener">http://docs.freemarker.cn</a></p>
+<p><a href="https://www.sojson.com/blog/39.html" target="_blank" rel="noopener">https://www.sojson.com/blog/39.html</a></p>
+</blockquote>
+<hr>
+<h1 id="分页讲解"><a href="#分页讲解" class="headerlink" title="分页讲解"></a>分页讲解</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-18-025527.png" alt="image-20190718105522594">前端index 传到后端page 放到currentPage中</p>
+<p>  1 。。表示从1—xx</p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-18-030749.png" alt="image-20190718110748758"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-18-030821.png" alt="image-20190718110819775"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-18-030853.png" alt="image-20190718110851680"></p>
+<hr>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/07/18/模版技术/Freemarker/">http://yoursite.com/2019/07/18/模版技术/Freemarker/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Freemarker/"># Freemarker</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/01/JVM/性能监控与调优详解/第一章 课成绩介绍/">第一章 介绍 Java生产环境下性能监控与调优详解</a>
+            
+            
+            <a class="next" rel="next" href="/2019/07/11/项目实战/2019-07-11-慕课网微信点餐系统.md/">微信点餐系统</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Linux | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Linux</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 30, 2018&nbsp;&nbsp;15:32:45</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Linux/">Linux</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Linux-SSH-Mac"><a href="#Linux-SSH-Mac" class="headerlink" title="Linux SSH Mac"></a>Linux SSH Mac</h1><h4 id="1-下载-淘宝-用户名dongguakeji-密码dongguakeji"><a href="#1-下载-淘宝-用户名dongguakeji-密码dongguakeji" class="headerlink" title="1.下载 淘宝 用户名dongguakeji 密码dongguakeji"></a>1.下载 淘宝 用户名dongguakeji 密码dongguakeji</h4><h4 id="2-mac远程访问SSH"><a href="#2-mac远程访问SSH" class="headerlink" title="2.mac远程访问SSH"></a>2.mac远程访问SSH</h4><ul>
+<li>不再sudoers文件中此事将被报告 （dongguakeji密码不能使用）–解决 使用root登陆分配权限</li>
+<li><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023621.jpg" alt="image-20181130153551168"></li>
+</ul>
+<h4 id="3-使用root登陆-远程SSH连接Linux-centos7"><a href="#3-使用root登陆-远程SSH连接Linux-centos7" class="headerlink" title="3.使用root登陆 远程SSH连接Linux centos7"></a>3.使用root登陆 远程SSH连接Linux centos7</h4><ul>
+<li>使用root访问 关闭防火墙 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.你要改用iptables的话，需要安装iptables服务</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>** sudo yum install iptables-services **</li>
+</ul>
+</blockquote>
+<p>CentOS 7.0默认使用的是firewall作为防火墙，这里改为 iptables防火墙步骤。 </p>
+<blockquote>
+<ul>
+<li>firewall-cmd –state.  #查看默认防火墙状态 </li>
+</ul>
+</blockquote>
+<p> （关闭后显示notrunning，开启后显示running） </p>
+<p>[root@localhost ~]#firewall-cmd –state </p>
+<p>not running </p>
+<hr>
+<ul>
+<li><p>关闭防火墙： </p>
+</li>
+<li><blockquote>
+<p> systemctl stop firewalld.service #停止firewall </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p> systemctl disable firewalld.service #禁止firewall开机启动 </p>
+</blockquote>
+</li>
+</ul>
+<p>4.Linux下ip设置</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_34924407/article/details/79967650" target="_blank" rel="noopener">https://blog.csdn.net/qq_34924407/article/details/79967650</a>.  Centos7中查看IP命令：IP add</p>
+<p><a href="https://blog.csdn.net/tuntun1120/article/details/65443757" target="_blank" rel="noopener">https://blog.csdn.net/tuntun1120/article/details/65443757</a> 虚拟机下CentOS7开启SSH连接</p>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023622.jpg" alt="image-20181130154156372"></p>
+<h4 id="4-切换网络模式选择-然后重新编辑"><a href="#4-切换网络模式选择-然后重新编辑" class="headerlink" title="4.切换网络模式选择 然后重新编辑"></a>4.切换网络模式选择 然后重新编辑</h4><h2 id="⭐️-虚拟主机–-gt-网络适配器——-gt-侨界模式—-gt-复制物理网络连接转台"><a href="#⭐️-虚拟主机–-gt-网络适配器——-gt-侨界模式—-gt-复制物理网络连接转台" class="headerlink" title="⭐️ 虚拟主机–&gt;网络适配器——&gt;侨界模式—&gt;复制物理网络连接转台"></a>⭐️ 虚拟主机–&gt;网络适配器——&gt;侨界模式—&gt;复制物理网络连接转台</h2><h2 id="然后重新编辑IP-变成下面这样"><a href="#然后重新编辑IP-变成下面这样" class="headerlink" title="然后重新编辑IP 变成下面这样"></a>然后重新编辑IP 变成下面这样</h2><p>Linux – ifconfig命令找不到对应的ip地址的解决办</p>
+<p>当发现linux ifconfig命令找不到对应的ip地址的时解决办法<br><img src="https://s1.51cto.com/images/blog/201711/23/22c2037fcdd4b0e9250f53bbe42d53ca.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="Linux -- ifconfig命令找不到对应的ip地址的解决办法"></p>
+<p>网卡配置文件保存在：/etc/sysconfig/network-scripts/目录下， 将onboot修改为yes，然后重启网卡，才能启动，重启网卡命令：service network restart</p>
+<p>找到对应的网卡配置文件</p>
+<p>设置为启动时激活设备</p>
+<p>重启网卡image-20181130154418731](<a href="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023623.jpg" target="_blank" rel="noopener">http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023623.jpg</a>)</p>
+<hr>
+<p>、输入cd /etc/sysconig/network-scripts目录</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-31-100607.jpg" alt="54c6759c0001d47f05000282.jpg"></p>
+<p>2、输入ifconfig -a可显示eth0和lo。</p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c67851000176aa05000282.jpg"></p>
+<p>3、3. 输入ifconfig eth0 up</p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c679130001212b05000040.jpg"></p>
+<p>4、vi ifcfg-eth0可以这个界面可以把ONBOOT=no，ONBOOT=yes。</p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c67ac80001785205000308.jpg"></p>
+<p>这里我的ONBOOT=yes已改过了。</p>
+<p>5、更改后输入：及wq保存并退出</p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c67c0c000139e905000485.jpg"></p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c67c6d0001aa8805000476.jpg"></p>
+<p>6、输入service network restart重启网络服务。</p>
+<p><img src="http://img.voidcn.com/vcimg/static/loading.png" alt="54c67d86000120ca05000104.jpg"></p>
+<p>7、输入ifconfig,应该就能看到更改后的ip了，应该就算配置完成了。</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-31-100607.jpg" alt="54c6759c0001d47f05000282.jpg"></p>
+<hr>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>1.先检查SSH 服务开没开</p>
+<p>2.检查22 端口的状态</p>
+<p>3.看网络互相通过ping看看是不是有64type的回应</p>
+<p>4。资料在收藏夹里面 还有慕课的视频Linux</p>
+<hr>
+<h1 id="虚拟机下CentOS7开启SSH连接"><a href="#虚拟机下CentOS7开启SSH连接" class="headerlink" title="虚拟机下CentOS7开启SSH连接"></a>虚拟机下CentOS7开启SSH连接</h1><p>在虚拟机（Vmware Workstation）下，安装了CentOS7，现在想通过SSH工具连接虚拟机中的CentOS7</p>
+<p>1、 首先，要确保CentOS7安装了  <strong>openssh-server</strong>，在终端中输入  <strong>yum list installed | grep openssh-server</strong></p>
+<p><strong><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074011.jpg" alt="img"></strong></p>
+<p>此处显示已经安装了  <strong>openssh-server</strong>，如果又没任何输出显示表示没有安装  <strong>openssh-server</strong>，通过输入  <strong>yum install openssh-server</strong></p>
+<p><strong><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074010.jpg" alt="img"></strong></p>
+<p>来进行安装<strong>openssh-server</strong></p>
+<p>2、 找到了  <strong>/etc/ssh/</strong>  目录下的sshd服务配置文件 <strong>sshd_config</strong>，用Vim编辑器打开</p>
+<p>将文件中，关于监听端口、监听地址前的 # 号去除</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-073956.jpg" alt="img"></p>
+<p>然后开启允许远程登录</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-74006.jpg" alt="img"></p>
+<p>最后，开启使用用户名密码来作为连接验证</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-073958.jpg" alt="img"></p>
+<p>保存文件，退出</p>
+<p>3、 开启  sshd  服务，输入 <strong>sudo service sshd start</strong></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074007.jpg" alt="img"></p>
+<p>检查  sshd  服务是否已经开启，输入<strong>ps -e | grep sshd</strong></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-073957.jpg" alt="img"></p>
+<p>或者输入<strong>netstat -an | grep 22</strong>  检查  <strong>22</strong> 号端口是否开启监听</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-073959.jpg" alt="img"></p>
+<p>4、 在Vmware Workstation中，查看CentOS7的属性，发现网络连接方式是采用的  <strong>NAT</strong>  方式连接的</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074005.jpg" alt="img"></p>
+<p>5、 在Vmware Workstation中，点击<strong>编辑</strong>=》<strong>虚拟网络编辑器</strong>，进入虚拟网络编辑器，查看发现 NAT 模式的连接采用的网络适配器名称为<strong>VMnet8</strong></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074004.jpg" alt="img"></p>
+<p>6、在 windows 主机中，在命令行中输入<strong>ipconfig</strong> 查看主机IP，找到 VMnet8 的连接信息，此处 ip 为<strong>192.168.30.1</strong></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-74003.jpg" alt="img"></p>
+<p>7、在CentOS中，输入<strong>ifconfig</strong>查看网络连接地址，发现CentOS的网络地址为<strong>192.168.112.128</strong></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074012.jpg" alt="img"></p>
+<p>8、在CentOS中，输入<strong>ping 192.168.30.1</strong> 测试是否能连通主机，发现可以连通</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-74009.jpg" alt="img"></p>
+<p>9、在主机中，输入 <strong>ping 192.168.112.128</strong>，测试主机是否能连通CentOS，发现连不通</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074008.jpg" alt="img"></p>
+<p>如果可以连得通，可以直接跳至第12 步</p>
+<p>10、在主机，打开网络配置，选择网络适配器 VMnet8 的  TCP/IPv4   的属性，进行一下网络配置</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074000.jpg" alt="img"></p>
+<p>要求子网掩码、默认网关均和CentOS一致，并将IP地址修改为 192.168.112.1，即保证主机的  IP  和  CentOS  的  IP  在同一网络区段中</p>
+<p>11、再在主机中，输入 <strong>ping 192.168.112.128</strong>，已经可以连接得通了</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-73960.jpg" alt="img"></p>
+<p>12、在SSH工具（此处使用的XShell）中，新建连接，输入  CentOS   的  IP  地址、用户名、密码即可连接成功</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074003.jpg" alt="img"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074006.jpg" alt="img"></p>
+<p>连接成功</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074001.jpg" alt="img"></p>
+<p>13、为了免去每次开启 CentOS 时，都要手动开启  sshd 服务，可以将 sshd 服务添加至自启动列表中，输入<strong>systemctl enable sshd.service</strong></p>
+<p><strong><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074009.jpg" alt="img"></strong></p>
+<p>可以通过输入<strong>systemctl list-unit-files | grep sshd</strong>，查看是否开启了sshd 服务自启动</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-26-074002.jpg" alt="img"></p>
+<hr>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/30/Linux/Linux/">http://yoursite.com/2018/11/30/Linux/Linux/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/30/Linux/Linux安装JDK/">linux安装JDK1.7 cento7</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/11/Docker/Docker加速/">Docker镜像加速</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

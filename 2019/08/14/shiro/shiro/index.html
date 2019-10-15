@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>shirt SAAS 系统 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">shirt SAAS 系统</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 14, 2019&nbsp;&nbsp;18:00:15</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/shiro/">shiro</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="JJWT的快速入门"><a href="#JJWT的快速入门" class="headerlink" title="JJWT的快速入门"></a>JJWT的快速入门</h1><h3 id="（1）创建maven工程，引入依赖"><a href="#（1）创建maven工程，引入依赖" class="headerlink" title="（1）创建maven工程，引入依赖"></a>（1）创建maven工程，引入依赖</h3><figure class="highlight plain"><figcaption><span>a</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;jjwt&lt;/artifactId&gt; </span><br><span class="line">		&lt;version&gt;0.6.0&lt;/version&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）创建类CreateJwtTest，用于生成token"><a href="#（2）创建类CreateJwtTest，用于生成token" class="headerlink" title="（2）创建类CreateJwtTest，用于生成token"></a>（2）创建类CreateJwtTest，用于生成token</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> com.ihrm.common.utils.JwtUtils;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.JwtBuilder;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Jwts;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.SignatureAlgorithm;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateJwtTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        JwtBuilder jwtBuilder = Jwts.builder().setId(<span class="string">"20160202128"</span>).setSubject(<span class="string">"袁海鹏"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date()).signWith(SignatureAlgorithm.HS256, <span class="string">"itcast"</span>);</span><br><span class="line">        String token = jwtBuilder.compact();</span><br><span class="line">        System.out.println(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="token的解析"><a href="#token的解析" class="headerlink" title="token的解析"></a>token的解析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Claims;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Jws;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Jwts;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParseJwtTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String token = <span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyMDE2MDIwMjEyOCIsInN1YiI6Iuiigea1t-m5jyIsImlhdCI6MTU2NTc3OTkyNn0.uKSpY3LWD0tEtjMhLFvMVAclCp83k4AGQdoLZzoS-eM"</span>;</span><br><span class="line">        <span class="comment">//私有数据存放在claims上</span></span><br><span class="line">        Claims claims = Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(token).getBody();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"id:"</span> + claims.getId());</span><br><span class="line">        System.out.println(<span class="string">"subject:"</span> + claims.getSubject());</span><br><span class="line">        System.out.println(<span class="string">"IssuedAt:"</span> + claims.getIssuedAt());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义claims"><a href="#自定义claims" class="headerlink" title="自定义claims"></a>自定义claims</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import com.ihrm.common.utils.JwtUtils;</span><br><span class="line">import io.jsonwebtoken.JwtBuilder;</span><br><span class="line">import io.jsonwebtoken.Jwts;</span><br><span class="line">import io.jsonwebtoken.SignatureAlgorithm;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class CreateJwtTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        JwtBuilder jwtBuilder = Jwts.builder().setId(&quot;20160202128&quot;).setSubject(&quot;袁海鹏&quot;)</span><br><span class="line">        .setIssuedAt(new Date()).</span><br><span class="line">         signWith(SignatureAlgorithm.HS256, &quot;itcast&quot;).</span><br><span class="line">         claim(&quot;id&quot;, &quot;1&quot;).</span><br><span class="line">       claim(&quot;name&quot;, &quot;袁海鹏&quot;);</span><br><span class="line">        String token = jwtBuilder.compact();</span><br><span class="line">        System.out.println(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解析自定义claims"><a href="#解析自定义claims" class="headerlink" title="解析自定义claims"></a>解析自定义claims</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ic <span class="class"><span class="keyword">class</span> <span class="title">ParseJwtTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String token = <span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyMDE2MDIwMjEyOCIsInN1YiI6Iuiigea1t-m5jyIsImlhdCI6MTU2NTc4MDI3NiwiaWQiOiIxIiwibmFtZSI6Iuiigea1t-m5jyJ9.3ECnrik_ddotShDV5ARc"</span> +</span><br><span class="line">                <span class="string">"qej7GNDWJw7TeONoUhCCkHw"</span>;</span><br><span class="line">        <span class="comment">//私有数据存放在claims上</span></span><br><span class="line">        Claims claims = Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(token).getBody();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"id:"</span> + claims.getId());</span><br><span class="line">        System.out.println(<span class="string">"subject:"</span> + claims.getSubject());</span><br><span class="line">        System.out.println(<span class="string">"IssuedAt:"</span> + claims.getIssuedAt());</span><br><span class="line">        System.out.println(claims.get(<span class="string">"id"</span>));</span><br><span class="line">        System.out.println(claims.get(<span class="string">"name"</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JWT工具类"><a href="#JWT工具类" class="headerlink" title="JWT工具类"></a>JWT工具类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ihrm.common.utils;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Claims;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.JwtBuilder;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.Jwts;</span><br><span class="line"><span class="keyword">import</span> io.jsonwebtoken.SignatureAlgorithm;</span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="comment">//@ConfigurationProperties("jwt.config")</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(<span class="string">"jwt.config"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JwtUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * jwt:</span></span><br><span class="line"><span class="comment">     * config:</span></span><br><span class="line"><span class="comment">     * key: saas-ihrm</span></span><br><span class="line"><span class="comment">     * ttl: 3600000</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//签名私钥</span></span><br><span class="line"><span class="comment">//    @Value("$&#123;jwt.config.key&#125;")</span></span><br><span class="line">    <span class="keyword">private</span> String key;</span><br><span class="line">    <span class="comment">//签名的失效时间</span></span><br><span class="line"><span class="comment">//    @Value("$&#123;jwt.config.ttl&#125;")</span></span><br><span class="line">    <span class="keyword">private</span> Long ttl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置认证token</span></span><br><span class="line"><span class="comment">     * id:登录用户id</span></span><br><span class="line"><span class="comment">     * subject：登录用户名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">createJwt</span><span class="params">(String id, String name, Map&lt;String, Object&gt; map)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.设置失效时间</span></span><br><span class="line">        <span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前毫秒</span></span><br><span class="line">        <span class="keyword">long</span> exp = now + ttl;</span><br><span class="line">        <span class="comment">//2.创建jwtBuilder</span></span><br><span class="line">        JwtBuilder jwtBuilder = Jwts.builder().setId(id).setSubject(name)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">                .signWith(SignatureAlgorithm.HS256, key);</span><br><span class="line">        <span class="comment">//3.根据map设置claims</span></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, Object&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            jwtBuilder.claim(entry.getKey(), entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">        jwtBuilder.setExpiration(<span class="keyword">new</span> Date(exp));</span><br><span class="line">        <span class="comment">//4.创建token</span></span><br><span class="line">        String token = jwtBuilder.compact();</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析token字符串获取clamis</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Claims <span class="title">parseJwt</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();</span><br><span class="line">        <span class="keyword">return</span> claims;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="登录成功签发token"><a href="#登录成功签发token" class="headerlink" title="登录成功签发token"></a>登录成功签发token</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-14-110921.png" alt="image-20190814190920463"></p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//1.配置springboot的包扫描</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span>(scanBasePackages = <span class="string">"com.ihrm"</span>)</span><br><span class="line"><span class="comment">//2.配置jpa注解的扫描</span></span><br><span class="line"><span class="meta">@EntityScan</span>(value=<span class="string">"com.ihrm.domain.system"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemApplication</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 启动方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SystemApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IdWorker <span class="title">idWorker</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> IdWorker();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="（1）配置JwtUtil。修改ihrm-system工程的启动类"><a href="#（1）配置JwtUtil。修改ihrm-system工程的启动类" class="headerlink" title="（1）配置JwtUtil。修改ihrm_system工程的启动类"></a>（1）配置JwtUtil。修改ihrm_system工程的启动类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">   public JwtUtils jwtUtils() &#123;</span><br><span class="line">       return new JwtUtils();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）添加登录方法"><a href="#（2）添加登录方法" class="headerlink" title="（2）添加登录方法"></a>（2）添加登录方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 用户登录</span></span><br><span class="line"><span class="comment">    * 1.通过service根据mobile查询用户</span></span><br><span class="line"><span class="comment">    * 2.比较password</span></span><br><span class="line"><span class="comment">    * 3.生成jwt信息</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@RequestMapping</span>(value = <span class="string">"/login"</span>, method = RequestMethod.POST)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Result <span class="title">login</span><span class="params">(@RequestBody Map&lt;String, String&gt; loginMap)</span> </span>&#123;</span><br><span class="line">       String mobile = loginMap.get(<span class="string">"mobile"</span>);</span><br><span class="line">       String password = loginMap.get(<span class="string">"password"</span>);</span><br><span class="line">       User user = userService.findByMobile(mobile);</span><br><span class="line">       <span class="comment">//登录失败</span></span><br><span class="line">       <span class="keyword">if</span> (user == <span class="keyword">null</span> || !user.getPassword().equals(password)) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.MOBILEORPASSWORDERROR);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">//登录成功</span></span><br><span class="line">           Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">           map.put(<span class="string">"companyId"</span>, user.getCompanyId());</span><br><span class="line">           map.put(<span class="string">"companyName"</span>, user.getCompanyName());</span><br><span class="line">           String token = jwtUtils.createJwt(user.getId(), user.getUsername(), map);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS, token);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-14-115816.png" alt="image-20190814195815383"></p>
+<hr>
+<hr>
+<h1 id="shiro认证与授权：基于ini的用户认证"><a href="#shiro认证与授权：基于ini的用户认证" class="headerlink" title="shiro认证与授权：基于ini的用户认证"></a>shiro认证与授权：基于ini的用户认证</h1><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[users]</span><br><span class="line">#模拟从数据库查询用户</span><br><span class="line">#数据格式 用户名=密码</span><br><span class="line">zhangsan=<span class="number">123456</span></span><br><span class="line">lisi=<span class="number">654321</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="测试用户认证："><a href="#测试用户认证：" class="headerlink" title="测试用户认证："></a>测试用户认证：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"> /**</span><br><span class="line">     * 测试用户认证：</span><br><span class="line">     *      认证：用户登录</span><br><span class="line">     *</span><br><span class="line">     *      1.根据配置文件创建SecurityManagerFactory</span><br><span class="line">     *      2.通过工厂获取SecurityManager</span><br><span class="line">     *      3.将SecurityManager绑定到当前运行环境</span><br><span class="line">     *      4.从当前运行环境中构造subject</span><br><span class="line">     *      5.构造shiro登录的数据</span><br><span class="line">     *      6.主体登陆</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void testLogin() &#123;</span><br><span class="line">        //1.根据配置文件创建SecurityManagerFactory</span><br><span class="line">        Factory&lt;SecurityManager&gt; factory = new IniSecurityManagerFactory(&quot;classpath:shiro-test-1.ini&quot;);</span><br><span class="line">        //2.通过工厂获取SecurityManager</span><br><span class="line">        SecurityManager securityManager = factory.getInstance();</span><br><span class="line">        //3.将SecurityManager绑定到当前运行环境</span><br><span class="line">        SecurityUtils.setSecurityManager(securityManager);</span><br><span class="line">        //4.从当前运行环境中构造subject</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line">        //5.构造shiro登录的数据</span><br><span class="line">        String username = &quot;zhangsan&quot;;</span><br><span class="line">        String password = &quot;1234561&quot;;</span><br><span class="line">        UsernamePasswordToken token = new UsernamePasswordToken(username,password);</span><br><span class="line">        //6.主体登陆</span><br><span class="line">        subject.login(token);</span><br><span class="line">        //7.验证用户是否登录成功</span><br><span class="line">        System.out.println(&quot;用户是否登录成功=&quot;+subject.isAuthenticated());</span><br><span class="line">        //8.获取登录成功的数据</span><br><span class="line">        System.out.println(subject.getPrincipal());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="shiro认证与授权：基于ini的用户授权"><a href="#shiro认证与授权：基于ini的用户授权" class="headerlink" title="shiro认证与授权：基于ini的用户授权"></a>shiro认证与授权：基于ini的用户授权</h1><h4 id="配置文件-RBAC-的授权模式"><a href="#配置文件-RBAC-的授权模式" class="headerlink" title="配置文件 RBAC 的授权模式"></a><strong>配置文件</strong> RBAC 的授权模式</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[users]</span></span><br><span class="line"><span class="comment">#用户名=密码，角色名</span></span><br><span class="line"><span class="attr">zhangsan</span>=<span class="number">123456</span>,role1,role2</span><br><span class="line"><span class="attr">lisi</span>=<span class="number">123456</span>,role2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">[roles]</span></span><br><span class="line"><span class="comment">#角色</span></span><br><span class="line"><span class="comment">#角色名=权限列表</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">role1</span>=user:save,user:update</span><br><span class="line"><span class="attr">role2</span>=user:find</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="测试ini-测试授权"><a href="#测试ini-测试授权" class="headerlink" title="测试ini 测试授权"></a>测试ini 测试授权</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.shiro;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.SecurityUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.UsernamePasswordToken;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.config.IniSecurityManagerFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.mgt.SecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.Subject;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.util.Factory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroTest02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> SecurityManager securityManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.根据配置文件创建SecurityManagerFactory</span></span><br><span class="line">        Factory&lt;SecurityManager&gt; factory = <span class="keyword">new</span> IniSecurityManagerFactory(<span class="string">"classpath:shiro-test-2.ini"</span>);</span><br><span class="line">        <span class="comment">//2.通过工厂获取SecurityManager</span></span><br><span class="line">        SecurityManager securityManager = factory.getInstance();</span><br><span class="line">        <span class="comment">//3.将SecurityManager绑定到当前运行环境</span></span><br><span class="line">        SecurityUtils.setSecurityManager(securityManager);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line">        String username = <span class="string">"lisi"</span>;</span><br><span class="line">        String password = <span class="string">"123456"</span>;</span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(username, password);</span><br><span class="line">        subject.login(token);</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">        <span class="comment">//⭐️⭐️ini 授权</span></span><br><span class="line">        <span class="comment">//登录成功之后，完成授权</span></span><br><span class="line">        <span class="comment">//授权：检验当前登录用户是否具有操作权限，是否具有某个角色</span></span><br><span class="line">        System.out.println(subject.hasRole(<span class="string">"role1"</span>));</span><br><span class="line">        System.out.println(subject.isPermitted(<span class="string">"user:save"</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190816155400803.png" alt="image-20190816155400803"></p>
+<hr>
+<h1 id="shiro认证与授权：自定义realm"><a href="#shiro认证与授权：自定义realm" class="headerlink" title="-shiro认证与授权：自定义realm"></a>-shiro认证与授权：自定义realm</h1><h3 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[main]</span></span><br><span class="line"><span class="comment">#声明realm</span></span><br><span class="line"><span class="attr">permReam</span>=cn.itcast.shiro.PermissionRealm</span><br><span class="line"><span class="comment">#注册realm到securityManager中</span></span><br><span class="line"><span class="attr">securityManager.realms</span>=<span class="variable">$permReam</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="cn-itcast-shiro-PermissionRealm"><a href="#cn-itcast-shiro-PermissionRealm" class="headerlink" title="cn.itcast.shiro.PermissionRealm"></a>cn.itcast.shiro.PermissionRealm</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.shiro;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authz.AuthorizationInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authz.SimpleAuthorizationInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.realm.AuthorizingRealm;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.PrincipalCollection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义realms对象</span></span><br><span class="line"><span class="comment"> *      继承AuthorizingRealm</span></span><br><span class="line"><span class="comment"> *          重写方法</span></span><br><span class="line"><span class="comment"> *              doGetAuthorizationInfo：授权</span></span><br><span class="line"><span class="comment"> *                  获取到用户的授权数据（用户的权限数据）</span></span><br><span class="line"><span class="comment"> *              doGetAuthenticationInfo：认证</span></span><br><span class="line"><span class="comment"> *                  根据用户名密码登录，将用户数据保存（安全数据）</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PermissionRealm</span> <span class="keyword">extends</span> <span class="title">AuthorizingRealm</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自定义realm名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setName(<span class="string">"permissionRealm"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//授权:授权的主要目的就是根据认证数据获取到用户的权限信息</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * principalCollection：包含了所有已认证的安全数据</span></span><br><span class="line"><span class="comment">     * AuthorizationInfoInfo：授权数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principalCollection)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"执行授权方法"</span>);</span><br><span class="line">        <span class="comment">//1.获取安全数据  username，用户id</span></span><br><span class="line">        String username = (String)principalCollection.getPrimaryPrincipal();</span><br><span class="line">        <span class="comment">//2.根据id或者名称查询用户</span></span><br><span class="line">        <span class="comment">//3.查询用户的角色和权限信息</span></span><br><span class="line">        List&lt;String&gt; perms = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        perms.add(<span class="string">"user:save"</span>);</span><br><span class="line">        perms.add(<span class="string">"user:update"</span>);</span><br><span class="line">        List&lt;String&gt; roles = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        roles.add(<span class="string">"role1"</span>);</span><br><span class="line">        roles.add(<span class="string">"role2"</span>);</span><br><span class="line">        <span class="comment">//4.构造返回</span></span><br><span class="line">        SimpleAuthorizationInfo info = <span class="keyword">new</span> SimpleAuthorizationInfo();</span><br><span class="line">        <span class="comment">//设置权限集合</span></span><br><span class="line">        info.addStringPermissions(perms);</span><br><span class="line">        <span class="comment">//设置角色集合</span></span><br><span class="line">        info.addRoles(roles);</span><br><span class="line">        <span class="keyword">return</span> info;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//认证：认证的主要目的，比较用户名和密码是否与数据库中的一致</span></span><br><span class="line">    <span class="comment">//将安全数据存入到shiro进行保管</span></span><br><span class="line">    <span class="comment">//参数：authenticationToken登录构造的usernamepasswordtoken</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken authenticationToken)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"执行认证方法"</span>);</span><br><span class="line">        <span class="comment">//1.构造uptoken</span></span><br><span class="line">        UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;</span><br><span class="line">        <span class="comment">//2.获取输入的用户名密码</span></span><br><span class="line">        String username = upToken.getUsername();</span><br><span class="line">        String password = <span class="keyword">new</span> String(upToken.getPassword());</span><br><span class="line">        <span class="comment">//3.根据用户名查询数据库，正式系统查询</span></span><br><span class="line">        <span class="comment">//4.比较密码和数据库中的密码是否一致（密码可能需要加密）</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"123456"</span>.equals(password)) &#123;</span><br><span class="line">        </span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">          <span class="comment">//5.如果成功，向shiro存入安全数据</span></span><br><span class="line">            SimpleAuthenticationInfo info = <span class="keyword">new</span> SimpleAuthenticationInfo(username,password,getName());<span class="comment">//1.安全数据，2.密码。3。当前realm域名称</span></span><br><span class="line">           </span><br><span class="line">          <span class="keyword">return</span> info;</span><br><span class="line">          </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//6.失败，抛出异常或返回null</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"用户名或密码错误"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Relam-认证-授权测试"><a href="#Relam-认证-授权测试" class="headerlink" title="Relam 认证 授权测试"></a>Relam 认证 授权测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.shiro;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.SecurityUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.UsernamePasswordToken;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.config.IniSecurityManagerFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.mgt.SecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.Subject;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.util.Factory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroTest03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> SecurityManager securityManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.根据配置文件创建SecurityManagerFactory</span></span><br><span class="line">        Factory&lt;SecurityManager&gt; factory = <span class="keyword">new</span> IniSecurityManagerFactory(<span class="string">"classpath:shiro-test-3.ini"</span>);</span><br><span class="line">        <span class="comment">//2.通过工厂获取SecurityManager</span></span><br><span class="line">        SecurityManager securityManager = factory.getInstance();</span><br><span class="line">        <span class="comment">//3.将SecurityManager绑定到当前运行环境</span></span><br><span class="line">        SecurityUtils.setSecurityManager(securityManager);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line">        String username = <span class="string">"zhangsan"</span>;</span><br><span class="line">        String password = <span class="string">"123456"</span>;</span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(username,password);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行login--&gt;realm域中的认证方法</span></span><br><span class="line">        subject.login(token);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//授权：--&gt;realm域中的授权方法</span></span><br><span class="line">        System.out.println(subject.hasRole(<span class="string">"role1"</span>));</span><br><span class="line">        System.out.println(subject.isPermitted(<span class="string">"user:save"</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190816161649637.png" alt="image-20190816161649637"></p>
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190816161708422.png" alt="image-20190816161708422"></p>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/08/14/shiro/shiro/">http://yoursite.com/2019/08/14/shiro/shiro/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/shiro/"># shiro</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/15/LeetCode/LeetCode/">LeetCode</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/13/Vue_Webpack/WebpackVue/">Vue教程</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

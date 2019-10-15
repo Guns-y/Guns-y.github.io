@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>java程序员Nginx实战应用 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">java程序员Nginx实战应用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2019&nbsp;&nbsp;12:43:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Nginx/">Nginx</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a href="/gitchat/author/5914fb13751a0664ac9dfe0c"><img src="https://images.gitbook.cn/76792b00-d292-11e7-a749-d1c99a8dd9de?imageView2/1/w/200/h/200" alt><img src="https://images.gitbook.cn/cvip.png" alt></a></p>
+<p><a href="/gitchat/author/5914fb13751a0664ac9dfe0c">JPM</a></p>
+<p><a href="/m/mazi/author/5914fb13751a0664ac9dfe0c/question">向作者提问</a></p>
+<p>擅长JavaWeb开发，项目管理，乐于分享。公众号：追梦人。</p>
+<p><a href="/gitchat/activity/5bfb8cb091799e1f47aa27c6">查看本场Chat</a></p>
+<p>说到 Nginx，项目中一般是运维人员在负责这块内容，Java 程序员在开发中反而不怎么会具体使用。程序员知道 Nginx<br>可以实现反向代理、负载均衡、动静分离等功能，工作中不会实际地去配置这些内容，也不清楚具体是怎么在 Nginx 中实现这些功能。那么通过看这篇 Chat<br>也许会让你有所收获。</p>
+<p>本篇 Chat 以实例演示， 从以下 10 个方面对 Java 程序员应掌握的 Nginx 知识进行讲解：</p>
+<ol>
+<li>常用的 Web 服务器介绍；</li>
+<li>Nginx 在分布式架构中的作用；</li>
+<li>Nginx 的下载与安装；</li>
+<li>Nginx 的配置文件介绍；</li>
+<li>实例演示环境介绍（CentOS + Nginx + Tomcat）；</li>
+<li>Nginx 的反向代理演示；</li>
+<li>Nginx 的负载均衡演示；</li>
+<li>Nginx 的动静分离演示；</li>
+<li>Nginx 解决跨域访问问题演示；</li>
+<li>Nginx 的防盗链配置演示。</li>
+</ol>
+<p>希望通过本场 Chat 的学习，使一线程序员快速了解常用的 Nginx 相关知识点，了解 Nginx<br>是如何做到反向代理、负载均衡、动静分离、实现防盗链，以及解决跨域问题。</p>
+<h3 id="一、常用的-Web-服务器介绍"><a href="#一、常用的-Web-服务器介绍" class="headerlink" title="一、常用的 Web 服务器介绍"></a>一、常用的 Web 服务器介绍</h3><h4 id="服务器介绍"><a href="#服务器介绍" class="headerlink" title="服务器介绍"></a>服务器介绍</h4><p>Web 服务器分为静态服务器和动态服务器，静态服务器就是处理静态资源的，比如 HTML、CSS、JS，常用的静态服务器有<br>Apache、Nginx；动态服务器就是处理动态请求的，比如 JSP，Servlet 等，常用的有 Tomcat、Weblogic。</p>
+<p>Nginx 是一个高性能的 HTTP 服务器和反向代理服务器，能够支持 5 万个并发连接，内存、CPU 消耗非常低，是基于七层协议的服务。</p>
+<h4 id="反向代理介绍"><a href="#反向代理介绍" class="headerlink" title="反向代理介绍"></a>反向代理介绍</h4><p>我们平时说的代理指的是代理客户端，这个是正向代理，反向代理指的是代理服务端。</p>
+<p>我们作为用户想访问一个服务资源 URL，如果我们的浏览器直接打不开这个 URL，一般会通过 VPN<br>或者其他代理服务器中转，这种情况下的代理就是正向代理，也就是我们通常说的代理的意思。</p>
+<p>而反向代理是指，作为服务资源提供方，内部有很多服务器，这些服务器不能全部暴露给第三方用户，因此需要在内部服务器的前面加一个代理服务器，用户访问的是代理服务的<br>IP，而不知道具体访问的是服务端的哪台机器，这种情况就是反向代理，指的是代理服务端。</p>
+<h3 id="二、Nginx-在分布式架构中的作用"><a href="#二、Nginx-在分布式架构中的作用" class="headerlink" title="二、Nginx 在分布式架构中的作用"></a>二、Nginx 在分布式架构中的作用</h3><h4 id="分布式架构的演进"><a href="#分布式架构的演进" class="headerlink" title="分布式架构的演进"></a>分布式架构的演进</h4><p>一个网站的初期，访问的流量比较小，选用的架构可能就是用户通过域名访问，经过域名解析（DNS 服务器），拿到后端服务器的 IP 地址，直接访问到这个 IP<br>所对应的 Tomcat 服务器，这是最简单的一个网站架构。</p>
+<p>随着用户流量的增大，一台 Tomcat 服务器无法满足用户的请求，因此人们会想到 2 个办法：</p>
+<ol>
+<li>升级这台服务器更换更强大的硬件，这就是垂直扩展；</li>
+<li>增加新的服务器来分担前端流量，这就是水平扩展。</li>
+</ol>
+<p>垂直扩展的方式就是对一台服务器不断加强硬件，但是服务器的可扩展内存会有上限，总会达到瓶颈，而且成本比较高，因此人们一般会选择水平扩展。一台不够再加一台，不行再加一台……</p>
+<p>为了应对流量的增加，不断地增加后端服务器的数量，那么服务器的 IP 会越来越多，通过 DNS 服务器管理这些服务器 IP 带来了新的问题：</p>
+<ol>
+<li>后端的某台机器宕机后，DNS 服务器不知道该机器宕机，仍然解析到了这个 IP，如果用户访问到了这个宕机的 IP，那么系统无法为用户提供服务；</li>
+<li>DNS 服务器配置新的 IP 后，它不会立即生效，那么在它生效的这个时间段，新加的服务器不会为用户提供服务。</li>
+</ol>
+<p>反向代理和负载均衡服务器可以很好地解决上面的问题。</p>
+<p>用了反向代理服务器后，网站的架构就进一步演进，变成了用户通过域名访问，DNS 服务器返回反向代理服务器的 IP，反向代理服务器根据被代理服务器的 IP<br>配置和负载均衡的策略，转发用户的请求到不同的后端服务器，后端服务器返回响应结果到反向代理服务器，反向代理服务器返回结果给用户。</p>
+<p>反向代理服务器因为只转发用户的请求而不做具体处理，因此它的性能比应用服务器强大。</p>
+<p>随着流量的继续增大，单台反向代理服务器成为了瓶颈，我们就会对其做集群，解决高性能的问题，对其做主备解决高可用的问题。</p>
+<p>至此，一个网站的分布式架构的演进过程介绍完了。</p>
+<h4 id="Nginx-在分布式架构的作用"><a href="#Nginx-在分布式架构的作用" class="headerlink" title="Nginx 在分布式架构的作用"></a>Nginx 在分布式架构的作用</h4><p>通过上面的架构演进介绍，我们知道分布式架构中最重要的思路就是水平扩展，水平扩展最重要的一个环节就是反向代理和负载均衡。</p>
+<p>Nginx 就是一个高性能的反向代理和负载均衡服务器，它可以支持 5 万的并发访问，同时它可以做动静分离，可以解决跨域访问和防盗链的问题。</p>
+<h3 id="三、Nginx-的下载与安装"><a href="#三、Nginx-的下载与安装" class="headerlink" title="三、Nginx 的下载与安装"></a>三、Nginx 的下载与安装</h3><p>要了解一个软件或者学习一个技术，第一步就是安装，只有安装好了，我们才可以对其进行练习和使用，最终达到掌握的目的。</p>
+<p>Nginx 是一个开源的软件，我们可以从官网上下载其最新的版本进行安装和使用。</p>
+<h4 id="Nginx-的下载"><a href="#Nginx-的下载" class="headerlink" title="Nginx 的下载"></a>Nginx 的下载</h4><blockquote>
+<p>官网：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+</blockquote>
+<p>我们下载 nginx-1.14.1 版本，下载的是 Nginx 的源码，C 语言写的。</p>
+<p><img src="https://images.gitbook.cn/13726960-f3dc-11e8-a018-a3bc43149496" alt="1543484625005.png"></p>
+<h4 id="Nginx-的安装过程"><a href="#Nginx-的安装过程" class="headerlink" title="Nginx 的安装过程"></a>Nginx 的安装过程</h4><p>源码的安装一般有三个步骤：</p>
+<ul>
+<li>配置（configure）</li>
+<li>编译（make）</li>
+<li>安装（make install）</li>
+</ul>
+<p><strong>1.</strong> 在 CentOS 7 的虚拟机根目录下建立 /data/program 的文件夹，用来存放应用程序文件。</p>
+<p><strong>2.</strong> 把下载的 nginx-1.14.1.tar.gz 文件上传到 /data/program 的文件夹下。</p>
+<p><strong>3.</strong> 解压 nginx-1.14.1.tar.gz 文件。</p>
+<p>​<br>    tar -zxvf nginx-1.14.1.tar.gz</p>
+<p><strong>4.</strong> 在 /data/program 目录下创建 nginx 文件夹把 Nginx 软件安装到该目录下，便于管理。</p>
+<p><strong>5.</strong> 对 Nginx 进行安装前的配置检查。</p>
+<p>​<br>    tar -zxvf nginx-1.14.1.tar.gz<br>    ./configure –prefix=/data/program/nginx</p>
+<p><strong>6.</strong> 在配置检查这一步，可能会遇到一些缺少依赖库的问题，按照提示用 <code>yum</code> 命令进行安装即可。</p>
+<p><strong>7.</strong> 依赖安装后，再一次执行命令对 Nginx 进行安装前的配置检查，不通过则继续 <code>yum</code> 安装依赖，直到配置检查通过。</p>
+<ul>
+<li>找不到 C 编译器：<code>yum -y install gcc</code></li>
+<li>找不到 PCRE library：<code>yum -y install pcre-devel</code></li>
+<li>找不到 zlib 包：<code>yum -y install zlib-devel</code></li>
+</ul>
+<p><strong>8.</strong> 配置好之后，进行编译和安装。</p>
+<p>​<br>    make &amp;&amp; make install</p>
+<p><strong>9.</strong> 进入 nginx 目录下，出现 conf、html、logs、sbin 目录，则说明安装完成。</p>
+<p>​<br>    [root@base-1 nginx]# ls<br>    conf  html  logs  sbin<br>    [root@base-1 nginx]# </p>
+<h4 id="Nginx-的启动和停止"><a href="#Nginx-的启动和停止" class="headerlink" title="Nginx 的启动和停止"></a>Nginx 的启动和停止</h4><p>Nginx 的启动</p>
+<p>到 /data/program/nginx/sbin 目录下执行 ./nginx</p>
+<p>​<br>    [root@base-1 sbin]# pwd<br>    /data/program/nginx/sbin<br>    [root@base-1 sbin]# ls<br>    nginx<br>    [root@base-1 sbin]# ./nginx </p>
+<p>查看效果</p>
+<ul>
+<li>启动后，访问 Nginx，浏览器输入 <a href="http://192.168.1.8" target="_blank" rel="noopener">http://192.168.1.8</a></li>
+<li>如果访问不到，说明防火墙的问题</li>
+<li>临时关闭防火墙 <code>systemctl stop firewalld</code></li>
+<li>防火墙禁止开机启动 <code>systemctl disable firewalld</code></li>
+</ul>
+<p>访问到下图的界面，说明 Nginx 已经生效。</p>
+<p><img src="https://images.gitbook.cn/44d00580-f4bd-11e8-9194-6f914b6fd4f7" alt="1543502970798.png"></p>
+<p>Nginx 的停止</p>
+<p>到 /data/program/nginx/sbin 目录下执行 ./nginx -s stop</p>
+<p>​<br>    [root@base-1 sbin]# ./nginx -s stop</p>
+<h3 id="四、Nginx-的配置文件介绍"><a href="#四、Nginx-的配置文件介绍" class="headerlink" title="四、Nginx 的配置文件介绍"></a>四、Nginx 的配置文件介绍</h3><p>Nginx 的配置文件是 <strong>nginx.conf</strong> ，它在 /data/program/nginx/conf 目录下。</p>
+<p>​<br>    [root@base-1 conf]# pwd<br>    /data/program/nginx/conf</p>
+<h4 id="nginx-conf-介绍"><a href="#nginx-conf-介绍" class="headerlink" title="nginx.conf 介绍"></a>nginx.conf 介绍</h4><p>nginx.conf 配置文件里有 3 个部分，分别是：</p>
+<ul>
+<li>全局块</li>
+<li>events 块 </li>
+<li>http 块</li>
+</ul>
+<p>在 http 块中又包含 http 全局块、多个 server 块；每个 server 块中又包含 server 全局块和多个 location 块。</p>
+<ol>
+<li>全局块是配置文件从开始到 events 块之间的内容，主要有 worker_processes，它表示工作进程数，一般设置为服务器 CPU 的核数。</li>
+<li>events 块主要有 worker_connections，它表示 Nginx 服务器与用户的网络连接数，Nginx 支持的网络连接数就是 worker_processes 配置数字乘以 worker_connections 配置数字。假如 worker_processes = 4，worker_connections = 1024，那么该 Nginx 服务器支持的连接数就是 4 * 1024 = 4096 个。</li>
+<li>http 块是 Nginx 服务器配置中的重要组成部分，反向代理，负载均衡，动静分离等多数功能都在这里配置。</li>
+<li>server 块里进行虚拟主机的配置，有 3 种配置，分别是基于 IP、基于端口号、基于域名的虚拟主机。</li>
+<li>location 块在整个 Nginx 配置文档中起着非常重要的作用，很多功能的实现需要在 location 块种进行配置。</li>
+</ol>
+<h4 id="location-使用介绍"><a href="#location-使用介绍" class="headerlink" title="location 使用介绍"></a>location 使用介绍</h4><h5 id="配置语法介绍"><a href="#配置语法介绍" class="headerlink" title="配置语法介绍"></a><strong>配置语法介绍</strong></h5><p><strong>location 的语法结构</strong></p>
+<p>​<br>    location [ = | ~ | <del>* | ^</del> ] uri { … }</p>
+<p>其中，uri 是待匹配的请求字符串，可以是标准 uri（不含正则表达式的 uri），也可以是正则 uri（使用正则表达式的<br>uri）；方括号里的部分是可选项，用来表示请求字符串与 uri 的匹配方式。</p>
+<ul>
+<li>“=”，用于标准 uri 前，要求请求字符串与 uri 完全匹配，一般称之为精准匹配。</li>
+<li>“^~”，用于标准 uri 前，一般称为前缀匹配。</li>
+<li>“~*”，用于表示 uri 包含正则表达式，不区分大小写。</li>
+<li>“~”，用于表示 uri 包含正则表达式，且区分大小写。</li>
+</ul>
+<h5 id="配置规则介绍"><a href="#配置规则介绍" class="headerlink" title="配置规则介绍"></a><strong>配置规则介绍</strong></h5><p>在没有可选项的情况下，指的就是通用匹配。</p>
+<ol>
+<li>Nginx 服务器首先在 server 块的多个 location 中搜索是否有标准 uri 和请求字符串匹配，如果有多个可以匹配，就记录匹配度最高的一个。</li>
+<li>然后，服务器再用 location 块中的正则 uri 和请求字符串匹配，当第一个正则 uri 匹配成功，结束搜索，并使用这个 location 块处理该请求；</li>
+<li>如果正则匹配全部失败，就使用刚才记录的匹配度最高的 location 块处理该请求。</li>
+</ol>
+<p>使用 “=” 修饰 uri，指的是精准匹配：</p>
+<ul>
+<li>如果匹配成功，就停止继续向下搜索，立即用匹配到的 location 块处理该请求。</li>
+</ul>
+<p>使用“^~”修饰 uri，指前缀匹配：</p>
+<ul>
+<li>要求 Nginx 服务器找到标识 uri 和请求字符串匹配度最高的 location 后，立即使用此 location 块处理该请求，而不再使用正则 uri 匹配。</li>
+</ul>
+<p>使用“<del>*”或者“</del>”修饰 uri，指正则匹配：</p>
+<ul>
+<li>正则匹配会覆盖通用匹配。</li>
+</ul>
+<h5 id="规则的优先级"><a href="#规则的优先级" class="headerlink" title="规则的优先级"></a><strong>规则的优先级</strong></h5><p>从上面的配置规则可以看出，精准匹配的优先级最高，前缀匹配的优先级第二，正则匹配第三。</p>
+<h4 id="nginx-conf-文件简化版配置示例"><a href="#nginx-conf-文件简化版配置示例" class="headerlink" title="nginx.conf 文件简化版配置示例"></a>nginx.conf 文件简化版配置示例</h4><p>​<br>    worker_processes  1;</p>
+<pre><code>events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+        # redirect server error pages to the static page /50x.html
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+}</code></pre><p>至此 Nginx 的基础介绍完毕，下面将进行实例演示。</p>
+<h3 id="五、实例演示环境介绍（CentOS-Nginx-Tomcat）"><a href="#五、实例演示环境介绍（CentOS-Nginx-Tomcat）" class="headerlink" title="五、实例演示环境介绍（CentOS + Nginx + Tomcat）"></a>五、实例演示环境介绍（CentOS + Nginx + Tomcat）</h3><ul>
+<li>操作系统是 CentOS 7.5；</li>
+<li>Nginx 服务器版本是 nginx-1.14.1，IP=192.168.1.8；</li>
+<li>Tomcat 服务器版本是 apache-tomcat-8.5.35，两台 Tomcat 服务器 Tomcat1 的 IP=192.168.1.9，Tomcat2 的 IP=192.168.1.10。</li>
+</ul>
+<p><strong>架构图如下：</strong></p>
+<p><img src="https://images.gitbook.cn/38de81b0-f4be-11e8-bd52-4d7229e9984c" alt="1543566621084.png"></p>
+<h3 id="六、Nginx-的反向代理演示"><a href="#六、Nginx-的反向代理演示" class="headerlink" title="六、Nginx 的反向代理演示"></a>六、Nginx 的反向代理演示</h3><p>Nginx 默认自带 proxy_pass 指令，通过在 nginx.conf 配置文件中设置 proxy_pass 的参数就可以实现反向代理。</p>
+<p>proxy_pass 既可以是域名，也可以是 IP 地址，还可以指定端口。</p>
+<p><strong>示例说明</strong> ：</p>
+<p>用户在浏览器输入 <a href="http://192.168.1.8" target="_blank" rel="noopener">http://192.168.1.8</a> 本来访问到的是 Nginx 的首页，我们希望 Nginx 代理 Tomcat1 服务器，用户访问<br><a href="http://192.168.1.8" target="_blank" rel="noopener">http://192.168.1.8</a> 打开 Tomcat1 服务器的首页。</p>
+<p><strong>nginx.conf 配置</strong></p>
+<p>在 http 块的 server 块的 location 块写入如下代码：</p>
+<p>​<br>    proxy_pass <a href="http://192.168.1.9:8080" target="_blank" rel="noopener">http://192.168.1.9:8080</a>;</p>
+<p>如下图：</p>
+<p><img src="https://images.gitbook.cn/549f74e0-f4be-11e8-9194-6f914b6fd4f7" alt="1543573195981.png"></p>
+<p>启动 Tomcat1 服务器的 Tomcat，然后重启 Nginx，浏览器访问 <a href="http://192.168.1.8。" target="_blank" rel="noopener">http://192.168.1.8。</a></p>
+<p>重启 Nginx，在 /data/program/nginx 目录下输入以下命令：</p>
+<p>​<br>    ../nginx -s reload</p>
+<p>启动 Tomcat1 服务器的 Tomcat，在 /data/program/tomcat8/bin 目录下输入以下命令：</p>
+<p>​<br>    sh startup.sh</p>
+<p>浏览器输入 <a href="http://192.168.1.8，看访问结果如下：" target="_blank" rel="noopener">http://192.168.1.8，看访问结果如下：</a></p>
+<p><img src="https://images.gitbook.cn/693f4d80-f4be-11e8-bd52-4d7229e9984c" alt="1543572197064.png"></p>
+<p>说明反向代理设置成功。</p>
+<h3 id="七、Nginx-的负载均衡演示"><a href="#七、Nginx-的负载均衡演示" class="headerlink" title="七、Nginx 的负载均衡演示"></a>七、Nginx 的负载均衡演示</h3><h4 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h4><p>为了进行负载均衡的演示，Tomcat 服务器的 /data/program/tomcat8/webapps/ROOT 目录下，我们把原始 index.jsp<br>备份，修改其内容，以便区分两台 Tomcat 服务器。</p>
+<p>Tomcat1 的 index.jsp 的上部增加以下代码：</p>
+<p>​<br>    </p><h1> 访问到的是Tomcat1  <h1><p></p>
+<p>如下图：</p>
+<p><img src="https://images.gitbook.cn/84016e50-f4be-11e8-8bb4-954392f55535" alt="1543572394074.png"></p>
+<p>Tomcat2 不用修改，就用原始的 Tomcat 首页，这样就能区分出用户实际访问到的是哪台 Tomcat 服务器了。</p>
+<p>我们访问 Tomcat1 服务器的地址 <a href="http://192.168.1.9:8080。" target="_blank" rel="noopener">http://192.168.1.9:8080。</a></p>
+<p><img src="https://images.gitbook.cn/94cb86d0-f4be-11e8-9194-6f914b6fd4f7" alt="1543572499873.png"></p>
+<p>接下来，我们启动 Tomcat2 服务器的 Tomcat，访问 Tomcat2 服务器的地址 <a href="http://192.168.1.10:8080。" target="_blank" rel="noopener">http://192.168.1.10:8080。</a></p>
+<p><img src="https://images.gitbook.cn/a4c90080-f4be-11e8-8bb4-954392f55535" alt="1543572822675.png"></p>
+<p><strong>nginx.conf 原始配置引用外部配置文件</strong></p>
+<p>为了修改方便，我们在 nginx.conf 的 http 块里通过 include<br>指令引入外部的配置文件，这样可以把不同功能的配置放到不同的配置文件中，避免每次都去修改原始 nginx.conf 配置。</p>
+<p>我们在 /data/program/nginx/conf 目录下新建 userconf 文件夹，在 userconf 文件夹下建立 proxy.conf<br>文件，用于写 Nginx 的配置信息。</p>
+<p><img src="https://images.gitbook.cn/b8026b50-f4be-11e8-8bb4-954392f55535" alt="1543570401752.png"></p>
+<p>修改 nginx.conf 配置，在 http 块里写入如下代码，表示引用 userconf 文件夹下的所有 conf 文件。</p>
+<p>​<br>    include userconf/*.conf;</p>
+<p>同时删除刚才配置的反向代理代码。</p>
+<p>如下图：</p>
+<p><img src="https://images.gitbook.cn/c7982280-f4be-11e8-9194-6f914b6fd4f7" alt="1543570401752.png"></p>
+<h4 id="负载均衡篇"><a href="#负载均衡篇" class="headerlink" title="负载均衡篇"></a>负载均衡篇</h4><p>负载均衡的原理是用一些策略把网络的访问平衡地分配到集群的各个节点上，使得大量并发访问可以均衡到后端服务器的集群处理，提高网站的性能。</p>
+<p>Nginx 的负载均衡是通过 upstream 模块实现的，它提供了一些调度算法来实现客户端 IP 到服务端的负载均衡。</p>
+<p>Nginx 默认轮询算法，当服务器宕机后，自动屏蔽，不再往宕机的 IP 分发用户请求。</p>
+<p>IP 哈希算法，根据客户端的请求 IP 进行哈希，一个 IP 访问到了后端服务器，以后个用户 IP 每次都会请求到第一次访问的后端服务器，这种方式可以解决<br>session 共享的问题。</p>
+<p><strong>示例说明</strong></p>
+<p>用户在浏览器输入 <a href="http://192.168.1.8" target="_blank" rel="noopener">http://192.168.1.8</a> 本来访问到的是 Tomcat1 服务器，我们加了一台 Tomcat2 的服务器，想达到用户访问<br><a href="http://192.168.1.8" target="_blank" rel="noopener">http://192.168.1.8</a> 后，负载均衡到 2 台 Tomcat 服务器上，既能打开 Tomcat1 服务器的首页，也能打开 Tomcat2<br>服务器的首页。</p>
+<p><strong>在 proxy.conf 配置文件里加入负载均衡的代码</strong></p>
+<p>​<br>    upstream tomcat8 {<br>        server 192.168.1.9:8080;<br>        server 192.168.1.10:8080;<br>    }</p>
+<pre><code>server{
+    listen 80;
+    server_name localhostdomin;
+    location / {
+        proxy_pass http://tomcat8;
+    }
+}</code></pre><p>重启 Nginx 后，访问 <a href="http://192.168.1.8。" target="_blank" rel="noopener">http://192.168.1.8。</a></p>
+<p><img src="https://images.gitbook.cn/e36ac8f0-f4be-11e8-8bb4-954392f55535" alt="1543575041685.png"></p>
+<p><img src="https://images.gitbook.cn/f18c7dc0-f4be-11e8-bd52-4d7229e9984c" alt="1543575325618.png"></p>
+<p>第一次访问到了 Tomcat1，第二次访问到了 Tomcat2，说明负载均衡的功能实现了。</p>
+<h3 id="八、Nginx-的动静分离演示"><a href="#八、Nginx-的动静分离演示" class="headerlink" title="八、Nginx 的动静分离演示"></a>八、Nginx 的动静分离演示</h3><ul>
+<li>静态资源：HTML、CSS、JS、图片、XML、MP4 等（不需要依赖 Tomcat 容器），可参考 /data/program/nginx/conf/mime.types 文件里的内容。</li>
+<li>动态资源：JSP、Servlet（需要 Tomcat 容器）。</li>
+</ul>
+<p>动静分离，就是将 HTML、CSS、JS 等静态资源和 JSP 等动态资源分开部署，从而达到提高服务器响应速度，提高服务器性能的目的。</p>
+<h4 id="示例说明"><a href="#示例说明" class="headerlink" title="示例说明"></a>示例说明</h4><p>依然以 Tomcat1 和 Tomcat2 服务器的首页为例：</p>
+<ol>
+<li>首先需要把静态资源从 Tomcat 服务器删掉，分别访问 2 台 Tomcat 服务器，发现网站的样式和图片没有了；</li>
+<li>通过代理服务器访问，也是一样的，样式和图片没有了；</li>
+<li>最后，我们把 Tomcat 的静态资源放到 Nginx 的根目录的 static_resource 文件夹下，在 location 块里用正则匹配，做好动静分离的配置，重启 Nginx 服务后，通过代理服务器 IP 访问，发现 Tomcat 首页可以正常访问。</li>
+</ol>
+<h4 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h4><p><strong>1.</strong> 我们在 Tomcat1 服务器 /data/program/tomcat8/webapps/ROOT 目录下新建<br>static_resource，把静态资源拷贝到 stataic_resource 文件夹下，这样相当于静态资源删掉了，如下图。</p>
+<p><img src="https://images.gitbook.cn/002c8a50-f4bf-11e8-9194-6f914b6fd4f7" alt="1543586216327.png"></p>
+<p><strong>2.</strong> 我们在 Tomcat2 服务器 /data/program/tomcat8/webapps/ROOT 目录下新建<br>static_resource，把静态资源拷贝到 stataic_resource 文件夹下，这样相当于静态资源删掉了，如下图。</p>
+<p><img src="https://images.gitbook.cn/61e0bf50-f4bf-11e8-8321-9399b4917b1a" alt="1543586279106.png"></p>
+<p><strong>3.</strong> 访问 Tomcat1 服务器，显示如下：</p>
+<p><img src="https://images.gitbook.cn/412e14b0-f4bf-11e8-9194-6f914b6fd4f7" alt="1543586388398.png"><br>)</p>
+<p><strong>4.</strong> 访问 Tomcat2 服务器，显示如下：</p>
+<p><img src="https://images.gitbook.cn/819a8b00-f4bf-11e8-9194-6f914b6fd4f7" alt="1543586470526.png"></p>
+<p><strong>5.</strong> 通过 Nginx 代理访问，显示如下：</p>
+<p><img src="https://images.gitbook.cn/adf6e590-f4bf-11e8-8bb4-954392f55535" alt="1543586510431.png"></p>
+<p>说明静态资源访问不到了。</p>
+<h4 id="Nginx-动静分离配置"><a href="#Nginx-动静分离配置" class="headerlink" title="Nginx 动静分离配置"></a>Nginx 动静分离配置</h4><p><strong>1.</strong> 在 Nginx 的 /data/program/nginx 目录下新建 static_resource 文件夹，里面放 Tomcat<br>服务器的静态资源，如下图：</p>
+<p><img src="https://images.gitbook.cn/d5454e20-f4bf-11e8-8321-9399b4917b1a" alt="1543587162580.png"></p>
+<p><strong>2.</strong> 修改 Nginx 的 /data/program/nginx/conf/userconf/proxy.conf 文件并保存，用正则来匹配<br>JS、CSS、图片等静态资源，不区分大小写。</p>
+<p>​<br>       upstream tomcat8 {<br>           server 192.168.1.9:8080;<br>           server 192.168.1.10:8080;<br>       }</p>
+<pre><code>server{
+    listen 80;
+    server_name localhostdomin;
+    location / {
+        proxy_pass http://tomcat8;
+    }
+    location ~* .+\.(js|css|png|svg|ico|jpg)$ {
+        root static_resource;
+        expires 1d;
+    }
+}</code></pre><p>如下图：</p>
+<p><img src="https://images.gitbook.cn/fc65eff0-f4bf-11e8-9194-6f914b6fd4f7" alt="1543587512785.png"></p>
+<p><strong>3.</strong> 重启 Nginx 服务，通过 Nginx 代理访问，如下：</p>
+<p><img src="https://images.gitbook.cn/ead971d0-f4bf-11e8-9194-6f914b6fd4f7" alt="1543587339831.png"></p>
+<p><img src="https://images.gitbook.cn/0fddc350-f4c0-11e8-9194-6f914b6fd4f7" alt="1543587396377.png"></p>
+<p><strong>4.</strong> 两台 Tomcat 服务器的样式和图片能正常显示，说明 Nginx 的动静分离已经配置成功。</p>
+<h4 id="动静分离的优势"><a href="#动静分离的优势" class="headerlink" title="动静分离的优势"></a>动静分离的优势</h4><ol>
+<li>静态文件从后端服务器分离出来单独部署，可以减轻后端服务器的访问压力，同时 Nginx 是一个高性能的静态 Web 服务器，用它可以做静态资源服务器。</li>
+<li>静态文件一般变化不大，动静分离之后，可以对静态文件进行缓冲，以提高网站的性能。</li>
+</ol>
+<p>上面的 location 块配置中 <code>[expires 1d;]</code> 就是表示缓冲一天的时间。</p>
+<h3 id="九、Nginx-解决跨域访问问题演示"><a href="#九、Nginx-解决跨域访问问题演示" class="headerlink" title="九、Nginx 解决跨域访问问题演示"></a>九、Nginx 解决跨域访问问题演示</h3><h4 id="什么是跨域访问"><a href="#什么是跨域访问" class="headerlink" title="什么是跨域访问"></a>什么是跨域访问</h4><p>如果 2 个服务器节点的协议、域名、端口有一个不同，那么这 2<br>台服务器之间互相访问就会出现跨域访问的问题，跨域限制的根本原因是浏览器的限制，浏览器为了安全从而限制跨域访问。</p>
+<h4 id="跨域示例说明"><a href="#跨域示例说明" class="headerlink" title="跨域示例说明"></a>跨域示例说明</h4><p><strong>验证一</strong></p>
+<p>假设 Tomcat2 服务器部署了一个 hello.json 文件，里面是一个 JSON 格式的数据，用它来模拟跨域访问问题。</p>
+<p>hello.json 内容如下：</p>
+<p>​<br>    {<br>        “hello”:”world”<br>    }</p>
+<p>Tomcat1 服务器上的 index.jsp 通过一段 JS 代码要获取到 Tomcat2 服务器上的 hello.json 内容，并通过 alert<br>输出 key=hello 的值 world。</p>
+<p>在 Tomcat1 服务器的 ROOT 下上传 jquery-2.1.1.min.js 文件，在 index.jsp 文件的 head 中增加如下代码：</p>
+<p>​<br>    <script src="jquery-2.1.1.min.js"></script><br>    <script><br>        $(function(){<br>            $.get("<a href="http://192.168.1.10:8080/hello.json&quot;,{},function(result){">http://192.168.1.10:8080/hello.json&quot;,{},function(result){</a><br>                alert(result.hello);<br>            });<br>        });<br>    </script></p>
+<p>如下图：</p>
+<p><img src="https://images.gitbook.cn/2d275250-f4c0-11e8-bd52-4d7229e9984c" alt="1543589625181.png"></p>
+<p>通过浏览器输入 <a href="http://192.168.1.9:8080，提示“" target="_blank" rel="noopener">http://192.168.1.9:8080，提示“</a> <strong>Failed to load<br><a href="http://192.168.1.10:8080/hello.json" target="_blank" rel="noopener">http://192.168.1.10:8080/hello.json</a>: No ‘Access-Control-Allow-Origin’</strong><br>”，说明出现了跨域访问问题。</p>
+<p><img src="https://images.gitbook.cn/3cf3d0f0-f4c0-11e8-8bb4-954392f55535" alt="1543589842876.png"></p>
+<p><strong>验证二</strong></p>
+<p>如果我们在 Tomcat1 的 index.jsp 里通过 Nginx 代理获取 Tomcat2 服务器的 hello.json 文件，是否可行呢？</p>
+<p><strong>1.</strong> 修改 /data/program/tomcat8/webapps/ROOT 目录下的 index.jsp 文件，把 IP 地址改为 Nginx<br>代理的地址：</p>
+<p>​<br>       <script src="jquery-2.1.1.min.js"></script><br>       <script><br>               $(function(){<br>                       $.get("<a href="http://192.168.1.8/hello.json&quot;,{},function(result){">http://192.168.1.8/hello.json&quot;,{},function(result){</a><br>                               alert(result.hello);<br>                       });<br>               });<br>       </script></p>
+<p><strong>2.</strong> 修改 /data/program/nginx/conf/userconf 目录下的 proxy.conf 配置，注释掉对<br>192.168.1.9:8080 的反向代理，为了演示，让其只代理 192.168.1.10:8080。</p>
+<p>​<br>       upstream tomcat8 {<br>          #server 192.168.1.9:8080;<br>           server 192.168.1.10:8080;<br>       }<br><br>       server{<br>           listen 80;<br>           server_name localhostdomin;<br>           location / {<br>               proxy_pass <a href="http://tomcat8" target="_blank" rel="noopener">http://tomcat8</a>;<br>           }<br>           location ~* .+.(js|css|png|svg|ico|jpg)$ {<br>               root static_resource;<br>               expires 1d;<br>           }<br>       }</p>
+<p><strong>3.</strong> 重启 Nginx 服务器，通过浏览器输入 <a href="http://192.168.1.9:8080，提示“" target="_blank" rel="noopener">http://192.168.1.9:8080，提示“</a> <strong>Failed to load<br><a href="http://192.168.1.8/hello.json" target="_blank" rel="noopener">http://192.168.1.8/hello.json</a>: No ‘Access-Control-Allow-Origin’</strong><br>”，说明依然存在跨域访问问题。</p>
+<p><strong>验证三：通过 Nginx 的配置解决以上出现的跨域问题</strong></p>
+<p>再次修改 /data/program/nginx/conf/userconf 目录下的 proxy.conf 配置，通过 add_header<br>设置解决跨域访问问题。</p>
+<p>​<br>    upstream tomcat8 {<br>       #server 192.168.1.9:8080;<br>        server 192.168.1.10:8080;<br>    }<br><br>    server{<br>        listen 80;<br>        server_name localhostdomin;<br>        location / {<br>            proxy_pass <a href="http://tomcat8" target="_blank" rel="noopener">http://tomcat8</a>;<br>            add_header ‘Access-Control-Allow-Origin’ ‘<em>‘;<br>            add_header ‘Access-Control-Allow-Methods’ ‘GET,POST,DELETE’;<br>            add_header ‘Access-Control-Allow-Header’ ‘Content-Type,</em>‘;<br>        }<br>        location ~* .+.(js|css|png|svg|ico|jpg)$ {<br>            root static_resource;<br>            expires 1d;<br>        }<br>    }</p>
+<p>如下图：</p>
+<p><img src="https://images.gitbook.cn/586e6c50-f4c0-11e8-8321-9399b4917b1a" alt="1543591025925.png"></p>
+<p>保存配置，并重启 Nginx 服务器。</p>
+<p>通过浏览器输入 <a href="http://192.168.1.9:8080，可以弹出" target="_blank" rel="noopener">http://192.168.1.9:8080，可以弹出</a> world 的值，如下：</p>
+<p><img src="https://images.gitbook.cn/6226ac80-f4c0-11e8-8bb4-954392f55535" alt="1543591135694.png"></p>
+<p>因此，说明通过 Nginx 的配置，我们解决了上面的跨域访问问题，可以正常获取到 Tomcat2 服务器上的 JSON 资源。</p>
+<p><strong>上面的网页没有样式，是因为之前我们把 Tomcat 里面的静态资源挪走导致的。</strong></p>
+<h3 id="十、Nginx-的防盗链配置演示"><a href="#十、Nginx-的防盗链配置演示" class="headerlink" title="十、Nginx 的防盗链配置演示"></a>十、Nginx 的防盗链配置演示</h3><p>防盗链就是指别人的网站不可以访问我们自己网站的JS、CSS、图片等静态资源。</p>
+<ul>
+<li>第一，图片有版权，我们不希望别人引用；</li>
+<li>第二，别人引用了我们的地址，消耗的是我们网站的流量，因为很多网站买的是云服务，是按流量收费的，如果不加防盗链的限制，会提升我们的运营成本，所以一个网站最好要考虑防盗链配置。</li>
+</ul>
+<p><strong>1.</strong> 为了做防盗链的演示，修改 Tomcat1 的 /data/program/tomcat8/webapps/ROOT 目录下的<br>index.jsp，把 Tomcat 图片改成访问 Nginx 代理服务器里的静态图片资源，代码如下：</p>
+<p>​<br>        <img src="http://192.168.1.8/tomcat.png" alt="[tomcat logo]"></p>
+<p>如图：</p>
+<p><img src="https://images.gitbook.cn/722fbef0-f4c0-11e8-8321-9399b4917b1a" alt="1543594229127.png"></p>
+<p><strong>2.</strong> 访问 Tomcat1 的地址 <a href="http://192.168.1.9:8080，如果没有防盗链配置，则可以访问到" target="_blank" rel="noopener">http://192.168.1.9:8080，如果没有防盗链配置，则可以访问到</a> Nginx 服务器上的静态<br>Tomcat 图标，如下：</p>
+<p><img src="https://images.gitbook.cn/8616f5f0-f4c0-11e8-9194-6f914b6fd4f7" alt="1543594266821.png"></p>
+<p><strong>3.</strong> 修改 /data/program/nginx/conf/userconf 目录下的 proxy.conf 配置，通过<br>valid_referers 设置解决防盗链问问题，让除了 192.168.1.8 IP 以外的服务器不能访问 Nginx 服务器上的静态资源。</p>
+<p>​<br>       upstream tomcat8 {<br>           server 192.168.1.9:8080;<br>           server 192.168.1.10:8080;<br>       }</p>
+<pre><code>server{
+    listen 80;
+    server_name localhostdomin;
+    location / {
+        proxy_pass http://tomcat8;
+        add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos;;
+        add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET,POST,DELETE&apos;;
+        add_header &apos;Access-Control-Allow-Header&apos; &apos;Content-Type,*&apos;;
+    }
+    location ~* .+\.(js|css|png|svg|ico|jpg)$ {
+        valid_referers none blocked 192.168.1.8;           
+        if ($invalid_referer){
+            return 404;
+        }
+        root static_resource;
+        expires 1d;
+    }   
+}</code></pre><p>如下图：</p>
+<p><img src="https://images.gitbook.cn/c0fffc20-f4c0-11e8-8321-9399b4917b1a" alt="1543592255323.png"></p>
+<p><strong>4.</strong> 保存配置，重启 Nginx 服务器，再次访问 Tomcat1 的地址<br><a href="http://192.168.1.9:8080，因为上面设置了防盗链配置，因此不能访问到" target="_blank" rel="noopener">http://192.168.1.9:8080，因为上面设置了防盗链配置，因此不能访问到</a> Nginx 服务器上的静态 Tomcat 图标，如下：</p>
+<p><img src="https://images.gitbook.cn/d1151c80-f4c0-11e8-9194-6f914b6fd4f7" alt="1543594529777.png"></p>
+<p>以上就是防盗链产生了作用，导致 192.168.1.9 服务器部署的应用不可以访问 192.168.1.8 的图片。</p>
+<p>这里 192.168.1.9 模拟的是别人的网站，192.168.1.8 模拟自己的网站。</p>
+<p>到此， <strong>Java 程序员应掌握的 Nginx 实战应用 Chat</strong> 就结束了，咱们下次再见，谢谢。</p>
+<hr>
+<p>本文首发于 GitChat，未经授权不得转载，转载需与 GitChat 联系。</p>
+<p>280</p>
+<p><a href="/m/mazi/author/5914fb13751a0664ac9dfe0c/question">向作者提问</a></p>
+<p>互动评论</p>
+<p><img src="https://images.gitbook.cn/7e637010-8cc6-11e9-b60e-19c95a6a735a?imageView2/1/w/200/h/200" alt></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/15105950-d73d-11e8-a846-1515ba7379c6" alt></p>
+<p>小花猫3 个月前</p>
+<p>跨域会话session怎么解决？</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/23d93910-d4bf-11e7-99ba-7ffeab1bf715" alt></p>
+<p>真卡拉(卡密欧是也)7 个月前</p>
+<p>写的蛮好的，有个建议，出个Ubuntu或者DeepinOS 上的教程，CentOS这种的不适合小白用户</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/e463c8d0-863a-11e8-a808-ef5bdaa75e67" alt></p>
+<p>Crispin8 个月前</p>
+<p>跟着走一遍还是可以的</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/a565dc90-7816-11e8-b34f-357216fa17ad" alt></p>
+<p>Viima9 个月前</p>
+<p>新手实战碰不到，跟着走一遍不错</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/e1d3b930-b25a-11e8-8451-c59c48ae3270" alt></p>
+<p>Tao9 个月前</p>
+<p>感觉负载均衡还可以深入讲一讲</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/ace62030-fbc2-11e8-8f61-f977f7ec6009" alt></p>
+<p>阿润9 个月前</p>
+<p>很好，初学者很详细的教程了</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/76792b00-d292-11e7-a749-d1c99a8dd9de?imageView2/1/w/200/h/200" alt></p>
+<p>JPM（作者）9 个月前</p>
+<p>对初学者会有一点帮助，尤其是java开发程序员，平时不怎么接触运维的。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/0be28430-9083-11e8-81f1-47a2923739fa" alt></p>
+<p>guanhui079 个月前</p>
+<p>总结的不错 当做温习了</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/16437ec0-0c71-11e8-8152-1b73b3de5fa6" alt></p>
+<p>小白9 个月前</p>
+<p>对于初学者比较有用，希望作者还能继续深入一些</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p>查看更多</p>
+<h2 id="更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！"><a href="#更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！" class="headerlink" title="更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！"></a>更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！</h2><h1 id="本资源由微信公众号：光明顶一号，提供支持"><a href="#本资源由微信公众号：光明顶一号，提供支持" class="headerlink" title="本资源由微信公众号：光明顶一号，提供支持"></a>本资源由微信公众号：光明顶一号，提供支持</h1></h1></h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/12/Nginx/Java程序员应掌握的Nginx实战应用/">http://yoursite.com/2019/09/12/Nginx/Java程序员应掌握的Nginx实战应用/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Nginx/"># Nginx</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/12/Docker/Docker的基础知识整理/">Docker基础知识</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/12/Docker/Docker搭建ES集群并整合SpringBoot/"></a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>webpack慕课 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">webpack慕课</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 19, 2019&nbsp;&nbsp;21:20:24</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/webpack/">webpack</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="一-简介"><a href="#一-简介" class="headerlink" title="一 简介"></a>一 简介</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-19-132239.png" alt="image-20190619212238034"></p>
+<h1 id="二-webpack入门"><a href="#二-webpack入门" class="headerlink" title="二 webpack入门"></a>二 webpack入门</h1><blockquote>
+<p><a href="https://www.webpackjs.com" target="_blank" rel="noopener">https://www.webpackjs.com</a></p>
+<p>Webpack 中文官网</p>
+</blockquote>
+<h3 id="1-npm-init-初始化-webpack项目-npm-init"><a href="#1-npm-init-初始化-webpack项目-npm-init" class="headerlink" title="1 npm init 初始化 webpack项目 npm init"></a>1 npm init 初始化 webpack项目 npm init</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-19-132550.png" alt="image-20190619212549705"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-19-132738.png" alt="image-20190619212736821"></p>
+<h3 id="2-安装webpack"><a href="#2-安装webpack" class="headerlink" title="2 安装webpack"></a>2 安装webpack</h3><h5 id="方式1-全局安装-webpack-不推荐"><a href="#方式1-全局安装-webpack-不推荐" class="headerlink" title="*  方式1 全局安装 webpack(不推荐)"></a>*  方式1 全局安装 webpack(不推荐)</h5><blockquote>
+<p>npm install webpack webpack-cli -g</p>
+</blockquote>
+<hr>
+<h5 id="方式-2-在项目中安装webpack-推荐"><a href="#方式-2-在项目中安装webpack-推荐" class="headerlink" title="* 方式 2 在项目中安装webpack(推荐)"></a>* 方式 2 在项目中安装webpack(推荐)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-19-133303.png" alt="image-20190619213301054"></p>
+<hr>
+<h4 id="方法2-项目中安装-npm-install-webpack-webpack-cli-–save-d"><a href="#方法2-项目中安装-npm-install-webpack-webpack-cli-–save-d" class="headerlink" title="@ 方法2 项目中安装  npm install webpack webpack-cli –save-d"></a>@ 方法2 项目中安装  npm install webpack webpack-cli –save-d</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd webpack-demo (在项目内安装)</span><br><span class="line">nvm use 8</span><br><span class="line">npm install webpack webpack-cli --save-d  (npm install webpack webpack-cli -D) 两者等价</span><br><span class="line">npm webpack -v (6.4.1)</span><br><span class="line">npx webpack -v  (4.30.0)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">采用淘宝镜像安装   如下</span><br><span class="line"></span><br><span class="line">npm install   --registry=https://registry.npm.taobao.org  --disturl=https://npm.taobao.org/mirrors/node</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-20-000341.png" alt="image-20190620080339553"></p>
+<ul>
+<li>查看版本</li>
+<li><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-20-000440.png" alt="image-20190620080439023"></li>
+</ul>
+<blockquote>
+<p>npx webpack -v 是指在项目中查找webpack的版本</p>
+</blockquote>
+<hr>
+<h1 id="三-webpack配置文件"><a href="#三-webpack配置文件" class="headerlink" title="三 webpack配置文件"></a>三 webpack配置文件</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-20-001919.png" alt="image-20190620081917545"></p>
+<hr>
+<h5 id="打包"><a href="#打包" class="headerlink" title="@ 打包"></a>@ 打包</h5><blockquote>
+<p> npx webpack</p>
+</blockquote>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-20-002227.png" alt="image-20190620082225836"></p>
+<blockquote>
+<p>npm run  bundle (打包)</p>
+</blockquote>
+<hr>
+<h1 id="四-webpack项目文件结构"><a href="#四-webpack项目文件结构" class="headerlink" title="四 webpack项目文件结构"></a>四 webpack项目文件结构</h1><h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const path =require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line">module.exports=&#123;</span><br><span class="line">	entry:&apos;./src/index.js&apos;</span><br><span class="line">	output:&#123;</span><br><span class="line">		filename: &apos;bundle.js&apos;</span><br><span class="line">		path: path.resolve(_dirname,&apos;dist&apos;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="打包项目-npx-webpack"><a href="#打包项目-npx-webpack" class="headerlink" title="打包项目 npx webpack"></a>打包项目 npx webpack</h3><hr>
+<h1 id="五-Loader"><a href="#五-Loader" class="headerlink" title="五 Loader"></a>五 Loader</h1><blockquote>
+<p><a href="https://webpack.js.org/plugins/" target="_blank" rel="noopener">https://webpack.js.org/plugins/</a></p>
+<p><a href="https://webpack.js.org/loaders/" target="_blank" rel="noopener">https://webpack.js.org/loaders/</a></p>
+</blockquote>
+<hr>
+<ul>
+<li>打包图片</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-035419.png" alt="image-20190625115417463"> </p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-035701.png" alt="image-20190625115700518"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-035728.png" alt="image-20190625115726918"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-051411.png" alt="image-20190625131409686"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-051531.png" alt="image-20190625131529938"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-25-051856.png" alt="image-20190625131854457"></p>
+<hr>
+<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-065746.png" alt="image-20190627145744542"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-070230.png" alt="image-20190627150229079"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-070446.png" alt="image-20190627150444711"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-070523.png" alt="image-20190627150522026"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-070705.png" alt="image-20190627150703497"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-071253.png" alt="image-20190627151251642"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-071734.png" alt="image-20190627151732883"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-071835.png" alt="image-20190627151833944"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-06-27-071912.png" alt="image-20190627151911073"></p>
+<hr>
+<h1 id="六-sourseMap"><a href="#六-sourseMap" class="headerlink" title="六 sourseMap"></a>六 sourseMap</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083224.png" alt="image-20190702163223060"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083240.png" alt="image-20190702163239341"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083316.png" alt="image-20190702163315647"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083540.png" alt="image-20190702163539141"></p>
+<hr>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083557.png" alt="image-20190702163556503"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083622.png" alt="image-20190702163620784"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083642.png" alt="image-20190702163640435"></p>
+<h1 id="七-webpackDevServer"><a href="#七-webpackDevServer" class="headerlink" title="七 webpackDevServer"></a>七 webpackDevServer</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-07-02-083841.png" alt="image-20190702163839631"></p>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/06/19/Vue_Webpack/慕课网 webpack]/">http://yoursite.com/2019/06/19/Vue_Webpack/慕课网 webpack]/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/webpack/"># webpack</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/06/25/项目实战/十次方项目/">黑马程序员十次方项目</a>
+            
+            
+            <a class="next" rel="next" href="/2019/06/19/面试/剑指java慕课网/剑指Java面试（慕课网）/">剑指Java 第一章 网络 数据库</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>shirt SAAS 系统 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">shirt SAAS 系统</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 17, 2019&nbsp;&nbsp;9:04:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/shiro/">shiro</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Shiro结合redis的统一会话管理"><a href="#Shiro结合redis的统一会话管理" class="headerlink" title="Shiro结合redis的统一会话管理"></a>Shiro结合redis的统一会话管理</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-17-010604.png" alt="image-20190817090604195"></p>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">    &lt;groupId&gt;org.crazycake&lt;/groupId&gt; </span><br><span class="line">    &lt;artifactId&gt;shiro-redis&lt;/artifactId&gt; </span><br><span class="line">    &lt;version&gt;3.0.0&lt;/version&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<hr>
+<h1 id="自定义shiro会话管理器"><a href="#自定义shiro会话管理器" class="headerlink" title="自定义shiro会话管理器"></a>自定义shiro会话管理器</h1><h3 id="自定义sessionManager"><a href="#自定义sessionManager" class="headerlink" title="自定义sessionManager"></a>自定义sessionManager</h3><h3 id="获得sessioniD。-头信息中具有sessionid-请求头：Authorization：-sessionid"><a href="#获得sessioniD。-头信息中具有sessionid-请求头：Authorization：-sessionid" class="headerlink" title="获得sessioniD。 头信息中具有sessionid * 请求头：Authorization： sessionid"></a>获得sessioniD。 头信息中具有sessionid * 请求头：Authorization： sessionid</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package cn.itcast.shiro.session;</span><br><span class="line"></span><br><span class="line">        import org.apache.shiro.web.servlet.ShiroHttpServletRequest;</span><br><span class="line">        import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;</span><br><span class="line">        import org.apache.shiro.web.util.WebUtils;</span><br><span class="line">        import org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line">        import javax.servlet.ServletRequest;</span><br><span class="line">        import javax.servlet.ServletResponse;</span><br><span class="line">        import java.io.Serializable;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 自定义的sessionManager</span><br><span class="line"> */</span><br><span class="line">public class CustomSessionManager extends DefaultWebSessionManager &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 头信息中具有sessionid</span><br><span class="line">     *      请求头：Authorization： sessionid</span><br><span class="line">     *</span><br><span class="line">     * 指定sessionId的获取方式</span><br><span class="line">     */</span><br><span class="line">    protected Serializable getSessionId(ServletRequest request, ServletResponse response) &#123;</span><br><span class="line"></span><br><span class="line">        //获取请求头Authorization中的数据</span><br><span class="line">        String id = WebUtils.toHttp(request).getHeader(&quot;Authorization&quot;);</span><br><span class="line">        if(StringUtils.isEmpty(id)) &#123;</span><br><span class="line">            //如果没有携带，生成新的sessionId</span><br><span class="line">            return super.getSessionId(request,response);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            //返回sessionId；</span><br><span class="line">            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE, &quot;header&quot;);</span><br><span class="line">            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID, id);</span><br><span class="line">            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);</span><br><span class="line">            return id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-17-014644.png" alt="image-20190817094643004"></p>
+<hr>
+<h1 id="配置Shiro基于redis的会话管理"><a href="#配置Shiro基于redis的会话管理" class="headerlink" title="配置Shiro基于redis的会话管理"></a>配置Shiro基于redis的会话管理</h1><h4 id="在Shiro配置类-cn-itcast-shiro-ShiroConfiguration"><a href="#在Shiro配置类-cn-itcast-shiro-ShiroConfiguration" class="headerlink" title="在Shiro配置类 cn.itcast.shiro.ShiroConfiguration"></a>在Shiro配置类 cn.itcast.shiro.ShiroConfiguration</h4><h5 id="配置-1-配置shiro的RedisManager，通过shiro-redis包提供的RedisManager统一对redis操作"><a href="#配置-1-配置shiro的RedisManager，通过shiro-redis包提供的RedisManager统一对redis操作" class="headerlink" title="配置 1. 配置shiro的RedisManager，通过shiro-redis包提供的RedisManager统一对redis操作"></a>配置 1. 配置shiro的RedisManager，通过shiro-redis包提供的RedisManager统一对redis操作</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.shiro;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.shiro.realm.CustomRealm;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.shiro.session.CustomSessionManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.mgt.SecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.spring.web.ShiroFilterFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.web.mgt.DefaultWebSecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.web.session.mgt.DefaultWebSessionManager;</span><br><span class="line"><span class="keyword">import</span> org.crazycake.shiro.RedisCacheManager;</span><br><span class="line"><span class="keyword">import</span> org.crazycake.shiro.RedisManager;</span><br><span class="line"><span class="keyword">import</span> org.crazycake.shiro.RedisSessionDAO;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//1.创建realm</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CustomRealm <span class="title">getRealm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CustomRealm();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.创建安全管理器</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SecurityManager <span class="title">getSecurityManager</span><span class="params">(CustomRealm realm)</span> </span>&#123;</span><br><span class="line">        DefaultWebSecurityManager securityManager = <span class="keyword">new</span> DefaultWebSecurityManager();</span><br><span class="line">        securityManager.setRealm(realm);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将自定义的会话管理器注册到安全管理器中</span></span><br><span class="line">        securityManager.setSessionManager(sessionManager());</span><br><span class="line">        <span class="comment">//将自定义的redis缓存管理器注册到安全管理器中</span></span><br><span class="line">        securityManager.setCacheManager(cacheManager());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> securityManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.配置shiro的过滤器工厂</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 再web程序中，shiro进行权限控制全部是通过一组过滤器集合进行控制</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ShiroFilterFactoryBean <span class="title">shiroFilter</span><span class="params">(SecurityManager securityManager)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建过滤器工厂</span></span><br><span class="line">        ShiroFilterFactoryBean filterFactory = <span class="keyword">new</span> ShiroFilterFactoryBean();</span><br><span class="line">        <span class="comment">//2.设置安全管理器</span></span><br><span class="line">        filterFactory.setSecurityManager(securityManager);</span><br><span class="line">        <span class="comment">//3.通用配置（跳转登录页面，为授权跳转的页面）</span></span><br><span class="line">        filterFactory.setLoginUrl(<span class="string">"/autherror?code=1"</span>);<span class="comment">//跳转url地址</span></span><br><span class="line">        filterFactory.setUnauthorizedUrl(<span class="string">"/autherror?code=2"</span>);<span class="comment">//未授权的url</span></span><br><span class="line">        <span class="comment">//4.设置过滤器集合</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 设置所有的过滤器：有顺序map</span></span><br><span class="line"><span class="comment">         *     key = 拦截的url地址</span></span><br><span class="line"><span class="comment">         *     value = 过滤器类型</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Map&lt;String,String&gt; filterMap = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">        <span class="comment">//filterMap.put("/user/home","anon");//当前请求地址可以匿名访问</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//具有某中权限才能访问</span></span><br><span class="line">        <span class="comment">//使用过滤器的形式配置请求地址的依赖权限</span></span><br><span class="line">        <span class="comment">//filterMap.put("/user/home","perms[user-home]"); //不具备指定的权限，跳转到setUnauthorizedUrl地址</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用过滤器的形式配置请求地址的依赖角色</span></span><br><span class="line">        <span class="comment">//filterMap.put("/user/home","roles[系统管理员]");</span></span><br><span class="line"></span><br><span class="line">        filterMap.put(<span class="string">"/user/**"</span>,<span class="string">"authc"</span>);<span class="comment">//当前请求地址必须认证之后可以访问</span></span><br><span class="line"></span><br><span class="line">        filterFactory.setFilterChainDefinitionMap(filterMap);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filterFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.redis.host&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.redis.port&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1.redis的控制器，操作redis</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisManager <span class="title">redisManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RedisManager redisManager = <span class="keyword">new</span> RedisManager();</span><br><span class="line">        redisManager.setHost(host);</span><br><span class="line">        redisManager.setPort(port);</span><br><span class="line">        <span class="keyword">return</span> redisManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2.sessionDao</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisSessionDAO <span class="title">redisSessionDAO</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RedisSessionDAO sessionDAO = <span class="keyword">new</span> RedisSessionDAO();</span><br><span class="line">        sessionDAO.setRedisManager(redisManager());</span><br><span class="line">        <span class="keyword">return</span> sessionDAO;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3.会话管理器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DefaultWebSessionManager <span class="title">sessionManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        CustomSessionManager sessionManager = <span class="keyword">new</span> CustomSessionManager();</span><br><span class="line">        sessionManager.setSessionDAO(redisSessionDAO());</span><br><span class="line">        <span class="keyword">return</span> sessionManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 4.缓存管理器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisCacheManager <span class="title">cacheManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RedisCacheManager redisCacheManager = <span class="keyword">new</span> RedisCacheManager();</span><br><span class="line">        redisCacheManager.setRedisManager(redisManager());</span><br><span class="line">        <span class="keyword">return</span> redisCacheManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//开启对shior注解的支持</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AuthorizationAttributeSourceAdvisor <span class="title">authorizationAttributeSourceAdvisor</span><span class="params">(SecurityManager securityManager)</span> </span>&#123;</span><br><span class="line">        AuthorizationAttributeSourceAdvisor advisor = <span class="keyword">new</span> AuthorizationAttributeSourceAdvisor();</span><br><span class="line">        advisor.setSecurityManager(securityManager);</span><br><span class="line">        <span class="keyword">return</span> advisor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-17-132051.png" alt="image-20190817212049858"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/08/17/shiro/Shiro统一会话管理/">http://yoursite.com/2019/08/17/shiro/Shiro统一会话管理/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/shiro/"># shiro</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/19/SpringDataJPA Mybatis分页/SpringDataJPA/">SpringDataJPA</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/16/shiro/Shiro整合SpringBoot/">shirt SAAS 系统</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

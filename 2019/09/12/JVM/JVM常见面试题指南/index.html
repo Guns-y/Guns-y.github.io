@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>JVM常见面试题 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">JVM常见面试题</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2019&nbsp;&nbsp;12:43:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/JVM/">JVM</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><img src="https://images.gitbook.cn/f61a9b40-10b3-11e9-94bb-7dd6762e95d5" alt><img src="https://images.gitbook.cn/cvip.png" alt>](/gitchat/author/5c11286f6d5861632916d3a4</p>
+<p><a href="/gitchat/author/5c11286f6d5861632916d3a4">驰骋</a></p>
+<p><a href="/m/mazi/author/5c11286f6d5861632916d3a4/question">向作者提问</a></p>
+<p>3 年+ BAT 的工作经验； 3 年+ TMD 的工作经验。 一直从事大型 Java 应用交易后台研发工作。<br>负责过大流量，高并发复杂业务后台服务整体稳定性工作，对性能优化有丰富的实战经验， 同时也有多年的技术团队管理经验。</p>
+<p><a href="/gitchat/activity/5c663f25d87d6631bc38a355">查看本场Chat</a></p>
+<p>本文将重点介绍面试过程中常见的 JVM 题目。 将面试题分为三大类：基础题目，进阶题目，实战题目。</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="1-1-JDK、-JRE、JVM-的关系是什么？"><a href="#1-1-JDK、-JRE、JVM-的关系是什么？" class="headerlink" title="1.1 JDK、 JRE、JVM 的关系是什么？"></a>1.1 JDK、 JRE、JVM 的关系是什么？</h4><p><strong>什么是 JVM ？</strong></p>
+<p>英文名称 ( Java Virtual Machine )，就是 JAVA 虚拟机， 它只识别 <code>.class</code> 类型文件，它能够将 class<br>文件中的字节码指令进行识别并调用操作系统向上的 API 完成动作。</p>
+<p><strong>什么是 JRE ？</strong></p>
+<p>英文名称（ Java Runtime Environment ），Java 运行时环境。它主要包含两个部分：JVM 的标准实现和 Java<br>的一些基本类库。相对于 JVM 来说，JRE多出来一部分 Java 类库。</p>
+<p><strong>什么是 JDK？</strong> 英文名称（ Java Development Kit ），Java 开发工具包。JDK 是整个 Java 开发的核心，它集成了<br>JRE 和一些好用的小工具。例如：javac.exe、java.exe、jar.exe 等。</p>
+<p>这三者的关系：一层层的嵌套关系。JDK &gt; JRE &gt; JVM。</p>
+<h4 id="1-2-JVM-的内存模型以及分区情况和作用"><a href="#1-2-JVM-的内存模型以及分区情况和作用" class="headerlink" title="1.2 JVM 的内存模型以及分区情况和作用"></a>1.2 JVM 的内存模型以及分区情况和作用</h4><p>如下图所示：</p>
+<p><img src="https://images.gitbook.cn/bf54c7d0-3ee8-11e9-9993-cdc55e79d144" alt="enter image description
+here"></p>
+<p>黄色部分为线程共有，蓝色部分为线程私有。</p>
+<h5 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a><strong>方法区</strong></h5><p>用于存储虚拟机加载的类信息，常量，静态变量等数据。</p>
+<h5 id="堆"><a href="#堆" class="headerlink" title="堆"></a><strong>堆</strong></h5><p>存放对象实例，所有的对象和数组都要在堆上分配。 是 JVM 所管理的内存中最大的一块区域。</p>
+<h5 id="栈"><a href="#栈" class="headerlink" title="栈"></a><strong>栈</strong></h5><p>Java 方法执行的内存模型：存储局部变量表，操作数栈，动态链接，方法出口等信息。生命周期与线程相同。</p>
+<h5 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a><strong>本地方法栈</strong></h5><p>作用与虚拟机栈类似，不同点本地方法栈为 native 方法执行服务，虚拟机栈为虚拟机执行的 Java 方法服务。</p>
+<h5 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a><strong>程序计数器</strong></h5><p>当前线程所执行的行号指示器。是 JVM 内存区域最小的一块区域。执行字节码工作时就是利用程序计数器来选取下一条需要执行的字节码指令。</p>
+<h4 id="1-3-JVM-对象创建步骤流程是什么？"><a href="#1-3-JVM-对象创建步骤流程是什么？" class="headerlink" title="1.3 JVM 对象创建步骤流程是什么？"></a>1.3 JVM 对象创建步骤流程是什么？</h4><p>整体流程如下图所示：</p>
+<p><img src="https://images.gitbook.cn/c3bd9860-3f65-11e9-b565-378070432200" alt="enter image description
+here"></p>
+<p><strong>第 1 步：</strong> 虚拟机遇到一个 new 指令，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，<br>并且检查这个符号引用的类是否已经被加载&amp;解析&amp;初始化。</p>
+<p><strong>第 2 步：</strong> 如果类已经被加载那么进行第 3 步； 如果没有进行加载， 那么就就需要先进行类的加载。</p>
+<p><strong>第 3 步：</strong> 类加载检查通过之后， 接下来进行新生对象的内存分配。</p>
+<p><strong>第 4 步：</strong> 对象生成需要的内存大小在类加载完成后便可完全确定，为对象分配空间等同于把一块确定大小的内存从 Java 堆中划分出来</p>
+<p><strong>第 5 步：</strong> 内存大小的划分分为两种情况： 第一种情况：JVM 的内存是规整的， 所有的使用的内存都放到一边， 空闲的内存在另外一边，<br>中间放一个指针作为分界点的指示器。 那么这时候分配内存就比较简单， 只要讲指针向空闲空间那边挪动一段与对象大小相同的距离。 这种就是“ <strong>指针碰撞</strong><br>”。</p>
+<p>第二种情况：JVM 的内存不是规整的， 也就是说已使用的内存与未使用的内存相互交错。 这时候就没办法利用指正碰撞了。<br>这时候我们就需要维护一张表，用于记录那些内存可用， 在分配的时候从列表中找到一块足够大的空间划分给对象实例， 并更新到记录表上。</p>
+<p><strong>第 6 步：</strong> 空间申请完成之后， JVM 需要将内存的空间都初始化为 0 值。如果使用 TLAB， 就可以在 TLAB 分配的时候就可以进行该工作。</p>
+<p><strong>第 7 步：</strong> JVM 对对象进行必要的设置。 例如， 这个对象是哪个类的实例、对象的哈希码、GC 年代等信息。</p>
+<p><strong>第 8 步：</strong> 完成了上面的步骤之后 从 JVM 来看一个对象基本上完成了， 但从 Java 程序代码绝对来看， 对象创建才刚刚开始， 需要执行 &lt;<br>init &gt; 方法， 按照程序中设定的初始化操作初始化， 这时候一个真正的程序对象生成了。</p>
+<h4 id="1-4-垃圾回收算法有几种类型？-他们对应的优缺点又是什么？"><a href="#1-4-垃圾回收算法有几种类型？-他们对应的优缺点又是什么？" class="headerlink" title="1.4 垃圾回收算法有几种类型？ 他们对应的优缺点又是什么？"></a>1.4 垃圾回收算法有几种类型？ 他们对应的优缺点又是什么？</h4><p>常见的垃圾回收算法有：</p>
+<blockquote>
+<p>标记-清除算法、复制算法、标记-整理算法、分代收集算法</p>
+</blockquote>
+<h5 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a><strong>标记-清除算法</strong></h5><p>标记—清除算法包括两个阶段：“标记”和“清除”。 标记阶段：确定所有要回收的对象，并做标记。 清除阶段：将标记阶段确定不可用的对象清除。</p>
+<p>缺点：</p>
+<ol>
+<li>标记和清除的效率都不高。</li>
+<li>会产生大量的碎片，而导致频繁的回收。</li>
+</ol>
+<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a><strong>复制算法</strong></h5><p>内存分成大小相等的两块，每次使用其中一块，当垃圾回收的时候， 把存活的对象复制到另一块上，然后把这块内存整个清理掉。</p>
+<p>缺点：</p>
+<ol>
+<li>需要浪费额外的内存作为复制区。</li>
+<li>当存活率较高时，复制算法效率会下降。</li>
+</ol>
+<h5 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a><strong>标记-整理算法</strong></h5><p>标记—整理算法不是把存活对象复制到另一块内存，而是把存活对象往内存的一端移动，然后直接回收边界以外的内存。</p>
+<p>缺点： 算法复杂度大，执行步骤较多</p>
+<h5 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a><strong>分代收集算法</strong></h5><p>目前大部分 JVM 的垃圾收集器采用的算法。根据对象存活的生命周期将内存划分为若干个不同的区域。一般情况下将堆区划分为新生代（ Young<br>Generation 和老年代（ Tenured Generation ），永久代（ Permanet Generation ）。</p>
+<p>老年代的特点是每次垃圾收集时只有少量对象需要被回收，而新生代的特点是每次垃圾回收时都有大量的对象需要被回收，那么就可以根据不同代的特点采取最适合的收集算法。</p>
+<p>如下图所示：</p>
+<p><img src="https://images.gitbook.cn/04124fb0-3f60-11e9-a7f2-db689d3df630" alt="enter image description
+here"></p>
+<p><strong>Young：</strong> 存放新创建的对象，对象生命周期非常短，几乎用完可以立即回收，也叫 Eden 区。</p>
+<p><strong>Tenured：</strong> young 区多次回收后存活下来的对象将被移到 tenured 区，也叫 old 区。</p>
+<p><strong>Perm：</strong> 永久带，主要存加载的类信息，生命周期长，几乎不会被回收。</p>
+<p>缺点： 算法复杂度大，执行步骤较多。</p>
+<h4 id="1-5-简单介绍一下什么是类加载机制？"><a href="#1-5-简单介绍一下什么是类加载机制？" class="headerlink" title="1.5 简单介绍一下什么是类加载机制？"></a>1.5 简单介绍一下什么是类加载机制？</h4><p>Class 文件由类装载器装载后，在 JVM 中将形成一份描述 Class 结构的元信息对象，通过该元信息对象可以获知 Class<br>的结构信息：如构造函数，属性和方法等。</p>
+<p>虚拟机把描述类的数据从 class 文件加载到内存，并对数据进行校验，转换解析和初始化，最终形成可以被虚拟机直接使用的 Java<br>类型，这就是虚拟机的类加载机制。</p>
+<h4 id="1-6-类的加载过程是什么？简单描述一下每个步骤"><a href="#1-6-类的加载过程是什么？简单描述一下每个步骤" class="headerlink" title="1.6 类的加载过程是什么？简单描述一下每个步骤"></a>1.6 类的加载过程是什么？简单描述一下每个步骤</h4><p>类加载的过程包括了：</p>
+<p>​<br>    加载、验证、准备、解析、初始化五个阶段</p>
+<h5 id="第一步：加载"><a href="#第一步：加载" class="headerlink" title="第一步：加载"></a><strong>第一步：加载</strong></h5><p>查找并加载类的二进制数据。</p>
+<p>加载是类加载过程的第一个阶段，虚拟机在这一阶段需要完成以下三件事情：</p>
+<ul>
+<li>通过类的全限定名来获取其定义的二进制字节流</li>
+<li>将字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
+<li>在 Java 堆中生成一个代表这个类的 java.lang.Class 对象，作为对方法区中这些数据的访问入口</li>
+</ul>
+<h5 id="第二步：验证"><a href="#第二步：验证" class="headerlink" title="第二步：验证"></a><strong>第二步：验证</strong></h5><p>确保被加载的类的正确性。</p>
+<p>这一阶段是确保 Class<br>文件的字节流中包含的信息符合当前虚拟机的规范，并且不会损害虚拟机自身的安全。包含了四个验证动作：文件格式验证，元数据验证，字节码验证，符号引用验证。</p>
+<h5 id="第三步：准备"><a href="#第三步：准备" class="headerlink" title="第三步：准备"></a><strong>第三步：准备</strong></h5><p>为类的静态变量分配内存，并将其初始化为默认值。</p>
+<p>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，这些内存都将在方法区中分配。</p>
+<h5 id="第四步：解析"><a href="#第四步：解析" class="headerlink" title="第四步：解析"></a><strong>第四步：解析</strong></h5><p>把类中的符号引用转换为直接引用。</p>
+<p>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程，解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符 7<br>类符号引用进行。</p>
+<h5 id="第五步：初始化"><a href="#第五步：初始化" class="headerlink" title="第五步：初始化"></a><strong>第五步：初始化</strong></h5><p>类变量进行初始化</p>
+<p>为类的静态变量赋予正确的初始值，JVM 负责对类进行初始化，主要对类变量进行初始化。</p>
+<h4 id="1-7-JVM-预定义的类加载器有哪几种？分别什么作用？"><a href="#1-7-JVM-预定义的类加载器有哪几种？分别什么作用？" class="headerlink" title="1.7 JVM 预定义的类加载器有哪几种？分别什么作用？"></a>1.7 JVM 预定义的类加载器有哪几种？分别什么作用？</h4><p>​<br>    启动（Bootstrap）类加载器、标准扩展（Extension）类加载器、应用程序类加载器(Application)</p>
+<h5 id="启动（Bootstrap）类加载器"><a href="#启动（Bootstrap）类加载器" class="headerlink" title="启动（Bootstrap）类加载器"></a><strong>启动（Bootstrap）类加载器</strong></h5><p>引导类装入器是用本地代码实现的类装入器，它负责将 &lt; Java <em>Runtime</em> Home &gt;/lib<br>下面的类库加载到内存中。由于引导类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用。</p>
+<h5 id="标准扩展（Extension）类加载器"><a href="#标准扩展（Extension）类加载器" class="headerlink" title="标准扩展（Extension）类加载器"></a><strong>标准扩展（Extension）类加载器</strong></h5><p>扩展类加载器负责将 &lt; Java_Runtime_Home &gt;/lib/ext 或者由系统变量 java.ext.dir<br>指定位置中的类库加载到内存中。开发者可以直接使用标准扩展类加载器。</p>
+<h5 id="应用程序类加载器（Application）"><a href="#应用程序类加载器（Application）" class="headerlink" title="应用程序类加载器（Application）"></a><strong>应用程序类加载器（Application）</strong></h5><p>应用程序类加载器（Application ClassLoader）：负责加载用户路径（classpath）上的类库。</p>
+<h4 id="1-8-什么是双亲委派模式？有什么作用？"><a href="#1-8-什么是双亲委派模式？有什么作用？" class="headerlink" title="1.8 什么是双亲委派模式？有什么作用？"></a>1.8 什么是双亲委派模式？有什么作用？</h4><p><strong>基本定义：</strong><br>双亲委派模型的工作流程是：如果一个类加载器收到了类加载的请求，它首先不会自己去加载这个类，而是把请求委托给父加载器去完成，依次向上，因此，所有的类加载请求最终都应该被传递到顶层的启动类加载器中，只有当父加载器没有找到所需的类时，子加载器才会尝试去加载该类。</p>
+<p><strong>双亲委派机制:</strong></p>
+<ol>
+<li><p>当 AppClassLoader 加载一个 class 时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器 ExtClassLoader 去完成。</p>
+</li>
+<li><p>当 ExtClassLoader 加载一个 class 时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给 BootStrapClassLoader 去完成。</p>
+</li>
+<li><p>如果 BootStrapClassLoader 加载失败，会使用 ExtClassLoader 来尝试加载；</p>
+</li>
+<li><p>若 ExtClassLoader 也加载失败，则会使用 AppClassLoader 来加载，如果 AppClassLoader 也加载失败，则会报出异常 ClassNotFoundException。</p>
+</li>
+</ol>
+<p>如下图所示：</p>
+<p><img src="https://images.gitbook.cn/ecb00640-3f60-11e9-9993-cdc55e79d144" alt></p>
+<p><strong>双亲委派作用：</strong></p>
+<ul>
+<li>通过带有优先级的层级关可以避免类的重复加载；</li>
+<li>保证 Java 程序安全稳定运行，Java 核心 API 定义类型不会被随意替换。</li>
+</ul>
+<h4 id="1-9-介绍一下-JVM-中垃圾收集器有哪些？-他们特点分别是什么？"><a href="#1-9-介绍一下-JVM-中垃圾收集器有哪些？-他们特点分别是什么？" class="headerlink" title="1.9 介绍一下 JVM 中垃圾收集器有哪些？ 他们特点分别是什么？"></a>1.9 介绍一下 JVM 中垃圾收集器有哪些？ 他们特点分别是什么？</h4><h5 id="新生代垃圾收集器"><a href="#新生代垃圾收集器" class="headerlink" title="新生代垃圾收集器"></a><strong>新生代垃圾收集器</strong></h5><p><strong>Serial 收集器</strong></p>
+<p>特点： Serial<br>收集器只能使用一条线程进行垃圾收集工作，并且在进行垃圾收集的时候，所有的工作线程都需要停止工作，等待垃圾收集线程完成以后，其他线程才可以继续工作。</p>
+<p>使用算法：复制算法</p>
+<p><strong>ParNew 收集器</strong></p>
+<p>特点： ParNew 垃圾收集器是Serial收集器的多线程版本。为了利用 CPU 多核多线程的优势，ParNew<br>收集器可以运行多个收集线程来进行垃圾收集工作。这样可以提高垃圾收集过程的效率。</p>
+<p>使用算法：复制算法</p>
+<p><strong>Parallel Scavenge 收集器</strong></p>
+<p>特点： Parallel Scavenge 收集器是一款多线程的垃圾收集器，但是它又和 ParNew 有很大的不同点。</p>
+<p>Parallel Scavenge 收集器和其他收集器的关注点不同。其他收集器，比如 ParNew 和 CMS<br>这些收集器，它们主要关注的是如何缩短垃圾收集的时间。而 Parallel Scavenge 收集器关注的是如何控制系统运行的吞吐量。这里说的吞吐量，指的是<br>CPU 用于运行应用程序的时间和 CPU 总时间的占比，吞吐量 = 代码运行时间 / （代码运行时间 + 垃圾收集时间）。如果虚拟机运行的总的 CPU<br>时间是 100 分钟，而用于执行垃圾收集的时间为 1 分钟，那么吞吐量就是 99%。</p>
+<p>使用算法：复制算法</p>
+<h5 id="老年代垃圾收集器"><a href="#老年代垃圾收集器" class="headerlink" title="老年代垃圾收集器"></a><strong>老年代垃圾收集器</strong></h5><p><strong>Serial Old 收集器</strong></p>
+<p>特点： Serial Old 收集器是 Serial<br>收集器的老年代版本。这款收集器主要用于客户端应用程序中作为老年代的垃圾收集器，也可以作为服务端应用程序的垃圾收集器。</p>
+<p>使用算法：标记-整理</p>
+<p><strong>Parallel Old 收集器</strong></p>
+<p>特点： Parallel Old 收集器是 Parallel Scavenge 收集器的老年代版本这个收集器是在 JDK1.6 版本中出现的，所以在<br>JDK1.6 之前，新生代的 Parallel Scavenge 只能和 Serial Old 这款单线程的老年代收集器配合使用。Parallel Old<br>垃圾收集器和 Parallel Scavenge 收集器一样，也是一款关注吞吐量的垃圾收集器，和 Parallel Scavenge<br>收集器一起配合，可以实现对 Java 堆内存的吞吐量优先的垃圾收集策略。</p>
+<p>使用算法：标记-整理</p>
+<p><strong>CMS 收集器</strong></p>
+<p>特点： CMS 收集器是目前老年代收集器中比较优秀的垃圾收集器。CMS 是 Concurrent Mark Sweep，从名字可以看出，这是一款使用”标记-<br>清除”算法的并发收集器。</p>
+<p>CMS 垃圾收集器是一款以获取最短停顿时间为目标的收集器。如下图所示：</p>
+<p><img src="https://images.gitbook.cn/f41b41b0-3e7a-11e9-a7f2-db689d3df630" alt="enter image description
+here"></p>
+<p>从图中可以看出，CMS 收集器的工作过程可以分为 4 个阶段：</p>
+<ul>
+<li>初始标记（CMS initial mark）阶段</li>
+<li>并发标记（CMS concurrent mark）阶段</li>
+<li>重新标记（CMS remark）阶段</li>
+<li>并发清除(（CMS concurrent sweep）阶段</li>
+</ul>
+<p>使用算法：复制+标记清除</p>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h5><p><strong>G1 垃圾收集器</strong></p>
+<p>特点： 主要步骤：<code>初始标记，并发标记，重新标记，复制清除。</code></p>
+<p>使用算法：复制 + 标记整理</p>
+<h4 id="1-10-什么是-Class-文件？-Class-文件主要的信息结构有哪些？"><a href="#1-10-什么是-Class-文件？-Class-文件主要的信息结构有哪些？" class="headerlink" title="1.10 什么是 Class 文件？ Class 文件主要的信息结构有哪些？"></a>1.10 什么是 Class 文件？ Class 文件主要的信息结构有哪些？</h4><p>Class 文件是一组以 8 位字节为基础单位的二进制流。各个数据项严格按顺序排列。</p>
+<p>Class 文件格式采用一种类似于 C 语言结构体的伪结构来存储数据。这样的伪结构仅仅有两种数据类型：无符号数和表。</p>
+<p>无符号数：是基本数据类型。以 u1、u2、u4、u8 分别代表 1 个字节、2 个字节、4 个字节、8<br>个字节的无符号数，能够用来描写叙述数字、索引引用、数量值或者依照 UTF-8 编码构成的字符串值。</p>
+<p>表：由多个无符号数或者其它表作为数据项构成的复合数据类型。全部表都习惯性地以 <code>_info</code> 结尾。</p>
+<h4 id="1-11-对象“对象已死”-是什么概念？"><a href="#1-11-对象“对象已死”-是什么概念？" class="headerlink" title="1.11 对象“对象已死” 是什么概念？"></a>1.11 对象“对象已死” 是什么概念？</h4><p>对象不可能再被任何途径使用，称为对象已死。 判断对象已死的方法有：引用计数法与可达性分析算法。</p>
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><h4 id="2-1-Java-语言怎么实现跨平台的？"><a href="#2-1-Java-语言怎么实现跨平台的？" class="headerlink" title="2.1 Java 语言怎么实现跨平台的？"></a>2.1 Java 语言怎么实现跨平台的？</h4><p>我们编写的 Java 源码，编译后会生成一种 .class 文件，称为字节码文件。字节码不能直接运行，必须通过 JVM 翻译成机器码才能运行。</p>
+<p>JVM 是一个”桥梁“，是一个”中间件“，是实现跨平台的关键。Java 代码首先被编译成字节码文件，再由 JVM 将字节码文件翻译成机器语言，从而达到运行<br>Java 程序的目的。</p>
+<h4 id="2-2-JVM-数据运行区，哪些会造成-OOM-的情况？"><a href="#2-2-JVM-数据运行区，哪些会造成-OOM-的情况？" class="headerlink" title="2.2 JVM 数据运行区，哪些会造成 OOM 的情况？"></a>2.2 JVM 数据运行区，哪些会造成 OOM 的情况？</h4><p>除了数据运行区，其他区域均有可能造成 OOM 的情况。</p>
+<p>​<br>    堆溢出：java.lang.OutOfMemoryError: Java heap space<br>    栈溢出：java.lang.StackOverflowError<br>    永久代溢出：java.lang.OutOfMemoryError: PermGen space</p>
+<h4 id="2-3-详细介绍一下对象在分带内存区域的分配过程？"><a href="#2-3-详细介绍一下对象在分带内存区域的分配过程？" class="headerlink" title="2.3 详细介绍一下对象在分带内存区域的分配过程？"></a>2.3 详细介绍一下对象在分带内存区域的分配过程？</h4><ol>
+<li>JVM 会试图为相关 Java 对象在 Eden 中初始化一块内存区域。</li>
+<li>当 Eden 空间足够时，内存申请结束；否则到下一步。</li>
+<li>JVM 试图释放在 Eden 中所有不活跃的对象（这属于 1 或更高级的垃圾回收）。释放后若 Eden 空间仍然不足以放入新对象，则试图将部分 Eden 中活跃对象放入 Survivor 区。</li>
+<li>Survivor 区被用来作为 Eden 及 Old 的中间交换区域，当 Old 区空间足够时，Survivor 区的对象会被移到 Old 区，否则会被保留在 Survivor 区。</li>
+<li>当 Old 区空间不够时，JVM 会在 Old 区进行完全的垃圾收集。</li>
+<li>完全垃圾收集后，若 Survivor 及 Old 区仍然无法存放从 Eden 复制过来的部分对象，导致 JVM 无法在 Eden 区为新对象创建内存区域，则出现 “ out of memory ” 错误。</li>
+</ol>
+<h4 id="1-4-G1-与-CMS-两个垃圾收集器的对比"><a href="#1-4-G1-与-CMS-两个垃圾收集器的对比" class="headerlink" title="1.4 G1 与 CMS 两个垃圾收集器的对比"></a>1.4 G1 与 CMS 两个垃圾收集器的对比</h4><h5 id="细节方面不同"><a href="#细节方面不同" class="headerlink" title="细节方面不同"></a><strong>细节方面不同</strong></h5><ol>
+<li>G1 在压缩空间方面有优势。</li>
+<li>G1 通过将内存空间分成区域（Region）的方式避免内存碎片问题。</li>
+<li>Eden, Survivor, Old 区不再固定、在内存使用效率上来说更灵活。</li>
+<li>G1 可以通过设置预期停顿时间（Pause Time）来控制垃圾收集时间避免应用雪崩现象。</li>
+<li>G1 在回收内存后会马上同时做合并空闲内存的工作、而 CMS 默认是在 STW（stop the world）的时候做。</li>
+<li>G1 会在 Young GC 中使用、而 CMS 只能在 O 区使用。</li>
+</ol>
+<h5 id="整体内容不同"><a href="#整体内容不同" class="headerlink" title="整体内容不同"></a><strong>整体内容不同</strong></h5><p>​<br>    吞吐量优先：G1<br>    响应优先：CMS</p>
+<p>CMS 的缺点是对 cpu 的要求比较高。G1 是将内存化成了多块，所有对内段的大小有很大的要求。</p>
+<p>CMS 是清除，所以会存在很多的内存碎片。G1 是整理，所以碎片空间较小。</p>
+<h4 id="2-5-线上常用的-JVM-参数有哪些？"><a href="#2-5-线上常用的-JVM-参数有哪些？" class="headerlink" title="2.5 线上常用的 JVM 参数有哪些？"></a>2.5 线上常用的 JVM 参数有哪些？</h4><h5 id="数据区设置"><a href="#数据区设置" class="headerlink" title="数据区设置"></a><strong>数据区设置</strong></h5><ul>
+<li>Xms：初始堆大小</li>
+<li>Xmx：最大堆大小</li>
+<li>Xss:Java 每个线程的Stack大小</li>
+<li>XX:NewSize=n：设置年轻代大小</li>
+<li>XX:NewRatio=n：设置年轻代和年老代的比值。如：为 3，表示年轻代与年老代比值为 1:3，年轻代占整个年轻代年老代和的 1/4。</li>
+<li>XX：SurvivorRatio=n：年轻代中 Eden 区与两个 Survivor 区的比值。注意 Survivor 区有两个。如：3，表示 Eden：Survivor=3：2，一个 Survivor 区占整个年轻代的 1/5。</li>
+<li>XX：MaxPermSize=n：设置持久代大小。</li>
+</ul>
+<h5 id="收集器设置"><a href="#收集器设置" class="headerlink" title="收集器设置"></a><strong>收集器设置</strong></h5><ul>
+<li>XX:+UseSerialGC：设置串行收集器</li>
+<li>XX:+UseParallelGC:：设置并行收集器</li>
+<li>XX:+UseParalledlOldGC：设置并行年老代收集器</li>
+<li>XX:+UseConcMarkSweepGC：设置并发收集器</li>
+</ul>
+<h5 id="GC日志打印设置"><a href="#GC日志打印设置" class="headerlink" title="GC日志打印设置"></a><strong>GC日志打印设置</strong></h5><ul>
+<li>XX:+PrintGC：打印 GC 的简要信息</li>
+<li>XX:+PrintGCDetails：打印 GC 详细信息</li>
+<li>XX:+PrintGCTimeStamps：输出 GC 的时间戳</li>
+</ul>
+<h4 id="2-6-对象什么时候进入老年代？"><a href="#2-6-对象什么时候进入老年代？" class="headerlink" title="2.6 对象什么时候进入老年代？"></a>2.6 对象什么时候进入老年代？</h4><h5 id="对象优先在-Eden-区分配内存"><a href="#对象优先在-Eden-区分配内存" class="headerlink" title="对象优先在 Eden 区分配内存"></a><strong>对象优先在 Eden 区分配内存</strong></h5><p>当对象首次创建时, 会放在新生代的 eden 区, 若没有 GC 的介入，会一直在 eden 区，GC 后，是可能进入 survivor 区或者年老代</p>
+<h5 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a><strong>大对象直接进入老年代</strong></h5><p>所谓的大对象是指需要大量连续内存空间的 Java<br>对象，最典型的大对象就是那种很长的字符串以及数组，大对象对虚拟机的内存分配就是坏消息，尤其是一些朝生夕灭的短命大对象，写程序时应避免。</p>
+<h5 id="长期存活的对象进入老年代"><a href="#长期存活的对象进入老年代" class="headerlink" title="长期存活的对象进入老年代"></a><strong>长期存活的对象进入老年代</strong></h5><p>虚拟机给每个对象定义了一个对象年龄（Age）计数器，对象在 Survivor 区中每熬过一次 Minor GC，年龄就增加<br>1，当他的年龄增加到一定程度（默认是 15 岁）， 就将会被晋升到老年代中。</p>
+<h4 id="2-7-什么是内存溢出，-内存泄露？-他们的区别是什么？"><a href="#2-7-什么是内存溢出，-内存泄露？-他们的区别是什么？" class="headerlink" title="2.7 什么是内存溢出， 内存泄露？ 他们的区别是什么？"></a>2.7 什么是内存溢出， 内存泄露？ 他们的区别是什么？</h4><p><strong>内存溢出 out of memory</strong> ，是指程序在申请内存时，没有足够的内存空间供其使用，出现 out of memory；</p>
+<p><strong>内存泄露 memory leak</strong><br>，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但内存泄露堆积后果很严重，无论多少内存，迟早会被占光。</p>
+<p>内存溢出就是你要求分配的内存超出了系统能给你的，系统不能满足需求，于是产生溢出。</p>
+<p>内存泄漏是指你向系统申请分配内存进行使用（new），可是使用完了以后却不归还（delete），结果你申请到的那块内存你自己也不能再访问（也许你把它的地址给弄丢了），而系统也不能再次将它分配给需要的程序。</p>
+<h4 id="2-8-引起类加载操作的行为有哪些？"><a href="#2-8-引起类加载操作的行为有哪些？" class="headerlink" title="2.8 引起类加载操作的行为有哪些？"></a>2.8 引起类加载操作的行为有哪些？</h4><ol>
+<li>遇到 new、getstatic、putstatic 或 invokestatic 这四条字节码指令。</li>
+<li>反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化。</li>
+<li>子类初始化的时候，如果其父类还没初始化，则需先触发其父类的初始化。</li>
+<li>虚拟机执行主类的时候（有 main（ string[] args））。</li>
+<li>JDK1.7 动态语言支持。</li>
+</ol>
+<h4 id="2-9-介绍一下-JVM-提供的常用工具"><a href="#2-9-介绍一下-JVM-提供的常用工具" class="headerlink" title="2.9 介绍一下 JVM 提供的常用工具"></a>2.9 介绍一下 JVM 提供的常用工具</h4><ol>
+<li><p><strong>jps：</strong> 用来显示本地的 Java 进程，可以查看本地运行着几个 Java 程序，并显示他们的进程号。 <em>命令格式：jps</em></p>
+</li>
+<li><p><strong>jinfo：</strong> 运行环境参数：Java System 属性和 JVM 命令行参数，Java class path 等信息。 <em>命令格式：jinfo 进程 pid</em></p>
+</li>
+<li><p><strong>jstat：</strong> 监视虚拟机各种运行状态信息的命令行工具。 <em>命令格式：jstat -gc 123 250 20</em></p>
+</li>
+<li><p><strong>jstack：</strong> 可以观察到 JVM 中当前所有线程的运行情况和线程当前状态。 <em>命令格式：jstack 进程 pid</em></p>
+</li>
+<li><p><strong>jmap：</strong> 观察运行中的 JVM 物理内存的占用情况（如：产生哪些对象，及其数量）。 <em>命令格式：jmap [option] pid</em></p>
+</li>
+</ol>
+<h4 id="2-10-Full-GC-、-Major-GC-、Minor-GC-之间区别？"><a href="#2-10-Full-GC-、-Major-GC-、Minor-GC-之间区别？" class="headerlink" title="2.10 Full GC 、 Major GC 、Minor GC 之间区别？"></a>2.10 Full GC 、 Major GC 、Minor GC 之间区别？</h4><p><strong>Minor GC：</strong> 从新生代空间（包括 Eden 和 Survivor 区域）回收内存被称为 Minor GC。</p>
+<p><strong>Major GC：</strong> 清理 Tenured 区，用于回收老年代，出现 Major GC 通常会出现至少一次 Minor GC。</p>
+<p><strong>Full GC：</strong> Full GC 是针对整个新生代、老年代、元空间（metaspace，java8 以上版本取代 perm gen）的全局范围的<br>GC。</p>
+<h4 id="2-11-什么时候触发-Full-GC-？"><a href="#2-11-什么时候触发-Full-GC-？" class="headerlink" title="2.11 什么时候触发 Full GC ？"></a>2.11 什么时候触发 Full GC ？</h4><ol>
+<li>调用 System.gc 时，系统建议执行 Full GC，但是不必然执行。</li>
+<li>老年代空间不足。</li>
+<li>方法区空间不足。 </li>
+<li>通过 Minor GC 后进入老年代的平均大小大于老年代的可用内存。 </li>
+<li>由 Eden 区、survivor space1（From Space）区向 survivor space2（To Space）区复制时，对象大小大于 To Space 可用内存，则把该对象转存到老年代，且老年代的可用内存小于该对象大小。</li>
+</ol>
+<h4 id="2-12-什么情况下会出现栈溢出"><a href="#2-12-什么情况下会出现栈溢出" class="headerlink" title="2.12 什么情况下会出现栈溢出"></a>2.12 什么情况下会出现栈溢出</h4><ol>
+<li>方法创建了一个很大的对象，如 List，Array。</li>
+<li>是否产生了循环调用、死循环。</li>
+<li>是否引用了较大的全局变量。</li>
+</ol>
+<h4 id="2-13-说一下强引用、软引用、弱引用、虚引用以及他们之间和-gc-的关系"><a href="#2-13-说一下强引用、软引用、弱引用、虚引用以及他们之间和-gc-的关系" class="headerlink" title="2.13 说一下强引用、软引用、弱引用、虚引用以及他们之间和 gc 的关系"></a>2.13 说一下强引用、软引用、弱引用、虚引用以及他们之间和 gc 的关系</h4><ol>
+<li>强引用：new 出的对象之类的引用，只要强引用还在，永远不会回收。</li>
+<li>软引用：引用但非必须的对象，内存溢出异常之前，回收。</li>
+<li>弱引用：非必须的对象，对象能生存到下一次垃圾收集发生之前。</li>
+<li>虚引用：对生存时间无影响，在垃圾回收时得到通知。</li>
+</ol>
+<h4 id="2-14-Eden-和-Survivor-的比例分配是什么情况？为什么？"><a href="#2-14-Eden-和-Survivor-的比例分配是什么情况？为什么？" class="headerlink" title="2.14 Eden 和 Survivor 的比例分配是什么情况？为什么？"></a>2.14 Eden 和 Survivor 的比例分配是什么情况？为什么？</h4><p>默认比例 8:1。 大部分对象都是朝生夕死。<br>复制算法的基本思想就是将内存分为两块，每次只用其中一块，当这一块内存用完，就将还活着的对象复制到另外一块上面。复制算法不会产生内存碎片。</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><h4 id="3-1-CPU-资源占用过高"><a href="#3-1-CPU-资源占用过高" class="headerlink" title="3.1 CPU 资源占用过高"></a>3.1 CPU 资源占用过高</h4><ol>
+<li>top 查看当前 CPU 情况，找到占用 CPU 过高的进程 PID=123。</li>
+<li>top -H -p123 找出两个 CPU 占用较高的线程，记录下来 PID=2345, 3456 转换为十六进制。</li>
+<li>jstack -l 123 &gt; temp.txt 打印出当前进程的线程栈。</li>
+<li>查找到对应于第二步的两个线程运行栈，分析代码。</li>
+</ol>
+<h4 id="3-2-OOM-异常排查"><a href="#3-2-OOM-异常排查" class="headerlink" title="3.2 OOM 异常排查"></a>3.2 OOM 异常排查</h4><ol>
+<li>使用 top 指令查询服务器系统状态。</li>
+<li>ps -aux|grep java 找出当前 Java 进程的 PID。</li>
+<li>jstat -gcutil pid interval 查看当前 GC 的状态。</li>
+<li>jmap -histo:live pid 可用统计存活对象的分布情况，从高到低查看占据内存最多的对象。</li>
+<li>jmap -dump:format=b,file= 文件名 [pid] 利用 Jmap dump。</li>
+<li>使用性能分析工具对上一步 dump 出来的文件进行分析，工具有 MAT 等。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上面介绍了 JVM 常见的面试题目，希望对大家接下里的面试或者对于 JVM 的深入学习有所帮助。</p>
+<hr>
+<p>本文首发于 GitChat，未经授权不得转载，转载需与 GitChat 联系。</p>
+<p>240</p>
+<p><a href="/m/mazi/author/5c11286f6d5861632916d3a4/question">向作者提问</a></p>
+<p>互动评论</p>
+<p><img src="https://images.gitbook.cn/7e637010-8cc6-11e9-b60e-19c95a6a735a?imageView2/1/w/200/h/200" alt></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/564815c0-b64a-11e8-a3e4-bd0fed6937a6" alt></p>
+<p>03 个月前</p>
+<p>平台模范</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/79cbc5b0-8074-11e9-b985-65fee8fce09c" alt></p>
+<p>东哥6 个月前</p>
+<p>写的挺好</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/97a1b440-a67d-11e8-93a7-3fdb8088a48d" alt></p>
+<p>破石6 个月前</p>
+<p>实战，OOM 异常排查；个人理解应该是基于快照分析吧，毕竟OOM发生了就结束了</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/65e8e810-2e0b-11e7-a6c0-db6a0525428a" alt></p>
+<p>占少云6 个月前</p>
+<p>对jvm的体系讲解清晰，也有线上问题的讲解查找。看好你哦，小编。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/dbecf6b0-805b-11e9-9330-938a141abd5d" alt></p>
+<p>李会会6 个月前</p>
+<p>深入浅出，受益良多。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/0ebbcf30-2f71-11e9-aa43-652e96997de8" alt></p>
+<p>魔力鸟6 个月前</p>
+<p>非常赞，覆盖面很全，而且深入浅出，受益良多。</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p>查看更多</p>
+<h2 id="更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！"><a href="#更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！" class="headerlink" title="更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！"></a>更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！</h2><h1 id="本资源由微信公众号：光明顶一号，提供支持"><a href="#本资源由微信公众号：光明顶一号，提供支持" class="headerlink" title="本资源由微信公众号：光明顶一号，提供支持"></a>本资源由微信公众号：光明顶一号，提供支持</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/12/JVM/JVM常见面试题指南/">http://yoursite.com/2019/09/12/JVM/JVM常见面试题指南/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/JVM/"># JVM</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/12/Docker/Docker搭建ES集群并整合SpringBoot/"></a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/04/JVM/JVM问题诊断快速入门/">JVM问题诊断快速入门</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

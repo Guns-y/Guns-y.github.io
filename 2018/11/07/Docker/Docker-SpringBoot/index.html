@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Docker SpringBoot | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Docker SpringBoot</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 7, 2018&nbsp;&nbsp;18:04:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SpringBoot/">SpringBoot</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="DockerMachine应用"><a href="#DockerMachine应用" class="headerlink" title="DockerMachine应用"></a>DockerMachine应用</h2><h4 id="注意整个过程要等待一下"><a href="#注意整个过程要等待一下" class="headerlink" title="注意整个过程要等待一下"></a>注意整个过程要等待一下</h4><blockquote>
+<p>参考<a href="https://study.163.com/course/courseLearn.htm?courseId=1002892012#/learn/video?lessonId=1003309140&amp;courseId=1002892012" target="_blank" rel="noopener">https://study.163.com/course/courseLearn.htm?courseId=1002892012#/learn/video?lessonId=1003309140&amp;courseId=1002892012</a></p>
+<p>网易云课堂 动手玩Docker</p>
+</blockquote>
+<ul>
+<li>安装DockerMachine</li>
+<li>docker-machine ls    tcp://192.168.99.100:2376   name：cloudcomb</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022300.jpg" alt="image-20181107181833492"></p>
+<ul>
+<li><p>docker-machine create –driver virtualbox cloudcomb </p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022301.jpg" alt="image-20181107181903652"></p>
+</li>
+<li><p>Docker-machine env cloudcomb</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022303.jpg" alt="image-20181107182121568"></p>
+</li>
+</ul>
+<p>⚠️第四个变量eval说的是当前Dockermachine的名字是—cloudcomb</p>
+<ul>
+<li><p>eval $(docker-machine env cloudcomb) 拷贝放到底下</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022305.jpg" alt="image-20181107182325486"></p>
+</li>
+<li><p>使用网易蜂巢</p>
+</li>
+<li><p>Docker run hub.c163.com/library/busybox:latest echon hello world （unable。。这个过程要等待啊）⭐️</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022306.jpg" alt="image-20181107182746194"></p>
+</li>
+<li><p>docker-machine rm cloudcomb 删除docker-machine</p>
+</li>
+</ul>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022308.jpg" alt="image-20181107182909832"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022309.jpg" alt="image-20181107183004383"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022310.jpg" alt="image-20181107183018420"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022313.jpg" alt="image-20181107183034881"></p>
+<h1 id="SpringBoot整合Docker"><a href="#SpringBoot整合Docker" class="headerlink" title="SpringBoot整合Docker"></a>SpringBoot整合Docker</h1><blockquote>
+<p>Emmmm.等我有钱了 把Xnip去掉哈哈</p>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022315.jpg" alt="image-20181107183409783"></p>
+<ul>
+<li><p>下载源码<a href="https://github.com/bingohuang/spring-boot-docker" target="_blank" rel="noopener">https://github.com/bingohuang/spring-boot-docker</a></p>
+<blockquote>
+<p>Git 通过命令行下载文件 先cd一下指定一下下载的路径</p>
+</blockquote>
+</li>
+<li><p>导入项目到Idea 然后查看一下源码</p>
+</li>
+<li><p>运行一下项目（访问一下 测试一下）</p>
+<h2 id="Docker-SpringBoot部署项目"><a href="#Docker-SpringBoot部署项目" class="headerlink" title="Docker SpringBoot部署项目"></a>Docker SpringBoot部署项目</h2></li>
+</ul>
+<p>⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️</p>
+<h3 id="1-install项目"><a href="#1-install项目" class="headerlink" title="1.install项目"></a>1.install项目</h3><p>  <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022316.jpg" alt="image-20181107185602118"></p>
+<blockquote>
+<p>找到这两个文件 放到桌面上</p>
+</blockquote>
+<h3 id="2-将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0-0-1-jar"><a href="#2-将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0-0-1-jar" class="headerlink" title="2.将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0.0.1.jar"></a>2.将这两个项目放到一个文件下，不知道为什么好像要把jar改名成gs-spring-boot-docker-0.0.1.jar</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022318.jpg" alt="image-20181107191351622"></p>
+<h3 id="3-cd到文件下-ls一下"><a href="#3-cd到文件下-ls一下" class="headerlink" title="3.cd到文件下 ls一下"></a>3.cd到文件下 ls一下</h3><h3 id="4-执行-˛docker-version"><a href="#4-执行-˛docker-version" class="headerlink" title="4.执行  ˛docker version"></a>4.执行  ˛docker version</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022320.jpg" alt="image-20181107191444666"></p>
+<h3 id="5-执行-docker-machine-env"><a href="#5-执行-docker-machine-env" class="headerlink" title="5.执行 docker-machine env"></a>5.执行 docker-machine env</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022322.jpg" alt="image-20181107191515590"></p>
+<h3 id="6-执行eval-docker-machine-env-（复制后面的第四条）"><a href="#6-执行eval-docker-machine-env-（复制后面的第四条）" class="headerlink" title="6.执行eval $(docker-machine env)（复制后面的第四条）"></a>6.执行eval $(docker-machine env)（复制后面的第四条）</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022325.jpg" alt="image-20181107191547911"></p>
+<p>tcp://192.168.99.100:2376192.168.99.100</p>
+<p> tcp://127.0.0.1:2376 tcp://127.0.0.1:2376</p>
+<p>###7.docker version（没有-）</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022326.jpg" alt="image-20181107191658043"></p>
+<h3 id="8-ls一下目录"><a href="#8-ls一下目录" class="headerlink" title="8.ls一下目录"></a>8.ls一下目录</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22329.jpg" alt="image-20181107191730046"></p>
+<h3 id="9-docker-build-t-cloudcomb-sun-1-0"><a href="#9-docker-build-t-cloudcomb-sun-1-0" class="headerlink" title="9.docker build -t cloudcomb/sun:1.0 ."></a>9.docker build -t cloudcomb/sun:1.0 .</h3><blockquote>
+<p> （桌面上要有jar包和dockerfilede 文件）</p>
+</blockquote>
+<p>![image-20181107191826890](/Users/apple/Library/Application Support/typora-user-images/image-20181107191826890.png)</p>
+<blockquote>
+<p>此时报错 没有gs-spring-boot-docker.jar文件 其实ls的时候就应该是gs-spring-boot-docker.jar 这儿是个bug。</p>
+<p>解决办法 改jar包名 添加gs前缀</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docker.mirrors.ustc.edu.cn</span><br></pre></td></tr></table></figure>
+
+<h3 id="10。docker-build-t-cloudcomb-sun-1-0-（大佬说这一步是拉取镜像。用加速器-改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像"><a href="#10。docker-build-t-cloudcomb-sun-1-0-（大佬说这一步是拉取镜像。用加速器-改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像" class="headerlink" title="10。docker build -t cloudcomb/sun:1.0 .（大佬说这一步是拉取镜像。用加速器 改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像"></a>10。docker build -t cloudcomb/sun:1.0 .（大佬说这一步是拉取镜像。用加速器 改名后重新执行命令）我们可以用大佬网易云的Dokcer镜像</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022330.jpg" alt="image-20181107192039326"></p>
+<h3 id="11-docker-images-a"><a href="#11-docker-images-a" class="headerlink" title="11. docker images -a"></a>11. docker images -a</h3><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022332.jpg" alt="image-20181107192154611"></p>
+<h3 id="12-docker-run-p-1024-8080-t-cloudcomb-sun-1-0"><a href="#12-docker-run-p-1024-8080-t-cloudcomb-sun-1-0" class="headerlink" title="12.docker run -p 1024:8080 -t cloudcomb/sun:1.0 ."></a>12.docker run -p 1024:8080 -t cloudcomb/sun:1.0 .</h3><blockquote>
+<p>注意 cloudcomb和前面的cloudcomb要一一对应</p>
+<p>1024 与8080是一一对应的关系</p>
+<p>Error: Unable to access jarfile /app.jar</p>
+<p>⭐️ ADD user-server-0.0.1-SNAPSHOT.jar app.jar 要和pom的<artifactid>user-server</artifactid></p>
+<p>保持名字一样，不然maven打出来的包，docker找不到。</p>
+<ul>
+<li>最终的结局办法 好像是将copy去掉了 注意看控制台打印的信息 兄dei</li>
+</ul>
+</blockquote>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022334.jpg" alt="image-20181107192857396"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022336.jpg" alt="image-20181107193127019"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022338.jpg" alt="image-20181107193051806"></p>
+<p>DockerFile：</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022340.jpg" alt="image-20181107193402453"></p>
+<blockquote>
+<p>Docker就是给一名字 gs-spring-bbot</p>
+</blockquote>
+<p>贴一个Dockerfilr。</p>
+<ul>
+<li><input checked disabled type="checkbox"> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">FROM hub.c.163.com/xbingo/jdk8:latest</span><br><span class="line"></span><br><span class="line">from hub.c.163.com/library/tomcat</span><br><span class="line"></span><br><span class="line">MAINTAINER Freemana2017 1047629166@qq.com</span><br><span class="line"></span><br><span class="line">ADD  atcrodfunding3_ssm-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line"></span><br><span class="line">COPY atcrod.war /usr/local/tomcat/webapps</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#FROM openjdk:8-jdk-alpine</span><br><span class="line">#VOLUME /tmp</span><br><span class="line">#ADD  atcrodfunding3_ssm-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">#ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line">#</span><br><span class="line"> </span><br><span class="line">#FROM hub.c.163.com/xbingo/jdk8:latest</span><br><span class="line">#</span><br><span class="line">#ADD gs-spring-boot-docker-0.1.0.jar app.jar</span><br><span class="line">#</span><br><span class="line">#ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">#这个 Dockerfile 文件很简单，构建 Jdk 基础环境，添加 Spring Boot Jar 到镜像中，简单解释一下:</span><br><span class="line">#</span><br><span class="line">#FROM ，表示使用 Jdk8 环境 为基础镜像，如果镜像不是本地的会从 DockerHub 进行下载</span><br><span class="line">#VOLUME ，VOLUME 指向了一个/tmp的目录，由于 Spring Boot 使用内置的Tomcat容器，Tomcat 默认使用/tmp作为工作目录。这个命令的效果是：</span><br><span class="line">#在宿主机的/var/lib/docker目录下创建一个临时文件并把它链接到容器中的/tmp目录</span><br><span class="line">#ADD ，拷贝文件并且重命名</span><br><span class="line">#ENTRYPOINT ，为了缩短 Tomcat 的启动时间，添加java.security.egd的系统属性指向/dev/urandom作为 ENTRYPOINT</span><br><span class="line">#这样 Spring Boot 项目添加 Docker 依赖就完成了。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<p>Dockerfile 用的war要有Tomcat </p>
+<p>自己理解吧 多看一些视频笔记什么的 反正很难,,,</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022341.jpg" alt="image-20181107184402451"></p>
+<hr>
+<hr>
+<hr>
+<h1 id="以上的文件是从github上拉的-现在自己构建SpringBoot-jar的应用"><a href="#以上的文件是从github上拉的-现在自己构建SpringBoot-jar的应用" class="headerlink" title="以上的文件是从github上拉的 现在自己构建SpringBoot -jar的应用"></a>以上的文件是从github上拉的 现在自己构建SpringBoot -jar的应用</h1><blockquote>
+<p>通过群里的指导 估计jar打包和war打包区别不大吧</p>
+<p>下面通过SpringBoot构建Docker部署一下试试</p>
+<p><a href="https://waylau.com/docker-spring-boot/" target="_blank" rel="noopener">https://waylau.com/docker-spring-boot/</a></p>
+<p><a href="http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html" target="_blank" rel="noopener">http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html</a></p>
+<p><a href="https://lw900925.github.io/docker/docker-springboot.html" target="_blank" rel="noopener">https://lw900925.github.io/docker/docker-springboot.html</a></p>
+<p><a href="https://www.tianmaying.com/tutorial/spring-boot-docker" target="_blank" rel="noopener">https://www.tianmaying.com/tutorial/spring-boot-docker</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://bingohuang.com/spring-boot-docker/" target="_blank" rel="noopener">https://bingohuang.com/spring-boot-docker/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.imooc.com/search/?words=docker" target="_blank" rel="noopener">https://www.imooc.com/search/?words=docker</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.ityouknow.com/docker/2018/03/30/docker-machine.html" target="_blank" rel="noopener">http://www.ityouknow.com/docker/2018/03/30/docker-machine.html</a></p>
+<p><a href="https://spring.io/guides/gs/spring-boot-docker/" target="_blank" rel="noopener">https://spring.io/guides/gs/spring-boot-docker/</a></p>
+</blockquote>
+<h2 id="SpringBoot-Docker"><a href="#SpringBoot-Docker" class="headerlink" title="SpringBoot Docker"></a>SpringBoot Docker</h2><blockquote>
+<p><a href="https://lw900925.github.io/docker/docker-springboot.html" target="_blank" rel="noopener">https://lw900925.github.io/docker/docker-springboot.html</a></p>
+</blockquote>
+<p><a href="http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html" target="_blank" rel="noopener">http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html</a> 主要环节</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022342.jpg" alt="image-20181110214317827"></p>
+<p>![image-20181115165826700](/Users/apple/Library/Application Support/typora-user-images/image-20181115165826700.png)</p>
+<p>$ sudo docker tag [ImageId] ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]<br>$ sudo docker push ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]</p>
+<p>⭐️</p>
+<p> sudo docker tag 5fc4ede68fcd ccr.ccs.tencentyun.com/atcrod/latest</p>
+<p> sudo docker push ccr.ccs.tencentyun.com/atcrod/latest</p>
+<p>yum install -y docker-ce</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/">http://yoursite.com/2018/11/07/Docker/Docker-SpringBoot/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        <a href="/tags/SpringBoot/"># SpringBoot</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/08/Docker/Docker-web/">docker-web</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/07/Docker/Docker-Idea/">Docker-Idea</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

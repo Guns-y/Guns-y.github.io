@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Docker-Idea | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Docker-Idea</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 7, 2018&nbsp;&nbsp;15:39:20</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Docker/">Docker</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>###1.Docker 在Intellij中的使用</p>
+<ul>
+<li><p>Machine的安装</p>
+</li>
+<li><p>compose的安装</p>
+</li>
+<li><p>Docker的配置</p>
+<p><strong>首先学习什么东西都要用官网的东西</strong></p>
+<p><strong>安装Docker的插件-看网上教程</strong></p>
+<p><strong>看Docker插件的官网</strong> <a href="https://www.jetbrains.com/help/idea/docker.html" target="_blank" rel="noopener">hrer</a></p>
+<blockquote>
+<p>学习英文。任何东西官网都用详细说明的</p>
+</blockquote>
+<ul>
+<li><input checked disabled type="checkbox"> 学习Docker</li>
+<li><input checked disabled type="checkbox"> 学习SpringBoot整合Docker</li>
+<li><input checked disabled type="checkbox"> 学习运维</li>
+</ul>
+<p><strong>下面开始Docker的学习</strong></p>
+<p>1.现在插件</p>
+<p>2.看网址的教程</p>
+<p>3.安装machin和compose</p>
+<blockquote>
+<p>machine和compose的安装参考</p>
+<p>1.Gitbook书</p>
+<p><a href="https://yeasy.gitbooks.io/docker_practice/content/compose/install.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/compose/install.html</a></p>
+<p>2。官方文档（为主）</p>
+<p><a href="https://docs.docker.com/machine/install-machine/" target="_blank" rel="noopener">https://docs.docker.com/machine/install-machine/</a> ⭐️</p>
+<p>（为什么每次都要重新下载dockermachine）</p>
+</blockquote>
+<blockquote>
+<p>Docker-machine env 不能执行二进制文件 首先要 重新下载Dockermachihe</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base=https://github.com/docker/machine/releases/download/v0.14.0 &amp;&amp;</span><br><span class="line">  curl -L $base/docker-machine-$(uname -s)-$(uname -m) &gt;/usr/local/bin/docker-machine &amp;&amp;</span><br><span class="line">  chmod +x /usr/local/bin/docker-machine</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.Github</p>
+<p><a href="https://github.com/docker/machine/releases" target="_blank" rel="noopener">https://github.com/docker/machine/releases</a></p>
+<p><a href="https://github.com/docker/machine" target="_blank" rel="noopener">https://github.com/docker/machine</a></p>
+</blockquote>
+<h1 id="2-有些东西放在了云收藏里面"><a href="#2-有些东西放在了云收藏里面" class="headerlink" title="2.有些东西放在了云收藏里面"></a>2.有些东西放在了云收藏里面</h1><h6 id="Docker的用户名是2018112"><a href="#Docker的用户名是2018112" class="headerlink" title="Docker的用户名是2018112"></a>Docker的用户名是2018112</h6><p>#####安装Docker插件要开VPN 还有访问Gitbub也要开VPN wiredes的</p>
+<h6 id="安装Docker要安装DookerToolBox"><a href="#安装Docker要安装DookerToolBox" class="headerlink" title="安装Docker要安装DookerToolBox"></a>安装Docker要安装DookerToolBox</h6></li>
+</ul>
+<h1 id="3-Docker"><a href="#3-Docker" class="headerlink" title="3.Docker"></a>3.Docker</h1><p>  ！！Docker真是一个恐怖的东西</p>
+<p>  ######Docker的学习资源GitBook里面的Docker的附录部分</p>
+<blockquote>
+<p><a href="https://blog.lab99.org/post/docker-2016-07-14-faq.html" target="_blank" rel="noopener">https://blog.lab99.org/post/docker-2016-07-14-faq.html</a></p>
+</blockquote>
+<h4 id="1-无独有偶通过Docker-SpirngBoot的学习了解了TCP-socker-Engine-API-URL的填写"><a href="#1-无独有偶通过Docker-SpirngBoot的学习了解了TCP-socker-Engine-API-URL的填写" class="headerlink" title="1.无独有偶通过Docker-SpirngBoot的学习了解了TCP socker Engine API URL的填写"></a>1.无独有偶通过Docker-SpirngBoot的学习了解了TCP socker Engine API URL的填写</h4><blockquote>
+<p> Docker开启远程访问这是过程中产生的问题 安装了socket 以后想办法删除</p>
+<p>PS：Docker服务中进程间通信通过/var/run/docker.sock实现，默认服务不提供监听端口，因此使用docker remote api 需要手动绑定端口。方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; `# service docker stop``# docker -d -H unix:``///var/run/docker.sock -H tcp://0.0.0.0:2375`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>  ###2.点击+号添加一个docker配置，输入Name和Engine API URL，URL是docker服务地址，需要docker开启远程连接功能。CentOS中在docker启动参数里添加如下配置即可开启远程连接。</p>
+<pre><code>-H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375</code></pre><hr>
+<p>   <em>下面是docker在idea中的安装</em></p>
+<ul>
+<li><p>clouds里面没有Docker。在Docker中配置 TCP：tcp：//127.0.0.1:2376</p>
+</li>
+<li><p>注意这个是通过终端命令得到的</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker-machine env cloudcomb</span><br><span class="line">export DOCKER_TLS_VERIFY=&quot;1&quot;</span><br><span class="line">export DOCKER_HOST=&quot;tcp://192.168.99.101:2376&quot;</span><br><span class="line">export DOCKER_CERT_PATH=&quot;/Users/apple/.docker/machine/machines/cloudcomb&quot;</span><br><span class="line">export DOCKER_MACHINE_NAME=&quot;cloudcomb&quot;</span><br><span class="line"># Run this command to configure your shell:</span><br><span class="line"># eval $(docker-machine env cloudcomb)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022419.jpg" alt="image-20181107213000670"></p>
+</li>
+<li><p>将前面的端口换成本地的 tcp:127.0.0.1:2376</p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-022421.jpg" alt="image-20181107213056424"></p>
+</li>
+</ul>
+<ul>
+<li><input disabled type="checkbox"> emm睡一觉起来VPN打开要等一会</li>
+<li><input disabled type="checkbox"> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-22422.jpg" alt="image-20181108064320954"></li>
+</ul>
+<p>在终端输入dockerversion</p>
+<p>docker-machine env—Host is not running</p>
+<h5 id="学习资源：通过Github的搜索功能🔍-发现一些学习资料"><a href="#学习资源：通过Github的搜索功能🔍-发现一些学习资料" class="headerlink" title="#学习资源：通过Github的搜索功能🔍 发现一些学习资料"></a>#学习资源：通过Github的搜索功能🔍 发现一些学习资料</h5><p><a href="https://www.jetbrains.com/help/idea/docker.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/docker.html</a></p>
+<p>alip1<code>sudo docker pull ccr.ccs.tencentyun.com/freemana2017/atcrod:latest</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">VOLUME /tmp</span><br><span class="line"></span><br><span class="line">sudo docker pull ccr.ccs.tencentyun.com/freemana2017/atcrod:latest</span><br><span class="line"></span><br><span class="line">COPY target/tran4spd-1.0-SNAPSHOT.jar resource.jar</span><br><span class="line">RUN bash -c &quot;touch /resource.jar&quot;</span><br><span class="line">EXPOSE 8080</span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;resource.jar&quot;]</span><br><span class="line"></span><br><span class="line"># docker run -d -p 18080:8099 --name docker-resource leesia/resource:1.0</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/07/Docker/Docker-Idea/">http://yoursite.com/2018/11/07/Docker/Docker-Idea/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/07/Docker/Docker-SpringBoot/">Docker SpringBoot</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/07/Docker/Docker尚硅谷/Docker 尚硅谷/">Docker 尚硅谷</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

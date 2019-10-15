@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Docker基础知识 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Docker基础知识</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2019&nbsp;&nbsp;12:43:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Docker/">Docker</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a href="/gitchat/author/5b97ee3eca9910654c08175c"><img src="https://images.gitbook.cn/ca6dbb10-2f32-11e9-aa43-652e96997de8" alt></a></p>
+<p><a href="/gitchat/author/5b97ee3eca9910654c08175c">假不理</a></p>
+<p><a href="/m/mazi/author/5b97ee3eca9910654c08175c/question">向作者提问</a></p>
+<p>创业公司小头目，深耕某垂直行业，多年全栈开发，喜欢各种新鲜的潮流的技术，并且热衷于把新技术应用到实际项目中，公众号【编程无界】</p>
+<p><a href="/gitchat/activity/5c637a601fc6c314f47e59a1">查看本场Chat</a></p>
+<blockquote>
+<p>文章提纲：</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<ol>
+<li>什么是 Docker</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>Docker 对我们有什么用处</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>Docker 安装和使用</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>镜像相关</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li>容器相关</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li>数据管理</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="7">
+<li>网络配置</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="8">
+<li>Dockerfile</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="9">
+<li>在 Docker 下安装常见的软件（Tomcat、Nginx、Redis、MongoDB 等）</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="10">
+<li>使用中一些常见问题汇总</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="11">
+<li>总结</li>
+</ol>
+</blockquote>
+<blockquote>
+</blockquote>
+<h3 id="1-什么是-Docker"><a href="#1-什么是-Docker" class="headerlink" title="1 什么是 Docker"></a>1 什么是 Docker</h3><p>什么是 Docker？恐怕 90% 的人脑子一闪而过的都是那张图：一条鲸鱼背上扛着一堆箱子，图片下方是大大的“Docker”。 Docker 是什么？<br>是鲸鱼？ 还是一堆箱子？ 或者说是载着箱子的鲸鱼？ ….</p>
+<p><img src="https://images.gitbook.cn/e4527840-3a77-11e9-94ba-95207c5914bd" alt="enter image description
+here"></p>
+<p>这里我不做解释，先引用一下官方的解释：</p>
+<blockquote>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux<br>机器上，也可以实现虚拟化。</p>
+</blockquote>
+<p>顾名思义，Docker 是一个容器引擎，容器且不说，什么是引擎？</p>
+<p>我们知道：</p>
+<p>汽车的引擎是发动机，有了发动起，汽车才能跑起来。游戏需要游戏引擎（如 Unity3D……），基于引擎的开发，能让游戏动起来。</p>
+<p>如官言，Docker 也是一种引擎，基于这个引擎，开发者能让他们开发的应用处于一个有隔离性的、可移植性的容器中，以便于发布于各种机器中而无需考虑兼容性问题。</p>
+<p>因此就不难解释，为什么 Docker 的 logo 是一条装着一堆箱子的鲸鱼。</p>
+<p>这是因为： <strong>Docker 扮演的是图中鲸鱼的角色，而鲸鱼之上的集装箱就是一个个容器，容器中是我们开发的应用程序（不仅限于 Web<br>应用），每个容器都有自己独立的环境（环境设置、网络、文件系统……），互不干扰。而每个箱子，又可以打包成一个新的镜像，放到其它服务器的 Docker<br>环境中直接运行，不再需要重复安装程序运行环境。</strong></p>
+<p>上面的解释插入了两个生疏的概念：</p>
+<blockquote>
+<ol>
+<li>镜像</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>容器</li>
+</ol>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>我们先讲容器。</p>
+<p>容器，顾名思义：就是装东西的器皿，在 Docker 中，容器就是装载我们的应用程序的器皿，在 Docker 的 logo<br>中，容器就是一个个箱子。我们知道，运行 JavaWeb 应用程序需要有 Tomcat ，那么我们就需要创建一个 Tomcat<br>的容器，才能把我们的程序放进去运行。</p>
+<p>那么，容器哪里来的呢</p>
+<p>我们知道，给电脑安装 Windows 系统需要有 Windows 镜像，因此给 Docker<br>安装容器也是需要镜像的，所以，通俗一点，镜像就类似于我们日常中的安装软件，甚至说是操作系统镜像更为形象点。</p>
+<p>那容器和镜像有什么关系？</p>
+<p>网上说是类和对象的关系，没错，但是这样的比喻没什么实际卵用。</p>
+<p>我们知道：要运行一个 Web 程序，需要有个 Tomcat 环境，需要Tomcat 环境，那就下载一个 Tomcat 解压出来，然后把 Web 程序放入<br>Tomcat 的 Webapps 中启动即可。</p>
+<p>那么在 Docker 中要运行一个 Web 程序，就需要有 Tomcat 容器，需要 Tomcat 容器，就得去下载 Tomcat<br>镜像（也可以自己构建），把镜像 pull 下来之后，运行起来，就是一个 Tomcat 容器，此时把 Web 程序至于 Tomcat 挂载的数据目录<br>Webapps 中既可以运行。</p>
+<p>所以 Docker 中，容器和镜像的关系更像是一种动静的关系，也就是说，存于仓库中的镜像是一个死的软件，而运行起来的容器则像是一个正在运行的程序（进程）。</p>
+<p>有读者会问：Docker 和虚拟机有什么区别？</p>
+<p>这里引用一张图来比较两者的区别</p>
+<p><img src="https://images.gitbook.cn/cc224cf0-3a77-11e9-94ba-95207c5914bd" alt="Docker和vm的比较\]!\[enter image description
+here"></p>
+<p>可以看出：</p>
+<blockquote>
+<p><strong>虚拟机</strong> ：利用 Hypervisor（虚拟机管理系统）在宿主机器和操作系统基础上创建虚拟层、虚拟操作系统。 <strong>Docker</strong><br>：在宿主机、操作系统上安装 Docker Engine ，在 Docker engine 的支持下安装 Docker 镜像、运行 Docker 容器。</p>
+</blockquote>
+<p>因此可以解释为什么 Docker 会比 VM 轻量级、速度快。</p>
+<p>虚拟机需要虚拟化操作系统和硬件资源，需要分配内存和其它硬件内存，而 Docker 就如运行在操作系统上的一个软件一样，直接调用系统的硬件资源。</p>
+<h3 id="2-Docker-有什么用"><a href="#2-Docker-有什么用" class="headerlink" title="2 Docker 有什么用"></a>2 Docker 有什么用</h3><p>对 Docker 有了清晰的了解之后，我们心里可能在想： 这玩儿对我有什么用？ 我在哪里能用得上？ 怎么用才对？</p>
+<p>这里引用几个案例来让大家体会体会。</p>
+<h4 id="2-1-案例-1"><a href="#2-1-案例-1" class="headerlink" title="2.1 案例 1"></a>2.1 案例 1</h4><p>前几天，公司一批服务器就要到期了，由于服务器是 15<br>年购买的，硬件的性能远比现在新出的云主机低，因此决定把所有服务器都换成新一代服务器，但是小编整准备动手迁移服务器时，内心一阵阵崩溃感涌上心头，仔细一算，每台服务器都要做同样的事情：</p>
+<ol>
+<li>安装 jdk、Tomcat、Nginx；</li>
+<li>配置 jdk 环境变量和系统变量；</li>
+<li>配置 Tomcat；</li>
+<li>配置 Nginx；</li>
+<li>安装项目所需的视频解码组件；</li>
+<li>导入项目所需的一些特殊字体。</li>
+</ol>
+<p>后来决定用 Docker 部署的办法，在每台服务器都把 Docker 安装之后，只需要在其中一台服务器中把 Tomcat<br>镜像从镜像仓库拉取下来，把这些配置都设置好，做成一个自己的镜像上传到镜像仓库中，之后在其他几台服务器都下载自己做的镜像，运行于 Docker<br>中，把代码上传，就万事大吉了。</p>
+<h4 id="2-2-案例-2"><a href="#2-2-案例-2" class="headerlink" title="2.2 案例 2"></a>2.2 案例 2</h4><p>前不久的圣诞活动中，公司临时的活动方案在程序员的加班加点中终于上线，但是一上线之后发现推广海报中的中文名字乱码，领导问责测试人员怎么没做好测试，测试很委屈的说我已经测试无数遍并且测试报告都提交了，解决了所有问题才上线的；没办法只能让服务器同事查看正式服务器中的<br>Tomcat 配置，发现原来 Tomcat 用了默认编码方式：iso8859-1，而测试环境中是 UTF-8。针对这个问题，项目组决定把开发环境迁移到<br>Docker 中，在测试环境中测试无误后，把镜像打包发布到正式环境中，解决了环境不同导致的问题。</p>
+<h3 id="3-Docker-的安装"><a href="#3-Docker-的安装" class="headerlink" title="3 Docker 的安装"></a>3 Docker 的安装</h3><p>感知到 Docker 对我们开发者的好处之后，相信大家也跃跃欲试了吧，下面就 Linux centOS（版本大于等于 7.0）系统进行演示 Docker<br>的安装步骤：</p>
+<h4 id="3-1-删除可能存在的旧版本"><a href="#3-1-删除可能存在的旧版本" class="headerlink" title="3.1 删除可能存在的旧版本"></a>3.1 删除可能存在的旧版本</h4><p>​<br>​    sudo yum remove Docker <br>​                      Docker-client <br>​                      Docker-client-latest <br>​                      Docker-common <br>​                      Docker-latest <br>​                      Docker-latest-logrotate <br>​                      Docker-logrotate <br>​                      Docker-selinux <br>​                      Docker-engine-selinux <br>​                      Docker-engine</p>
+<h4 id="3-2-安装一些必备工具"><a href="#3-2-安装一些必备工具" class="headerlink" title="3.2 安装一些必备工具"></a>3.2 安装一些必备工具</h4><p>​<br>​    yum install -y yum-utils device-mapper-persistent-data lvm2</p>
+<h4 id="3-3-添加-Docker-源"><a href="#3-3-添加-Docker-源" class="headerlink" title="3.3 添加 Docker 源"></a>3.3 添加 Docker 源</h4><p>​<br>​    yum-config-manager <br>​        –add-repo <br>​        <a href="https://download.Docker.com/linux/centos/Docker-ce.repo" target="_blank" rel="noopener">https://download.Docker.com/linux/centos/Docker-ce.repo</a></p>
+<h4 id="3-4-更新-yum-缓存"><a href="#3-4-更新-yum-缓存" class="headerlink" title="3.4 更新 yum 缓存"></a>3.4 更新 yum 缓存</h4><p>​<br>​    yum makecache fast</p>
+<h4 id="3-5-安装"><a href="#3-5-安装" class="headerlink" title="3.5 安装"></a>3.5 安装</h4><p>​<br>​    yum install Docker-ce</p>
+<h4 id="3-6-创建-Docker-用户"><a href="#3-6-创建-Docker-用户" class="headerlink" title="3.6 创建 Docker 用户"></a>3.6 创建 Docker 用户</h4><p>温馨提示：以下操作不是必备，但是为了养成一个 Linux 用户的使用的良好习惯，小编不建议直接使用 root 操作，因此创建一个用户用来操作 Docker。</p>
+<p>​<br>​    useradd Docker_manager</p>
+<p>Docker_manager 是用户名，可以根据喜好起名，创建完用户之后，设置密码</p>
+<p>​<br>​    passwd Docker_manager  </p>
+<p>会提示输入密码和确认密码,按照提示操作即可</p>
+<h4 id="3-7-配置-Docker-用户的权限"><a href="#3-7-配置-Docker-用户的权限" class="headerlink" title="3.7 配置 Docker 用户的权限"></a>3.7 配置 Docker 用户的权限</h4><p>​<br>​    visudo</p>
+<p>visudo 是配置用户权限的文件，在命令行中输入 visudo 回车之后，会进入文件操作，找到 “# %wheel ALL=(ALL) NOPASSWD:<br>ALL” 这一行，把前面的“#”去掉，保存文件。</p>
+<h4 id="3-8-授权"><a href="#3-8-授权" class="headerlink" title="3.8 授权"></a>3.8 授权</h4><p>​<br>​    usermod -aG wheel,Docker Docker_manager</p>
+<h4 id="3-9-启动-Docker-CE"><a href="#3-9-启动-Docker-CE" class="headerlink" title="3.9 启动 Docker CE"></a>3.9 启动 Docker CE</h4><p>​<br>​    sudo systemctl enable Docker<br>​    sudo systemctl start Docker</p>
+<p>此时在命令行中输入 “Docker info” 之后，能够展示 Docker 相关信息，就表示 Docker 安装成功。</p>
+<p>​<br>​    Docker info</p>
+<h4 id="3-10-镜像加速："><a href="#3-10-镜像加速：" class="headerlink" title="3.10 镜像加速："></a>3.10 镜像加速：</h4><p>编辑 daemon.json 文件（首次安装 daemon.json 是个新文件，不要惊讶）</p>
+<p>​<br>​    vim /etc/Docker/daemon.json</p>
+<p>加入以下内容：</p>
+<p>​<br>​    {<br>​      “registry-mirrors”: [<br>​        “<a href="https://registry.Docker-cn.com&quot;" target="_blank" rel="noopener">https://registry.Docker-cn.com&quot;</a><br>​      ]<br>​    }</p>
+<p>保存，sudo systemctl restart Docker 重启即可。</p>
+<h3 id="4-镜像相关"><a href="#4-镜像相关" class="headerlink" title="4 镜像相关"></a>4 镜像相关</h3><p>镜像作为 Docker 这个“系统”中的“软件”，有专门的地方存放可以供搜索、下载，这个地方叫做 <strong>镜像仓库</strong><br>，镜像仓库分为公共仓库和私有仓库，默认仓库是 Docker Hub<br>公共仓库，当你不希望将自己的镜像放到公网当中，那么你就需要创建私有仓库，用来存储和管理自己的镜像。</p>
+<p>镜像相关的知识主要有镜像的查找、拉取、制作等，其中镜像的制作也叫镜像的构建，镜像的构建主要有两种方式：commit 方式或 build 方式（<br>DockerFile 范畴知识点，本文暂不做讲解）。</p>
+<p>commit 方式的流程为：查找镜像-&gt;拉取镜像到本地-&gt;运行镜像-&gt;进入容器内部修改容器-&gt;制作镜像—&gt;把镜像打标签-&gt;推送镜像到远程仓库</p>
+<h4 id="4-1-镜像的查找"><a href="#4-1-镜像的查找" class="headerlink" title="4.1 镜像的查找"></a>4.1 镜像的查找</h4><p>​<br>​    Docker search 镜像名称</p>
+<h4 id="4-2-镜像的拉取"><a href="#4-2-镜像的拉取" class="headerlink" title="4.2 镜像的拉取"></a>4.2 镜像的拉取</h4><p>​<br>​    //默认情况下，这样会拉取该镜像的 latest 版本<br>​    Docker search 镜像ID<br>​    //如果要拉取特定版本<br>​    Docker search 镜像ID:TAG</p>
+<h4 id="4-3-查看本地镜像列表"><a href="#4-3-查看本地镜像列表" class="headerlink" title="4.3 查看本地镜像列表"></a>4.3 查看本地镜像列表</h4><p>​<br>​    Docker images</p>
+<h4 id="4-4-删除镜像"><a href="#4-4-删除镜像" class="headerlink" title="4.4 删除镜像"></a>4.4 删除镜像</h4><p>​<br>​    Docker rmi  镜像ID<br>​    //如果删除的是正在运行的镜像，需要先停止并且删除容器后才能删除镜像</p>
+<h4 id="4-5-镜像的制作"><a href="#4-5-镜像的制作" class="headerlink" title="4.5 镜像的制作"></a>4.5 镜像的制作</h4><p>​<br>​    Docker commit -a “qianshic.com” -m “my image 1.0” 容器名称或id 打包的镜像名称:标签 </p>
+<p>各参数值的解释： <strong>-a</strong> ：提交的镜像作者； <strong>-c</strong> ：使用 Dockerfile 指令来创建镜像； <strong>-m</strong> ：提交时的说明文字；<br><strong>-p</strong> ：在 commit 时，将容器暂停。</p>
+<h4 id="4-6-给镜像打标签"><a href="#4-6-给镜像打标签" class="headerlink" title="4.6 给镜像打标签"></a>4.6 给镜像打标签</h4><p>​<br>​     Docker tag 镜像ID 远程仓库地址/镜像名:标签</p>
+<h4 id="4-7-把镜像推送到远程仓库"><a href="#4-7-把镜像推送到远程仓库" class="headerlink" title="4.7 把镜像推送到远程仓库"></a>4.7 把镜像推送到远程仓库</h4><p>​<br>​    Docker push 远程仓库地址/镜像名:标签</p>
+<h3 id="5-容器相关"><a href="#5-容器相关" class="headerlink" title="5 容器相关"></a>5 容器相关</h3><p>容器作为 Docker 中的一种活体，只有运行中的镜像才能称之为容器。容器相关知识主要有容器的运行、停止、删除、进入容器内部。</p>
+<h4 id="5-1-容器的运行"><a href="#5-1-容器的运行" class="headerlink" title="5.1 容器的运行"></a>5.1 容器的运行</h4><p>​<br>​    Docker run [参数列表] 镜像名称 [COMMAND] [ARG…]</p>
+<p>其中参数列表的比较常用取值有：</p>
+<blockquote>
+<p><strong>-d</strong> ：后台运行容器，并返回容器 ID； <strong>-i</strong> ：以交互模式运行容器，通常与 -t 同时使用； <strong>-p</strong><br>：端口映射，格式为：主机(宿主)端口:容器端口 <strong>-t</strong> ：为容器重新分配一个伪输入终端，通常与 -i 同时使用； <strong>--name=”Nginx-<br>lb”</strong> ：为容器指定一个名称； <strong>--net=”bridge”</strong> ：指定容器的网络连接类型，支持<br>bridge/host/none/container: 四种类型； <strong>--link=[]</strong> ：添加链接到另一个容器； <strong>-v</strong><br>:：挂载一个容器目录到宿主机中。</p>
+</blockquote>
+<p>如： 后台运行一个容器并且随机分配</p>
+<p>​<br>​    Docker run -d -P linuxserver/Nginx 一个端口</p>
+<p>后台运行一个 Tomcat 容器并且把容器 8080 端口映射到宿主机器上的 8010 端口，这样外部可以通过 8010 端口访问到该容器服务程序。</p>
+<p>​<br>​    Docker run -d -p 8010:8080 Tomcat </p>
+<p>后台运行一个 Tomcat 容器并且把容器 8080 端口映射到宿主机器上的 8010 端口，命名为 Tomcat-for-my，并且把 Tomcat 中的<br>Webapps 和 logs 挂载到宿主机 /var 目录下。</p>
+<p>​<br>​    Docker run -d -p 8010:8080 –name Tomcat-for-my -v /var/Tomcat-for-my/Webapps:/usr/local/Tomcat/Webapps -v /var/Tomcat-for-my/logs:/usr/local/Tomcat/logs Tomcat</p>
+<h4 id="5-2-启动容器"><a href="#5-2-启动容器" class="headerlink" title="5.2 启动容器"></a>5.2 启动容器</h4><p>​<br>​    Docker container start 容器ID或容器名<br>​    //或<br>​    Docker start  容器ID或容器名</p>
+<h4 id="5-3-停止容器"><a href="#5-3-停止容器" class="headerlink" title="5.3 停止容器"></a>5.3 停止容器</h4><p>​<br>​    Docker container stop 容器ID或容器名<br>​    //或<br>​    Docker stop  容器ID或容器名</p>
+<h4 id="5-4-重启容器"><a href="#5-4-重启容器" class="headerlink" title="5.4 重启容器"></a>5.4 重启容器</h4><p>​<br>​    Docker container restart 容器ID或容器名<br>​    //或<br>​    Docker restart  容器ID或容器名</p>
+<h4 id="5-4-进入容器内部"><a href="#5-4-进入容器内部" class="headerlink" title="5.4 进入容器内部"></a>5.4 进入容器内部</h4><p>​<br>​    Docker exec -it 容器ID或容器名 bash  </p>
+<h4 id="5-5-查看容器实时运行的日志"><a href="#5-5-查看容器实时运行的日志" class="headerlink" title="5.5 查看容器实时运行的日志"></a>5.5 查看容器实时运行的日志</h4><p>​<br>​    Docker logs -f -t –tail=行数  容器ID或容器名</p>
+<h4 id="5-6-查看容器从某个时刻开始的日志"><a href="#5-6-查看容器从某个时刻开始的日志" class="headerlink" title="5.6 查看容器从某个时刻开始的日志"></a>5.6 查看容器从某个时刻开始的日志</h4><p>​<br>​    Docker logs -f -t –since=”2018-11-28” –tail=10  容器ID或容器名</p>
+<h3 id="6-数据管理"><a href="#6-数据管理" class="headerlink" title="6 数据管理"></a>6 数据管理</h3><p>Docker 中的数据可以存储在类似于虚拟机磁盘的介质中，在 Docker 中称为数据卷（ Data Volume ）。数据卷可以用来存储 Docker<br>应用的数据，也可以用来在 Docker 容器间进行数据共享。</p>
+<p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</p>
+<blockquote>
+<ul>
+<li>数据卷可以在多个容器之间共享和重用；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>对数据卷进行修改，会即使生效，并且不会影响镜像；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>数据卷和容器没有必然的关系，容器的状态不影响数据卷的状态。</li>
+</ul>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</p>
+<h4 id="6-1-查看所有的数据卷"><a href="#6-1-查看所有的数据卷" class="headerlink" title="6.1 查看所有的数据卷"></a>6.1 查看所有的数据卷</h4><p>​<br>​    Docker volume ls</p>
+<h4 id="6-2-创建一个数据卷"><a href="#6-2-创建一个数据卷" class="headerlink" title="6.2 创建一个数据卷"></a>6.2 创建一个数据卷</h4><p>​<br>​    Docker volume create 卷名</p>
+<h4 id="6-3-查看数据卷的信息"><a href="#6-3-查看数据卷的信息" class="headerlink" title="6.3 查看数据卷的信息"></a>6.3 查看数据卷的信息</h4><p>​<br>​    Docker volume inspect 卷名</p>
+<h4 id="6-4-删除一个数据卷"><a href="#6-4-删除一个数据卷" class="headerlink" title="6.4 删除一个数据卷"></a>6.4 删除一个数据卷</h4><p>​<br>​    Docker volume rm 卷名</p>
+<h4 id="6-5-启动一个挂载数据卷的容器"><a href="#6-5-启动一个挂载数据卷的容器" class="headerlink" title="6.5 启动一个挂载数据卷的容器"></a>6.5 启动一个挂载数据卷的容器</h4><p>在用 Docker run 命令的时候，使用 –mount 标记来将 数据卷 挂载到容器里。在一次 Docker run 中可以挂载多个 数据卷。</p>
+<p>如：创建一个名为 Web 的容器，并加载一个名为 my-vol 的数据卷到容器的 /Webapp 目录。</p>
+<p>​<br>​     Docker run -d -P <br>​        –name Web <br>​        –mount source=my-vol,target=/Webapp <br>​        training/Webapp <br>​        python app.py</p>
+<h3 id="7-网络配置"><a href="#7-网络配置" class="headerlink" title="7 网络配置"></a>7 网络配置</h3><p>Docker 允许通过外部访问容器或容器互联的方式来提供网络服务。网络服务主要应用于外部访问容器和容器之间互联。</p>
+<h4 id="7-1-外部访问容器"><a href="#7-1-外部访问容器" class="headerlink" title="7.1 外部访问容器"></a>7.1 外部访问容器</h4><p>容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P 或 -p 参数来指定端口映射。</p>
+<p>当使用 -P 标记时，Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。</p>
+<p>当使用 -p 标记时，需要指定一个宿主服务器端口到内部容器中需要映射的端口。</p>
+<p>如：</p>
+<p>后台运行一个容器并且随机分配：</p>
+<p>​<br>​    Docker run -d -P linuxserver/Nginx 一个端口</p>
+<p>后台运行一个 Tomcat 容器并且把容器 8080 端口映射到宿主机器上的 8010 端口，这样外部可以通过 8010 端口访问到该容器服务程序。</p>
+<p>​<br>​    Docker run -d -p 8010:8080 Tomcat </p>
+<h4 id="7-2-容器互联"><a href="#7-2-容器互联" class="headerlink" title="7.2 容器互联"></a>7.2 容器互联</h4><p>在使用 Docker 构建各种服务的容器时，容器之间是互相隔离的，无法直接访问的，但是往往在实际应用中，我们经常需要容器之间能够互相访问，如：Nginx<br>容器作为负载均衡，需要能访问到 Tomcat 容器，才能把请求转发到 Tomcat 服务中；因此 Docker<br>提供了网络，让处于同一网络中的所有容器都是可以互联的。</p>
+<p>创建一个网络</p>
+<p>​<br>​    Docker network create -d bridge 网络名称</p>
+<p>容器加入到网络中</p>
+<p>​<br>​    Docker run -d -p 8010:8080 –network 网络名 Tomcat </p>
+<p>查看网桥信息</p>
+<p>​<br>​    Docker network inspect 网络名称 </p>
+<p>查看容器端口映射情况</p>
+<p>​<br>​    Docker port 容器ID  </p>
+<p>查看端口映射配置</p>
+<p>​<br>​    Docker port nostalgic_morse 端口 </p>
+<h3 id="8-Dockerfile"><a href="#8-Dockerfile" class="headerlink" title="8 Dockerfile"></a>8 Dockerfile</h3><p>前面讲到镜像的构建时，讲述的是用 commit 的方式构建镜像，而 Dockerfile 是另一种构建镜像的方式。</p>
+<p>Dockerfile 构建镜像是以基础镜像为基础的，Dockerfile 是一个文本文件，内容是用户编写的一些 Docker<br>指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
+<p>Dockerfile<br>的基本指令有十三个，分别是：FROM、MAINTAINER、RUN、CMD、EXPOSE、ENV、ADD、COPY、ENTRYPOINT、VOLUME、USER、WORKDIR、ONBUILD。</p>
+<p>从前面的内容可以看出，要构建一个容器，需要做很多的工作，设置很多的配置，如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决。<br>这个脚本就是 Dockerfile。</p>
+<p>因此学会用 Dockerfile 来构建镜像，是非常有必要的。学习 Dockerfile 之前，我们先来学习一些 Dockerfile 常用的指令。</p>
+<h4 id="8-1-Dockerfile-常用指令"><a href="#8-1-Dockerfile-常用指令" class="headerlink" title="8.1 Dockerfile 常用指令"></a>8.1 Dockerfile 常用指令</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础镜像信息</td>
+<td>FROM</td>
+</tr>
+<tr>
+<td>维护者信息</td>
+<td>MAINTAINER</td>
+</tr>
+<tr>
+<td>镜像操作指令</td>
+<td>RUN、COPY、ADD、EXPOSE、WORKDIR、ONBUILD、USER、VOLUME等</td>
+</tr>
+<tr>
+<td>容器启动时执行指令</td>
+<td>CMD、ENTRYPOINT</td>
+</tr>
+</tbody></table>
+<h5 id="8-1-1-FROM-：指定基础镜像"><a href="#8-1-1-FROM-：指定基础镜像" class="headerlink" title="8.1.1 FROM ：指定基础镜像"></a><strong>8.1.1 FROM ：指定基础镜像</strong></h5><p>所谓定制镜像，那一定是以一个镜像为基础，在其上进行定制。就像我们之前运行了一个 Nginx 镜像的容器，再进行修改一样，基础镜像是必须指定的。而 FROM<br>就是指定基础镜 像，因此一个 Dockerfile 中 FROM 是必备的指令，并且必须是第一条指令。</p>
+<p>如：指定 ubuntu 的 14 版本作为基础镜像</p>
+<p>​<br>​    FROM ubuntu:14</p>
+<h5 id="8-1-2-RUN：执行命令"><a href="#8-1-2-RUN：执行命令" class="headerlink" title="8.1.2 RUN：执行命令"></a><strong>8.1.2 RUN：执行命令</strong></h5><p>RUN 指令在新镜像内部执行的命令，如：执行某些动作、安装系统软件、配置系统信息之类。</p>
+<p>格式如下两种：</p>
+<ol>
+<li>shell 格式：RUN&lt; command &gt; ，就像直接在命令行中输入的命令一样。 如在 Nginx 里的默认主页中写”hello“：</li>
+</ol>
+<pre><code>RUN echo &apos;hello &apos; &gt;/etc/Nginx/html/index.html</code></pre><ol>
+<li>exec 格式：RUN [“可执行文件”, “参数1”, “参数2”] 如在新镜像中用 yum 方式安装 Nginx：</li>
+</ol>
+<pre><code>RUN [&quot;yum&quot;,&quot;install&quot;,&quot;Nginx&quot;]</code></pre><p>注：多行命令不要写多个 RUN ，原因是 Dockerfile 中每一个指令都会建立一层.多少个 RUN<br>就构建了多少层镜像，会造成镜像的臃肿、多层，不仅仅增加了构件部署的时间，还容易出错，RUN 书写时的换行符是\</p>
+<h5 id="8-1-3-COPY：复制文件"><a href="#8-1-3-COPY：复制文件" class="headerlink" title="8.1.3 COPY：复制文件"></a><strong>8.1.3 COPY：复制文件</strong></h5><p>COPY 命令用于将宿主机器上的的文件复制到镜像内，如果目的位置不存在，Docker 会自动创建。但宿主机器用要复制的目录必须是和 Dockerfile<br>文件统计目录下。</p>
+<p>格式：</p>
+<p>​<br>​    COPY [–chown=<user>:<group>] &lt;源路径&gt;… &lt;目标路径&gt;<br>​    COPY [–chown=<user>:<group>] [“&lt;源路径1&gt;”,… “&lt;目标路径&gt;”]</group></user></group></user></p>
+<p>如把宿主机中的 package.json 文件复制到容器中 /usr/src/app/ 目录下：</p>
+<p>​<br>​    COPY package.json /usr/src/app/</p>
+<h5 id="8-1-4-CMD：容器启动命令"><a href="#8-1-4-CMD：容器启动命令" class="headerlink" title="8.1.4 CMD：容器启动命令"></a><strong>8.1.4 CMD：容器启动命令</strong></h5><p>CMD 命令用于容器启动时需要执行的命令，CMD 在 Dockerfile 中只能出现一次，如果出现多个，那么只有最后一个会有效。</p>
+<p>其作用是在启动容器的时候提供一个默认的命令项。如果用户执行 Docker run 的时候提供了命令项，就会覆盖掉这个命令，没提供就会使用构建时的命令。</p>
+<p>格式：</p>
+<p>​<br>​    shell 格式：CMD &lt;命令&gt;<br>​    exec 格式：CMD [“可执行文件”, “参数1”, “参数2”…]</p>
+<p>如容器启动时进入 bash：</p>
+<p>​<br>​    CMD /bin/bash</p>
+<p>也可以用 exec 写法：</p>
+<p>​<br>​    CMD [“/bin/bash”]</p>
+<h5 id="8-1-5-MAINTAINER：指定作者"><a href="#8-1-5-MAINTAINER：指定作者" class="headerlink" title="8.1.5 MAINTAINER：指定作者"></a><strong>8.1.5 MAINTAINER：指定作者</strong></h5><p>用来指定 Dockerfile 的作者名称和邮箱，主要作用是为了标识软件的所有者是谁。</p>
+<p>语法：</p>
+<p>​<br>​    MAINTAINER <name> <email></email></name></p>
+<p>如：</p>
+<p>​<br>​    MAINTAINER autor_jiabuli <a href="mailto:6766633@qq.com" target="_blank" rel="noopener">6766633@qq.com</a></p>
+<h5 id="8-1-6-EXPOSE：暴露端口"><a href="#8-1-6-EXPOSE：暴露端口" class="headerlink" title="8.1.6 EXPOSE：暴露端口"></a><strong>8.1.6 EXPOSE：暴露端口</strong></h5><p>EXPOSE 命名适用于设置容器对外映射的容器端口号，如 Tomcat 容器内使用的端口 8081，则用 EXPOSE 命令可以告诉外界该容器的 8081<br>端口对外，在构建镜像时用 Docker run -p 可以设置暴露的端口对宿主机器端口的映射。</p>
+<p>语法：</p>
+<p>​<br>​    EXPOSE &lt;端口1&gt; [&lt;端口2&gt;…]</p>
+<p>如：</p>
+<p>​<br>​    EXPOSE 8081</p>
+<p>EXPOSE 8081 其实等价于 Docker run -p 8081 当需要把 8081<br>端口映射到宿主机中的某个端口（如8888）以便外界访问时，则可以用 Docker run -p 8888:8081。</p>
+<h5 id="8-1-7-WORKDIR：配置工作目录"><a href="#8-1-7-WORKDIR：配置工作目录" class="headerlink" title="8.1.7 WORKDIR：配置工作目录"></a><strong>8.1.7 WORKDIR：配置工作目录</strong></h5><p>WORKDIR 命令是为 RUN、CMD、ENTRYPOINT 指令配置工作目录。其效果类似于 Linux 命名中的 cd 命令，用于目录的切换，但是和<br>cd 不一样的是：如果切换到的目录不存在，WORKDIR 会为此创建目录。</p>
+<p>语法:</p>
+<p>​<br>​    WORKDIR path</p>
+<p>如需要在 Nginx 目录下创建一个 hello.txt 的文件：</p>
+<p>//进入/usr/local/Nginx目录下 WORKDIR /usr/local/Nginx</p>
+<p>//进入/usr/local/Nginx中的html目录下 WORKDIR html</p>
+<p>// 在html目录下创建了一个hello.txt文件 RUN echo ‘hello’ &gt; hello.txt</p>
+<h5 id="8-1-8-ENTRYPOINT：容器启动执行命名"><a href="#8-1-8-ENTRYPOINT：容器启动执行命名" class="headerlink" title="8.1.8 ENTRYPOINT：容器启动执行命名"></a><strong>8.1.8 ENTRYPOINT：容器启动执行命名</strong></h5><p>ENTRYPOINT 的作用和用法和 CMD 一模一样，但是 ENTRYPOINT 有和 CMD 有 2 处不一样：</p>
+<ol>
+<li>CMD 的命令会被 Docker run 的命令覆盖而 ENTRYPOINT 不会；</li>
+<li>CMD 和 ENTRYPOINT 都存在时，CMD 的指令变成了 ENTRYPOINT 的参数，并且此 CMD 提供的参数会被 Docker run 后面的命令覆盖。</li>
+</ol>
+<h5 id="8-1-9-VOLUME"><a href="#8-1-9-VOLUME" class="headerlink" title="8.1.9 VOLUME"></a><strong>8.1.9 VOLUME</strong></h5><p>VOLUME 用来创建一个可以从本地主机或其他容器挂载的挂载点。例如我们知道 Tomcat 的 Webapps 目录是放 Web<br>应用程序代码的地方，此时我们要把 Webapps 目录挂载为匿名卷，这样任何写入Webapps 中的心都不会被记录到容器的存储层，让容器存储层无状态化。</p>
+<p>格式： VOLUME [“path”]</p>
+<p>如创建 Tomcat 的 Webapps 目录的一个挂载点</p>
+<p>​<br>​    VOLUME /usr/local/Tomcat/Webapps</p>
+<p>这样，在运行容器时，也可以用过 Docker run -v 来把匿名挂载点挂载都宿主机器上的某个目录，如</p>
+<p>​<br>​    Docker run -d -v /home/Tomcat_Webapps:/usr/local/Tomcat/Webapps</p>
+<h5 id="8-1-10-USER"><a href="#8-1-10-USER" class="headerlink" title="8.1.10 USER"></a><strong>8.1.10 USER</strong></h5><p>USER 命令用于指定当前望下执行的用户，需要注意的是这个用户必须是已经存在，否则无法指定。它的用法和 WORKDIR 有点像，切换用户。</p>
+<p>格式：</p>
+<p>​<br>​    USER daemon</p>
+<h5 id="8-1-11-ADD"><a href="#8-1-11-ADD" class="headerlink" title="8.1.11 ADD"></a><strong>8.1.11 ADD</strong></h5><p>作用和使用方法和 COPY 一模一样，在此不重复讲述。</p>
+<h5 id="8-1-12-ONBUILD"><a href="#8-1-12-ONBUILD" class="headerlink" title="8.1.12 ONBUILD"></a><strong>8.1.12 ONBUILD</strong></h5><p>ONBUILD 用于配置当前所创建的镜像作为其它新创建镜像的基础镜像时，所执行的操作指令。</p>
+<p>意思就是：这个镜像创建后，如果其它镜像以这个镜像为基础，会先执行这个镜像的 ONBUILD 命令。</p>
+<p>格式：</p>
+<p>​<br>​    ONBUILD [INSTRUCTION]</p>
+<h5 id="8-1-13-ENV：设置环境变量"><a href="#8-1-13-ENV：设置环境变量" class="headerlink" title="8.1.13 ENV：设置环境变量"></a><strong>8.1.13 ENV：设置环境变量</strong></h5><p>ENV 命名用于设置容器的环境变量，这些变量以 ”key=value” 的形式存在，在容器内被脚本或者程序调用，容器运行的时候这个变量也会保留。</p>
+<p>格式：</p>
+<ul>
+<li>1） 设置一个： ENV \ \</li>
+<li>2） 设置多个：ENV =\ =... </li>
+</ul>
+<p>如设置一个环境变量 JAVA_HOME ，接下来的命名就可以使用这个变量：</p>
+<p>​<br>​    ENV JAVA_HOME /opt/jdk<br>​    ENV PATH $PATH:$JAVA_HOME/bin</p>
+<p>在使用 ENV 设置环境变量时，有几点需要注意：</p>
+<ul>
+<li><p>具有传递性，也就是当前镜像被用作其它镜像的基础镜像时，新镜像会拥有当前这个基础镜像所有的环境变量；</p>
+</li>
+<li><p>ENV 定义的环境变量，可以在 Dockerfile 被后面的所有指令（ CMD 除外）中使用，但不能被 Docker run 的命令参数引用 。 如：</p>
+</li>
+</ul>
+<pre><code>ENV Tomcat_home_name Tomcat_7
+RUN mkdir $Tomcat_home_name</code></pre><ul>
+<li>除了 ENV 之外，Docker run -e 也可以设置环境变量传入容器内。</li>
+</ul>
+<p>如：</p>
+<p>​<br>​    Docker run -d Tomcat -e “Tomcat_home_name=Tomcat_7”</p>
+<p>这样我们进入容器内部用 ENV 可以看到 Tomcat_home_name 这个环境变量。</p>
+<h4 id="8-2-Dockerfile-的编写"><a href="#8-2-Dockerfile-的编写" class="headerlink" title="8.2 Dockerfile 的编写"></a>8.2 Dockerfile 的编写</h4><p>我们先看一个例子</p>
+<p>​<br>​    #在 centos 上安装 Nginx<br>​    FROM centos<br>​    #标明著作人的名称和邮箱<br>​    MAINTAINER jiabuli <a href="mailto:649917837@qq.com" target="_blank" rel="noopener">649917837@qq.com</a><br>​    #测试一下网络环境<br>​    RUN ping -c 1 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>​    #安装 Nginx 必要的一些软件<br>​    RUN yum -y install gcc make pcre-devel zlib-devel tar zlib<br>​    #把 Nginx 安装包复制到 /usr/src/ 目录下<br>​    ADD Nginx-1.15.8.tar.gz /usr/src/<br>​    #切换到/usr/src/Nginx-1.15.8编译并且安装Nginx<br>​    RUN cd /usr/src/Nginx-1.15.8 <br>​        &amp;&amp; mkdir /usr/local/Nginx <br>​        &amp;&amp; ./configure –prefix=/usr/local/Nginx &amp;&amp; make &amp;&amp; make install <br>​        &amp;&amp; ln -s /usr/local/Nginx/sbin/Nginx /usr/local/sbin/ <br>​        &amp;&amp; Nginx<br>​    #删除安装 Nginx 安装目录<br>​    RUN rm -rf /usr/src/Nginx-Nginx-1.15.8<br>​    #对外暴露80端口<br>​    EXPOSE 80<br>​    #启动 Nginx<br>​    CMD [“Nginx”, “-g”, “daemon off;”]</p>
+<p>上面的注释已经讲的非常清楚，其实不难发现，上面的例子就是类似于在 centOS 系统上安装一个 Nginx 的的一个过程，因此编写Dockerfile<br>构建镜像就和在 Linux 上安装软件的流程几乎是一模一样的。所以我们在编写 Dockerfile 来构建镜像时，可以先思考在 Linux<br>上安装该软件的流程，再用 Dockerfile 提供的指令转化到 Dockerfile 中即可。</p>
+<h4 id="8-3-用-Dockerfile-构建镜像"><a href="#8-3-用-Dockerfile-构建镜像" class="headerlink" title="8.3 用 Dockerfile 构建镜像"></a>8.3 用 Dockerfile 构建镜像</h4><p>用 Dockerfile 的核心在于编写 Dockerfile，但是编写完之后我们需要知道怎么使用 Dockerfile 来构建镜像，下面以构建 Nginx<br>镜像为例来简要说明构建流程。</p>
+<h5 id="8-3-1-上传安装包"><a href="#8-3-1-上传安装包" class="headerlink" title="8.3.1 上传安装包"></a><strong>8.3.1 上传安装包</strong></h5><p>首先我们需要把要构建的软件安装包上传到服务器中，我们可以在服务器目录上创建一个专门的文件夹，如：/var/Nginx_build，然后把从 Nginx<br>官网下载的 Nginx-1.15.8.tar.gz 安装包上传到这个目录里。</p>
+<h5 id="8-3-2-编写-Dockerfile"><a href="#8-3-2-编写-Dockerfile" class="headerlink" title="8.3.2 编写 Dockerfile"></a><strong>8.3.2 编写 Dockerfile</strong></h5><p>如何编写 Nginx 的 Dockerfile 上面已经详细介绍，现在我们只需把编写好的 Dockerfile 上传到 /var/Nginx_build<br>目录下，当然你也可以在服务器上直接编写 Dockerfile，但是要记得一定保证 Dockerfile 文件和安装包在一个目录下。</p>
+<h5 id="8-3-3-运行构建命令构建"><a href="#8-3-3-运行构建命令构建" class="headerlink" title="8.3.3 运行构建命令构建"></a><strong>8.3.3 运行构建命令构建</strong></h5><p>Docker build 命令用于使用 Dockerfile 创建镜像。 格式：</p>
+<p>​<br>​      Docker build [OPTIONS] PATH | URL | -</p>
+<p>OPTIONS 有很多指令，下面列举几个常用的：</p>
+<blockquote>
+<ul>
+<li>--build-arg=[] :设置镜像创建时的变量；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>-f :指定要使用的Dockerfile路径；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>--force-rm :设置镜像过程中删除中间容器；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>--rm :设置镜像成功后删除中间容器；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>--tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式。</li>
+</ul>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>因此我们构建 Nginx 可以用以下命令：</p>
+<p>​<br>​    Docker build -t Nginx:v1.0 .</p>
+<p>当 Dockerfile 和当前执行命令的目录不在同一个时，我们也可以指定Dockerfile，如</p>
+<p>​<br>​    Docker build -f /var/Nginx_build/Dockerfile .</p>
+<p>执行命名之后，会看到控制台逐层输出构建内容，直到输出两个 Successfully 即为构建成功。</p>
+<h3 id="9-Docker-安装常见的软件"><a href="#9-Docker-安装常见的软件" class="headerlink" title="9 Docker 安装常见的软件"></a>9 Docker 安装常见的软件</h3><p>在 Docker 下安装软件（容器）非常简单，只需要用 Docker search 查找需要安装的镜像，选择合适的版本，再用 Docker pull<br>即可把镜像拉取到本机，这几个步骤对于下载任一镜像都是一样的。</p>
+<p>把镜像拉取到本地后，接下来需要做的就是用镜像创建一个新的容器并运行它，创建容器并运行容器的命名是 Docker<br>run，只是对于不同的软件，有不同的行为和需要设置一些特殊的参数。</p>
+<h4 id="9-1-安装Tomcat"><a href="#9-1-安装Tomcat" class="headerlink" title="9.1 安装Tomcat"></a>9.1 安装Tomcat</h4><p>Tomcat 作为最常用的 Web 服务器，Docker 中央仓库也提供了很多版本的官方镜像，开发者可以根据项目的需求选定相应的版本拉取，而 Tomcat<br>中的 Webapps 和 logs 目录分别存放程序代码和程序运行日志的，我们需要把这两个目录挂载到宿主机中，以便上传程序代码和查看日志。</p>
+<p>​<br>​    //查找Tomcat<br>​    Docker search Tomcat<br>​    //拉取选定的Tomcat<br>​    Docker pull Tomcat<br>​    //创建并且运行Tomcat<br>​    Docker run -d -p 8001:8080 –name my_Tomcat -v /home/my_Tomcat/Webapps:/usr/local/Tomcat/Webapps -v /home/my_Tomcat/logs:/usr/local/Tomcat/logs  Tomcat</p>
+<p>这样一个 Tomcat 服务器就运行起来了，此时只需要把程序代码上传到 /home/my_Tomcat/Webapps 目录中，然后重启 Tomcat<br>就可以通过 <a href="http://ip:8001/" target="_blank" rel="noopener">http://ip:8001/</a> 程序根目录访问了。</p>
+<p>​<br>​    //重启Tomcat<br>​    Docker restart my_Tomcat<br>​    //通过ip+端口访问<br>​    <a href="http://ip:port/app_name" target="_blank" rel="noopener">http://ip:port/app_name</a></p>
+<h4 id="9-2-安装-Redis"><a href="#9-2-安装-Redis" class="headerlink" title="9.2 安装 Redis"></a>9.2 安装 Redis</h4><p>Redis 的安装和 Tomcat 的类似，不同的是在构建容器时不同的业务场景下有不同的构建方式：</p>
+<ul>
+<li>需要密码访问：</li>
+</ul>
+<pre><code>Docker run -d --name my_redis -p 6378:6379 redis --requirepass &quot;you password&quot;</code></pre><ul>
+<li>把 data 目录挂载到宿主机并且开启数据持久化</li>
+</ul>
+<pre><code>Docker run -d --name my_redis -p 6378:6379 -v $PWD/data:/data redis-server --appendonly yes</code></pre><p>这样就可以通过 ip:6378 访问到 Redis 容器，使用账户名（root）和你设置的密码即可操作 Redis 数据库。</p>
+<h4 id="9-3-安装-Nginx"><a href="#9-3-安装-Nginx" class="headerlink" title="9.3 安装 Nginx"></a>9.3 安装 Nginx</h4><p>Nginx 的安装也和上述一样，只需要注意在构建时需要把数据目录、配置文件以及日志目录挂载到宿主机器即可。</p>
+<p>​<br>​    Docker run -p 80:80 –name my_Nginx -v $PWD/www:/www -v $PWD/conf/Nginx.conf:/etc/Nginx/Nginx.conf -v $PWD/logs:/wwwlogs  -d Nginx</p>
+<p>这样我们就可以通过设置 Nginx.conf 来达到使用 Nginx 的目的了。</p>
+<h3 id="10-常见问题汇总"><a href="#10-常见问题汇总" class="headerlink" title="10 常见问题汇总"></a>10 常见问题汇总</h3><h4 id="10-1-如何在容器内安装软件如-vim-等"><a href="#10-1-如何在容器内安装软件如-vim-等" class="headerlink" title="10.1 如何在容器内安装软件如 vim 等"></a>10.1 如何在容器内安装软件如 vim 等</h4><p>在使用 Linux 做服务器时，我们用 vi 或 vim 的次数非常频繁，而在Docker 容器中他们同样不可或缺，但是默认情况下容器是没有安装vi 或<br>vim 的，此时需要我们进入容器内部，安装 vim 之后方可使用。</p>
+<p>​<br>​    进入容器：Docker exec -it 容器名/容器ID bash<br>​    更新来源： apt-get update<br>​    安装vim：apt-get install -y vim</p>
+<h4 id="10-2-如何进入未启动的容器内部"><a href="#10-2-如何进入未启动的容器内部" class="headerlink" title="10.2 如何进入未启动的容器内部"></a>10.2 如何进入未启动的容器内部</h4><p>在某些场景下，我们进入容器修改了配置信息或者系统配置之后重启容器，发现容器启动不了，通过日志发现原来是我们修改出错，此时我们想把配置改回来但发现因为容器启动不了，使用<br>Docker exec 是无法进入容器内部了，这种情况下的解决办法是：先从容器内部把配置文件复制到宿主机内，在宿主机中修改正确后再复制回容器内。 如：</p>
+<p>​<br>​    //从容器内把 Nginx.conf 复制到宿主机当前目录<br>​    Docker  cp 容器ID:/etc/Nginx/Nginx.conf .<br>​    //修改 Nginx.conf<br>​    vim Nginx.conf<br>​    //把修改后 Nginx.conf 复制回容器内部<br>​    Docker cp Nginx.conf 容器ID:/etc/Nginx/Nginx.conf</p>
+<h4 id="10-3-修改运行中的容器的端口映射"><a href="#10-3-修改运行中的容器的端口映射" class="headerlink" title="10.3 修改运行中的容器的端口映射"></a>10.3 修改运行中的容器的端口映射</h4><p>在使用 Docker run<br>构建容器并运行时，有可能一时心急把信息写错，但此时容器已经运行，比较粗暴的做法是停止容器，删除容器，重新构建，除此之外比较经济实惠的办法是把当前容器提交成新的镜像，然后运行新的镜像。</p>
+<p>​<br>​     提交运行中的容器：Docker commit containerid foo/live<br>​     运行新的镜像，带端口映射：Docker run -d -p 80：80 containerid</p>
+<h4 id="10-4-在容器中安装-ping"><a href="#10-4-在容器中安装-ping" class="headerlink" title="10.4 在容器中安装 ping"></a>10.4 在容器中安装 ping</h4><p>ping 命令在测试 IP 连通性时经常用到，在容器中安装 ping 的方法是：</p>
+<p>​<br>​    apt-get update &amp;&amp; apt-get install iputils-ping</p>
+<h3 id="11-总结"><a href="#11-总结" class="headerlink" title="11 总结"></a>11 总结</h3><p>最后，回顾一下本文所讲的内容，从什么是 Docker 开始引入门，再到和虚拟机作比较加深对容器服务的理解，接下来讲述如果在 Linux 中安装 Docker<br>以及在 Docker 下最常用也比较重要的几大块内容：镜像、容器、数据卷、网络以及 Dockerfile 的指令和例子，最后举例讲述 Web<br>开发中常用的一些软件：Tomcat、Nginx、Redis等。通过这些内容的学习，相信大家已经对 Docker<br>有一个比较不错的认识以及基本运用能力，如果能做到这些，本文的目的就达到啦。也希望读者能借此文为敲门砖，再接再厉，把 Docker 学精用好。</p>
+<p>最后的最后，由于作者第一次写 chat，对 chat 的文章编辑器不是很熟悉，内容编排的不够好，但是内容是齐全的，望大家见谅。</p>
+<hr>
+<p>本文首发于 GitChat，未经授权不得转载，转载需与 GitChat 联系。</p>
+<p>130</p>
+<p><a href="/m/mazi/author/5b97ee3eca9910654c08175c/question">向作者提问</a></p>
+<p>互动评论</p>
+<p><img src="https://images.gitbook.cn/7e637010-8cc6-11e9-b60e-19c95a6a735a?imageView2/1/w/200/h/200" alt></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/b0257080-46c7-11e8-b616-3d0ca3254dd8" alt></p>
+<p>bingo6 个月前</p>
+<p>整理得挺全。感谢！</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/e23b5230-31de-11e9-8a12-095465e0f109" alt></p>
+<p>小届6 个月前</p>
+<p>过了一遍，对docker有了比较清晰的认识，就等着实操了</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p><img src="https://images.gitbook.cn/cd265920-3b6c-11e9-9176-415c6fd6eecb?imageView2/1/w/200/h/200" alt></p>
+<p>维来6 个月前</p>
+<p>很多基础知识和常用指令，整理的很好啊</p>
+<p><a href="javascript:void(0)" target="_blank" rel="noopener"><br><img src="https://images.gitbook.cn/FsHauRmbivKG8rMnG15mQZ-e3L9J" alt>鼓掌</a><a href="javascript:void(0)" target="_blank" rel="noopener"><img src="https://images.gitbook.cn/Fri_utJ1tPyU8x3LMH3hVKuXx5Sd" alt>回复</a></p>
+<p>评论</p>
+<p>查看更多</p>
+<h2 id="更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！"><a href="#更多资源下载交流请加微信：Morstrong-加入永久会员-网盘更新更快捷！" class="headerlink" title="更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！"></a>更多资源下载交流请加微信：Morstrong,加入永久会员,网盘更新更快捷！</h2><h1 id="本资源由微信公众号：光明顶一号，提供支持"><a href="#本资源由微信公众号：光明顶一号，提供支持" class="headerlink" title="本资源由微信公众号：光明顶一号，提供支持."></a>本资源由微信公众号：光明顶一号，提供支持.</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/12/Docker/Docker的基础知识整理/">http://yoursite.com/2019/09/12/Docker/Docker的基础知识整理/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/24/项目实战 面试/">项目实战1 秒杀项目 诺鱼</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/12/Nginx/Java程序员应掌握的Nginx实战应用/">java程序员Nginx实战应用</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

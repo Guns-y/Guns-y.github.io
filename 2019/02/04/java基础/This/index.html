@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>this关键字 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">this关键字</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 4, 2019&nbsp;&nbsp;9:24:57</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Java中this关键字在构造方法中的使用"><a href="#Java中this关键字在构造方法中的使用" class="headerlink" title="Java中this关键字在构造方法中的使用"></a><a href="https://www.cnblogs.com/kuillldan/p/5899881.html" target="_blank" rel="noopener">Java中this关键字在构造方法中的使用</a></h1><p>\1. Java中this关键字代表对象本身。用this关键字可以在类的内部调用属性和方法，这样代码的可读性比较高，因为它明确的指出了这个属性或方法的来源。</p>
+<p>\2. 同时在构造函数中也可以使用this关键字调用本类中的其它构造函数，但有几点需要注意：</p>
+<ul>
+<li>构造函数调用其它构造函数，需要将this写在构造函数的第一行。</li>
+<li>构造函数不可递归，防止死循环。</li>
+</ul>
+<p>\3. 一个类的构造函数分为无参和有参构造函数。通常做法是指定写好一个包含所有字段的构造函数，然后其它构造函数可以直接调用该函数，实现代码重用</p>
+<blockquote>
+<p> <a href="https://www.cnblogs.com/yougewe/p/9468960.html" target="_blank" rel="noopener">https://www.cnblogs.com/yougewe/p/9468960.html</a></p>
+</blockquote>
+<p>说到抽象，想必大家第一个联想到的就是抽象画，基本上看不懂画的是啥，只能说它在表达某个概念。<br>在java中我们中abstract关键字来表达抽象。举个例子：<br>我们说车子都可以跑(run)。但有几个轮子，怎么跑，对于不同的车有不同的结果。自行车需要人踩着跑，汽车发动机推动跑等等，那么我们可以车表达为抽象类。</p>
+<p>/**</p>
+<ul>
+<li><p>车子类<br> */<br> public abstract class Car {</p>
+<p> public abstract void run();<br> }<br> /**</p>
+</li>
+<li><p>自行车<br> */<br> class Bicycle extends Car{</p>
+<p> @Override<br> public void run() {</p>
+<pre><code>System.out.println(&quot;人踩着跑。。。&quot;);</code></pre><p> }</p>
+</li>
+</ul>
+<p>}<br>/***</p>
+<ul>
+<li><p>汽车<br> */<br> class Automobile extends Car{</p>
+<p> @Override<br> public void run() {</p>
+<pre><code>System.out.println(&quot;发动机驱动跑。。。&quot;);</code></pre><p> }</p>
+</li>
+</ul>
+<p>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>假如后面各种车，倒着跑、悬在空中跑随你怎么跑，只需要继承抽象类实现自己的业务就行了。相信大家对java抽象已有一个初步的印象了。</p>
+<p>抽象方法：</p>
+<p>1、从上面的例子中我们可以看到抽象方法跟普通方法是有区别的，它没有自己的主体（没有{}包起来的<br>业务逻辑），跟接口中的方法有点类似。所以我们没法直接调用抽象方法</p>
+<p>2、抽象方法不能用private修饰，因为抽象方法必须被子类实现（覆写），而private权限对于子类来<br>说是不能访问的，所以就会产生矛盾</p>
+<p>3、抽象方法也不能用static修饰，试想一下，如果用static修饰了，那么我们可以直接通过类名调<br>用，而抽象方法压根就没有主体，没有任何业务逻辑，这样就毫无意义了。<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>抽象类：</p>
+<p>1、用abstract关键字来表达的类，其表达形式为：（public）abstract class 类名{}</p>
+<p>2、抽象类不能被实例化，也就是说我们没法直接new 一个抽象类。抽象类本身就代表了一个类型，无法<br>确定为一个具体的对象，所以不能实例化就合乎情理了，只能有它的继承类实例化。</p>
+<p>3、抽象类虽然不能被实例化，但有自己的构造方法（这个后面再讨论）</p>
+<p>4、抽象类与接口（interface）有很大的不同之处，接口中不能有实例方法去实现业务逻辑，而抽象类<br>中可以有实例方法，并实现业务逻辑，比如我们可以在抽象类中创建和销毁一个线程池。</p>
+<p>5、抽象类不能使用finally关键字修饰，因为finally修饰的类是无法被继承，而对于抽象类来说就是<br>需要通过继承去实现抽象方法，这又会产生矛盾。（后面将写一篇关于finally的文章详细讨论）<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>抽象类与抽象方法的关联：</p>
+<p>如果一个类中至少有一个抽象方法，那么这个类一定是抽象类，但反之则不然。也就是说一个抽象类中可<br>以没有抽象方法。这样做的目的是为了此类不能被实例化。</p>
+<p>如果一个类继承了一个抽象类，那么它必须全部覆写抽象类中的抽象方法，当然也可以不全部覆写，如果<br>不覆写全部抽象方法则这个子类也必须是抽象类（这样做就无意义了）<br>1<br>2<br>3<br>4<br>5<br>public abstract class Car {</p>
+<pre><code>public void mothod1(){
+
+}
+public abstract void mothod2();
+
+public abstract void method3();</code></pre><p>}<br>class Bicycle extends Car{</p>
+<pre><code>@Override
+public void mothod2() {//需要覆写抽象方法mothod2
+
+}
+@Override
+public void method3() {//需要覆写抽象方法mothod3
+
+}</code></pre><p>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>抽象类的构造器：</p>
+<p>先来看一个例子：</p>
+<p>public abstract class Car {</p>
+<pre><code>Car(){
+    System.out.println(&quot;抽象方法无参构造函数&quot;);
+}
+Car(String a){
+    System.out.println(&quot;抽象有参构造方法&quot;);
+}
+public void mothod1(){
+    System.out.println(this.getClass());
+    System.out.println(&quot;抽象类的实例方法&quot;);
+}
+
+public abstract void mothod2();</code></pre><p>}<br>/**</p>
+<ul>
+<li><p>自行车<br> */<br> class Bicycle extends Car{</p>
+<p> Bicycle(){</p>
+<pre><code>System.out.println(&quot;子类无参构造函数&quot;);</code></pre><p> }</p>
+<p> @Override<br> public void mothod2() {//需要覆写抽象方法mothod2</p>
+<p> }<br> }<br> /<strong>另一个包的测试类</strong>/<br> public class Test {</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>Bicycle b = new Bicycle();
+b.mothod1();</code></pre><p> }<br> }<br> 结果：<br> 抽象方法无参构造函数<br> 子类无参构造函数<br> class com.shaolin.service.impl.Bicycle<br> 抽象类的实例方法<br> 1<br> 2<br> 3<br> 4<br> 5<br> 6<br> 7<br> 8<br> 9<br> 10<br> 11<br> 12<br> 13<br> 14<br> 15<br> 16<br> 17<br> 18<br> 19<br> 20<br> 21<br> 22<br> 23<br> 24<br> 25<br> 26<br> 27<br> 28<br> 29<br> 30<br> 31<br> 32<br> 33<br> 34<br> 35<br> 36<br> 37<br> 38<br> 39<br> 40<br> 41<br> 42<br> 43<br> 从上面的例子中可以看出：</p>
+</li>
+</ul>
+<p>1、抽象类是有构造方法的（当然如果我们不写，编译器会自动默认一个无参构造方法）。而且从结果来看，和普通的继承类一样，在new 一个子类对象时会优先调用父类（这里指的是抽象类Car）的构造器初始化，然后再调用子类的构造器。至此相信大家都会有这样一个疑问，为什么抽象方法不能实例化却有构造器呢？ 对于这个问题网上也中说纷纭，没有确定答案。<br>我是这样想的：既然它也属于继承的范畴，那么当子类创建对象时必然要优先初始化父类的属性变量和实例方法，不然子类怎么继承和调用呢？而它本身不能实例化，因为它本身就是不确定的一个对象，如果它能被实例化，那么我们通过它的对象来调用它本身的抽象方法是不是有问题。所以不能实例化有在情理之中。因此大家只要记住这个规定就行。</p>
+<p>2、对于抽象类中的非statci(静态)和非abstract(抽象)方法中的this关键字（静态方法中不能有关键字this之前已经讨论过可以参考 关于静态static那些事）代表的是它的继承类，而非抽象类本身，这个好理解，因为抽象类本身不能被实例化。如果有多个继承类，谁调用this就代表谁。</p>
+<p>抽象类有什么好处呢？<br>1、由于抽象类不能被实例化，最大的好处就是通过方法的覆盖来实现多态的属性。也就是运行期绑定<br>2、抽象类将事物的共性的东西提取出来，由子类继承去实现，代码易扩展、易维护。 </p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/02/04/java基础/This/">http://yoursite.com/2019/02/04/java基础/This/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/java/"># java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/02/04/java基础/abstract/">abstract关键字</a>
+            
+            
+            <a class="next" rel="next" href="/2019/02/03/代码snip/snip1/登陆模块的设计/">登陆模块的设计</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>第2章 项目准备 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第2章 项目准备</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 11, 2018&nbsp;&nbsp;10:13:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/并发/">并发</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="关键源码"><a href="#关键源码" class="headerlink" title="关键源码"></a>关键源码</h4><blockquote>
+<p>这是我的第一次并发模拟的演示例子，是使用SpringBoot搭建演示环境。 虽然很简单，但是万丈高楼平地起，基础得打好~之后我会更加详实地补充高级内容！</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为输出方便，加log注解</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span>  <span class="comment">//该自定义注解只是标示其为非线程安全类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrencyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求总数量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">//并发数量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line">    <span class="comment">//用来计数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//定义线程池</span></span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="comment">//定义信号量,参数为并发数量</span></span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="comment">//参数为请求总数</span></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="comment">//核心方法执行前后需获取/释放信号量</span></span><br><span class="line">                <span class="comment">//由于使用信号量可能会因执行中断而产生异常</span></span><br><span class="line">                <span class="comment">//只有当semaphore.acquire()执行完（根据目前的并发数判断该线程是否允许被执行，否则会被阻塞）有返回效果，线程才会执行其核心方法</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"><span class="comment">//                    e.printStackTrace();</span></span><br><span class="line">                    log.error(<span class="string">"中断异常InterruptedException:"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//执行闭锁，进行请求总数减一</span></span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//调用countDownLatch.await()方法保证目前已经**减为零**。</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">            <span class="comment">//闭锁执行完毕，关闭线程池</span></span><br><span class="line">            executorService.shutdown();</span><br><span class="line">            log.info(<span class="string">"计数count:&#123;&#125;"</span>,count);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"><span class="comment">//            e.printStackTrace();</span></span><br><span class="line">            log.error(<span class="string">"计数产生中断异常InterruptedException:"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//计数方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="第一次运行结果"><a href="#第一次运行结果" class="headerlink" title="第一次运行结果"></a>第一次运行结果</h5><h2 id><a href="#" class="headerlink" title></a><a href="https://suprisemf.github.io/2018/08/02/第一次并发模拟/第一次并发模拟-第一次结果.png" target="_blank" rel="noopener"><img src="https://suprisemf.github.io/2018/08/02/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%93%E6%9E%9C.png" alt="图"></a></h2><h5 id="第二次运行结果"><a href="#第二次运行结果" class="headerlink" title="第二次运行结果"></a>第二次运行结果</h5><p><a href="https://suprisemf.github.io/2018/08/02/第一次并发模拟/第二次结果.png" target="_blank" rel="noopener"><img src="https://suprisemf.github.io/2018/08/02/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E7%BB%93%E6%9E%9C.png" alt="图"></a></p>
+<h5 id="第三次运行结果"><a href="#第三次运行结果" class="headerlink" title="第三次运行结果"></a>第三次运行结果</h5><h1 id="-1"><a href="#-1" class="headerlink" title></a><a href="https://suprisemf.github.io/2018/08/02/第一次并发模拟/第三次结果.png" target="_blank" rel="noopener"><img src="https://suprisemf.github.io/2018/08/02/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/%E7%AC%AC%E4%B8%89%E6%AC%A1%E7%BB%93%E6%9E%9C.png" alt="图"></a></h1><h5 id="根据三次结果，显然该类是非线程安全的类。-所以其前面标注上之前定义的注解"><a href="#根据三次结果，显然该类是非线程安全的类。-所以其前面标注上之前定义的注解" class="headerlink" title="根据三次结果，显然该类是非线程安全的类。 所以其前面标注上之前定义的注解"></a>根据三次结果，显然该类是非线程安全的类。 所以其前面标注上之前定义的注解</h5><h4 id="并发模拟之工具"><a href="#并发模拟之工具" class="headerlink" title="并发模拟之工具"></a>并发模拟之工具</h4><h6 id="Postman：Http请求模拟工具。"><a href="#Postman：Http请求模拟工具。" class="headerlink" title="Postman：Http请求模拟工具。"></a>Postman：Http请求模拟工具。</h6><p>在接口测试中是一个十分给力的工具；但在并发模拟方面做得不够专业。</p>
+<h6 id="Apache-Bench-AB-：Apache附带的工具，用以测试网站性能。"><a href="#Apache-Bench-AB-：Apache附带的工具，用以测试网站性能。" class="headerlink" title="Apache Bench (AB)：Apache附带的工具，用以测试网站性能。"></a>Apache Bench (AB)：Apache附带的工具，用以测试网站性能。</h6><p>AB小巧简单，上手容易，但是没有图形化界面，也无法做到实时监控。</p>
+<h6 id="JMeter：Apache组织开发的压力测试工具。"><a href="#JMeter：Apache组织开发的压力测试工具。" class="headerlink" title="JMeter：Apache组织开发的压力测试工具。"></a>JMeter：Apache组织开发的压力测试工具。</h6><blockquote>
+<p>下载安装并配置环境变量。</p>
+</blockquote>
+<hr>
+<h4 id="并发模拟之代码"><a href="#并发模拟之代码" class="headerlink" title="并发模拟之代码"></a>并发模拟之代码</h4><h6 id="CountDownLatch类"><a href="#CountDownLatch类" class="headerlink" title="CountDownLatch类"></a>CountDownLatch类</h6><p>其原理图如下：</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title></a><a href="https://suprisemf.github.io/2018/08/02/并发模拟/CountDownLatch类.png" target="_blank" rel="noopener"><img src="https://suprisemf.github.io/2018/08/02/%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/CountDownLatch%E7%B1%BB.png" alt="图示+解释"></a></h1><p>根据上图：其他线程每次执行结束即执行一次countDown()，已经执行结束任务的线程执行await()判断当前计数cnt是否为零，未至0则等待其他线程，只当计数cnt为0时该线程会被resumed去执行后续的操作。</p>
+<p>该类可以通过计数来阻塞线程，主要用于线程执行完之后的其他处理：指定一个计数值，在并发环境下由线程进行减1操作，当计数值变为0之后，被await方法阻塞的线程将会唤醒，实现线程间的同步。<strong>通俗理解：已经执行完成的线程等待还未完成的线程，最后所有线程一同执行另外的任务。</strong></p>
+<h6 id="Semphore类"><a href="#Semphore类" class="headerlink" title="Semphore类"></a>Semphore类</h6><p>Semphore从字面上理解就是信号量，学过《操作系统》课程的人应该知道，在操作系统调度任务时，根据其设定的Semphore值进行同时运行的线程数量的操作。<br>同理，此处的Semphore的含义也是如此。<strong>它主要是用来控制同时并发的线程数。</strong></p>
+<blockquote>
+<p><strong>该两个类通常会结合线程池ThreadPool进行并发的模拟。</strong></p>
+</blockquote>
+<h4 id="自定义的注解"><a href="#自定义的注解" class="headerlink" title="自定义的注解"></a>自定义的注解</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//声明注解需两个属性。此ThreadSafe只是一个**线程安全**的标识</span><br><span class="line">@Target(ElementType.TYPE)//给类做注解，其中target的其他值很多</span><br><span class="line">@Retention(RetentionPolicy.SOURCE)//只在源码中起作用：标识。其他值详述。</span><br><span class="line">public @interface ThreadSafe &#123;</span><br><span class="line"></span><br><span class="line">    //通过value（）给其名字，并给出默认名称。</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://suprisemf.github.io/2018/08/02/spring的自定义注解/注解作用范围.png" target="_blank" rel="noopener"><img src="https://suprisemf.github.io/2018/08/02/spring%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4.png" alt="截图"></a></p>
+<h5 id="Target源码"><a href="#Target源码" class="headerlink" title="@Target源码"></a>@Target源码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * The constants of this enumerated type provide a simple classification of the</span><br><span class="line"> * syntactic locations where annotations may appear in a Java program. These</span><br><span class="line"> * constants are used in &#123;@link Target java.lang.annotation.Target&#125;</span><br><span class="line"> * meta-annotations to specify where it is legal to write annotations of a</span><br><span class="line"> * given type.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;The syntactic locations where annotations may appear are split into</span><br><span class="line"> * &lt;em&gt;declaration contexts&lt;/em&gt; , where annotations apply to declarations, and</span><br><span class="line"> * &lt;em&gt;type contexts&lt;/em&gt; , where annotations apply to types used in</span><br><span class="line"> * declarations and expressions.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;The constants &#123;@link #ANNOTATION_TYPE&#125; , &#123;@link #CONSTRUCTOR&#125; , &#123;@link</span><br><span class="line"> * #FIELD&#125; , &#123;@link #LOCAL_VARIABLE&#125; , &#123;@link #METHOD&#125; , &#123;@link #PACKAGE&#125; ,</span><br><span class="line"> * &#123;@link #PARAMETER&#125; , &#123;@link #TYPE&#125; , and &#123;@link #TYPE_PARAMETER&#125; correspond</span><br><span class="line"> * to the declaration contexts in JLS 9.6.4.1.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;For example, an annotation whose type is meta-annotated with</span><br><span class="line"> * &#123;@code @Target(ElementType.FIELD)&#125; may only be written as a modifier for a</span><br><span class="line"> * field declaration.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;The constant &#123;@link #TYPE_USE&#125; corresponds to the 15 type contexts in JLS</span><br><span class="line"> * 4.11, as well as to two declaration contexts: type declarations (including</span><br><span class="line"> * annotation type declarations) and type parameter declarations.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;For example, an annotation whose type is meta-annotated with</span><br><span class="line"> * &#123;@code @Target(ElementType.TYPE_USE)&#125; may be written on the type of a field</span><br><span class="line"> * (or within the type of the field, if it is a nested, parameterized, or array</span><br><span class="line"> * type), and may also appear as a modifier for, say, a class declaration.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;The &#123;@code TYPE_USE&#125; constant includes type declarations and type</span><br><span class="line"> * parameter declarations as a convenience for designers of type checkers which</span><br><span class="line"> * give semantics to annotation types. For example, if the annotation type</span><br><span class="line"> * &#123;@code NonNull&#125; is meta-annotated with</span><br><span class="line"> * &#123;@code @Target(ElementType.TYPE_USE)&#125;, then &#123;@code @NonNull&#125;</span><br><span class="line"> * &#123;@code class C &#123;...&#125;&#125; could be treated by a type checker as indicating that</span><br><span class="line"> * all variables of class &#123;@code C&#125; are non-null, while still allowing</span><br><span class="line"> * variables of other classes to be non-null or not non-null based on whether</span><br><span class="line"> * &#123;@code @NonNull&#125; appears at the variable&apos;s declaration.</span><br><span class="line"> *</span><br><span class="line"> * @author  Joshua Bloch</span><br><span class="line"> * @since 1.5</span><br><span class="line"> * @jls 9.6.4.1 @Target</span><br><span class="line"> * @jls 4.1 The Kinds of Types and Values</span><br><span class="line"> */</span><br><span class="line">public enum ElementType &#123;</span><br><span class="line">    /** Class, interface (including annotation type), or enum declaration */</span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    /** Field declaration (includes enum constants) */</span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    /** Method declaration */</span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    /** Formal parameter declaration */</span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    /** Constructor declaration */</span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    /** Local variable declaration */</span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    /** Annotation type declaration */</span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    /** Package declaration */</span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Type parameter declaration</span><br><span class="line">     *</span><br><span class="line">     * @since 1.8</span><br><span class="line">     */</span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Use of a type</span><br><span class="line">     *</span><br><span class="line">     * @since 1.8</span><br><span class="line">     */</span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="解读源码："><a href="#解读源码：" class="headerlink" title="解读源码："></a><strong>解读源码：</strong></h6><h5 id="Retention源码"><a href="#Retention源码" class="headerlink" title="@Retention源码"></a>@Retention源码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Annotation retention policy.  The constants of this enumerated type</span><br><span class="line"> * describe the various policies for retaining annotations.  They are used</span><br><span class="line"> * in conjunction with the &#123;@link Retention&#125; meta-annotation type to specify</span><br><span class="line"> * how long annotations are to be retained.</span><br><span class="line"> *</span><br><span class="line"> * @author  Joshua Bloch</span><br><span class="line"> * @since 1.5</span><br><span class="line"> */</span><br><span class="line">public enum RetentionPolicy &#123;</span><br><span class="line">    /**</span><br><span class="line">     * Annotations are to be discarded by the compiler.</span><br><span class="line">     */</span><br><span class="line">    SOURCE,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Annotations are to be recorded in the class file by the compiler</span><br><span class="line">     * but need not be retained by the VM at run time.  This is the default</span><br><span class="line">     * behavior.</span><br><span class="line">     */</span><br><span class="line">    CLASS,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Annotations are to be recorded in the class file by the compiler and</span><br><span class="line">     * retained by the VM at run time, so they may be read reflectively.</span><br><span class="line">     *</span><br><span class="line">     * @see java.lang.reflect.AnnotatedElement</span><br><span class="line">     */</span><br><span class="line">    RUNTIME</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="解读源码：-1"><a href="#解读源码：-1" class="headerlink" title="解读源码："></a><strong>解读源码：</strong></h6><p>此处为坑，后续会补上！！！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第二章项目准备/">http://yoursite.com/2018/11/11/并发编程/慕课网java高并发/第二章项目准备/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/并发/"># 并发</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/11/11/Spring Boot/SpringBoot-Docker-小D课堂/">SpringBoot Docker 小D课堂</a>
+            
+            
+            <a class="next" rel="next" href="/2018/11/11/Spring Boot/SpringBoot高级雷丰阳/">SpringBoot  雷丰阳整合篇</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

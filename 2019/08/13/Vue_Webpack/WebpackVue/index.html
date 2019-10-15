@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Vue教程 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Vue教程</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 13, 2019&nbsp;&nbsp;19:24:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Vue/">Vue</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1 基础知识"></a>1 基础知识</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-112526.png" alt="image-20190813192524806"></p>
+<hr>
+<h1 id="2-路由和菜单"><a href="#2-路由和菜单" class="headerlink" title="2 路由和菜单"></a>2 路由和菜单</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-113917.png" alt="image-20190813193916129"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-113959.png" alt="image-20190813193958378"></p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue from <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router from <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> store from <span class="string">'@/store'</span></span><br><span class="line"><span class="keyword">import</span> &#123;Message&#125; from <span class="string">'element-ui'</span></span><br><span class="line"><span class="keyword">import</span> NProgress from <span class="string">'nprogress'</span></span><br><span class="line"><span class="keyword">import</span> Layout from <span class="string">'@/module-dashboard/pages/layout'</span></span><br><span class="line"><span class="keyword">import</span> &#123;getToken&#125; from <span class="string">'@/utils/auth'</span></span><br><span class="line"><span class="keyword">import</span> &#123;hasPermissionPoint, hasPermission&#125; from <span class="string">'@/utils/permission'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义</span></span><br><span class="line"><span class="keyword">const</span> _import = require(<span class="string">'./import_'</span> + process.env.NODE_ENV) <span class="comment">// 懒加载 导包</span></span><br><span class="line"><span class="keyword">const</span> whiteList = [<span class="string">'/login'</span>, <span class="string">'/reg'</span>, <span class="string">'/authredirect'</span>] <span class="comment">// 白名单 无需跳转</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置</span></span><br><span class="line">Vue.use(Router)</span><br><span class="line">NProgress.configure(&#123;showSpinner: <span class="keyword">false</span>&#125;) <span class="comment">// NProgress Configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 基础路由</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment">* root: true                     在一级栏目显示</span></span><br><span class="line"><span class="comment">* hidden: true                   if `hidden:true` will not show in the sidebar(default is false)</span></span><br><span class="line"><span class="comment">* alwaysShow: true               if set true, will always show the root menu, whatever its child routes length</span></span><br><span class="line"><span class="comment">*                                if not set alwaysShow, only more than one route under the children</span></span><br><span class="line"><span class="comment">*                                it will becomes nested mode, otherwise not show the root menu</span></span><br><span class="line"><span class="comment">* redirect: noredirect           if `redirect:noredirect` will no redirct in the breadcrumb</span></span><br><span class="line"><span class="comment">* name:'router-name'             the name is used by &lt;keep-alive&gt; (must set!!!)</span></span><br><span class="line"><span class="comment">* meta : &#123;</span></span><br><span class="line"><span class="comment">    roles: ['admin','editor']     will control the page roles (you can set multiple roles)</span></span><br><span class="line"><span class="comment">    title: 'title'               the name show in submenu and breadcrumb (recommend set)</span></span><br><span class="line"><span class="comment">    icon: 'svg-name'             the icon show in the sidebar,</span></span><br><span class="line"><span class="comment">    noCache: true                if true ,the page will no be cached(default is false)</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">export <span class="keyword">const</span> constantRouterMap = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/login'</span>,</span><br><span class="line">    component: _import(<span class="string">'dashboard/pages/login'</span>),</span><br><span class="line">    hidden: <span class="keyword">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/reg'</span>,</span><br><span class="line">    component: _import(<span class="string">'dashboard/pages/reg'</span>),</span><br><span class="line">    hidden: <span class="keyword">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/authredirect'</span>,</span><br><span class="line">    component: _import(<span class="string">'dashboard/pages/authredirect'</span>),</span><br><span class="line">    hidden: <span class="keyword">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  &#123;path: <span class="string">'/404'</span>, component: _import(<span class="string">'dashboard/pages/404'</span>), hidden: <span class="keyword">true</span>&#125;,</span><br><span class="line">  &#123;path: <span class="string">'/401'</span>, component: _import(<span class="string">'dashboard/pages/401'</span>), hidden: <span class="keyword">true</span>&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">''</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">'dashboard'</span>,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'dashboard'</span>,</span><br><span class="line">        component: _import(<span class="string">'dashboard/pages/dashboard'</span>),</span><br><span class="line">        name: <span class="string">'dashboard'</span>,</span><br><span class="line">        meta: &#123;title: <span class="string">'dashboard'</span>, icon: <span class="string">'dashboard'</span>, noCache: <span class="keyword">true</span>&#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置路由</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line">let router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  scrollBehavior: () =&gt; (&#123;y: <span class="number">0</span>&#125;),</span><br><span class="line">  routes: constantRouterMap</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">  NProgress.start() <span class="comment">// start progress bar</span></span><br><span class="line">  <span class="keyword">if</span> (getToken()) &#123;</span><br><span class="line">    <span class="comment">// determine if there has token</span></span><br><span class="line">    <span class="comment">/* has token */</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">'/login'</span>) &#123;</span><br><span class="line">      next(&#123;path: <span class="string">'/'</span>&#125;)</span><br><span class="line">      NProgress.done() <span class="comment">// if current page is dashboard will not trigger	afterEach hook, so manually handle it</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (store.getters.roles.length === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 判断当前用户是否已拉取完user_info信息</span></span><br><span class="line">        store</span><br><span class="line">          .dispatch(<span class="string">'GetUserInfo'</span>)</span><br><span class="line">          .then(res =&gt; &#123;</span><br><span class="line">            <span class="comment">// 拉取user_info</span></span><br><span class="line">            <span class="keyword">const</span> roles = res.data.data.roles <span class="comment">// note: roles must be a array! such as: ['editor','develop']</span></span><br><span class="line">            store.dispatch(<span class="string">'GenerateRoutes'</span>, &#123;roles&#125;).then(() =&gt; &#123;</span><br><span class="line">              <span class="comment">// 根据roles权限生成可访问的路由表</span></span><br><span class="line">              router.addRoutes(store.getters.addRouters) <span class="comment">// 动态添加可访问路由表</span></span><br><span class="line">              next(&#123;...to, replace: <span class="keyword">true</span>&#125;) <span class="comment">// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span></span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          .<span class="keyword">catch</span>(() =&gt; &#123;</span><br><span class="line">            store.dispatch(<span class="string">'FedLogOut'</span>).then(() =&gt; &#123;</span><br><span class="line">              Message.error(<span class="string">'验证失败, 请重新登录'</span>)</span><br><span class="line">              next(&#123;path: <span class="string">'/login'</span>&#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        next()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* has no token */</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.indexOf(to.path) !== -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// 在免登录白名单，直接进入</span></span><br><span class="line">      next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="string">'/login'</span>) <span class="comment">// 否则全部重定向到登录页</span></span><br><span class="line">      NProgress.done() <span class="comment">// if current page is login will not trigger afterEach hook, so manually handle it</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 导出 基础路由</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line">export <span class="keyword">default</span> router</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 导出 业务路由</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line">export let asyncRouterMap = [</span><br><span class="line">  &#123;path: <span class="string">'*'</span>, redirect: <span class="string">'/404'</span>, hidden: <span class="keyword">true</span>&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-114215.png" alt="image-20190813194213441"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-114230.png" alt="image-20190813194230275"></p>
+<hr>
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190813194408861.png" alt="image-20190813194408861"></p>
+<hr>
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190813194453879.png" alt="image-20190813194453879"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-114409.png" alt="image-20190813194542523"></p>
+<hr>
+<h1 id="asyncRouterMap-代表那些业务中通过-addRouters-动态添加的页面。"><a href="#asyncRouterMap-代表那些业务中通过-addRouters-动态添加的页面。" class="headerlink" title="asyncRouterMap 代表那些业务中通过 addRouters 动态添加的页面。"></a>asyncRouterMap 代表那些业务中通过 addRouters 动态添加的页面。</h1><p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190813195038879.png" alt="image-20190813195038879"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-115315.png" alt="image-20190813195315155"></p>
+<p><img src="../../../../Users/apple/Library/Application%20Support/typora-user-images/image-20190813195340903.png" alt="image-20190813195340903"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-115859.png" alt="image-20190813195859042"></p>
+<h4 id="Mock-数据"><a href="#Mock-数据" class="headerlink" title="Mock 数据"></a>Mock 数据</h4><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-120125.png" alt="image-20190813200124946"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-120136.png" alt="image-20190813200136266"></p>
+<hr>
+<h1 id="如何启动一个工程"><a href="#如何启动一个工程" class="headerlink" title="如何启动一个工程"></a>如何启动一个工程</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-121906.png" alt="image-20190813201905652"></p>
+<hr>
+<ul>
+<li>删除node_modules </li>
+<li>Node-v</li>
+<li>Nvm use 8</li>
+<li>Cpm install</li>
+<li>cnpm run dev</li>
+<li><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122024.png" alt="image-20190813202023943"></li>
+</ul>
+<hr>
+<h1 id="注册模块"><a href="#注册模块" class="headerlink" title="注册模块"></a>注册模块</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122231.png" alt="image-20190813202230518"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122426.png" alt="image-20190813202426656"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122510.png" alt="image-20190813202510397"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122607.png" alt="image-20190813202607279"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122745.png" alt="image-20190813202744174"></p>
+<hr>
+<h1 id="配置路由菜单"><a href="#配置路由菜单" class="headerlink" title="配置路由菜单"></a>配置路由菜单</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122830.png" alt="image-20190813202830227"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-122918.png" alt="image-20190813202917078"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-123108.png" alt="image-20190813203107612"></p>
+<hr>
+<h1 id="创建api"><a href="#创建api" class="headerlink" title="创建api"></a>创建api</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-123249.png" alt="image-20190813203248725"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-123330.png" alt="image-20190813203330162"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-123833.png" alt="image-20190813203831940"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-123910.png" alt="image-20190813203909587"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-124200.png" alt="image-20190813204200120"></p>
+<hr>
+<h1 id="构造数据"><a href="#构造数据" class="headerlink" title="构造数据"></a>构造数据</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-125308.png" alt="image-20190813205307331"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-125340.png" alt="image-20190813205340115"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import CompanyAPI from &apos;./company&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//配置模拟数据接口</span><br><span class="line">//  /company/12</span><br><span class="line">//Mock.mock(/\/company\/+/, &apos;get&apos;, CompanyAPI.sassDetail)//根据id查询</span><br><span class="line">//Mock.mock(/\/company/, &apos;get&apos;, CompanyAPI.list)  //访问企业列表</span><br></pre></td></tr></table></figure>
+
+<h1 id="构造页面"><a href="#构造页面" class="headerlink" title="构造页面"></a>构造页面</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-125803.png" alt="image-20190813205802383"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-125832.png" alt="image-20190813205831824"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-125851.png" alt="image-20190813205850056"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-131052.png" alt="image-20190813211051773"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-132154.png" alt="image-20190813212154388"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-132851.png" alt="image-20190813212850018"></p>
+<hr>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-133122.png" alt="image-20190813213122166"></p>
+<hr>
+<h1 id="前后端-联调试"><a href="#前后端-联调试" class="headerlink" title="前后端  联调试"></a>前后端  联调试</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-133704.png" alt="image-20190813213704214"></p>
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-13-133812.png" alt="image-20190813213811082"></p>
+<h1 id="注册模块-1"><a href="#注册模块-1" class="headerlink" title="注册模块"></a>注册模块</h1><p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-08-14-021029.png" alt="image-20190814101027877"></p>
+<hr>
+<p>开课吧java架构师：[itjc8.com_vUlsWGu7RkIcysjP](/Users/apple/Library/Application Support/typora-user-images/AB113F18-2A06-44C4-91DE-0C5918B3B336/itjc8.com_vUlsWGu7RkIcysjP)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">开课吧java架构师：itjc8.com_vUlsWGu7RkIcysjP</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/08/13/Vue_Webpack/WebpackVue/">http://yoursite.com/2019/08/13/Vue_Webpack/WebpackVue/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Vue/"># Vue</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/14/shiro/shiro/">shirt SAAS 系统</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/13/Nginx/Nginx从入门到实践 @JSeon/Nginx for mac/">Nginx for Mac</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

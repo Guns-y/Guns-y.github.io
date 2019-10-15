@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>后台服务代码架构：duboo集群部署安装 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">后台服务代码架构：duboo集群部署安装</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 10, 2019&nbsp;&nbsp;12:34:01</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/dubbo/">dubbo</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="dubbo集群部署安装依赖于zookeeper，所以我们下面重点安装zookeeper集群。"><a href="#dubbo集群部署安装依赖于zookeeper，所以我们下面重点安装zookeeper集群。" class="headerlink" title="dubbo集群部署安装依赖于zookeeper，所以我们下面重点安装zookeeper集群。"></a>dubbo集群部署安装依赖于zookeeper，所以我们下面重点安装zookeeper集群。</h1><p><strong>1、**</strong>准备三台机器做集群**</p>
+<table>
+<thead>
+<tr>
+<th>服务器</th>
+<th>IP地址</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务器1</td>
+<td>10.211.55.7</td>
+<td>2181/2881/3881</td>
+</tr>
+<tr>
+<td>服务器2</td>
+<td>10.211.55.8</td>
+<td>2181/2881/3881</td>
+</tr>
+<tr>
+<td>服务器3</td>
+<td>10.211.55.9</td>
+<td>2181/2881/3881</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export ZOOKEEPER_HOME=/root/zookeeper-3.4.10</span><br><span class="line">export CLASSPATH=.:%JAVA_HOME%/lib/dt.jar:%JAVA_HOME%/lib/tools.jar</span><br><span class="line">export JAVA_HOME=/root/jdk1.8.0_201</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<p>2.2 修改操作系统的/etc/hosts文件，添加IP与主机名映射：</p>
+<p>  # zookeeper cluster servers</p>
+<p>10.211.55.7 bigdata1</p>
+<p>10.211.55.8 bigdata2</p>
+<p>10.211.55.9 bigdata3</p>
+<hr>
+<p> tar -zxvf zookeeper-3.4.9.tar.gz</p>
+<h3 id="2-5-在zookeeper的各个节点下-创建数据和日志目录"><a href="#2-5-在zookeeper的各个节点下-创建数据和日志目录" class="headerlink" title="2.5 在zookeeper的各个节点下 创建数据和日志目录"></a>2.5 在zookeeper的各个节点下 创建数据和日志目录</h3><p>cd zookeeper</p>
+<p>mkdir data</p>
+<p>mkdir logs</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2.6 重命名配置文件</span><br><span class="line">   将zookeeper/conf目录下的zoo_sample.cfg文件拷贝一份，命名为zoo.cfg:</span><br><span class="line">#cp zoo_sample.cfg zoo.cfg</span><br><span class="line">修改zoo.cfg 配置文件</span><br><span class="line">clientPort=2181</span><br><span class="line">dataDir=/data/program/software/zookeeper/data</span><br><span class="line">dataLogDir=/data/program/software/zookeeper/logs</span><br><span class="line"> </span><br><span class="line">server.1=bigdata1:2881:3881</span><br><span class="line">server.2=bigdata2:2881:3881</span><br><span class="line">server.3=bigdata3:2881:3881</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">参数说明:</span><br><span class="line">tickTime=2000</span><br><span class="line">tickTime这个时间是作为Zookeeper服务器之间或客户端与服务器之间维持心跳的时间间隔,也就是每个tickTime时间就会发送一个心跳。</span><br><span class="line">initLimit=10</span><br><span class="line">initLimit这个配置项是用来配置Zookeeper接受客户端（这里所说的客户端不是用户连接Zookeeper服务器的客户端,而是Zookeeper服务器集群中连接到Leader的Follower 服务器）初始化连接时最长能忍受多少个心跳时间间隔数。当已经超过10个心跳的时间（也就是tickTime）长度后Zookeeper 服务器还没有收到客户端的返回信息,那么表明这个客户端连接失败。总的时间长度就是10*2000=20 秒。</span><br><span class="line">syncLimit=5</span><br><span class="line">syncLimit这个配置项标识Leader与Follower之间发送消息,请求和应答时间长度,最长不能超过多少个tickTime的时间长度,总的时间长度就是5*2000=10秒。</span><br><span class="line">dataDir=/data/program/software/zookeeper/data</span><br><span class="line">dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里。</span><br><span class="line">clientPort=2181</span><br><span class="line">clientPort这个端口就是客户端（应用程序）连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求。</span><br><span class="line">server.A=B：C：D</span><br><span class="line">server.1=bigdata1:2881:3881</span><br><span class="line">server.2=bigdata2:2881:3881</span><br><span class="line">server.3=bigdata3:2881:3881</span><br><span class="line">A是一个数字,表示这个是第几号服务器；</span><br><span class="line">B是这个服务器的IP地址（或者是与IP地址做了映射的主机名）；</span><br><span class="line">C第一个端口用来集群成员的信息交换,表示这个服务器与集群中的Leader服务器交换信息的端口；</span><br><span class="line">D是在leader挂掉时专门用来进行选举leader所用的端口。</span><br><span class="line">注意：如果是伪集群的配置方式，不同的 Zookeeper 实例通信端口号不能一样，所以要给它们分配不同的端口号。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2.8 创建myid文件</span><br><span class="line">在dataDir= dataDir=/data/program/software/zookeeper/data 下创建myid文件</span><br><span class="line">编辑myid文件，并在对应的IP的机器上输入对应的编号。如在1上，myid文件内容就是1, 2上就是2， 3上就是3：</span><br><span class="line">#vi /myid## 值为1</span><br><span class="line">#vi /myid## 值为2</span><br><span class="line">#vi /myid## 值为3</span><br><span class="line">2.9 启动测试zookeeper</span><br><span class="line">(1)进入/bin目录下执行：</span><br><span class="line"># /zkServer.sh start</span><br><span class="line"># /zkServer.sh start</span><br><span class="line"># /zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-04-29-023752.jpg" alt="image-20190310123801951"></p>
+<p>—-</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/03/10/Dubbo/duboo集群部署安装/">http://yoursite.com/2019/03/10/Dubbo/duboo集群部署安装/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Dubbo/"># Dubbo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/03/10/项目实战/电商网站开发简介 尚硅谷/">电商网站开发 谷粒商城 徐静博</a>
+            
+            
+            <a class="next" rel="next" href="/2019/03/09/前端/jQuery基础(二)—DOM篇/">Jquery基础篇（二）-DOM篇章</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>后端程序员看的Vue快速入门 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">后端程序员看的Vue快速入门</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 28, 2019&nbsp;&nbsp;9:14:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Vue/">Vue</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="给后端程序员看的-Vue-快速入门教程"><a href="#给后端程序员看的-Vue-快速入门教程" class="headerlink" title="给后端程序员看的 Vue 快速入门教程"></a>给后端程序员看的 Vue 快速入门教程</h2><p><a href="/gitchat/author/58e484f5cfcd6fa52dceeadc"><img src="https://images.gitbook.cn/crown.png" alt>![](<a href="https://images.gitbook.cn/ead35370-b872-11e7-ab26-63035bf53f87?imageView2/1/w/200/h/200白宦成" target="_blank" rel="noopener">https://images.gitbook.cn/ead35370-b872-11e7-ab26-63035bf53f87?imageView2/1/w/200/h/200白宦成</a></a></p>
+<p><a href="/m/mazi/author/58e484f5cfcd6fa52dceeadc/question">向作者提问</a></p>
+<p>阿里云MVP；腾讯云布道师；GitChat平台分享者，在 GitChat 平台上开设了《一学就会的 WordPress 实战课<br>》达人课；自由职业者，曾就职于网易杭州研究院。</p>
+<p><a href="/gitchat/activity/5c75b7bfb7bb4906f36f2c15">查看本场Chat</a></p>
+<p>你好，欢迎你订阅我的 Chat ，在这篇 chat 中，我将向你分享我自己学习 Vue。js 的心得，以及，如何从后端的角度来看待<br>Vue，从而帮助你更好的学习 Vue。</p>
+<p><strong>这个 Chat 并不会过多涉及到 Vue 本身的代码部分的讲解，不过我依然会给你一个学习的路线，帮助你学习和理解<br>Vue，但是你依然可以将你自己遇到的问题填写在下方的评论区内，我将在后续的群交流过程中给你解答。</strong></p>
+<h3 id="如何认知-SPA-开发？"><a href="#如何认知-SPA-开发？" class="headerlink" title="如何认知 SPA 开发？"></a>如何认知 SPA 开发？</h3><p>在文章的开始，我想先聊一聊 SPA （Single Page<br>Application）的开发，以及对他的认知，当你改变了认知以后，其他的内容学习也就手到擒来了。</p>
+<p>首先，我们先要定义一下，什么是 SPA ？根据维基百科的定义， <strong>SPA<br>是一种网络应用程序或网站的模型，它通过动态重写当前页面来与用户交互，而非传统的从服务器重新加载整个新页面。这种方法避免了页面之间切换打断用户体验，使应用程序更像一个桌面应用程序</strong><br>。</p>
+<p>在这样的一个描述中，包含了 SPA 的实现的模式：”动态重写“，也包含了其特性”避免了页面之间切换打断用户体验“，更重要的是，告诉我们应当如何认知<br>SPA：”更像一个桌面应用程序“。</p>
+<p>在进行 SPA 开发时， <strong>我们应该将 SPA 视为一个桌面应用程序</strong> 来看待。当你从这个角度来看的时候，你就能够更加简单的来理解 SPA<br>应用和前端开发框架了。</p>
+<p>在构建互联网应用的早期，我们想要构建一个能够进行交互的 Web 应用，就是借助于 GET 和 POST<br>请求，不断的去向服务端发送请求，获取新的页面内容，并在浏览器中渲染。从开发的角度而言，这种模式是非常简单的，因为用户所获得的内容是可以预期的，开发不需要考虑在浏览器端会发生什么，只要根据业务的需要，在界面中渲染想要的界面就可以了。</p>
+<p>不过，这种模式也有自己的问题，那就是体验不佳。由于每一个动作都需要向服务端发送请求，并根据服务端的返回来渲染页面，这使得页面不可避免的出现了不停的重新加载的问题。而且，由于出现了重新加载，用户在当前页面所积累的状态也就此消失了。而且，让服务端来负责字符串拼接，处理模板的嵌入，本来也不是<br>CPU 所擅长的部分，因此，一直都有人希望将这个操作移动到另外一个端来实现，可惜时机不够成熟，一直未能成功。</p>
+<p>在如今的技术不断发展的时代，我们有足够多的精力和动力去花费时间打磨产品，这种体验不佳的渲染模式也就被我们所抛弃。而且，随着 Chrome<br>浏览器的大行其道，我们有更大的自由，去使用一些新的浏览器的特性来完成我们想要做的事情，自此，一个个新的前端 MVVM 框架就出现在了我们的眼前。</p>
+<p>在真正理解 SPA 开发之前，我们先来回顾一下传统的服务端渲染，这将帮助我们更好的学习 SPA 开发，理解 Vue 生态圈中的各项目的作用。</p>
+<h3 id="在服务端渲染的时代，我们关注什么？"><a href="#在服务端渲染的时代，我们关注什么？" class="headerlink" title="在服务端渲染的时代，我们关注什么？"></a>在服务端渲染的时代，我们关注什么？</h3><p>在传统的服务端渲染的时代，一个请求的处理过程是这样的，首先，用户向服务端发起请求，服务端拿到请求以后，根据请求的信息，进入 <strong>路由</strong><br>进行分发，在分发的时候，会进入 <strong>前置中间件</strong> 进行处理，在这个处理过程中，我们会进行一些基础的校验，比较常见的是校验请求是否有特定的<br>Header，请求是否带上了用户的身份信息（用于判断当前用户是哪个用户)， <strong>前置中间件</strong> 处理完成后，这个请求才会进入到 <strong>控制器</strong> 中，由<br><strong>控制器</strong> 来进行处理。</p>
+<p><strong>控制器</strong> 在处理时，由于需要去进行数据库相关的处理，所以需要连接 <strong>模型</strong> ，由 <strong>模型</strong> 来处理数据，数据处理完成后，将数据发送给<br><strong>控制器</strong> ，由控制器进行处理后，将其与 <strong>视图</strong> 层面的模板进行拼接，整合，从而得出需要返回给客户端浏览器的 HTML ，交给下一个环节，<br><strong>后置中间件</strong> 。由后置中间件进行最后的处理(比如加上一些特殊的 Header)后，发送给用户。</p>
+<p><img src="https://i.loli.net/2019/03/15/5c8b9bc719312.png" alt></p>
+<p>在这整个过程中，后端需要负责非常多的事情，从路由开始，去写中间件，去写控制器，编写模型，准备后置中间件，以及将前端准备好的前端页面进行微调（一般是将前端做好的页面按照后端模板引擎的需要，进行更改)。前端只需要做好自己的页面，就完成了所有的工作。这也就难免过去的前端被大家称为”切图仔”。</p>
+<h3 id="在大前端的时代，我们关注什么。"><a href="#在大前端的时代，我们关注什么。" class="headerlink" title="在大前端的时代，我们关注什么。"></a>在大前端的时代，我们关注什么。</h3><p>在前一个部分，我们梳理了，传统的服务端渲染的模式下，程序员们是如何处理标准的 Web 请求的，接下来，我们来看一看，在大前端的时代，请求又是如何被处理的。</p>
+<p>大前端时代我们可以将其再分为两个时代，分别是 GraphQL 没有出现以前，和 GraphQL 出现以后，以 GraphQL 的出现为界，划分不同的业务。</p>
+<p>在 GraphQL 未出现以前，我们使用前端框架所构建的应用在整体架构上是冗余的。</p>
+<h4 id="GraphQL-出现前的大前端开发"><a href="#GraphQL-出现前的大前端开发" class="headerlink" title="GraphQL 出现前的大前端开发"></a>GraphQL 出现前的大前端开发</h4><p><img src="https://i.loli.net/2019/03/15/5c8ba1b307531.png" alt></p>
+<p>我们在客户端使用 <strong>Vue Router</strong> ，来替代服务端的路由工具，进行请求的分发，并使用 Vue 的 Component<br>的概念，拆分不同的页面，在这个过程中，不同的 Component<br>就好像我们在后端的不同控制器，只是这个粒度更细致，每一个单页的组件，就是一个控制器，我们根据页面的不同事件绑定，来形成一个控制器中的不同方法。</p>
+<p>在控制器中，我们自然就需要去获取数据了，这时就用到了 Vuex 了。 Vuex 是 Vue<br>使用的”状态管理框架”，在传统的后端开发的过程中，并不存在这样的一个逻辑，我们只有一个个的 Model<br>，但是，它又是真真切切的存在了我们的前端框架中。这种方案的出现也是源自于我们在做 SPA 时遇到的。在 Vue 中， <strong>各个组件都只能进行父与子的通信</strong><br>，那么如果有需求修改 <strong>兄弟组件</strong> 的数据的时候，就会产生问题，没有办法直接修改，因此，我们引入了 Vuex 这个新的工具，使用 Vuex<br>来进行数据的统一管理。有了 Vuex ，我们就能够更好的管理不同单页的数据了。</p>
+<p>在这个过程中，除了状态管理，我更喜欢叫他 “ <strong>Model</strong> “，在 Vuex 的文档中，建议用户在使用 Vuex 的时候，使用 Vuex<br>的方法来对数据进行修改，在这种场景下，我们的每一个页面的组件都需要调用 Vuex 来进行数据的管理，就好像我们在后端所使用的 Model 一样，来管理数据。</p>
+<p>同时，由于前端本身并不能直接拿到数据库的数据，因此，在 Vuex 后，我们引入了 Axios ，由 Axios 来进行与服务端 API 的交互。</p>
+<p>自此，前端的工作基本完成，接下来就是后端的事情了。同时，这一部分也会提到我刚刚说的，冗余的部分。</p>
+<p>由于 Axios 的请求是基于一个个不同的针对数据的操作来完成的，这就导致我们依然需要在服务端对请求进行分发，不同的 API<br>请求分发给不同的控制器和不同的方法来进行处理，我们也同样需要使用模型来抓取数据，与传统的开发模式不同的是，我们不再需要对模板进行操作，不需要再执行字符串的拼接等方法，只需要根据模型所给出的数据，生成<br>JSON 返回给前端即可。</p>
+<h4 id="GraphQL-出现之后的大前端开发"><a href="#GraphQL-出现之后的大前端开发" class="headerlink" title="GraphQL 出现之后的大前端开发"></a>GraphQL 出现之后的大前端开发</h4><p><img src="https://i.loli%E3%80%82net/2019/03/15/5c8ba5699df21.png" alt></p>
+<p>GraphQL 于 2016 年正式发布，其一发布，就广受前端程序员的好评，在我看来， GraphQL<br>的发布，使得整个大前端的架构，更加的简洁，冗余度更低，我们可以花费更多的精力，去做一些真正有价值的事情。</p>
+<p><img src="https://i.loli.net/2019/03/15/5c8ba5353b7f1.png" alt></p>
+<p>引入了 GraphQL<br>以后，后端开发的流程进一步得到了简化，后端不需要再花费心思去维护路由表，只需要确保所有的请求能够进入到一个同一的入口就可以了。同时，前端也不需要花费太多的精力去写控制器层面的逻辑，这些逻辑都由表现力极强的<br>GraphQL 来完成。对于后端来说，只需要花费心思去做好模型，以及对应针对 GraphQL 的 Schema ，以及一小部分无法直接由 GraphQL<br>完成的逻辑即可(比如登录)。至此，大前端的能力扩充到了当前的边界。如果进一步拓展，就需要将其他原本由后端负责的东西，也拿到前端来。</p>
+<h3 id="了解了整个流程，我们该怎么学习-Vue-呢"><a href="#了解了整个流程，我们该怎么学习-Vue-呢" class="headerlink" title="了解了整个流程，我们该怎么学习 Vue 呢?"></a>了解了整个流程，我们该怎么学习 Vue 呢?</h3><p>在前面，我们了解了整个开发的流程，以及演进的历史，接下来，我们就来正式看一看，作为一个后端，我们要怎么学习 Vue。</p>
+<p>这里我使用三种常见的后端框架，来告诉你， Vue 中各概念与之对应的后端概念。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Vue</th>
+<th>Django</th>
+<th>rails</th>
+<th>Laravel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模板渲染</td>
+<td><a href="https://cn.vuejs.org/v2/guide/syntax.html" target="_blank" rel="noopener">模板语法</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://docs.djangoproject.com/en/2.1/ref/templates/language/" target="_blank" rel="noopener">template</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://guides.rubyonrails.org/action_view_overview.html" target="_blank" rel="noopener">Action View</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://laravel.com/docs/5.8/blade" target="_blank" rel="noopener">Blade Template</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据库</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://vuex.vuejs.org/zh/" target="_blank" rel="noopener">Vuex</a>+<a href="https://github.com/axios/axios" target="_blank" rel="noopener">Axios</a>/<a href="https://github.com/facebook/graphql" target="_blank" rel="noopener">GraphQL</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.djangoproject.com/en/2.1/topics/db/models/" target="_blank" rel="noopener">Models</a></td>
+<td>[Action</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Record](<a href="https://guides.rubyonrails.org/active_record_basics.html" target="_blank" rel="noopener">https://guides.rubyonrails.org/active_record_basics.html</a>)</td>
+<td>[Eloquent</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Model](<a href="https://laravel.com/docs/5.8/eloquent" target="_blank" rel="noopener">https://laravel.com/docs/5.8/eloquent</a>)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>路由</td>
+<td><a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener">Vue Router</a></td>
+<td>[Url</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Conf](<a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.1/topics/http/urls/</a>)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://guides.rubyonrails。org/routing.html" target="_blank" rel="noopener">Routing</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://laravel.com/docs/5.8/routing" target="_blank" rel="noopener">Routing</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>过滤器</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7" target="_blank" rel="noopener">计算属性</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/" target="_blank" rel="noopener">Filter</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[Helpers](<a href="https://guides.rubyonrails.org/action_view_overview.html#overview-" target="_blank" rel="noopener">https://guides.rubyonrails.org/action_view_overview.html#overview-</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>of-helpers-provided-by-action-view)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://laravel.com/docs/5.8/helpers" target="_blank" rel="noopener">Helpers</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>控制器</td>
+<td><a href="https://cn.vuejs.org/v2/guide/events.html" target="_blank" rel="noopener">事件处理</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://docs.djangoproject.com/en/2.1/topics/http/views/" target="_blank" rel="noopener">View</a></td>
+<td>[Action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Controller](<a href="https://guides.rubyonrails.org/action_controller_overview.html" target="_blank" rel="noopener">https://guides.rubyonrails.org/action_controller_overview.html</a>)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://laravel.com/docs/5.8/controllers" target="_blank" rel="noopener">Controller</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>你在学习的时候，只需要跟着你学习后端的习惯，从 Controller， Model， View 进行学习，就能够更加简单的理解 Vue<br>的逻辑，并快速掌握其开发。</p>
+<h3 id="除了这些，还有什么"><a href="#除了这些，还有什么" class="headerlink" title="除了这些，还有什么?"></a>除了这些，还有什么?</h3><p>既然我们进入了前端的领域，自然也就要考虑多多使用前端的能力，来解决我们的问题。</p>
+<ul>
+<li><p>在 Vue 中，引入了<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">单文件组件</a>的概念，我们可以在一个文件中定义整个页面，这么方便的资源管理，自然是要用起来。</p>
+</li>
+<li><p>在 Vue 中，由大量的组件库，自然我们也要用起来， <a href="https://github。com/iview/iview" target="_blank" rel="noopener">iView</a>， <a href="https://github。com/ElemeFE/element" target="_blank" rel="noopener">Element</a> 等，都是不错的组件库，而且他们还输出了设计规范，相信这些工具，能够帮助你设计出更好的界面。</p>
+</li>
+<li><p>今天的 Chat 严格来说，并不是教你怎么用 Vue ，而是希望帮助你建立起前端和后端的联系，并借助这些联系，让你理解大前端的开发。在此基础上，无论是 Vue，还是 React， 或者是 Angular ，对你来说都可以套用这样的模式来进行学习，帮助你更快的掌握这些工具。</p>
+</li>
+</ul>
+<h3 id="一些常用的代码段"><a href="#一些常用的代码段" class="headerlink" title="一些常用的代码段"></a>一些常用的代码段</h3><p>下面这些代码，都是我自己在学习 Vue 过程中遇到的真实问题所总结出来的，也将其分享给你，希望能够帮助你更好的完成自己的编码工作。</p>
+<h4 id="如何在-Vue-Router-中定义默认页面"><a href="#如何在-Vue-Router-中定义默认页面" class="headerlink" title="如何在 Vue Router 中定义默认页面?"></a>如何在 Vue Router 中定义默认页面?</h4><p>在后端开发中，我们一般会定义一个默认页面，但是在前端开发中，如果你的页面本身是一个 <code>router-view</code>，那么，你就需要为其设置一个默认页面。</p>
+<p>​<br>    let router = new Router({<br>        routes: [<br>         {<br>            path: “/dashboard”,<br>            component: home,<br>            children: [<br>              {<br>                path:””,<br>                component: analytics,<br>              }<br>            ]<br>        ]<br>    })</p>
+<p>这段代码所实现的效果是，如果你的 <code>home</code> 组件其核心内容是一个 <code>router-view</code>，那么进入到这个页面后，会自动加载 <code>analytics</code><br>组件的内容。</p>
+<h4 id="Vue-中如何限制用户查看内容"><a href="#Vue-中如何限制用户查看内容" class="headerlink" title="Vue 中如何限制用户查看内容"></a>Vue 中如何限制用户查看内容</h4><p>在后端开发过程中，我们一般会在前置中间件中来完成对用户身份的校验，并在处理后，将未经授权的请求抛出，在 Vue 中，我们同样可以实现。</p>
+<p>​<br>    /// 省略引用的代码<br>    let router = new Router({<br>      mode:”history”,<br>      base:base,<br>      routes: [<br>        {<br>          path: ‘/login’,<br>          name: ‘login’,<br>          component: Login,<br>          meta: { title: ‘登陆’ }<br>        },<br>        {<br>          path: ‘/‘，<br>          name: ‘home’,<br>          component: Home,<br>          meta: { title: ‘首页’，requireLogin:true }<br>        }<br>      ]<br>    })</p>
+<pre><code>router.beforeEach((to,from,next) =&gt; {
+  const { name,meta } = to;
+  const { requireLogin } = meta; // 提取登陆 标志
+
+  if(name === &apos;login&apos;){
+    return next();
+  }
+  const needLogin = requireLogin || 用户身份判断的代码;
+
+  if(needLogin){ // 如果判断需要登陆，就跳转登陆。
+    return next({
+      name:&quot;login&quot;，
+      params:{
+        back: to
+      }
+    })
+  }
+  next();
+})</code></pre><p>这段代码实现了在访问 home 时，自动检测用户是否登录，这里需要注意的是，我的这里直接写的是用户身份判断的代码，在真正的项目中，这里一般是 Vuex<br>的状态获取的代码。</p>
+<p>在这里的 <code>beforeEach</code> 就相当于我们在后端开发过程中使用到的前置中间件了。</p>
+<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>感谢你看到这里，虽然这篇文章没有太多的涉及到代码，但是我依然希望这篇 Chat 能够帮助你更好的认识 Vue 和 SPA 开发，帮助你更好的学习，使用<br>Vue 这样一个好用的工具。</p>
+<p>也欢迎你将自己遇到的文章留言在下方的评论区，我们将在后续的讨论中进行沟通。</p>
+<hr>
+<p>本文首发于 GitChat，未经授权不得转载，转载需与 GitChat 联系。</p>
+<p>11</p>
+<p>写评论</p>
+<p><a href="/m/mazi/author/58e484f5cfcd6fa52dceeadc/question">向作者提问</a></p>
+<p><img src="https://images.gitbook.cn/1de4e300-bd90-11e8-bed9-a5da583ea1c2" alt></p>
+<p>借假修真</p>
+<p>。。。好多404</p>
+<p>3月19日</p>
+<p>1</p>
+<p>2</p>
+<p>白宦成: 稍等，链接被转码了，正在联系编辑处理。</p>
+<p>白宦成: 已经修复了</p>
+<p><img src="https://images.gitbook.cn/0f63abb0-8075-11e9-b985-65fee8fce09c" alt></p>
+<p>garField</p>
+<p>文章配图404了</p>
+<p>3月19日</p>
+<p>0</p>
+<p>2</p>
+<p>白宦成: 稍等，我修复一下。</p>
+<p>白宦成: 已经修复了。</p>
+<p><img src="https://images.gitbook.cn/3ccfe550-aff7-11e7-bde7-a7b7db6bb47d" alt></p>
+<p>jesse</p>
+<p>太简单了吧</p>
+<p>3月19日</p>
+<p>0</p>
+<p>1</p>
+<p>白宦成: 这篇文章主要是讨论从后端角度看待Vue，当然，如果你遇到了技术问题，也可以提出来，我们在群交流中解答。</p>
+<p><img src="https://images.gitbook.cn/3ccfe550-aff7-11e7-bde7-a7b7db6bb47d" alt></p>
+<p>jesse</p>
+<p>值十块钱不</p>
+<p>3月20日</p>
+<p>0</p>
+<p>0</p>
+<p><img src="https://images.gitbook.cn/d0074670-fbf0-11e7-95db-93374aa7f3f5" alt></p>
+<p>李微尘</p>
+<p>平心而论，作为一名有一定JS基础的JAVA后端开发，对作者讲的逻辑并没有很好的理解，期间有很多内容解释不是很详尽。</p>
+<p>3月26日</p>
+<p>0</p>
+<p>0</p>
+<h2 id="更多资源下载交流请加微信：Morstrong"><a href="#更多资源下载交流请加微信：Morstrong" class="headerlink" title="更多资源下载交流请加微信：Morstrong"></a>更多资源下载交流请加微信：Morstrong</h2><h1 id="本资源由微信公众号：光明顶一号，分享-一个用技术共享精品付费资源的公众号！"><a href="#本资源由微信公众号：光明顶一号，分享-一个用技术共享精品付费资源的公众号！" class="headerlink" title="本资源由微信公众号：光明顶一号，分享,一个用技术共享精品付费资源的公众号！"></a>本资源由微信公众号：光明顶一号，分享,一个用技术共享精品付费资源的公众号！</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/09/28/Vue_Webpack/给后端程序员看的Vue快速入门教程/">http://yoursite.com/2019/09/28/Vue_Webpack/给后端程序员看的Vue快速入门教程/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Vue/"># Vue</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/28/数据结构算法/数据结构与算法 总结笔记/4 树/顺序存储的二叉树/">顺序存储的二叉树</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/24/数据结构算法/知名互联网公司校招中常见的算法题/">数据结构与算法校招面试</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
