@@ -182,27 +182,36 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/面试/">面试</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h1 id="面试题目总结"><a href="#面试题目总结" class="headerlink" title="面试题目总结"></a>面试题目总结</h1><h5 id="1-hashMap底层？"><a href="#1-hashMap底层？" class="headerlink" title="1 hashMap底层？"></a>1 hashMap底层？</h5><p> <strong>JDK1.8中，HashMap采用位桶+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树</strong>，这样大大减少了查找时间。</p>
+            <h1 id="面试题目总结"><a href="#面试题目总结" class="headerlink" title="面试题目总结"></a>面试题目总结</h1><p>#1 hashMap底层？</p>
+<p> <strong>JDK1.8中，HashMap采用位桶+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树</strong>，这样大大减少了查找时间。</p>
 <p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-14-140432.png" alt="image-20191014220432201"></p>
 <hr>
 <p>简单说下HashMap的实现原理：</p>
 <p>首先有一个每个元素都是链表（可能表述不准确）的数组，当添加一个元素（key-value）时，就首先计算元素key的hash值，以此确定插入数组中的位置，但是可能存在同一hash值的元素已经被放在数组同一位置了，这时就添加到同一hash值的元素的后面，他们在数组的同一位置，但是形成了链表，同一各链表上的Hash值是相同的，所以说数组存放的是链表。而当链表长度太长时，链表就转换为红黑树，这样大大提高了查找的效率。</p>
 <pre><code>当链表数组的容量超过初始容量的0.75时，再散列将链表数组扩大2倍，把原链表数组的搬移到新的数组中</code></pre><p>即HashMap的原理图是：</p>
 <p> <img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-14-140557.png" alt="image-20191014220556475"></p>
-<h5 id="2-为什么jdk1-8要用红黑树实现？"><a href="#2-为什么jdk1-8要用红黑树实现？" class="headerlink" title="2 为什么jdk1.8要用红黑树实现？"></a>2 为什么jdk1.8要用红黑树实现？</h5><p>在Jdk1.8版本后，Java对HashMap做了改进，在链表长度大于8的时候，将后面的数据存在红黑树中，以加快检索速度</p>
+<h1 id="2-为什么jdk1-8要用红黑树实现？"><a href="#2-为什么jdk1-8要用红黑树实现？" class="headerlink" title="2 为什么jdk1.8要用红黑树实现？"></a>2 为什么jdk1.8要用红黑树实现？</h1><p>在Jdk1.8版本后，Java对HashMap做了改进，在链表长度大于8的时候，将后面的数据存在红黑树中，以加快检索速度</p>
 <hr>
 <p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-14-141311.png" alt="image-20191014221310856"></p>
 <hr>
-<h5 id="3-为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？"><a href="#3-为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？" class="headerlink" title="3 为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？"></a>3 为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？</h5><p>HashMap在put的时候，插入的元素超过了容量（由负载因子决定）的范围就会触发扩容操作，就是rehash，这个会重新将原数组的内容重新hash到新的扩容数组中，在多线程的环境下，存在同时其他的元素也在进行put操作，如果hash值相同，可能出现同时在同一数组下用链表表示，造成闭环，导致在get时会出现死循环，所以HashMap是线程不安全的。</p>
+<h1 id="3-为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？"><a href="#3-为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？" class="headerlink" title="3 为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？"></a>3 为什么HashMap线程不安全，在多线程操作情况下什么时候线程不安全？</h1><p>HashMap在put的时候，插入的元素超过了容量（由负载因子决定）的范围就会触发扩容操作，就是rehash，这个会重新将原数组的内容重新hash到新的扩容数组中，在多线程的环境下，存在同时其他的元素也在进行put操作，如果hash值相同，可能出现同时在同一数组下用链表表示，造成闭环，导致在get时会出现死循环，所以HashMap是线程不安全的。</p>
 <blockquote>
 <p> <a href="https://blog.csdn.net/loveliness_peri/article/details/81092360" target="_blank" rel="noopener">https://blog.csdn.net/loveliness_peri/article/details/81092360</a></p>
 </blockquote>
-<h2 id="————————————————"><a href="#————————————————" class="headerlink" title="————————————————"></a>————————————————</h2><h5 id="4-如何实现HashMap的同步？怎么解决线程不安全？"><a href="#4-如何实现HashMap的同步？怎么解决线程不安全？" class="headerlink" title="4 如何实现HashMap的同步？怎么解决线程不安全？"></a>4 如何实现HashMap的同步？怎么解决线程不安全？</h5><p>答：</p>
+<hr>
+<h1 id="4-如何实现HashMap的同步？怎么解决线程不安全？"><a href="#4-如何实现HashMap的同步？怎么解决线程不安全？" class="headerlink" title="4 如何实现HashMap的同步？怎么解决线程不安全？"></a>4 如何实现HashMap的同步？怎么解决线程不安全？</h1><p>答：</p>
 <p>　　第一种方法：</p>
 <p>　　 直接使用Hashtable，但是当一个线程访问HashTable的同步方法时，其他线程如果也要访问同步方法，会被阻塞住。举个例子，当一个线程使用put方法时，另一个线程不但不可以使用put方法，连get方法都不可以，效率很低，现在基本不会选择它了。</p>
 <p>　　第二种方法： HashMap可以通过下面的语句进行同步，</p>
@@ -210,11 +219,81 @@
 <p>　　具体而言，该方法返回一个同步的Map，该Map封装了底层的HashMap的所有方法，使得底层的HashMap即使是在多线程的环境中也是安全的。</p>
 <p>　　第三种方法：</p>
 <p>　　直接使用JDK 5 之后的 ConcurrentHashMap，如果使用Java 5或以上的话，请使用ConcurrentHashMap。</p>
-<h5 id="5-认初始容量是16，如果我改成7，容量会变成7么？？为什么？"><a href="#5-认初始容量是16，如果我改成7，容量会变成7么？？为什么？" class="headerlink" title="5 认初始容量是16，如果我改成7，容量会变成7么？？为什么？"></a>5 认初始容量是16，如果我改成7，容量会变成7么？？为什么？</h5><hr>
+<h1 id="5-认初始容量是16，如果我改成7，容量会变成7么？？为什么？"><a href="#5-认初始容量是16，如果我改成7，容量会变成7么？？为什么？" class="headerlink" title="5 认初始容量是16，如果我改成7，容量会变成7么？？为什么？"></a>5 认初始容量是16，如果我改成7，容量会变成7么？？为什么？</h1><hr>
 <p><img src="http://ipic-freemana-1257703707.cos.ap-shanghai.myqcloud.com/2019-10-14-142107.png" alt="image-20191014222107185"></p>
 <hr>
-<h5 id="6数组和链表的区别？"><a href="#6数组和链表的区别？" class="headerlink" title="6数组和链表的区别？"></a>6数组和链表的区别？</h5><p>** 数组和链表的区别整理如下： **</p>
+<h1 id="6数组和链表的区别？"><a href="#6数组和链表的区别？" class="headerlink" title="6数组和链表的区别？"></a>6数组和链表的区别？</h1><p>** 数组和链表的区别整理如下： **</p>
 <p> 数组静态分配内存，链表动态分配内存；<br>数组在内存中连续，链表不连续；<br>数组元素在栈区，链表元素在堆区；<br>数组利用下标定位，时间复杂度为O(1)，链表定位元素时间复杂度O(n)；<br>数组插入或删除元素的时间复杂度O(n)，链表的时间复杂度O(1)</p>
+<hr>
+<h1 id="7-常见的线程池有哪些"><a href="#7-常见的线程池有哪些" class="headerlink" title="7 常见的线程池有哪些?"></a>7 常见的线程池有哪些?</h1><p>java中的有哪些线程池？</p>
+<p>1.newCachedThreadPool创建一个可缓存线程池程</p>
+<p>2.newFixedThreadPool 创建一个定长线程池</p>
+<p>3.newScheduledThreadPool 创建一个定长线程池</p>
+<p>4.newSingleThreadExecutor 创建一个单线程化的线程池</p>
+<pre><code>//缓存线程池，线程池的大小由jvm决定，如果有空闲线程会回收
+Executors.newCachedThreadPool();
+//单线程线程池，可保证任务执行的顺序就是任务提交的顺序
+Executors.newSingleThreadExecutor();
+//固定大小线程池（服务端推荐使用）
+Executors.newFixedThreadPool(size);
+//周期性线程池，可周期性执行任务
+Executors.newScheduledThreadPool(size);</code></pre><hr>
+<h1 id="8-Java线程池中的7个参数"><a href="#8-Java线程池中的7个参数" class="headerlink" title="8 Java线程池中的7个参数"></a>8 Java线程池中的7个参数</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    .....</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">            BlockingQueue&lt;Runnable&gt; workQueue)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">            BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">            BlockingQueue&lt;Runnable&gt; workQueue,RejectedExecutionHandler handler)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">        BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory,RejectedExecutionHandler handler)</span></span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数理解：</p>
+<ul>
+<li><p>corePollSize：核心线程数。在创建了线程池后，线程中没有任何线程，等到有任务到来时才创建线程去执行任务。默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中。</p>
+</li>
+<li><p>maximumPoolSize：最大线程数。表明线程中最多能够创建的线程数量。</p>
+</li>
+<li><p>keepAliveTime：空闲的线程保留的时间。</p>
+</li>
+<li><p>TimeUnit：空闲线程的保留时间单位。</p>
+</li>
+</ul>
+<ul>
+<li><p>BlockingQueue<runnable>：阻塞队列，存储等待执行的任务。参数有ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue可选。</runnable></p>
+</li>
+<li><p>ThreadFactory：线程工厂，用来创建线程</p>
+</li>
+<li><p>RejectedExecutionHandler：队列已满，而且任务量大于最大线程的异常处理策略。有以下取值:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。 </span><br><span class="line">ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。 </span><br><span class="line">ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</span><br><span class="line">ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</span><br></pre></td></tr></table></figure>
+
+<h1 id="9-newCachedThreadPool最大可开启的线程数是多少？"><a href="#9-newCachedThreadPool最大可开启的线程数是多少？" class="headerlink" title="9 newCachedThreadPool最大可开启的线程数是多少？"></a>9 newCachedThreadPool最大可开启的线程数是多少？</h1><p>这种类型的线程池特点是：</p>
+<p>工作线程的创建数量几乎没有限制(其实也有限制的,数目为Interger. MAX_VALUE), 这样可灵活的往线程池中添加线程。<br>如果长时间没有往线程池中提交任务，即如果工作线程空闲了指定的时间(默认为1分钟)，则该工作线程将自动终止。终止后，如果你又提交了新的任务，则线程池重新创建一个工作线程。<br>在使用CachedThreadPool时，一定要注意控制任务的数量，否则，由于大量线程同时运行，很有会造成系统瘫痪。</p>
+<p>newCachedThreadPool无上限线程池，   动态根据代码添加线程，   如果线程空闲60秒没有被使用，会自动关闭</p>
+<hr>
+<h1 id="10-如何实现其他线程和主线程的同步？"><a href="#10-如何实现其他线程和主线程的同步？" class="headerlink" title="10 如何实现其他线程和主线程的同步？"></a>10 如何实现其他线程和主线程的同步？</h1><p>  <strong>Synchronized 同步</strong></p>
+<p>1、方法同步。给方法增加synchronized修饰符就可以成为同步方法，可以是静态方法、非静态方法，但不能是抽象方法、接口方法。小示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void aMethod() &#123; </span><br><span class="line">    // do something </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">public static synchronized void anotherMethod() &#123; </span><br><span class="line">    // do something </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用块同步，示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;  <span class="comment">//与上面示例不同于关键字使用</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">               System.out.print(<span class="string">" "</span> + i);</span><br><span class="line">           &#125;</span><br><span class="line">      &#125; </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">       Runnable r = <span class="keyword">new</span> ThreadTest();</span><br><span class="line">       Thread t1 = <span class="keyword">new</span> Thread(r);</span><br><span class="line">       Thread t2 = <span class="keyword">new</span> Thread(r);</span><br><span class="line">       t1.start();</span><br><span class="line">       t2.start();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>Volatile 同步</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.volatile关键字为域变量的访问提供了一种免锁机制</span><br></pre></td></tr></table></figure>
+
+<pre><code>b.使用volatile修饰域相当于告诉虚拟机该域可能会被其他线程更新
+
+c.因此每次使用该域就要重新计算，而不是使用寄存器中的值 
+
+d.volatile不会提供任何原子操作，它也不能用来修饰final类型的变量</code></pre><p>  <strong>重入锁同步</strong></p>
+<p>ReentrantLock类是可重入、互斥、实现了Lock接口的锁，它与使用synchronized方法和快具有相同的基本行为和语义，并且扩展了其能力。 ReenreantLock类的常用方法有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ReentrantLock() : 创建一个ReentrantLock实例 </span><br><span class="line">lock() : 获得锁 </span><br><span class="line">unlock() : 释放锁</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>阻塞队列同步</strong></p>
+<p>BlockingQueue<e>定义了阻塞队列的常用方法，尤其是三种添加元素的方法，我们要多加注意，当队列满时：</e></p>
+<p>　　add()方法会抛出异常</p>
+<p>　　offer()方法返回false</p>
+<p>　　put()方法会阻塞</p>
+<p> <strong>原子变量同步</strong></p>
+<p>AtomicInteger类常用方法：</p>
+<p>AtomicInteger(int initialValue) : 创建具有给定初始值的新的</p>
+<p>AtomicIntegeraddAddGet(int dalta) : 以原子方式将给定值与当前值相加</p>
+<p>get() : 获取当前值</p>
+<hr>
 
         </div>
 
