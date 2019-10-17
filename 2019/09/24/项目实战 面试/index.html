@@ -103,6 +103,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -169,7 +231,27 @@
 <li></li>
 </ol>
 <hr>
+<h1 id="项目2-企业级微信点餐系统"><a href="#项目2-企业级微信点餐系统" class="headerlink" title="项目2 企业级微信点餐系统"></a>项目2 企业级微信点餐系统</h1><p>1完成 买家端和卖家端商品，类目，订单开发</p>
+<p>2 完成微信授权 支付 退款等功能的开发</p>
+<p>3 使用SpringCloud的组件重构系统 项目微服务化 </p>
+<p>4 使用Docker RANCHER 容器编排、链路追踪，</p>
+<hr>
+<hr>
+<h1 id="项目3-学成在线项目"><a href="#项目3-学成在线项目" class="headerlink" title="项目3 学成在线项目"></a>项目3 学成在线项目</h1><h1 id="项目四-商城项目-乐优商城"><a href="#项目四-商城项目-乐优商城" class="headerlink" title="项目四 商城项目 乐优商城"></a>项目四 商城项目 乐优商城</h1><p>其他一些小Demo</p>
+<p>最近简历模版2019 10月16 </p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">% !TEX TS-program = xelatex</span><br><span class="line">% !TEX encoding = UTF-8 Unicode</span><br><span class="line">% !Mode:: &quot;TeX:UTF-8&quot;</span><br><span class="line"></span><br><span class="line">\documentclass&#123;resume&#125;</span><br><span class="line">\usepackage&#123;zh_CN-Adobefonts_external&#125; % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)</span><br><span class="line">%\usepackage&#123;zh_CN-Adobefonts_internal&#125; % Simplified Chinese Support using system fonts</span><br><span class="line">\usepackage&#123;linespacing_fix&#125; % disable extra space before next section</span><br><span class="line">\usepackage&#123;cite&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">\pagenumbering&#123;gobble&#125; % suppress displaying page number</span><br><span class="line"></span><br><span class="line">\name&#123;袁海鹏&#125;</span><br><span class="line"></span><br><span class="line">\basicInfo&#123;</span><br><span class="line">  \email&#123;1047629166y@gmail.com&#125; \textperiodcentered\ </span><br><span class="line">  \phone&#123;(+86) 18248770502&#125; \textperiodcentered\ </span><br><span class="line">  \linkedin[Ferrymana]&#123;https://www.linkedin.com/in/io-guns-a94744195/&#125;&#125;</span><br><span class="line"> </span><br><span class="line">\section&#123;\faGraduationCap\  教育背景&#125;</span><br><span class="line">\datedsubsection&#123;\textbf&#123;宿迁学院&#125;, 江苏, 宿迁&#125;&#123;2016 -- 至今&#125;</span><br><span class="line">\textit&#123;学士&#125;\  信息与计算科学</span><br><span class="line"></span><br><span class="line">\section&#123;\faUsers\ 实习/项目经历&#125;</span><br><span class="line">\datedsubsection&#123;\textbf&#123;SpringBoot构建电商基础秒杀项目&#125;&#125;&#123;&#125;</span><br><span class="line">\role&#123;Java, Mac&#125; &#123;个人项目&#125;&#123;&#125;</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 实现了分布式session用户登录功能</span><br><span class="line">  \item 完成商品列表页,详情页,订单详情页的开发</span><br><span class="line">  \item RabbitMQ缓存, 异步下单。Redis预减缓存,减少对数据库访问  </span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">\datedsubsection&#123;\textbf&#123;SpringCloud构建企业级微信点餐系统&#125;&#125; </span><br><span class="line">\role&#123;Spring, Linux&#125;&#123;个人项目&#125;&#123;&#125;</span><br><span class="line">\begin&#123;onehalfspacing&#125;</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 完成买家端和卖家端商品，类目，订单开发</span><br><span class="line">  \item 完成微信授权,支付,退款等功能的开发</span><br><span class="line">  \item 使用SpringCloud的组件重构系统,项目微服务化 </span><br><span class="line">  \item 使用Docker RANCHER 容器编排、链路追踪</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line">\end&#123;onehalfspacing&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\datedsubsection&#123;\textbf&#123;\LaTeX\ 简历模板&#125;&#125;&#123;2015 年5月 -- 至今&#125;</span><br><span class="line">\role&#123;\LaTeX, Python&#125;&#123;个人项目&#125;</span><br><span class="line">\begin&#123;onehalfspacing&#125;</span><br><span class="line">优雅的 \LaTeX\ 简历模板, https://github.com/billryan/resume</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 容易定制和扩展</span><br><span class="line">  \item 完善的 Unicode 字体支持，使用 \XeLaTeX\ 编译</span><br><span class="line">  \item 支持 FontAwesome 4.5.0</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line">\end&#123;onehalfspacing&#125;</span><br><span class="line"></span><br><span class="line">% Reference Test</span><br><span class="line">%\datedsubsection&#123;\textbf&#123;Paper Title\cite&#123;zaharia2012resilient&#125;&#125;&#125;&#123;May. 2015&#125;</span><br><span class="line">%An xxx optimized for xxx\cite&#123;verma2015large&#125;</span><br><span class="line">%\begin&#123;itemize&#125;</span><br><span class="line">%  \item main contribution</span><br><span class="line">%\end&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">\section&#123;\faCogs\ IT 技能&#125;</span><br><span class="line">% increase linespacing [parsep=0.5ex]</span><br><span class="line">\begin&#123;itemize&#125;[parsep=0.5ex]</span><br><span class="line">  \item 编程语言: Java</span><br><span class="line">  \item 平台: Linux Mac</span><br><span class="line">  \item Web框架: SpringBoot Dubbo SpringCloud SSM JPA</span><br><span class="line">  \item 前端框架: Vue Jquery</span><br><span class="line">  \item 数据库相关: Redis Mysql MongoDB Elasticsearch</span><br><span class="line">  \item 项目管理: Git GitLab Jenkins </span><br><span class="line">  \item 其他: Shiro RabbitMQ </span><br><span class="line">  \item 熟悉JVM  多线程并发 设计模式</span><br><span class="line">\section&#123;\faHeartO\ 获奖情况&#125;</span><br><span class="line">\datedline&#123;\textit&#123;一等奖&#125;, 达内杯比赛&#125;&#123;2018 年9月&#125;</span><br><span class="line">\datedline&#123;\textit&#123;一等奖&#125;,万和杯人工智能大赛&#125;&#123;2019年 3 月&#125;</span><br><span class="line">\section&#123;\faInfo\ 其他&#125;</span><br><span class="line">% increase linespacing [parsep=0.5ex]https://www.overleaf.com/project/5da6ba7447765f0001707f2a</span><br><span class="line">\begin&#123;itemize&#125;[parsep=0.5ex]</span><br><span class="line">  \item 技术博客: https://guns-y.github.io</span><br><span class="line">  \item Gitee: https://gitee.com/GoodMrY</span><br><span class="line">  \item 语言: 英语 - 熟练(CET-4)</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">%% Reference </span><br><span class="line">%\newpage</span><br><span class="line">%\bibliographystyle&#123;IEEETran&#125;</span><br><span class="line">%\bibliography&#123;mycite&#125;</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="Dubbo猫眼项目"><a href="#Dubbo猫眼项目" class="headerlink" title="Dubbo猫眼项目"></a>Dubbo猫眼项目</h1><ul>
+<li><p>用户模块开发</p>
+</li>
+<li><p>影片模块开发</p>
+</li>
+<li><p>影院模块开发</p>
+</li>
+<li><h5 id="订单模块开发"><a href="#订单模块开发" class="headerlink" title="订单模块开发"></a>订单模块开发</h5></li>
+</ul>
+<h5 id="支付模块开发"><a href="#支付模块开发" class="headerlink" title="* 支付模块开发"></a>* 支付模块开发</h5>
         </div>
 
         
@@ -223,7 +305,7 @@
                 <a class="prev" rel="prev" href="/2019/09/24/数据结构算法/知名互联网公司校招中常见的算法题/">数据结构与算法校招面试</a>
             
             
-            <a class="next" rel="next" href="/2019/09/12/Docker/Docker的基础知识整理/">Docker基础知识</a>
+            <a class="next" rel="next" href="/2019/09/12/JVM/JVM常见面试题指南/">JVM常见面试题</a>
             
         </section>
 

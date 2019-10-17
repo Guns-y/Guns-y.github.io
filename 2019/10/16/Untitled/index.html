@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ferrymana&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ferrymana&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title"></h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 16, 2019&nbsp;&nbsp;21:30:33</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>% !TEX TS-program = xelatex<br>% !TEX encoding = UTF-8 Unicode<br>% !Mode:: “TeX:UTF-8”</p>
+<p>\documentclass{resume}<br>\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)<br>%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts<br>\usepackage{linespacing_fix} % disable extra space before next section<br>\usepackage{cite}<br>\begin{document}<br>\pagenumbering{gobble} % suppress displaying page number<br>\name{袁海鹏}<br>\basicInfo{<br>  \email{1047629166y@gmail.com} \textperiodcentered\<br>  \phone{(+86) 18248770502} \textperiodcentered\<br>  \linkedin[Ferrymana]{<a href="https://www.linkedin.com/in/io-guns-a94744195/}}" target="_blank" rel="noopener">https://www.linkedin.com/in/io-guns-a94744195/}}</a><br>\section{\faGraduationCap\  教育背景}<br>\datedsubsection{\textbf{宿迁学院}, 江苏, 宿迁}{2016 – 至今}<br>\textit{学士}\ 信息与计算科学</p>
+<p>\section{\faUsers\ 实习/项目经历}<br>\datedsubsection{\textbf{SpringBoot构建电商基础秒杀项目}}{}<br>\role{Java, Mac} {个人项目}{}<br>\begin{itemize}<br>  \item 实现了分布式session用户登录功能<br>  \item 完成商品列表页,详情页,订单详情页的开发<br>  \item RabbitMQ缓存, 异步下单。Redis预减缓存,减少对数据库访问<br>\end{itemize}<br>\datedsubsection{\textbf{SpringBoot构建企业级微信点餐系统}}{2014年6月 – 至今}<br>\role{Golang, Linux}{个人项目，和富帅糕合作开发}<br>\begin{onehalfspacing}<br>分布式负载均衡科学上网姿势, <a href="https://github.com/cyfdecyf/cow" target="_blank" rel="noopener">https://github.com/cyfdecyf/cow</a><br>\begin{itemize}<br>  \item 修复了连接未正常关闭导致文件描述符耗尽的 bug<br>  \item 使用Chord 哈希 URL, 实现稳定可靠地分流<br>  \item xxx (尽量使用量化的客观结果)<br>\end{itemize}<br>\end{onehalfspacing}</p>
+<p>\datedsubsection{\textbf{\LaTeX\ 简历模板}}{2015 年5月 – 至今}<br>\role{\LaTeX, Python}{个人项目}<br>\begin{onehalfspacing}<br>优雅的 \LaTeX\ 简历模板, <a href="https://github.com/billryan/resume" target="_blank" rel="noopener">https://github.com/billryan/resume</a><br>\begin{itemize}<br>  \item 容易定制和扩展<br>  \item 完善的 Unicode 字体支持，使用 \XeLaTeX\ 编译<br>  \item 支持 FontAwesome 4.5.0<br>\end{itemize}<br>\end{onehalfspacing}<br>% Reference Test<br>%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}<br>%An xxx optimized for xxx\cite{verma2015large}<br>%\begin{itemize}<br>%  \item main contribution<br>%\end{itemize}<br>\section{\faCogs\ IT 技能}<br>% increase linespacing [parsep=0.5ex]<br>\begin{itemize}[parsep=0.5ex]<br>  \item 编程语言: Java<br>  \item 平台: Linux Mac<br>  \item Web框架: SpringBoot Dubbo SpringCloud SSM JPA<br>  \item 前端框架: Vue Jquery<br>  \item 数据库相关: Redis Mysql MongoDB Elasticsearch<br>  \item 项目管理: Git GitLab Jenkins<br>  \item 其他: Shiro RabbitMQ<br>  \item 熟悉JVM  多线程并发 设计模式<br>\section{\faHeartO\ 获奖情况}<br>\datedline{\textit{一等奖}, 达内杯比赛}{2018 年9月}<br>\datedline{\textit{一等奖},万和杯人工智能大赛}{2019年 3 月}<br>\section{\faInfo\ 其他}<br>% increase linespacing [parsep=0.5ex]<a href="https://www.overleaf.com/project/5da6ba7447765f0001707f2a" target="_blank" rel="noopener">https://www.overleaf.com/project/5da6ba7447765f0001707f2a</a><br>\begin{itemize}[parsep=0.5ex]<br>  \item 技术博客: <a href="https://guns-y.github.io" target="_blank" rel="noopener">https://guns-y.github.io</a><br>  \item Gitee: <a href="https://gitee.com/GoodMrY" target="_blank" rel="noopener">https://gitee.com/GoodMrY</a><br>  \item 语言: 英语 - 熟练(CET-4)<br>\end{itemize}</p>
+<p>%% Reference<br>%\newpage<br>%\bibliographystyle{IEEETran}<br>%\bibliography{mycite}</p>
+<p>\end{document} </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">% !TEX TS-program = xelatex</span><br><span class="line">% !TEX encoding = UTF-8 Unicode</span><br><span class="line">% !Mode:: &quot;TeX:UTF-8&quot;</span><br><span class="line"></span><br><span class="line">\documentclass&#123;resume&#125;</span><br><span class="line">\usepackage&#123;zh_CN-Adobefonts_external&#125; % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)</span><br><span class="line">%\usepackage&#123;zh_CN-Adobefonts_internal&#125; % Simplified Chinese Support using system fonts</span><br><span class="line">\usepackage&#123;linespacing_fix&#125; % disable extra space before next section</span><br><span class="line">\usepackage&#123;cite&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">\pagenumbering&#123;gobble&#125; % suppress displaying page number</span><br><span class="line">\name&#123;袁海鹏&#125;</span><br><span class="line">\basicInfo&#123;</span><br><span class="line">  \email&#123;1047629166y@gmail.com&#125; \textperiodcentered\ </span><br><span class="line">  \phone&#123;(+86) 18248770502&#125; \textperiodcentered\ </span><br><span class="line">  \linkedin[Ferrymana]&#123;https://www.linkedin.com/in/io-guns-a94744195/&#125;&#125;</span><br><span class="line">\section&#123;\faGraduationCap\  教育背景&#125;</span><br><span class="line">\datedsubsection&#123;\textbf&#123;宿迁学院&#125;, 江苏, 宿迁&#125;&#123;2016 -- 至今&#125;</span><br><span class="line">\textit&#123;学士&#125;\ 信息与计算科学</span><br><span class="line"></span><br><span class="line">\section&#123;\faUsers\ 实习/项目经历&#125;</span><br><span class="line">\datedsubsection&#123;\textbf&#123;SpringBoot构建电商基础秒杀项目&#125;&#125;&#123;&#125;</span><br><span class="line">\role&#123;Java, Mac&#125; &#123;个人项目&#125;&#123;&#125;</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 实现了分布式session用户登录功能</span><br><span class="line">  \item 完成商品列表页,详情页,订单详情页的开发</span><br><span class="line">  \item RabbitMQ缓存, 异步下单。Redis预减缓存,减少对数据库访问  </span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line">\datedsubsection&#123;\textbf&#123;SpringBoot构建企业级微信点餐系统&#125;&#125;&#123;2014年6月 -- 至今&#125;</span><br><span class="line">\role&#123;Golang, Linux&#125;&#123;个人项目，和富帅糕合作开发&#125;</span><br><span class="line">\begin&#123;onehalfspacing&#125;</span><br><span class="line">分布式负载均衡科学上网姿势, https://github.com/cyfdecyf/cow</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 修复了连接未正常关闭导致文件描述符耗尽的 bug</span><br><span class="line">  \item 使用Chord 哈希 URL, 实现稳定可靠地分流</span><br><span class="line">  \item xxx (尽量使用量化的客观结果)</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line">\end&#123;onehalfspacing&#125;</span><br><span class="line"></span><br><span class="line">\datedsubsection&#123;\textbf&#123;\LaTeX\ 简历模板&#125;&#125;&#123;2015 年5月 -- 至今&#125;</span><br><span class="line">\role&#123;\LaTeX, Python&#125;&#123;个人项目&#125;</span><br><span class="line">\begin&#123;onehalfspacing&#125;</span><br><span class="line">优雅的 \LaTeX\ 简历模板, https://github.com/billryan/resume</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item 容易定制和扩展</span><br><span class="line">  \item 完善的 Unicode 字体支持，使用 \XeLaTeX\ 编译</span><br><span class="line">  \item 支持 FontAwesome 4.5.0</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line">\end&#123;onehalfspacing&#125;</span><br><span class="line">% Reference Test</span><br><span class="line">%\datedsubsection&#123;\textbf&#123;Paper Title\cite&#123;zaharia2012resilient&#125;&#125;&#125;&#123;May. 2015&#125;</span><br><span class="line">%An xxx optimized for xxx\cite&#123;verma2015large&#125;</span><br><span class="line">%\begin&#123;itemize&#125;</span><br><span class="line">%  \item main contribution</span><br><span class="line">%\end&#123;itemize&#125;</span><br><span class="line">\section&#123;\faCogs\ IT 技能&#125;</span><br><span class="line">% increase linespacing [parsep=0.5ex]</span><br><span class="line">\begin&#123;itemize&#125;[parsep=0.5ex]</span><br><span class="line">  \item 编程语言: Java</span><br><span class="line">  \item 平台: Linux Mac</span><br><span class="line">  \item Web框架: SpringBoot Dubbo SpringCloud SSM JPA</span><br><span class="line">  \item 前端框架: Vue Jquery</span><br><span class="line">  \item 数据库相关: Redis Mysql MongoDB Elasticsearch</span><br><span class="line">  \item 项目管理: Git GitLab Jenkins </span><br><span class="line">  \item 其他: Shiro RabbitMQ </span><br><span class="line">  \item 熟悉JVM  多线程并发 设计模式</span><br><span class="line">\section&#123;\faHeartO\ 获奖情况&#125;</span><br><span class="line">\datedline&#123;\textit&#123;一等奖&#125;, 达内杯比赛&#125;&#123;2018 年9月&#125;</span><br><span class="line">\datedline&#123;\textit&#123;一等奖&#125;,万和杯人工智能大赛&#125;&#123;2019年 3 月&#125;</span><br><span class="line">\section&#123;\faInfo\ 其他&#125;</span><br><span class="line">% increase linespacing [parsep=0.5ex]https://www.overleaf.com/project/5da6ba7447765f0001707f2a</span><br><span class="line">\begin&#123;itemize&#125;[parsep=0.5ex]</span><br><span class="line">  \item 技术博客: https://guns-y.github.io</span><br><span class="line">  \item Gitee: https://gitee.com/GoodMrY</span><br><span class="line">  \item 语言: 英语 - 熟练(CET-4)</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">%% Reference </span><br><span class="line">%\newpage</span><br><span class="line">%\bibliographystyle&#123;IEEETran&#125;</span><br><span class="line">%\bibliography&#123;mycite&#125;</span><br><span class="line"></span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/10/16/Untitled/">http://yoursite.com/2019/10/16/Untitled/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/17/Untitled 1/"></a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/14/面试总结/">面试总结</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
